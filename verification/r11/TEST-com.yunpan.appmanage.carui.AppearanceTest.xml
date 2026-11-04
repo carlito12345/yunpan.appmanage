@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.AppearanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T20:33:23.174Z" hostname="CARLITO" time="23.62">
+  <properties/>
+  <testcase name="globalAlphaChangesOnlyMaterialPixelsAndClampsSavedValues" classname="com.yunpan.appmanage.carui.AppearanceTest" time="21.236"/>
+  <testcase name="themeCenterDraftCancelAndApplyPreserveWallpaperAndFitBothDirections" classname="com.yunpan.appmanage.carui.AppearanceTest" time="2.237"/>
+  <testcase name="borderStylesRenderAndFlowStopsWhenHiddenOrMotionDisabled" classname="com.yunpan.appmanage.carui.AppearanceTest" time="0.147"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
+[Robolectric] WARN: Android SDK 37 requires Java 21 (have Java 17). Tests won't be run on SDK 37 unless explicitly requested.
+]]></system-err>
+</testsuite>

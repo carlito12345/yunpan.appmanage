@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 @Config(sdk=28,manifest=Config.NONE,qualifiers="w720dp-h960dp-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
-public class R10RegressionTest {
+public class R11RegressionTest {
     final R4RegressionTest f=new R4RegressionTest();
     @Before public void setup()throws Exception{f.setup();}
     @Test public void bootNumericValuesFitAndKeepOriginalInputsAcrossThemesRotationAndFontScale()throws Exception{
@@ -52,7 +52,7 @@ public class R10RegressionTest {
                     assertTrue("Five-digit values must fit",field.getWidth()-field.getCompoundPaddingLeft()-field.getCompoundPaddingRight()>=field.getPaint().measureText(values[i]));
                     assertTrue("No field may overflow its row",field.getLeft()>=0&&field.getRight()<=((View)field.getParent()).getWidth());
                 }
-                if(font==1f)f.capture(decor,decor.getWidth(),decor.getHeight(),"r10-boot-"+theme+"-"+size[0]+".png");
+                if(font==1f)f.capture(decor,decor.getWidth(),decor.getHeight(),"r11-boot-"+theme+"-"+size[0]+".png");
             }
             assertEquals("Theming must not rewrite saved text",expectedEdits,edits[0]);fields[1].setText("120");assertEquals(expectedEdits+1,edits[0]);
             dialog.dismiss();
@@ -60,19 +60,21 @@ public class R10RegressionTest {
     }
     TextView text(View v,String label){if(v instanceof TextView&&label.contentEquals(((TextView)v).getText()))return(TextView)v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){TextView found=text(((ViewGroup)v).getChildAt(i),label);if(found!=null)return found;}return null;}
     View description(View v,String label){if(label.equals(String.valueOf(v.getContentDescription())))return v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){View found=description(((ViewGroup)v).getChildAt(i),label);if(found!=null)return found;}return null;}
-    void noBorder(View card,int color,float radius,int[] state){
-        Drawable actual=card.getBackground();actual.setState(state);actual.setBounds(0,0,240,240);
+    void background(View card,int color,float radius,int[] state,boolean framed){
+        Drawable actual=card.getBackground();Rect previous=new Rect(actual.getBounds());int[] previousState=actual.getState();actual.setState(state);actual.setBounds(0,0,240,240);
         GradientDrawable expected=new GradientDrawable();expected.setColor(Appearance.color(color,Appearance.load(f.activity)));expected.setCornerRadius(CarUi.dp(f.activity,radius));expected.setBounds(0,0,240,240);
         Bitmap a=Bitmap.createBitmap(240,240,Bitmap.Config.ARGB_8888),b=Bitmap.createBitmap(240,240,Bitmap.Config.ARGB_8888);actual.draw(new Canvas(a));expected.draw(new Canvas(b));
         int[] ap=new int[240*240],bp=new int[240*240];a.getPixels(ap,0,240,0,0,240,240);b.getPixels(bp,0,240,0,0,240,240);
         int max=0;for(int i=0;i<ap.length;i++){int ca=ap[i],cb=bp[i],aa=ca>>>24,ab=cb>>>24;max=Math.max(max,Math.abs(aa-ab));for(int shift:new int[]{0,8,16})max=Math.max(max,Math.abs(((ca>>>shift)&255)*aa/255-((cb>>>shift)&255)*ab/255));}
         // Native premultiplication and state-container alpha rounding differ by a few 8-bit levels.
-        assertTrue("Favorite background must be a plain fill without any border; pixel delta="+max+", state="+java.util.Arrays.toString(state)+", center="+Integer.toHexString(a.getPixel(120,120))+" expected="+Integer.toHexString(b.getPixel(120,120)),max<=4);a.recycle();b.recycle();
+        if(framed){assertTrue("Function cards need a visible border in every theme/style",max>4);assertEquals("Card corners must stay rounded",0,a.getPixel(12,12)>>>24);}
+        else assertTrue("Marked heading/edit region must have no border; delta="+max,max<=4);
+        a.recycle();b.recycle();actual.setBounds(previous);actual.setState(previousState);
     }
-    @Test public void homeKeepsSeparatePanelsAndBorderlessFavoritesInEveryThemeAndEdgeStyle()throws Exception{
+    @Test public void homeKeepsUnframedHeadingAndRoundedBorderedCardsInEveryThemeAndStyle()throws Exception{
         checkHome(1440,1920);
     }
-    @Test @Config(qualifiers="w960dp-h720dp-land-xhdpi") public void landscapeKeepsSeparatePanelsAndBorderlessFavorites()throws Exception{
+    @Test @Config(qualifiers="w960dp-h720dp-land-xhdpi") public void landscapeKeepsUnframedHeadingAndRoundedBorderedCards()throws Exception{
         checkHome(1920,1440);
     }
     void checkHome(int width,int height)throws Exception{
@@ -87,11 +89,19 @@ public class R10RegressionTest {
                 assertTrue("Header and hero need a real outer gap",f.top(hero)-f.top(heading)-heading.getHeight()>=CarUi.dp(f.activity,16));
                 assertTrue("Hero and favorites heading need separation",f.top(section)-f.top(hero)-hero.getHeight()>=CarUi.dp(f.activity,18));
                 assertTrue("Favorites heading must not touch cards",f.top(card)-f.top(section)-section.getHeight()>=CarUi.dp(f.activity,14));
-                CarUi.Skin skin=CarUi.skin(f.activity);float radius=theme.equals("cyan")?10:theme.equals("mono")?16:26;
+                CarUi.Skin skin=CarUi.skin(f.activity);View edit=description(home,"编辑常用功能");
                 assertNotNull(add);assertTrue(add.isClickable());
-                for(int[] state:new int[][]{new int[]{},new int[]{android.R.attr.state_pressed},new int[]{android.R.attr.state_focused}})noBorder(card,state.length==0?skin.surface:skin.soft,radius,state);
+                for(int[] state:new int[][]{new int[]{},new int[]{android.R.attr.state_pressed},new int[]{android.R.attr.state_focused}}){
+                    background(section,skin.surface,18,state,false);
+                    background(edit,state.length==0?skin.soft:skin.surface,26,state,false);
+                    background(card,state.length!=0&&state[0]==android.R.attr.state_pressed?skin.soft:skin.surface,26,state,true);
+                }
                 card.getBackground().setState(new int[]{});add.getBackground().setState(new int[]{});
-                if(style==3&&!dark)f.capture(home,size[0],size[1],"r10-home-"+theme+"-"+size[0]+".png");
+                if(style==3&&!dark){
+                    f.capture(home,size[0],size[1],"r11-home-"+theme+"-"+size[0]+".png");
+                    add.requestRectangleOnScreen(new Rect(0,0,add.getWidth(),add.getHeight()),true);
+                    f.capture(home,size[0],size[1],"r11-home-bottom-"+theme+"-"+size[0]+".png");
+                }
             }
         }
     }

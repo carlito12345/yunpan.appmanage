@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.R11RegressionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T20:34:44.427Z" hostname="CARLITO" time="19.007">
+  <properties/>
+  <testcase name="bootNumericValuesFitAndKeepOriginalInputsAcrossThemesRotationAndFontScale" classname="com.yunpan.appmanage.carui.R11RegressionTest" time="2.361"/>
+  <testcase name="homeKeepsUnframedHeadingAndRoundedBorderedCardsInEveryThemeAndStyle" classname="com.yunpan.appmanage.carui.R11RegressionTest" time="7.66"/>
+  <testcase name="landscapeKeepsUnframedHeadingAndRoundedBorderedCards" classname="com.yunpan.appmanage.carui.R11RegressionTest" time="8.985"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

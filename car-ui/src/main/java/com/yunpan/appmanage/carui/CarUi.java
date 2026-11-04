@@ -73,18 +73,23 @@ public final class CarUi {
         return Math.min(count,metrics.widthPixels>metrics.heightPixels?5:3);
     }
     public static GradientDrawable rounded(Context context,int color,float radius) {
-        Skin s=skin(context);float r="cyan".equals(s.theme)?Math.min(radius,10):"mono".equals(s.theme)?Math.min(radius,16):radius;
-        GradientDrawable drawable=Appearance.background(context,color,r,Appearance.load(context));
+        Skin s=skin(context);
+        GradientDrawable drawable=Appearance.background(context,color,radius,Appearance.load(context));
         if(Appearance.load(context).style==0&&"cyan".equals(s.theme)&&(color==s.surface||color==s.rail))drawable.setStroke(dp(context,1),s.outline);
         return drawable;
     }
     public static StateListDrawable buttonBackground(Context context,int normal,int pressed,int stroke,float radius) {
+        return buttonBackground(context,normal,pressed,stroke,radius,false);
+    }
+    public static StateListDrawable buttonBackground(Context context,int normal,int pressed,int stroke,float radius,boolean normalOutline) {
         StateListDrawable result=new StateListDrawable();
         GradientDrawable focus=rounded(context,pressed,radius);focus.setStroke(dp(context,2),stroke);
         result.addState(new int[]{android.R.attr.state_pressed},focus);
         GradientDrawable keyboard=rounded(context,normal,radius);keyboard.setStroke(dp(context,2),stroke);
         result.addState(new int[]{android.R.attr.state_focused},keyboard);
-        result.addState(new int[]{},rounded(context,normal,radius));return result;
+        GradientDrawable fill=rounded(context,normal,radius);
+        if(normalOutline&&Appearance.load(context).style==0)fill.setStroke(dp(context,1),skin(context).outline);
+        result.addState(new int[]{},fill);return result;
     }
     public static TextView text(Context context,String value,float size,int color,boolean bold) {
         TextView view=new TextView(context);view.setText(value);view.setTextSize(size);view.setTextColor(color);

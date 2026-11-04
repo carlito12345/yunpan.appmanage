@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T02:32:13Z",
+  "generatedAt": "2026-11-04T20:41:05.567659+00:00",
   "title": "Design System: 应用管家 · 车机",
   "extensions": {
     "colorMeta": {
@@ -1052,10 +1052,18 @@
       "implementation": "FrostedDialogs",
       "scope": "Shared legacy and owned Dialog decoration; existing palette and original interactive content retained.",
       "sample": "Owning Activity decor at 1/12 resolution; two CPU separable box-blur passes, radius 4 in the sampled bitmap; positioned relative to owner/decor screen origins.",
-      "surfaceAlpha255": {"day": 210, "night": 220, "fallbackWithoutSample": 245},
+      "surfaceAlpha255": {
+        "day": 210,
+        "night": 220,
+        "fallbackWithoutSample": 245
+      },
       "alphaScope": "Baseline tonal values. R7 applies the configured panel opacity once across snapshot/tonal composition, preserving proportions rather than independently fading both layers. Foreground/wallpaper and opaque QR content are outside this budget.",
-      "nativeWindowDim": {"flag": "FLAG_DIM_BEHIND", "day": 0.46, "night": 0.58},
-      "boardCorners": "28dp warm/mono; 16dp cyan, drawn outside the generic radius-cap helper, with a thin theme outline.",
+      "nativeWindowDim": {
+        "flag": "FLAG_DIM_BEHIND",
+        "day": 0.46,
+        "night": 0.58
+      },
+      "boardCorners": "28dp in all three themes, drawn outside the generic rounded helper, with the configured/default outline.",
       "content": "Sharp text and controls over transparent root/scroll hosts; field, selected and focus backgrounds stay meaningful.",
       "lifecycle": "Bounded open/owner-resize/theme refresh. Keyed Board replacement/detach releases bitmap/listeners and animated-border scheduling/callback. No per-frame sampling or replacement of external dismiss callbacks.",
       "callbacks": "Original external dismiss/close callbacks are retained.",
@@ -1173,13 +1181,13 @@
       },
       "reselectingCurrentTheme": "Preserve current dark flag.",
       "modeToggle": "Toggle current scheme; one saved mode flag, not per-theme mode history.",
-      "shapeCaps": {
-        "warm": "requested radius",
-        "cyan": "min(requested radius, 10dp)",
-        "mono": "min(requested radius, 16dp)"
-      },
       "dynamicColor": false,
-      "automaticSystemNightSync": false
+      "automaticSystemNightSync": false,
+      "shapePolicy": {
+        "allThemes": "Use the requested component-role radius unchanged; no cyan/monochrome cap.",
+        "themePickerPreview": "16dp across all three themes",
+        "frostedBoard": "28dp across all three themes"
+      }
     },
     "sourceInfo": {
       "implementation": "SourceInfo; ordinary extension reusing incumbent native type/material/actions, with no new tokens/world.",
@@ -1188,7 +1196,10 @@
       "source": "应用管家社区官方【应用管家】",
       "url": "https://pd.qq.com/s/7eyokceit?b=5",
       "tencentChannel": "updata3927",
-      "entries": ["Theme center lower 关于与来源 section", "Home content scroll-footer 定制作者：carlito · 官方来源"],
+      "entries": [
+        "Theme center lower 关于与来源 section",
+        "Home content scroll-footer 定制作者：carlito · 官方来源"
+      ],
       "poster": {
         "asset": "car-ui/src/main/assets/carui/source_channel.jpg",
         "sha256": "f7dce8a56326f62de4f02c92bcea7653e1d7efef47ebb2debf6f3fdba362035a",
@@ -1213,17 +1224,48 @@
     "appearance": {
       "implementation": "Appearance.Edge extends native GradientDrawable; shared panel material only.",
       "entry": "Bounded 主题中心 with scrolling controls/material preview, fixed Apply/Cancel footer and 壁纸中心 title action.",
-      "storedKeys": ["car_ui_v1.transparency", "car_ui_v1.borderStyle", "car_ui_v1.borderColor"],
-      "defaults": {"transparency": 0, "style": 0, "color": 0},
+      "storedKeys": [
+        "car_ui_v1.transparency",
+        "car_ui_v1.borderStyle",
+        "car_ui_v1.borderColor"
+      ],
+      "defaults": {
+        "transparency": 0,
+        "style": 0,
+        "color": 0
+      },
       "transparency": "0–100; 0 opaque/100 transparent. Fill opacity is baseline alpha * (100-transparency)/100. Text, icons, wallpaper and opaque QR quiet zones are not faded.",
-      "styles": ["主题默认", "纯色包边", "多彩渐变", "流光飞舞"],
+      "styles": [
+        "主题默认",
+        "纯色包边",
+        "多彩渐变",
+        "流光飞舞"
+      ],
       "primaryColors": [
-        {"name": "冰蓝", "value": "#65E4FF"},
-        {"name": "霓虹紫", "value": "#AA8AFF"},
-        {"name": "暖金", "value": "#FFC466"},
-        {"name": "薄荷", "value": "#80EDB2"},
-        {"name": "樱粉", "value": "#FF88B8"},
-        {"name": "银白", "value": "#E9F2FF"}
+        {
+          "name": "冰蓝",
+          "value": "#65E4FF"
+        },
+        {
+          "name": "霓虹紫",
+          "value": "#AA8AFF"
+        },
+        {
+          "name": "暖金",
+          "value": "#FFC466"
+        },
+        {
+          "name": "薄荷",
+          "value": "#80EDB2"
+        },
+        {
+          "name": "樱粉",
+          "value": "#FF88B8"
+        },
+        {
+          "name": "银白",
+          "value": "#E9F2FF"
+        }
       ],
       "colorScope": "Feature edge-color choices, separate from wallpaper choices and normative Skin roles.",
       "draft": "Changes update the sample only. Cancel and opening Wallpaper Center do not save. Apply, a theme row or day/night choice commits appearance together; the combined action is stated visibly.",
@@ -1231,13 +1273,28 @@
       "functionalStates": "Focus/pressed boundaries remain functional; decorative edge drawing yields to those states.",
       "flow": "8s linear cycle, draw-driven 33ms invalidation, one pending tick; hidden/closed/no-callback edges do not continue scheduling.",
       "animationReduction": "API26+ checks ValueAnimator.areAnimatorsEnabled at draw and uses static edge when disabled. API17–25 reads animator scale at drawable creation only.",
-      "limits": "Scheduler/hidden/reduced-animation checks are local; old-API hardware, all-theme/device matrices, GPU/power and long-running vehicle performance are not accepted."
+      "limits": "Scheduler/hidden/reduced-animation checks are local; old-API hardware, all-theme/device matrices, GPU/power and long-running vehicle performance are not accepted.",
+      "borderScope": {
+        "favoritesHeading": "常用功能 heading and its 编辑/完成 control use fill-only backgrounds, with no border in normal/focused/pressed states.",
+        "favoriteCards": "Theme-default keeps a 1dp active-scheme outline; configured solid/gradient/flow decoration remains, with the normal 2dp functional focus/pressed stroke.",
+        "addTile": "Retains its dashed default and existing configured border; focus is a solid 2dp ink stroke."
+      }
     },
     "wallpaper": {
-      "implementation": ["Wallpapers", "WallpaperView", "WallpaperPicker", "WallpaperCropper"],
+      "implementation": [
+        "Wallpapers",
+        "WallpaperView",
+        "WallpaperPicker",
+        "WallpaperCropper"
+      ],
       "scope": "Optional application main-shell/hosted-workspace background, not a system launcher WallpaperService.",
       "entry": "主题中心 title-row 壁纸中心 and original Settings/Advanced/修改管家背景 action open the same wallpaper center.",
-      "modes": ["off", "static", "particles", "video"],
+      "modes": [
+        "off",
+        "static",
+        "particles",
+        "video"
+      ],
       "staticSources": {
         "entry": "选择静态壁纸 · 按屏幕裁切; default-star/moon restoration is a separate action.",
         "original": "Original AppStart bj_2 star/moon asset, with 0.7/0.25 focal placement in both orientations.",
@@ -1245,25 +1302,74 @@
         "legacy": "Prior private bj.png/jpg option only appears when present; decode edge bounded to 2048 and original file never modified/deleted.",
         "selected": "Local image document to bounded async decode/crop/private draft, then wallpaper preview and explicit Apply."
       },
-      "styles": ["星河漂移", "连线星网", "流萤波纹", "轻雪漫游", "轨道光环", "流星雨"],
+      "styles": [
+        "星河漂移",
+        "连线星网",
+        "流萤波纹",
+        "轻雪漫游",
+        "轨道光环",
+        "流星雨"
+      ],
       "backgroundOptions": [
-        {"name": "深海蓝", "value": "#061222"},
-        {"name": "石墨黑", "value": "#111216"},
-        {"name": "暮光紫", "value": "#241127"},
-        {"name": "青碧", "value": "#073638"},
-        {"name": "墨绿", "value": "#132D22"},
-        {"name": "暖棕", "value": "#493027"}
+        {
+          "name": "深海蓝",
+          "value": "#061222"
+        },
+        {
+          "name": "石墨黑",
+          "value": "#111216"
+        },
+        {
+          "name": "暮光紫",
+          "value": "#241127"
+        },
+        {
+          "name": "青碧",
+          "value": "#073638"
+        },
+        {
+          "name": "墨绿",
+          "value": "#132D22"
+        },
+        {
+          "name": "暖棕",
+          "value": "#493027"
+        }
       ],
       "particleColorOptions": [
-        {"name": "冰蓝", "value": "#72E9FF"},
-        {"name": "浅紫", "value": "#B8A1FF"},
-        {"name": "暖金", "value": "#FFCF85"},
-        {"name": "薄荷", "value": "#97F3BB"},
-        {"name": "樱粉", "value": "#FFA4CB"},
-        {"name": "银白", "value": "#F1F6FF"}
+        {
+          "name": "冰蓝",
+          "value": "#72E9FF"
+        },
+        {
+          "name": "浅紫",
+          "value": "#B8A1FF"
+        },
+        {
+          "name": "暖金",
+          "value": "#FFCF85"
+        },
+        {
+          "name": "薄荷",
+          "value": "#97F3BB"
+        },
+        {
+          "name": "樱粉",
+          "value": "#FFA4CB"
+        },
+        {
+          "name": "银白",
+          "value": "#F1F6FF"
+        }
       ],
       "optionScope": "Feature choices/user configuration; do not replace the normative shared Skin color roles.",
-      "defaults": {"mode": "off", "speed": 50, "density": 45, "strength": 70, "still": false},
+      "defaults": {
+        "mode": "off",
+        "speed": 50,
+        "density": 45,
+        "strength": 70,
+        "still": false
+      },
       "controlRanges": "Particle speed/density: 0–100. Background-strength control removed in R7.",
       "legacyStrength": "Existing strength key/default 70 remains serialized for compatibility but is ignored by rendering.",
       "renderingLayer": "Shared veil fully removed in R7 for static/star-moon/solid/particle/video. Preview and applied wallpaper retain their own authored colors/alpha. Off uses current theme canvas. Global transparency affects panels separately.",
@@ -1271,7 +1377,16 @@
       "cropper": {
         "aspect": "Actual owning-window screen ratio; pan/pinch, keyboard movement/zoom, Reset and rotation preserving crop center/relative zoom.",
         "sourceDecode": "Async; longest edge 4096 and approximately 8MP bound, API24+ EXIF orientation handling.",
-        "targetOutputs": [[1440, 1920], [1920, 1440]],
+        "targetOutputs": [
+          [
+            1440,
+            1920
+          ],
+          [
+            1920,
+            1440
+          ]
+        ],
         "savedCropDisplayDecode": "R7 permits 4096px/~8MP, avoiding former 2048px secondary halving; legacy bj.png/jpg keeps its separate bound.",
         "largeOutputLimit": "Aspect retained; longest edge 2560 and approximately 4MP maximum.",
         "draft": "使用裁切 creates a private app-owned draft copy; only Apply commits it. Cancel removes unsaved copies; replacement cleanup is confined to the dedicated private image directory; originals remain unchanged.",
@@ -1322,7 +1437,13 @@
       },
       "authoritativeFailures": {
         "photosRoot": ".codex-attachments/8d3a5254-f4ce-42c3-ac20-1c860b3deb19",
-        "photos": ["1002686230.jpg", "1002686229.jpg", "1002686228.jpg", "1002686227.jpg", "1002686226.jpg"],
+        "photos": [
+          "1002686230.jpg",
+          "1002686229.jpg",
+          "1002686228.jpg",
+          "1002686227.jpg",
+          "1002686226.jpg"
+        ],
         "review": ".impeccable/failure-review-r3.md",
         "themeClarification": "Theme-button text position; no persistence rewrite is implied.",
         "exteriorBlackBands": "Unattributed; photographs alone do not establish an app-window/inset defect."
@@ -1382,7 +1503,14 @@
         "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/R4RegressionTest.java",
         "renders": "car-ui/previews/regressions-r4",
         "source": "Original compiled binary XML with explicit test row layouts/data and native test counterparts; complete business controllers are not exercised.",
-        "families": ["related mapping lists", "selector and main list", "compact action groups and main content", "bounded scroll forms with fixed footers", "multiple content/status regions and editor hosts", "natural-height selector forms"],
+        "families": [
+          "related mapping lists",
+          "selector and main list",
+          "compact action groups and main content",
+          "bounded scroll forms with fixed footers",
+          "multiple content/status regions and editor hosts",
+          "natural-height selector forms"
+        ],
         "dynamicContent": "SurfaceView substitutes check host visibility and CodeEditor direct-root/top-bottom anchors, not real editor execution.",
         "fontScale": "Representative sidebar-appearance form at 1.3; not all-page large-font acceptance.",
         "finalTestLog": "car-ui/build/gradle-test-r4-final.log",
@@ -1391,13 +1519,21 @@
           "total": 31,
           "failures": 0,
           "errors": 0,
-          "groupCounts": [9, 8, 7, 7],
+          "groupCounts": [
+            9,
+            8,
+            7,
+            7
+          ],
           "buildDuration": "1m46s",
           "compiledUiClasses": 62,
           "scope": "Combined final local regression/fixture suite; not full-module or installed-runtime acceptance."
         },
         "dialogWindowMeasurement": "Decor measured using the owning Activity's actual bounds and final Window attributes.",
-        "formCaptures": ["dialog_add_intent-1440.png", "dialog_add_intent-1920.png"],
+        "formCaptures": [
+          "dialog_add_intent-1440.png",
+          "dialog_add_intent-1920.png"
+        ],
         "review": ".impeccable/finish-review-r4.md",
         "reviewBoundary": "Installed recapture required; source/fixture evidence is not runtime approval."
       },
@@ -1412,7 +1548,10 @@
       },
       "r5FailureBaseline": {
         "request": "User explicitly requested a frosted dialog panel and dimmed owner while preserving themes and business widgets.",
-        "attachments": [".codex-attachments/d3bedf21-cff6-4e2f-b04c-948f6aa849b2", ".codex-attachments/f287549d-9968-47ee-af0e-7f7561b4e816"],
+        "attachments": [
+          ".codex-attachments/d3bedf21-cff6-4e2f-b04c-948f6aa849b2",
+          ".codex-attachments/f287549d-9968-47ee-af0e-7f7561b4e816"
+        ],
         "review": ".impeccable/failure-review-r5.md",
         "scope": "Ten named runtime images: real clickable modal integration, file-menu late binding, download toolbar height, empty network allocation and named form/task-context failures."
       },
@@ -1423,7 +1562,13 @@
         "testCompletion": {
           "result": "SUCCESS",
           "total": 39,
-          "groupCounts": [9, 8, 7, 7, 8],
+          "groupCounts": [
+            9,
+            8,
+            7,
+            7,
+            8
+          ],
           "failures": 0,
           "errors": 0,
           "buildDuration": "2m8s",
@@ -1465,10 +1610,27 @@
           "runtime": "Actual DIM_BEHIND flag and bounded application Window frame.",
           "numericAmounts": "0.46 day / 0.58 night proven by source/local Window tests; not read from the runtime text dump."
         },
-        "mainUiErrors": {"pid": 12749, "filter": "CarUi:E AndroidRuntime:E", "entries": 0, "scope": "Captured main-process filter only, not all processes or complete runtime."},
+        "mainUiErrors": {
+          "pid": 12749,
+          "filter": "CarUi:E AndroidRuntime:E",
+          "entries": 0,
+          "scope": "Captured main-process filter only, not all processes or complete runtime."
+        },
         "actionsNotPerformed": "No save, cleanup, delete, service change or favorite change.",
-        "restoredState": {"theme": "mono/day", "userRotation": 0, "accelerometerRotation": 0, "foreground": "ActivityHome"},
-        "unverified": ["USB fine-settings runtime and dedicated fixture", "loaded network list, remote account and real downloads", "asynchronous APK metadata runtime", "full IME/large-font/lifecycle coverage", "real vehicle, all modules, install/permissions/automation execution", "cold-start reliability, rotary/D-pad, TalkBack, gestures, animation quality and performance"],
+        "restoredState": {
+          "theme": "mono/day",
+          "userRotation": 0,
+          "accelerometerRotation": 0,
+          "foreground": "ActivityHome"
+        },
+        "unverified": [
+          "USB fine-settings runtime and dedicated fixture",
+          "loaded network list, remote account and real downloads",
+          "asynchronous APK metadata runtime",
+          "full IME/large-font/lifecycle coverage",
+          "real vehicle, all modules, install/permissions/automation execution",
+          "cold-start reliability, rotary/D-pad, TalkBack, gestures, animation quality and performance"
+        ],
         "intermediateCaptures": "Captures associated with ac415b, including final-* filenames, are intermediate and must not count as final-build acceptance.",
         "scope": "Partial runtime UI paths only; no full-business execution, real network/install/cleanup/mapping operation or car-hardware approval."
       },
@@ -1500,7 +1662,14 @@
         "compiledUiClasses": 114,
         "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/WallpaperTest.java",
         "combinedTests": 49,
-        "groupCounts": [9, 8, 7, 7, 8, 10],
+        "groupCounts": [
+          9,
+          8,
+          7,
+          7,
+          8,
+          10
+        ],
         "testSuites": 6,
         "failures": 0,
         "errors": 0,
@@ -1527,7 +1696,13 @@
         "mediaEvidence": "car-ui/build/vm-r6/media-evidence-final.json",
         "filteredUiErrorLines": 0,
         "errorScope": "Captured filtered main-UI lines only; not all processes or complete lifecycle.",
-        "restoredState": {"theme": "mono/day", "wallpaper": "off", "userRotation": 0, "accelerometerRotation": 0, "ownMediaClientPresent": false},
+        "restoredState": {
+          "theme": "mono/day",
+          "wallpaper": "off",
+          "userRotation": 0,
+          "accelerometerRotation": 0,
+          "ownMediaClientPresent": false
+        },
         "cleanup": "Two self-created test source files removed; originals/user files not changed.",
         "limitations": [
           "DocumentsUI selection completed with keyboard; touch selection not accepted",
@@ -1547,8 +1722,20 @@
         "compiledUiClasses": 135,
         "combinedTests": 56,
         "testSuites": 8,
-        "groupCounts": [9, 8, 7, 7, 8, 4, 10, 3],
-        "newTests": ["car-ui/src/test/java/com/yunpan/appmanage/carui/R7RegressionTest.java", "car-ui/src/test/java/com/yunpan/appmanage/carui/AppearanceTest.java"],
+        "groupCounts": [
+          9,
+          8,
+          7,
+          7,
+          8,
+          4,
+          10,
+          3
+        ],
+        "newTests": [
+          "car-ui/src/test/java/com/yunpan/appmanage/carui/R7RegressionTest.java",
+          "car-ui/src/test/java/com/yunpan/appmanage/carui/AppearanceTest.java"
+        ],
         "failures": 0,
         "errors": 0,
         "duration": "2m4s",
@@ -1573,10 +1760,25 @@
           "Theme-center footer and combined-commit explanatory copy visible",
           "Existing video visible without shared veil; static/original/solid/particle pixel checks are local, not repeated runtime paths"
         ],
-        "appearanceApplied": {"transparency": 35, "style": 3, "color": 4},
-        "appearanceRestored": {"transparency": 0, "style": 0, "color": 0},
-        "userStatePreserved": {"theme": "warm/day", "wallpaper": "existing selected local video", "videoUriRecorded": false},
-        "rotationRestored": {"userRotation": 0, "accelerometerRotation": 0},
+        "appearanceApplied": {
+          "transparency": 35,
+          "style": 3,
+          "color": 4
+        },
+        "appearanceRestored": {
+          "transparency": 0,
+          "style": 0,
+          "color": 0
+        },
+        "userStatePreserved": {
+          "theme": "warm/day",
+          "wallpaper": "existing selected local video",
+          "videoUriRecorded": false
+        },
+        "rotationRestored": {
+          "userRotation": 0,
+          "accelerometerRotation": 0
+        },
         "restorationBoundary": "Do not restore historical R6 mono/day/off over the user's current selection.",
         "startup": "First explicit launch returned Launcher; a later COLD Home start succeeded in 2985ms. One observation does not establish general cold-start reliability.",
         "qrEvidence": "car-ui/build/vm-r7/qr-evidence.json",
@@ -1617,13 +1819,32 @@
         "target": "Android 11/API30 VM; protected-build startup/source UI observed.",
         "captureRoot": "car-ui/build/vm-r8",
         "captures": [
-          {"path": "protected-source-portrait.png", "size": "1440x1920"},
-          {"path": "protected-source-landscape.png", "size": "1920x1440"},
-          {"path": "protected-theme-lower.png", "size": "1440x1920"},
-          {"path": "protected-home-source-footer.png", "size": "1440x1920"}
+          {
+            "path": "protected-source-portrait.png",
+            "size": "1440x1920"
+          },
+          {
+            "path": "protected-source-landscape.png",
+            "size": "1920x1440"
+          },
+          {
+            "path": "protected-theme-lower.png",
+            "size": "1440x1920"
+          },
+          {
+            "path": "protected-home-source-footer.png",
+            "size": "1440x1920"
+          }
         ],
         "checks": "Four actual captures opened: full untinted public poster, exact separated attribution and visible fixed dialog actions in both orientations; theme-center lower section and home scroll-footer entry visible.",
-        "preferencesPreserved": {"theme": "warm/day", "transparency": 32, "borderStyle": "flow", "borderColor": "mint", "wallpaper": "particles", "changedByPhase": false},
+        "preferencesPreserved": {
+          "theme": "warm/day",
+          "transparency": 32,
+          "borderStyle": "flow",
+          "borderColor": "mint",
+          "wallpaper": "particles",
+          "changedByPhase": false
+        },
         "review": ".impeccable/finish-review-r8.md",
         "reviewDisposition": "ship, scoped only to R8 author/source entries and public poster dialog.",
         "limitations": "No broader R7, security, full-business, all-theme/font/hardware-focus/vehicle or community-link/QR-scan matrix accepted; protected startup on this API30 VM is not general device support."
@@ -1667,17 +1888,39 @@
         "scopedUiErrors": 0,
         "captureRoot": "car-ui/build/vm-r9",
         "deliverableCaptures": [
-          {"path": "lan-portrait-redacted.png", "size": "1440x1920", "sha256": "e5766fe1e31549819433628f51e4447aa039a08ad8b4bd97caf78d2fac45b68e"},
-          {"path": "lan-landscape-redacted.png", "size": "1920x1440", "sha256": "eaadb7252dd321685b95e43d1d9f36a5d6483919508c6534a7b924763b9067b4"},
-          {"path": "file-after-close.png", "size": "1440x1920", "sha256": "84c4e399446c7638f738537cd8162af577ef296bd3e61c5143643cd59c5d2514"}
+          {
+            "path": "lan-portrait-redacted.png",
+            "size": "1440x1920",
+            "sha256": "e5766fe1e31549819433628f51e4447aa039a08ad8b4bd97caf78d2fac45b68e"
+          },
+          {
+            "path": "lan-landscape-redacted.png",
+            "size": "1920x1440",
+            "sha256": "eaadb7252dd321685b95e43d1d9f36a5d6483919508c6534a7b924763b9067b4"
+          },
+          {
+            "path": "file-after-close.png",
+            "size": "1440x1920",
+            "sha256": "84c4e399446c7638f738537cd8162af577ef296bd3e61c5143643cd59c5d2514"
+          }
         ],
         "privateEvidence": "Both required original frames read for documentation only; live QR/address/payload are not reproduced or delivered.",
         "checks": "Large QR with opaque white perimeter, scrollable original information and fixed original actions in both orientations; original Return dismisses; real file toolbar populates asynchronously without mocked data.",
         "afterCloseEvidence": "file-after-close.png recaptured after rotation settled. This later dismissal evidence was outside the review's original two-frame scope; no source correction followed review.",
         "offlineDecode": "Existing ZXing Core3.5.3 decoded both original screenshots; each URI matched its displayed LAN address, which need not match the ADB endpoint. Result records no query/credentials. No decoder rerun by documentation handoff.",
         "externalPhoneScanOrTransfer": false,
-        "preferencesPreserved": {"theme": "warm/day", "transparency": 32, "borderStyle": "flow", "borderColor": "mint", "wallpaper": "particles", "changedByPhase": false},
-        "restoredRotation": {"userRotation": 0, "accelerometerRotation": 0},
+        "preferencesPreserved": {
+          "theme": "warm/day",
+          "transparency": 32,
+          "borderStyle": "flow",
+          "borderColor": "mint",
+          "wallpaper": "particles",
+          "changedByPhase": false
+        },
+        "restoredRotation": {
+          "userRotation": 0,
+          "accelerometerRotation": 0
+        },
         "startupBoundary": "Initial update launch returned Launcher; repeated explicit Home succeeded. This does not establish general startup consistency or performance.",
         "review": ".impeccable/finish-review-r9.md",
         "reviewDisposition": "ship, only dialog_share LAN QR sizing/composition and original control/callback preservation.",
@@ -1687,7 +1930,26 @@
       "historicalInventory": "The earlier 326 resource-ID preservation/measurement checks did not prove usable production-bound layouts or close the photographed failures.",
       "scope": "R9 fixes the distinct dialog_share LAN QR display within the incumbent world; tokens unchanged. Its 59-test/two-orientation/decode scoped verdict does not broaden historical R3–R8 acceptance or establish real transfer, security, all-333-layout, full business/device/vehicle operation. Existing unrelated limits remain open.",
       "tonalRamps": "Synthesized panel-only OKLCH metadata, not implemented additional Android color roles.",
-      "panelComponents": "HTML/CSS translations; never Android capture evidence."
+      "panelComponents": "HTML/CSS translations; never Android capture evidence.",
+      "r11": {
+        "scope": "R11 user-approved shape and border-scope changes",
+        "localTests": {
+          "tests": 62,
+          "suites": 11,
+          "failures": 0,
+          "durationReported": "3m8s"
+        },
+        "captures": "18 Robolectric native-graphics fixtures, including scrolled add-tile views; not installed-APK captures. Boot uses original binary XML and test RecyclerView without real option data.",
+        "runtime": "No current device; device_status empty. No R11 VM, saved-value, IME, boot-task or vehicle acceptance.",
+        "review": "disposition: recapture",
+        "uiDexSha256": "5044c9ccc5e4fcb1d91f2abdc254be753c8df2a80085565dabd0e969f9bd2bf6",
+        "uiClasses": 143,
+        "packageTests": {
+          "tests": 5,
+          "failures": 0,
+          "durationReported": "0.439s"
+        }
+      }
     }
   },
   "components": [
@@ -1705,7 +1967,7 @@
       "refersTo": "cyan-button-primary-night",
       "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
       "html": "<button type=\"button\" class=\"ds-primary-cyan\">保存</button>",
-      "css": ".ds-primary-cyan { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:10px; background:#61E4FF; color:#06212B; font:700 18px sans-serif; cursor:pointer; } .ds-primary-cyan:hover { background:#61E4FF; } .ds-primary-cyan:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-primary-cyan:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
+      "css": ".ds-primary-cyan { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:26px; background:#61E4FF; color:#06212B; font:700 18px sans-serif; cursor:pointer; } .ds-primary-cyan:hover { background:#61E4FF; } .ds-primary-cyan:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-primary-cyan:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
     },
     {
       "name": "Monochrome Primary · Day",
@@ -1713,7 +1975,7 @@
       "refersTo": "mono-button-primary-day",
       "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
       "html": "<button type=\"button\" class=\"ds-primary-mono\">保存</button>",
-      "css": ".ds-primary-mono { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:16px; background:#24282D; color:#FFFFFF; font:700 18px sans-serif; cursor:pointer; } .ds-primary-mono:hover { background:#24282D; } .ds-primary-mono:focus-visible { outline:2px solid #FFFFFF; outline-offset:-2px; } .ds-primary-mono:active { background:#454C55; outline:2px solid #FFFFFF; outline-offset:-2px; }"
+      "css": ".ds-primary-mono { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:26px; background:#24282D; color:#FFFFFF; font:700 18px sans-serif; cursor:pointer; } .ds-primary-mono:hover { background:#24282D; } .ds-primary-mono:focus-visible { outline:2px solid #FFFFFF; outline-offset:-2px; } .ds-primary-mono:active { background:#454C55; outline:2px solid #FFFFFF; outline-offset:-2px; }"
     },
     {
       "name": "Secondary Button",
@@ -1743,9 +2005,9 @@
       "name": "Favorite Tile",
       "kind": "card",
       "refersTo": "favorite-day",
-      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot. R11 restores the theme-default thin outline on added favorite cards; configured native edge effects are not simulated by this warm/day sample. The separate favorites heading/edit region remains unframed.",
       "html": "<button type=\"button\" class=\"ds-favorite\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/></svg><span class=\"ds-favorite-name\">应用管理</span><span class=\"ds-favorite-kind\">内置功能</span></button>",
-      "css": ".ds-favorite { display:flex; flex-direction:column; align-items:flex-start; width:278px; min-height:146px; box-sizing:border-box; padding:18px 20px; border:0; border-radius:26px; background:#FFFEFA; color:#20221D; text-align:left; font-family:sans-serif; cursor:pointer; } .ds-favorite svg { width:36px; height:36px; } .ds-favorite-name { margin-top:15px; margin-bottom:5px; font-size:21px; font-weight:700; } .ds-favorite-kind { color:#66695F; font-size:14px; } .ds-favorite:hover { background:#FFFEFA; } .ds-favorite:focus-visible { outline:2px solid #20221D; outline-offset:-2px; } .ds-favorite:active { background:#EAE5DA; outline:2px solid #20221D; outline-offset:-2px; }"
+      "css": ".ds-favorite { display:flex; flex-direction:column; align-items:flex-start; width:278px; min-height:146px; box-sizing:border-box; padding:18px 20px; border:1px solid #D6D3C7; border-radius:26px; background:#FFFEFA; color:#20221D; text-align:left; font-family:sans-serif; cursor:pointer; } .ds-favorite svg { width:36px; height:36px; } .ds-favorite-name { margin-top:15px; margin-bottom:5px; font-size:21px; font-weight:700; } .ds-favorite-kind { color:#66695F; font-size:14px; } .ds-favorite:hover { background:#FFFEFA; } .ds-favorite:focus-visible { outline:2px solid #20221D; outline-offset:-2px; } .ds-favorite:active { background:#EAE5DA; outline:2px solid #20221D; outline-offset:-2px; }"
     },
     {
       "name": "Checked Legacy Row",
@@ -1761,7 +2023,7 @@
       "refersTo": "cyan-chip-selected-night",
       "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
       "html": "<button type=\"button\" aria-pressed=\"true\" class=\"ds-chip\">全部应用</button>",
-      "css": ".ds-chip { min-height:48px; margin-right:8px; padding:8px 14px; border:0; border-radius:10px; background:#61E4FF; color:#06212B; white-space:nowrap; font:400 17px sans-serif; cursor:pointer; } .ds-chip:hover { background:#61E4FF; } .ds-chip:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-chip:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
+      "css": ".ds-chip { min-height:48px; margin-right:8px; padding:8px 14px; border:0; border-radius:22px; background:#61E4FF; color:#06212B; white-space:nowrap; font:400 17px sans-serif; cursor:pointer; } .ds-chip:hover { background:#61E4FF; } .ds-chip:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-chip:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
     },
     {
       "name": "Theme Choices",
@@ -1769,12 +2031,12 @@
       "refersTo": "theme-choice-mono-day",
       "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot. Source rows use selected outline/current marker plus explicit focus and pressed drawables with a 3dp preview-accent stroke. Browser translation does not verify hardware or D-pad traversal.",
       "html": "<div class=\"ds-theme-list\"><button type=\"button\" class=\"ds-theme-warm\">暖橙 · 奶油</button><button type=\"button\" class=\"ds-theme-cyan\">冰蓝 · 荧光科技</button><button type=\"button\" class=\"ds-theme-mono\" aria-pressed=\"true\">黑白 · 墨镜阴影 · 当前</button></div>",
-      "css": ".ds-theme-list { display:flex; flex-direction:column; gap:12px; font-family:sans-serif; } .ds-theme-list button { min-height:86px; padding:16px 18px; text-align:left; font:700 21px sans-serif; cursor:pointer; } .ds-theme-warm { border:1px solid #D6D3C7; border-radius:16px; background:#F4F1EA; color:#20221D; } .ds-theme-cyan { border:1px solid #366579; border-radius:8px; background:#07121D; color:#E8FAFF; } .ds-theme-mono { border:3px solid #24282D; border-radius:16px; background:#EDEFF1; color:#17191D; } .ds-theme-list button:hover { opacity:1; } .ds-theme-warm:focus-visible, .ds-theme-warm:active { outline:3px solid #E99657; outline-offset:-3px; } .ds-theme-cyan:focus-visible, .ds-theme-cyan:active { outline:3px solid #61E4FF; outline-offset:-3px; } .ds-theme-mono:focus-visible, .ds-theme-mono:active { outline:3px solid #24282D; outline-offset:-3px; } .ds-theme-warm:active { background:#EAE5DA; } .ds-theme-cyan:active { background:#1A3444; } .ds-theme-mono:active { background:#DDE1E5; }"
+      "css": ".ds-theme-list { display:flex; flex-direction:column; gap:12px; font-family:sans-serif; } .ds-theme-list button { min-height:86px; padding:16px 18px; text-align:left; font:700 21px sans-serif; cursor:pointer; } .ds-theme-warm { border:1px solid #D6D3C7; border-radius:16px; background:#F4F1EA; color:#20221D; } .ds-theme-cyan { border:1px solid #366579; border-radius:16px; background:#07121D; color:#E8FAFF; } .ds-theme-mono { border:3px solid #24282D; border-radius:16px; background:#EDEFF1; color:#17191D; } .ds-theme-list button:hover { opacity:1; } .ds-theme-warm:focus-visible, .ds-theme-warm:active { outline:3px solid #E99657; outline-offset:-3px; } .ds-theme-cyan:focus-visible, .ds-theme-cyan:active { outline:3px solid #61E4FF; outline-offset:-3px; } .ds-theme-mono:focus-visible, .ds-theme-mono:active { outline:3px solid #24282D; outline-offset:-3px; } .ds-theme-warm:active { background:#EAE5DA; } .ds-theme-cyan:active { background:#1A3444; } .ds-theme-mono:active { background:#DDE1E5; }"
     }
   ],
   "narrative": {
     "northStar": "个人控制台 / Personal Control Console",
-    "overview": "A practical personal console for Chinese car-display users. The original reference establishes the warm orange and cream identity. The user has expanded that approved world to three selectable expressions: 暖橙 · 奶油, 冰蓝 · 荧光科技 and 黑白 · 墨镜阴影. They share readable Chinese system type, persistent dark navigation, explicit selection and the same real application workflows.\n\nWarm keeps broad, rounded surfaces; cyan uses cool blue panels, bright selection and tighter outlined corners; monochrome uses neutral contrast, restrained corners and native shadow on app/favorite cards. Original business widgets remain the functional authority. Optional static/Canvas/video wallpaper keeps its own colors behind the application main shell; shared panel transparency and selectable borders are separate appearance controls. Shipping UI is native Java Views and Android drawables.",
+    "overview": "A practical personal console for Chinese car-display users. The original reference establishes the warm orange and cream identity. The user has expanded that approved world to three selectable expressions: 暖橙 · 奶油, 冰蓝 · 荧光科技 and 黑白 · 墨镜阴影. They share readable Chinese system type, persistent dark navigation, explicit selection and the same real application workflows.\n\nAll three themes use the same component-role radius hierarchy. Warm retains its orange and cream surfaces; cyan uses cool blue panels, bright selection and outlined material; monochrome uses neutral contrast and native shadow on app/favorite cards. Original business widgets remain the functional authority. Optional static/Canvas/video wallpaper keeps its own colors behind the application main shell; shared panel transparency and selectable borders are separate appearance controls. Shipping UI is native Java Views and Android drawables.",
     "keyCharacteristics": [
       "Three complete, manually selected day/night palettes with paired foregrounds.",
       "A persistent dark rail and clear labeled routes to real tools.",
@@ -1839,6 +2101,11 @@
         "name": "The Visible Alternatives Rule",
         "body": "Keep editing, adding and recovery understandable through labels and explicit controls. Gesture support supplements those paths rather than becoming the only way to manage favorites.",
         "section": "components"
+      },
+      {
+        "name": "The Role Radius Rule",
+        "body": "Keep the component's radius when changing theme: tile for favorites, hero for the action panel, rail for navigation and field for text inputs. Color selection does not shrink those shapes or make every component use one radius.",
+        "section": "shapes"
       }
     ],
     "dos": [

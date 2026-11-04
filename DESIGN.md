@@ -128,9 +128,8 @@
   "dialog": "30dp"
   "hero": "32dp"
   "rail": "40dp"
-  "cyan-cap": "10dp"
-  "mono-cap": "16dp"
-  "theme-preview-cyan": "8dp"
+  "theme-preview": "16dp"
+  "frosted-board": "28dp"
 "spacing":
   "4": "4dp"
   "6": "6dp"
@@ -170,42 +169,42 @@
     "backgroundColor": "{colors.cyan-accent-day}"
     "textColor": "{colors.cyan-on-accent-day}"
     "typography": "{typography.action}"
-    "rounded": "{rounded.cyan-cap}"
+    "rounded": "{rounded.tile}"
     "padding": "12dp 18dp"
   "cyan-button-primary-day-pressed":
     "backgroundColor": "{colors.cyan-pressed-accent-day}"
     "textColor": "{colors.cyan-on-accent-day}"
-    "rounded": "{rounded.cyan-cap}"
+    "rounded": "{rounded.tile}"
   "cyan-button-primary-night":
     "backgroundColor": "{colors.cyan-accent-night}"
     "textColor": "{colors.cyan-on-accent-night}"
     "typography": "{typography.action}"
-    "rounded": "{rounded.cyan-cap}"
+    "rounded": "{rounded.tile}"
     "padding": "12dp 18dp"
   "cyan-button-primary-night-pressed":
     "backgroundColor": "{colors.cyan-pressed-accent-night}"
     "textColor": "{colors.cyan-on-accent-night}"
-    "rounded": "{rounded.cyan-cap}"
+    "rounded": "{rounded.tile}"
   "mono-button-primary-day":
     "backgroundColor": "{colors.mono-accent-day}"
     "textColor": "{colors.mono-on-accent-day}"
     "typography": "{typography.action}"
-    "rounded": "{rounded.mono-cap}"
+    "rounded": "{rounded.tile}"
     "padding": "12dp 18dp"
   "mono-button-primary-day-pressed":
     "backgroundColor": "{colors.mono-pressed-accent-day}"
     "textColor": "{colors.mono-on-accent-day}"
-    "rounded": "{rounded.mono-cap}"
+    "rounded": "{rounded.tile}"
   "mono-button-primary-night":
     "backgroundColor": "{colors.mono-accent-night}"
     "textColor": "{colors.mono-on-accent-night}"
     "typography": "{typography.action}"
-    "rounded": "{rounded.mono-cap}"
+    "rounded": "{rounded.tile}"
     "padding": "12dp 18dp"
   "mono-button-primary-night-pressed":
     "backgroundColor": "{colors.mono-pressed-accent-night}"
     "textColor": "{colors.mono-on-accent-night}"
-    "rounded": "{rounded.mono-cap}"
+    "rounded": "{rounded.tile}"
   "button-secondary-day":
     "backgroundColor": "{colors.soft-day}"
     "textColor": "{colors.ink-day}"
@@ -248,12 +247,12 @@
   "cyan-chip-selected-night":
     "backgroundColor": "{colors.cyan-accent-night}"
     "textColor": "{colors.cyan-on-accent-night}"
-    "rounded": "{rounded.cyan-cap}"
+    "rounded": "{rounded.legacy-control}"
   "theme-choice-mono-day":
     "backgroundColor": "{colors.mono-canvas-day}"
     "textColor": "{colors.mono-ink-day}"
     "typography": "{typography.card-title}"
-    "rounded": "{rounded.mono-cap}"
+    "rounded": "{rounded.theme-preview}"
     "padding": "16dp 18dp"
 ---
 
@@ -265,7 +264,7 @@
 
 A practical personal console for Chinese car-display users. The original reference establishes the warm orange and cream identity. The user has expanded that approved world to three selectable expressions: 暖橙 · 奶油, 冰蓝 · 荧光科技 and 黑白 · 墨镜阴影. They share readable Chinese system type, persistent dark navigation, explicit selection and the same real application workflows.
 
-Warm keeps broad, rounded surfaces; cyan uses cool blue panels, bright selection and tighter outlined corners; monochrome uses neutral contrast, restrained corners and native shadow on app/favorite cards. Original business widgets remain the functional authority. Optional static/Canvas/video wallpaper keeps its own colors behind the application main shell; shared panel transparency and selectable borders are separate appearance controls. Shipping UI is native Java Views and Android drawables.
+All three themes use the same component-role radius hierarchy. Warm retains its orange and cream surfaces; cyan uses cool blue panels, bright selection and outlined material; monochrome uses neutral contrast and native shadow on app/favorite cards. Original business widgets remain the functional authority. Optional static/Canvas/video wallpaper keeps its own colors behind the application main shell; shared panel transparency and selectable borders are separate appearance controls. Shipping UI is native Java Views and Android drawables.
 
 **Key Characteristics:**
 
@@ -409,7 +408,7 @@ Monochrome gives native View elevation to favorite tiles (5dp) and legacy app/ap
 
 FrostedDialogs samples only the owning Activity's decor at 1/12 resolution, then applies two CPU separable radius-4 box-blur passes. Baseline surface alpha is 210/255 day, 220/255 night or 245/255 without a sample. R7 applies the configured panel opacity once across snapshot and tonal fill while preserving their proportions, rather than multiplying two independent layers. Foreground and wallpaper alpha stay unchanged. The in-memory panel is not system realtime cross-window blur or proof of SurfaceView capture. Native FLAG_DIM_BEHIND remains 0.46 day / 0.58 night, independent of panel transparency.
 
-Sampling refreshes on bounded dialog/owner-resize/theme events. Keyed Board replacement/detach releases bitmap, listeners and border scheduling without replacing the external dismiss callback. Native fields, selected rows and focus backgrounds remain distinct from transparent hosts. The Board draws its own 28dp warm/mono or 16dp cyan corners and configured/default border outside the generic radius-cap helper.
+Sampling refreshes on bounded dialog/owner-resize/theme events. Keyed Board replacement/detach releases bitmap, listeners and border scheduling without replacing the external dismiss callback. Native fields, selected rows and focus backgrounds remain distinct from transparent hosts. The Board draws its own frosted-board corners in every theme and its configured/default border outside the generic rounded helper.
 
 **The Modal Layers Rule.** Keep the frosted panel, sharp interactive content and native owner dim as separate roles. Refresh and release the in-memory sample at bounded lifecycle events, retain original close/dismiss callbacks, and apply the configured panel opacity once to the fallback or sampled material.
 
@@ -423,9 +422,11 @@ Wallpaper motion is an optional background layer, separate from control transiti
 
 ## Shapes
 
-Warm retains the established hierarchy: broad rail and action panel, rounded cards and helper actions, tighter fields. The frontmatter stores requested native radii. CarUi.rounded caps requested radii at 10dp for cyan and 16dp for monochrome, leaving smaller values unchanged. Theme-picker sample rows are drawn separately at 8dp for cyan and 16dp for warm/mono; their selected outline is 3dp and default outline 1dp.
+All themes retain the established component hierarchy: broad rail and action panel, rounded cards and helper actions, tighter fields. The frontmatter stores the native role radii. CarUi.rounded uses the requested radius without a theme-specific cap. Theme-picker rows use theme-preview corners in every palette; their selected outline is 3dp and default outline 1dp.
 
-Cyan surface and rail drawables receive a 1dp active-scheme outline with the default border style; configured appearance can replace that decoration. Focus and press retain their 2dp functional state stroke. The add tile retains its dashed default boundary. Do not assume warm icon controls remain geometrically circular after a theme cap.
+**The Role Radius Rule.** Keep the component's radius when changing theme: tile for favorites, hero for the action panel, rail for navigation and field for text inputs. Color selection does not shrink those shapes or make every component use one radius.
+
+Cyan surface and rail drawables receive a 1dp active-scheme outline with the default border style; configured appearance can replace that decoration. Focus and press normally retain their 2dp functional state stroke. The 常用功能 heading and its 编辑/完成 control opt out of edge decoration, including their interaction states; filled material still conveys the edit control's feedback. Favorite cards retain an outline at rest: a thin active-scheme outline under 主题默认, or the selected solid/gradient/flow appearance. The add tile retains its dashed default boundary and existing configured edge.
 
 The shared icon family uses a 24-unit coordinate system and a 1.8-unit stroke with rounded caps and joins, with an intrinsic 24×24 drawable size for legacy ImageViews. During live theme changes, the legacy theme pass identifies authored Icons by drawable type and recolors them to current ink regardless of View ID, including ID-less file-toolbar icons after warm-to-cyan switching. Installed apps and original colored control/storage/network raster artwork retain their colors, identity and aspect ratio. Tint only known monochrome controls or authored line icons; a resource name ending in _ico is not a tinting contract. Targeted fixture assertions check visible current-ink pixels after that theme switch and no color filter on the original service raster; the installed-VM file-page capture also shows correct live icon recoloring. Vehicle rendering remains unverified. Selection indicators are drawn separately as native outlined boxes and ticks; they are not decorative icons or replacement business state.
 
@@ -433,13 +434,13 @@ The shared icon family uses a 24-unit coordinate system and a 1.8-unit stroke wi
 
 ### Buttons
 
-Primary helper buttons use accent/on-accent and paired pressed accent; secondary helpers use soft/ink and press to surface. Both have 52dp minimum height, 18dp horizontal / 12dp vertical padding, and optional 22dp icon separated by 8dp. Their requested radius is tile, then the theme cap applies. Primary focus strokes use on-accent; neutral helper strokes use ink.
+Primary helper buttons use accent/on-accent and paired pressed accent; secondary helpers use soft/ink and press to surface. Both have 52dp minimum height, 18dp horizontal / 12dp vertical padding, and optional 22dp icon separated by 8dp. Their requested tile radius is retained in all themes. Primary focus strokes use on-accent; neutral helper strokes use ink. The favorites heading's edit control uses the documented fill-only exception.
 
 The hero add action uses current rail fill with the existing shared milk foreground and dark pressed fill. Custom submit remains full-width at 56dp minimum. Disabled move buttons use native enabled state and alpha (0.4). Legacy toolbar actions retain original clickable instances, receive labels, 52dp minimum height and 14dp horizontal / 10dp vertical padding, then wrap as complete controls.
 
 ### Cards / Containers
 
-Favorite tiles use surface/ink, muted destination metadata and a 36dp icon. They press to soft and focus with ink. Monochrome elevation is limited to the source roles described above. Unavailable destinations remain editable and show “暂不可用 · 可编辑”; empty favorites retain add and recovery text.
+Favorite tiles use surface/ink, muted destination metadata, a 36dp icon and tile corners in every theme. They retain the default thin outline or configured solid/gradient/flow edge, press to soft and use an ink focus boundary. The separate 常用功能 heading and 编辑/完成 button remain unframed. Monochrome elevation is limited to the source roles described above. Unavailable destinations remain editable and show “暂不可用 · 可编辑”; empty favorites retain add and recovery text.
 
 Legacy app cards center a 54dp original icon above the original two-line name. The outer row leaves a 6dp inset around an app face for separation. App faces use surface at rest, soft when pressed, an ink state stroke and requested 22dp corners. Other bound rows use row/check/action roles rather than receiving the favorite layout.
 
@@ -449,7 +450,7 @@ The add tile has an explicit state drawable: dashed outline at rest, solid 2dp i
 
 ### Inputs / Fields
 
-Native EditText uses surface/ink, muted hints, 54dp minimum height, 18dp horizontal / 10dp vertical padding, field radius and an ink focus stroke. Picker search is an 18sp soft field with 12dp vertical padding. Theme caps apply.
+Native EditText uses surface/ink, muted hints, 54dp minimum height, 18dp horizontal / 10dp vertical padding, field radius and an ink focus stroke. Picker search is an 18sp soft field with 12dp vertical padding. Field radii remain the same across themes.
 
 Required or invalid values use native setError. Cursor, selection, error popup and keyboard remain Android-owned. The installed-VM app-search path has working IME evidence; error presentation and keyboard behavior across other forms and vehicle hardware remain unverified. Preserve original input instances, IDs, data and listeners when recomposing forms.
 
@@ -461,7 +462,7 @@ Back exits editing, then returns from a non-nested workspace to favorites; origi
 
 ### Chips and Checkbox Rows
 
-Original app-category and display-mode selectors become single-line category chips. Selected chips use accent/on-accent and pressed-accent; unselected chips use surface/ink and press to soft. They have 48dp minimum height, 8dp trailing separation and requested 22dp corners, then theme caps apply. They retain original row/model binding rather than adding a new filter data source.
+Original app-category and display-mode selectors become single-line category chips. Selected chips use accent/on-accent and pressed-accent; unselected chips use surface/ink and press to soft. They have 48dp minimum height, 8dp trailing separation and legacy-control corners in every theme. They retain original row/model binding rather than adding a new filter data source.
 
 Settings section selectors share those selected/unselected color and focus pairs, with bold 18sp labels. They navigate persistent local sections rather than changing settings values.
 
