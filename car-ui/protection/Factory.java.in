@@ -3,9 +3,13 @@ package com.carlito.secure;
 import android.app.*;
 import android.content.*;
 import android.content.pm.*;
+import android.os.Build;
 import android.util.Base64;
+import dalvik.system.BaseDexClassLoader;
 import dalvik.system.InMemoryDexClassLoader;
 import java.io.*;
+import java.lang.reflect.*;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -16,7 +20,7 @@ import javax.crypto.*;
 import javax.crypto.spec.*;
 import org.json.*;
 
-/** Android 10+ bootstrap. Client-side material is recoverable: this is a static-analysis barrier. */
+/** Android 9+ bootstrap. Client-side material is recoverable: this is a static-analysis barrier. */
 public final class Factory extends AppComponentFactory {
     private static final String CERT="@@CERT@@", META_SHA="@@META_SHA@@";
     private static final String SHARE_A="@@SHARE_A@@", SHARE_B="@@SHARE_B@@";
@@ -28,20 +32,23 @@ public final class Factory extends AppComponentFactory {
     private AppComponentFactory original;
 
     @Override public synchronized ClassLoader instantiateClassLoader(ClassLoader parent,ApplicationInfo info){
+        if(!PACKAGE.equals(info.packageName))throw new SecurityException("Package mismatch");
+        return initialize(parent,new File(info.sourceDir),info.nativeLibraryDir);
+    }
+    private synchronized ClassLoader initialize(ClassLoader parent,File apk,String nativeLibraryDir){
         if(payload!=null)return payload;
         try{
-            if(!PACKAGE.equals(info.packageName))throw new SecurityException("Package mismatch");
             // Early V1 verification; PackageManager below also verifies the installed signing identity.
-            try(JarFile jar=new JarFile(info.sourceDir,true)){
+            try(JarFile jar=new JarFile(apk,true)){
                 JarEntry bootstrap=jar.getJarEntry("classes.dex");read(jar.getInputStream(bootstrap),2*1024*1024);
                 java.security.cert.Certificate[] certificates=bootstrap.getCertificates();
                 if(certificates==null||certificates.length!=1||!CERT.equals(hex(hash(certificates[0].getEncoded()))))throw new SecurityException("Bootstrap signer mismatch");
             }
-            try(ZipFile zip=new ZipFile(info.sourceDir)){
+            try(ZipFile zip=new ZipFile(apk)){
                 byte[] metadata=read(zip.getInputStream(zip.getEntry("assets/carlito/protection.json")),65536);
                 if(!META_SHA.equals(hex(hash(metadata))))throw new SecurityException("Protection metadata mismatch");
                 JSONObject root=new JSONObject(new String(metadata,StandardCharsets.UTF_8));
-                if(root.getInt("format")!=1||!"AES-256-GCM".equals(root.getString("algorithm")))throw new SecurityException("Unsupported format");
+                if(root.getInt("format")!=1||!"AES-256-GCM".equals(root.getString("algorithm"))||!PACKAGE.equals(root.getString("application_id")))throw new SecurityException("Unsupported format or package");
                 JSONArray dex=root.getJSONArray("dex");if(dex.length()!=@@DEX_COUNT@@)throw new SecurityException("DEX count mismatch");
                 byte[] seed=Base64.decode(SHARE_A,Base64.NO_WRAP),share=Base64.decode(SHARE_B,Base64.NO_WRAP);
                 for(int i=0;i<seed.length;i++)seed[i]^=share[i];
@@ -61,8 +68,23 @@ public final class Factory extends AppComponentFactory {
                         buffers[i]=ByteBuffer.wrap(plain);
                     }
                 }finally{Arrays.fill(key,(byte)0);}
-                // The framework keeps the real Application and uses this loader for contexts/providers.
-                payload=new InMemoryDexClassLoader(buffers,info.nativeLibraryDir,parent);
+                if(Build.VERSION.SDK_INT>=29){
+                    // The public hook makes this the framework's loader, including native lookup.
+                    payload=new InMemoryDexClassLoader(buffers,nativeLibraryDir,parent);
+                }else if(Build.VERSION.SDK_INT==28){
+                    // Android 9 has no instantiateClassLoader hook. Append authenticated in-memory
+                    // DEX elements to the existing loader so Context, inflation and JNI use it too.
+                    // These two fields are in Android 9's light greylist; no exemption is requested.
+                    InMemoryDexClassLoader memory=new InMemoryDexClassLoader(buffers,parent);
+                    Field path=BaseDexClassLoader.class.getDeclaredField("pathList");path.setAccessible(true);
+                    Object target=path.get(parent),source=path.get(memory);
+                    Field elements=target.getClass().getDeclaredField("dexElements");elements.setAccessible(true);
+                    Object[] existing=(Object[])elements.get(target),added=(Object[])elements.get(source);
+                    if(added.length!=buffers.length)throw new SecurityException("Incomplete memory DEX load");
+                    Object[] merged=(Object[])Array.newInstance(existing.getClass().getComponentType(),existing.length+added.length);
+                    System.arraycopy(existing,0,merged,0,existing.length);System.arraycopy(added,0,merged,existing.length,added.length);
+                    elements.set(target,merged);payload=parent;
+                }else throw new UnsupportedOperationException("Android 9 or newer is required");
                 Thread.currentThread().setContextClassLoader(payload);return payload;
             }
         }catch(Exception error){throw new IllegalStateException("Authenticated DEX loading failed",error);}
@@ -81,15 +103,26 @@ public final class Factory extends AppComponentFactory {
         if(original==null)original=(AppComponentFactory)cl.loadClass("@@ORIGINAL_FACTORY@@").newInstance();return original;
     }
     private static ClassLoader loader(ClassLoader fallback){if(payload==null)throw new IllegalStateException("DEX loader was not initialized");return payload;}
+    private void initializeAndroid9(ClassLoader cl){
+        if(payload!=null)return;
+        try{
+            URL resource=cl.getResource("assets/carlito/protection.json");
+            if(resource==null||!"jar".equals(resource.getProtocol()))throw new SecurityException("Missing APK resource");
+            URL apk=((JarURLConnection)resource.openConnection()).getJarFileURL();
+            if(!"file".equals(apk.getProtocol()))throw new SecurityException("Unsupported APK location");
+            initialize(cl,new File(apk.toURI()),null);
+        }catch(Exception error){throw new IllegalStateException("Android 9 DEX initialization failed",error);}
+    }
     private static synchronized void checkSigner(){
         if(signerChecked)return;if(app==null)throw new SecurityException("Application unavailable");
-        try{PackageInfo p=app.getPackageManager().getPackageInfo(app.getPackageName(),PackageManager.GET_SIGNING_CERTIFICATES);
+        try{if(!PACKAGE.equals(app.getPackageName()))throw new SecurityException("Installed package mismatch");
+            PackageInfo p=app.getPackageManager().getPackageInfo(app.getPackageName(),PackageManager.GET_SIGNING_CERTIFICATES);
             Signature[] s=p.signingInfo.getApkContentsSigners();
             if(s.length!=1||!CERT.equals(hex(hash(s[0].toByteArray()))))throw new SecurityException("Installed signer mismatch");
             signerChecked=true;
         }catch(Exception error){throw new SecurityException("Installed signature verification failed",error);}
     }
-    @Override public Application instantiateApplication(ClassLoader cl,String name)throws ClassNotFoundException,IllegalAccessException,InstantiationException{cl=loader(cl);app=original(cl).instantiateApplication(cl,name);return app;}
+    @Override public Application instantiateApplication(ClassLoader cl,String name)throws ClassNotFoundException,IllegalAccessException,InstantiationException{if(Build.VERSION.SDK_INT==28)initializeAndroid9(cl);cl=loader(cl);app=original(cl).instantiateApplication(cl,name);return app;}
     @Override public Activity instantiateActivity(ClassLoader cl,String name,Intent intent)throws ClassNotFoundException,IllegalAccessException,InstantiationException{checkSigner();cl=loader(cl);return original(cl).instantiateActivity(cl,name,intent);}
     @Override public ContentProvider instantiateProvider(ClassLoader cl,String name)throws ClassNotFoundException,IllegalAccessException,InstantiationException{checkSigner();cl=loader(cl);return original(cl).instantiateProvider(cl,name);}
     @Override public Service instantiateService(ClassLoader cl,String name,Intent intent)throws ClassNotFoundException,IllegalAccessException,InstantiationException{checkSigner();cl=loader(cl);return original(cl).instantiateService(cl,name,intent);}

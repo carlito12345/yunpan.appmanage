@@ -1,0 +1,22 @@
+{
+  "api": 30,
+  "qa_application_id": "com.maxinf.car.codexcheck",
+  "formal_packages_installed": false,
+  "existing_packages_before": {
+    "com.maxinf.car": "66c48e139e3637b4a804ff370d7128ad80750fc887f75078376537ddd884fd2d",
+    "com.yunpan.appmanage": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074"
+  },
+  "qa_sha256": "7767b02b5f5203625afca6bb553f877761a44a854f0795f3de1636ff0dfe04a6",
+  "qa_loader_template_sha256": "82d1777ed04406a1637113c7519c3ef39dc8bf38c18444beacf03277b7f995c6",
+  "home_foreground": true,
+  "scoped_fatal_exception": false,
+  "qa_removed": true,
+  "existing_packages_after": {
+    "com.maxinf.car": "66c48e139e3637b4a804ff370d7128ad80750fc887f75078376537ddd884fd2d",
+    "com.yunpan.appmanage": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074"
+  },
+  "existing_package_hashes_preserved": true,
+  "first_launch_reported_qa_home": false,
+  "second_launch_reported_qa_home": true,
+  "android9_evidence": false
+}

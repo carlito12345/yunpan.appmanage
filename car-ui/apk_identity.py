@@ -124,7 +124,7 @@ def rewrite_xml(data,old,new,mapping,manifest=False):
             else:replacement=replace_literal(value,old,new,mapping)
             if replacement!=value:set_value(chunk,pool,at,replacement);changes.append({'element':tag,'attribute':key,'old':value,'new':replacement})
     return (finish_xml(data,parts,pool),changes) if changes else (data,[])
-def protect_manifest(data,factory,minimum=29):
+def protect_manifest(data,factory,minimum=28):
     parts,pool=xml_parts(data);found=set()
     for tag,attrs,chunk in xml_nodes(parts,pool):
         if tag=='application' and 'appComponentFactory' in attrs:set_value(chunk,pool,attrs['appComponentFactory'][2],factory);found.add('factory')

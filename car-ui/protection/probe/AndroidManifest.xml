@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.carlito.secureprobe.r12">
+    <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="28" />
+    <application android:name="com.carlito.probe.Probe$App"
+        android:appComponentFactory="com.carlito.probe.Probe$OriginalFactory"
+        android:label="AES runtime probe" android:extractNativeLibs="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name="com.carlito.probe.Probe$Screen" android:exported="true" />
+        <service android:name="com.carlito.probe.Probe$Worker" android:process=":worker" android:exported="false" />
+        <receiver android:name="com.carlito.probe.Probe$Receiver" android:process=":receiver" android:exported="false" />
+        <provider android:name="com.carlito.probe.Probe$Provider" android:authorities="com.carlito.secureprobe.r12.provider" android:exported="false" />
+    </application>
+</manifest>

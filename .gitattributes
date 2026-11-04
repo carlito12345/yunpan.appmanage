@@ -30,3 +30,6 @@ car-ui/apk_identity.py -text -eol
 car-ui/repackage_apk.py -text -eol
 car-ui/tools/PackageDexRewriter.java -text -eol
 car-ui/OneClickPackage.ps1 -text -eol
+car-ui/protect_apk.py -text -eol
+car-ui/test_repackage.py -text -eol
+car-ui/make_package_toolkit.py -text -eol

@@ -1,0 +1,10 @@
+test_literals_keep_code_names_and_do_not_double_replace_child_ids (test_repackage.IdentityUnitTest.test_literals_keep_code_names_and_do_not_double_replace_child_ids) ... ok
+test_package_validation (test_repackage.IdentityUnitTest.test_package_validation) ... ok
+test_protection_manifest_preserves_original_application_and_raises_minimum (test_repackage.RealApkIdentityTest.test_protection_manifest_preserves_original_application_and_raises_minimum) ... ok
+test_resource_ids_and_new_jpeg_entry (test_repackage.RealApkIdentityTest.test_resource_ids_and_new_jpeg_entry) ... ok
+test_short_and_long_ids_keep_component_classes_and_unique_providers (test_repackage.RealApkIdentityTest.test_short_and_long_ids_keep_component_classes_and_unique_providers) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.832s
+
+OK

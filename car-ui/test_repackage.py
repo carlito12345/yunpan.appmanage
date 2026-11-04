@@ -43,8 +43,11 @@ class RealApkIdentityTest(unittest.TestCase):
                     self.assertEqual(a[8:12],b[8:12]);self.assertEqual(len(a),len(b));self.assertEqual(a[268:284],b[268:284])
             pool=next(StringPool(c) for _,k,c in parts if k==1);self.assertIn(filename,pool.values)
     def test_protection_manifest_preserves_original_application_and_raises_minimum(self):
+        from protect_apk import patch_manifest,MINIMUM_SDK
         with zipfile.ZipFile(BASE) as z:
-            original=z.read('AndroidManifest.xml');data=protect_manifest(original,'com.carlito.secure.Factory',29);a=manifest_info(original);b=manifest_info(data)
-            self.assertEqual(a['package'],b['package']);self.assertEqual(a['application']['name'],b['application']['name']);self.assertEqual(29,b['sdk']['minSdkVersion']);self.assertEqual('com.carlito.secure.Factory',b['application']['appComponentFactory'])
+            original=z.read('AndroidManifest.xml');data=patch_manifest(original);a=manifest_info(original);b=manifest_info(data)
+            self.assertEqual(28,MINIMUM_SDK);self.assertEqual(a['package'],b['package']);self.assertEqual(a['application']['name'],b['application']['name']);self.assertEqual(28,b['sdk']['minSdkVersion']);self.assertEqual('com.carlito.secure.Factory',b['application']['appComponentFactory'])
+            higher=protect_manifest(original,'com.carlito.secure.Factory',31)
+            self.assertEqual(31,manifest_info(patch_manifest(higher))['sdk']['minSdkVersion'])
 
 if __name__=='__main__':unittest.main(verbosity=2)

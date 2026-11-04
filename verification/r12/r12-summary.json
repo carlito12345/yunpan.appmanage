@@ -1,0 +1,116 @@
+{
+  "revision": "R12",
+  "date": "2026-11-05",
+  "minimum_sdk": 28,
+  "android9_runtime_tested": false,
+  "android9_runtime_reason": "No Android 9 device available; local emulator did not boot. User explicitly requested delivery before device testing.",
+  "api30_loader_probe": "9 stages passed on each of two cold starts; temporary app removed",
+  "api30_full_app": "Temporary application ID entered Home on second explicit launch; original packages preserved; temporary app removed",
+  "host_tool_tests": 5,
+  "ui_sources": "unchanged from R11; previous 62 UI tests not rerun in R12",
+  "protected_packages": [
+    {
+      "apk": "应用管家-com.maxinf.car-AES加固版-Android9.apk",
+      "bytes": 30523160,
+      "sha256": "8c8adf6ec55d921d0de8d42f1477f63b3031ed300b4de534dd7f467702bf1f28",
+      "compatible_apk": "应用管家-com.maxinf.car-兼容版.apk",
+      "compatible_sha256": "8ac17de2101a1ab7df958350074c8c5205a9cbfa0a82c8b4cb611dba84a1d286",
+      "algorithm": "AES-256-GCM",
+      "key_bits": 256,
+      "tag_bits": 128,
+      "unique_nonce_bytes": 12,
+      "encrypted_top_level_dex": 4,
+      "clear_bootstrap_classes": 1,
+      "minimum_sdk": 28,
+      "application_id": "com.maxinf.car",
+      "loader": "AppComponentFactory / InMemoryDexClassLoader; original Application unchanged",
+      "loader_paths": {
+        "28": "instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained",
+        "29+": "public instantiateClassLoader + InMemoryDexClassLoader native search path"
+      },
+      "plaintext_dex_written_to_disk": false,
+      "android9_non_sdk_fields": [
+        "BaseDexClassLoader.pathList",
+        "DexPathList.dexElements"
+      ],
+      "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+      "v1_v2_v3_verified": true,
+      "zip_alignment_verified": true,
+      "preserved_non_dex_entries": 2293,
+      "all_dex_roundtrip_verified": true,
+      "tamper_checks": {
+        "changed_tag": "rejected",
+        "changed_aad": "rejected",
+        "wrong_key": "rejected"
+      },
+      "source_template_sha256": "82d1777ed04406a1637113c7519c3ef39dc8bf38c18444beacf03277b7f995c6",
+      "generated_key_material_in_repository": false,
+      "vm_tested": false,
+      "limitations": [
+        "Client-side key material and decrypted code can be recovered by a determined analyst.",
+        "Embedded plugin APKs, resources and native libraries are preserved, not encrypted.",
+        "Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing."
+      ]
+    },
+    {
+      "apk": "应用管家-com.yunpan.appmanage-AES加固版-Android9.apk",
+      "bytes": 30412568,
+      "sha256": "a7d24f8cb1c10de474f1020256d3efb2c749662c106b8a7c1473e5a3f4b76fc2",
+      "compatible_apk": "应用管家-com.yunpan.appmanage-兼容版.apk",
+      "compatible_sha256": "f1a76ee02a4b0455a3492cf3e7007e8a7f110b7bfb46bdcea239f22298bab631",
+      "algorithm": "AES-256-GCM",
+      "key_bits": 256,
+      "tag_bits": 128,
+      "unique_nonce_bytes": 12,
+      "encrypted_top_level_dex": 4,
+      "clear_bootstrap_classes": 1,
+      "minimum_sdk": 28,
+      "application_id": "com.yunpan.appmanage",
+      "loader": "AppComponentFactory / InMemoryDexClassLoader; original Application unchanged",
+      "loader_paths": {
+        "28": "instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained",
+        "29+": "public instantiateClassLoader + InMemoryDexClassLoader native search path"
+      },
+      "plaintext_dex_written_to_disk": false,
+      "android9_non_sdk_fields": [
+        "BaseDexClassLoader.pathList",
+        "DexPathList.dexElements"
+      ],
+      "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+      "v1_v2_v3_verified": true,
+      "zip_alignment_verified": true,
+      "preserved_non_dex_entries": 2293,
+      "all_dex_roundtrip_verified": true,
+      "tamper_checks": {
+        "changed_tag": "rejected",
+        "changed_aad": "rejected",
+        "wrong_key": "rejected"
+      },
+      "source_template_sha256": "82d1777ed04406a1637113c7519c3ef39dc8bf38c18444beacf03277b7f995c6",
+      "generated_key_material_in_repository": false,
+      "vm_tested": false,
+      "limitations": [
+        "Client-side key material and decrypted code can be recovered by a determined analyst.",
+        "Embedded plugin APKs, resources and native libraries are preserved, not encrypted.",
+        "Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing."
+      ]
+    }
+  ],
+  "source_sha256": {
+    "OneClickPackage.ps1": "f86657e2190d4ae53f2500b1c6e0fae254aa491f87501245c8972c4eda3d173f",
+    "apk_identity.py": "49df0d8a2bc5113c3a333a940d9a1738d2abf2f9c7eac7744b29c8307fb35a64",
+    "make_package_toolkit.py": "55b06d52092a3a1487553203c23130442446007429237f86e6bea80e990db73b",
+    "protect_apk.py": "93ccf9a60409afa1710d1d6ee37f11f89565b68558f75b00b5cc922fa6212406",
+    "protection/Factory.java.in": "82d1777ed04406a1637113c7519c3ef39dc8bf38c18444beacf03277b7f995c6",
+    "protection/probe/AndroidManifest.xml": "41083391409a167e7ff6514b722fba7ef351ea795bc0914f3b2b739e00bcbf75",
+    "protection/probe/Extra.java": "6bf21354fe176d41dcc26d37800ac32dd90651fdcd39f9df22491fc30d742eb8",
+    "protection/probe/Probe.java": "d00b1ae12fb9151a5a3d5c68de95c57eed108b74294216997288fb883ccc7021",
+    "protection/probe/native.c": "dd2f8195e336ac2007f1869577aab65eeeef235ee12e145459a497f676b92367",
+    "protection/probe/probe.xml": "585848e99d2777d0600d3e37c3d992efd087fbdbab61e94a572727383d8ad921",
+    "protection/test_runtime.py": "cc2a3d3331f43f25b0bd221fec9e6d694eec6b2d828479d8cb144e22c39677f9",
+    "repackage_apk.py": "5f172ebd1671305c5e11be6b56e3527d3099d25df02207b78b1bed66da9a0def",
+    "test_repackage.py": "3b30a37f189a4632ebce14c797f5913eff87c7a783301439b514c093c7ec3580"
+  },
+  "plaintext_dex_written_to_disk": false,
+  "private_key_exported": false
+}

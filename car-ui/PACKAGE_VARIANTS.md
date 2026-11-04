@@ -1,5 +1,9 @@
 # 包名与图标定制 P1
 
+## R12 更新（2026-11-05）
+
+AES 加固增加 Android 9/API28 路径，一键入口无需改变；最低版本为 `max(28, 基础APK最低版本)`，Android 10+ 保留原公开接口。UI、图标及兼容版基础包沿用 R11。Android 11 加载器探针及完整应用临时包启动通过，Android 9 按用户选择先交付，尚待设备实测。当前说明见 [R12安卓9加固适配与验证](R12安卓9加固适配与验证.md)；下方 R11/R10/P1 是历史记录。
+
 ## R11 更新（2026-11-05）
 
 当前工具包基础版为R11：常用功能标题区域无包边、下方功能卡片有包边，所有主题使用统一的按角色圆角；“添加跳转”保留包边。默认同时生成 `com.yunpan.appmanage,com.maxinf.car`，继续沿用新图标。下方R10/P1部分保留为历史；当前证据见 `R11修复与验证.md`。
@@ -20,7 +24,7 @@
 
 1. 解压工具包，双击 `car-ui/一键改包名.cmd`。
 2. 输入目标包名，例如 `com.maxinf.car`；多个包名用逗号分隔，例如 `com.maxinf.car,com.example.car`。
-3. 选择兼容版或未加固基础 APK。工具包附 `car-ui/input/base.apk`，是本次原包名 R9 兼容版；以后更新时选择新的基础 APK。
+3. 选择兼容版或未加固基础 APK。工具包附 `car-ui/input/base.apk`，当前为原包名 R11 新图标兼容版；以后更新时选择新的基础 APK。
 4. 首次选择自己的 `platform.pk8` 私钥。公钥证书和默认图标已经附带；私钥必须与证书配对。路径会保存在本机 `repackage.local.json`，以后复用。
 5. 成功后打开 `car-ui/dist/package-variants`，每个包名分别产生兼容版、AES 加固版和 JSON 校验报告。工具只生成文件，不自动安装。
 
@@ -51,7 +55,7 @@ python repackage_apk.py --input input/base.apk --package com.maxinf.car --packag
 - 更新 Manifest 的 application ID、Provider authority、自定义权限、任务归属、别名，以及代码和资源中的相应包标识、动态广播标识和 URI。
 - 保留原 Java 类名、JNI 符号和资源 ID。Android 的安装包身份与代码命名空间可以不同，见 [Android 官方说明](https://developer.android.com/build/configure-app-module)。Provider authority 单独调整以避免与原版冲突，见 [FileProvider 设置](https://developer.android.com/training/secure-file-sharing/setup-sharing)。
 - 保留原生库、内嵌插件 APK 的字节。特别保留原版判断分支，让原生启动命令继续对定制包追加 `--package=<当前包名>`，避免错误回落到原包名。
-- AES 加固按当前 application ID 绑定 AAD 和密钥派生，保留原 Application。兼容版继承基础版最低 API17；本次加固版最低 API29（Android10）。客户端代码与材料仍可能被分析提取，不保证绝对防反编译。
+- AES 加固按当前 application ID 绑定 AAD 和密钥派生，保留原 Application。兼容版继承基础版最低 API17；当前加固版最低 API28（Android9），输入要求更高时保留其最低版本。Android9路径尚待实机验收；Android10+沿用公开接口。客户端代码与材料仍可能被分析提取，不保证绝对防反编译。
 - 新包名有独立的数据和授权，不自动迁移原版偏好、账号或壁纸。已有同名其他应用时不能并存；本工具不删除或覆盖设备应用。
 
 包名接受最多127个 ASCII 字符、至少两段，每段首字符为字母，后续为字母/数字/下划线；这是当前工具对原资源表的限制。遇到已加固输入、缺少所需属性、复杂或 compact 图标条目等不支持的基础 APK，会报错。以后基础版更换保护方案、动态反射约定或原生启动方式时，需要重新验收，不能仅靠字符串替换保证所有业务兼容。

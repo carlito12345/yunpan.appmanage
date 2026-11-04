@@ -1,4 +1,4 @@
-"""Build an Android 10+ AES-256-GCM variant; keep the signed compatible input intact.
+"""Build an Android 9+ AES-256-GCM variant; keep the signed compatible input intact.
 
 Requires cryptography. Uses public Android AppComponentFactory + InMemoryDexClassLoader.
 Build-random client material raises static-analysis cost; it is not an unrecoverable secret.
@@ -25,6 +25,7 @@ from package_apk import signature, u16, u32
 ROOT=Path(__file__).resolve().parent
 INFO=b'carlito/dex/aes-gcm/v1\ncom.yunpan.appmanage'
 FACTORY='com.carlito.secure.Factory'
+MINIMUM_SDK=28
 PROTECTION_WORK=WORKSPACE/'.work/protection'
 ANDROID_JAR=SDK/'platforms/android-36/android.jar'
 ORIGINAL_FACTORY='androidx.core.app.CoreComponentFactory'
@@ -41,7 +42,7 @@ def derive(seed,cert,application_id='com.yunpan.appmanage'):
 
 def patch_manifest(original):
     info=manifest_info(original)
-    return protect_manifest(original,FACTORY,max(29,int(info['sdk'].get('minSdkVersion',1))))
+    return protect_manifest(original,FACTORY,max(MINIMUM_SDK,int(info['sdk'].get('minSdkVersion',1))))
 
 def tamper_checks(key,nonce,plain,aad,ciphertext):
     assert AESGCM(key).decrypt(nonce,ciphertext,aad)==plain
@@ -64,7 +65,7 @@ def protect(source,keyfile,certificate,output):
     seed=os.urandom(32);share=os.urandom(32);payload={};items=[];nonces=set()
     with zipfile.ZipFile(source) as z:
         if 'assets/carlito/protection.json' in z.namelist():raise ValueError('输入已加固，请使用兼容版')
-        info=manifest_info(z.read('AndroidManifest.xml'));application_id=validate_package(info['package']);minimum=max(29,int(info['sdk'].get('minSdkVersion',1)));key=derive(seed,cert,application_id)
+        info=manifest_info(z.read('AndroidManifest.xml'));application_id=validate_package(info['package']);minimum=max(MINIMUM_SDK,int(info['sdk'].get('minSdkVersion',1)));key=derive(seed,cert,application_id)
         original_factory=info['application'].get('appComponentFactory','')
         if not re.fullmatch(r'[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)+',original_factory):raise ValueError('无可用原组件工厂')
         dex=sorted((n for n in z.namelist() if re.fullmatch(r'classes(?:[2-9]|[1-9][0-9]+)?\.dex',n)),key=lambda n:1 if n=='classes.dex' else int(n[7:-4]))
@@ -87,7 +88,7 @@ def protect(source,keyfile,certificate,output):
         with zipfile.ZipFile(jar,'w') as j:
             j.write(classes/'com/carlito/secure/Factory.class','com/carlito/secure/Factory.class')
         dexdir=work/'dex';dexdir.mkdir(exist_ok=True)
-        run([JDK/'java.exe','-cp',BUILDTOOLS/'lib/d8.jar','com.android.tools.r8.D8','--min-api','29','--lib',ANDROID_JAR,'--output',dexdir,jar],'protection-d8.log')
+        run([JDK/'java.exe','-cp',BUILDTOOLS/'lib/d8.jar','com.android.tools.r8.D8','--min-api',str(minimum),'--lib',ANDROID_JAR,'--output',dexdir,jar],'protection-d8.log')
         bootstrap=(dexdir/'classes.dex').read_bytes();assert struct.unpack_from('<I',bootstrap,96)[0]==1
         unsigned=work/'unsigned.apk';aligned=work/'aligned.apk';manifest=patch_manifest(z.read('AndroidManifest.xml'))
         with zipfile.ZipFile(unsigned,'w',zipfile.ZIP_DEFLATED) as out:
@@ -99,7 +100,7 @@ def protect(source,keyfile,certificate,output):
     run([BUILDTOOLS/'zipalign.exe','-P','16','-f','4',unsigned,aligned],'protection-align.log')
     run([JDK/'java.exe','-jar',BUILDTOOLS/'lib/apksigner.jar','sign','--key',keyfile,'--cert',certificate,'--min-sdk-version',str(minimum),'--v1-signing-enabled','true','--v2-signing-enabled','true','--v3-signing-enabled','true','--v4-signing-enabled','false','--out',output,aligned],'protection-sign.log')
     run([JDK/'java.exe','-jar',BUILDTOOLS/'lib/apksigner.jar','verify','--verbose','--print-certs','--min-sdk-version',str(minimum),output],'protection-signature-verification.log')
-    # API 29 verification selects V3; force the supported V1 digest range to check all schemes too.
+    # API 28 verification selects V3; force the supported V1 digest range to check all schemes too.
     run([JDK/'java.exe','-jar',BUILDTOOLS/'lib/apksigner.jar','verify','--verbose','--print-certs','--min-sdk-version','18',output],'protection-all-schemes-verification.log')
     schemes=(BUILD/'protection-all-schemes-verification.log').read_text()
     for version in [1,2,3]:assert re.search(r'Verified using v'+str(version)+r' scheme .*: true',schemes)
@@ -115,7 +116,7 @@ def protect(source,keyfile,certificate,output):
         assert after.read('AndroidManifest.xml')==manifest and after.read('classes.dex')==bootstrap
         for item in items:
             encrypted=after.read(item['entry']);assert AESGCM(key).decrypt(encrypted[:12],encrypted[12:],item['aad'].encode())==before.read(item['name'])
-    report={'apk':output.name,'bytes':output.stat().st_size,'sha256':sha(output.read_bytes()),'compatible_apk':source.name,'compatible_sha256':sha(source.read_bytes()),'algorithm':'AES-256-GCM','key_bits':256,'tag_bits':128,'unique_nonce_bytes':12,'encrypted_top_level_dex':len(dex),'clear_bootstrap_classes':1,'minimum_sdk':minimum,'application_id':application_id,'loader':'AppComponentFactory / InMemoryDexClassLoader; original Application unchanged','certificate_sha256':cert,'v1_v2_v3_verified':True,'zip_alignment_verified':True,'preserved_non_dex_entries':preserved,'all_dex_roundtrip_verified':True,'tamper_checks':{'changed_tag':'rejected','changed_aad':'rejected','wrong_key':'rejected'},'source_template_sha256':sha((ROOT/'protection/Factory.java.in').read_bytes()),'generated_key_material_in_repository':False,'vm_tested':False,'limitations':['Client-side key material and decrypted code can be recovered by a determined analyst.','Embedded plugin APKs, resources and native libraries are preserved, not encrypted.','Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing.']}
+    report={'apk':output.name,'bytes':output.stat().st_size,'sha256':sha(output.read_bytes()),'compatible_apk':source.name,'compatible_sha256':sha(source.read_bytes()),'algorithm':'AES-256-GCM','key_bits':256,'tag_bits':128,'unique_nonce_bytes':12,'encrypted_top_level_dex':len(dex),'clear_bootstrap_classes':1,'minimum_sdk':minimum,'application_id':application_id,'loader':'AppComponentFactory / InMemoryDexClassLoader; original Application unchanged','loader_paths':{'28':'instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained','29+':'public instantiateClassLoader + InMemoryDexClassLoader native search path'},'plaintext_dex_written_to_disk':False,'android9_non_sdk_fields':['BaseDexClassLoader.pathList','DexPathList.dexElements'],'certificate_sha256':cert,'v1_v2_v3_verified':True,'zip_alignment_verified':True,'preserved_non_dex_entries':preserved,'all_dex_roundtrip_verified':True,'tamper_checks':{'changed_tag':'rejected','changed_aad':'rejected','wrong_key':'rejected'},'source_template_sha256':sha((ROOT/'protection/Factory.java.in').read_bytes()),'generated_key_material_in_repository':False,'vm_tested':False,'limitations':['Client-side key material and decrypted code can be recovered by a determined analyst.','Embedded plugin APKs, resources and native libraries are preserved, not encrypted.','Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing.']}
     output.with_suffix('.verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     (BUILD/'protection-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2),flush=True)

@@ -1,6 +1,8 @@
-# 应用管家 · 车机UI定制 / R11 · 双包名分支
+# 应用管家 · 车机UI定制 / R12 · Android 9 加固适配
 
-本分支R11按最新标记图调整：首页常用功能标题栏（含编辑）无包边，下方功能卡片恢复包边，添加跳转保留；所有主题按控件角色使用圆角。R10数值框与间距修复保留。新图标下提供 `com.yunpan.appmanage` 与 `com.maxinf.car`；一键工具可处理未来基础APK。见 [R11修复与验证](car-ui/R11修复与验证.md)、[工具说明](car-ui/PACKAGE_VARIANTS.md) 和 [verification/r11](verification/r11)。62项UI及5项包名本地测试通过；当前无设备运行验收，审查仍需recapture。旧版VM记录保持历史身份。
+R12 为 AES 加固增加 Android 9/API28 启动路径，两个包名及一键脚本同步更新，UI 沿用 R11。Android 11 上双 DEX/Context/XML/JNI/后台组件探针两次冷启动通过，完整应用临时包第二次显式打开首页成功；正式同名应用未覆盖。Android 9 设备尚不可用，按用户选择先交付适配包，未宣称 Android 9 实测通过。见 [R12验证](car-ui/R12安卓9加固适配与验证.md) 和 [verification/r12](verification/r12)。
+
+R11历史：本分支R11按最新标记图调整：首页常用功能标题栏（含编辑）无包边，下方功能卡片恢复包边，添加跳转保留；所有主题按控件角色使用圆角。R10数值框与间距修复保留。新图标下提供 `com.yunpan.appmanage` 与 `com.maxinf.car`；一键工具可处理未来基础APK。见 [R11修复与验证](car-ui/R11修复与验证.md)、[工具说明](car-ui/PACKAGE_VARIANTS.md) 和 [verification/r11](verification/r11)。62项UI及5项包名本地测试通过；当前无设备运行验收，审查仍需recapture。旧版VM记录保持历史身份。
 
 定制作者 **carlito**。源APK：**应用管家社区官方【应用管家】**；[官方社区](https://pd.qq.com/s/7eyokceit?b=5)，腾讯频道号 updata3927。公开海报原图接入主题中心和主页来源入口，定制署名与原APK来源分开标注。
 
@@ -12,14 +14,14 @@ R9修复局域网互传二维码缩成小点：独立方形白底、竖屏上下
 |---|---|
 | car-ui/src | 可编译原生Java UI、62项本地回归和公开来源图片 |
 | car-ui/baseline / patched-smali | 九个接入类的原基线和修改 |
-| car-ui/protection / protect_apk.py | 可选AES-256-GCM保护模板与打包脚本，API29+ |
+| car-ui/protection / protect_apk.py | 可选AES-256-GCM保护模板与打包脚本，API28+（Android9待实测） |
 | 公签版_反编译/apktool | 清单、资源、smali、原生库与内嵌插件 |
 | 公签版_反编译/java-project / java-fallback / embedded | JADX可读Java和失败方法补充 |
 | verification | 源码SHA、构建、测试及部分VM验证元数据 |
 
 UI扩展可独立编译；JADX导出历史有2593项全工程编译错误，不等同于原作者可无损恢复的原始Java仓库。原业务沿用smali，.so不等于已恢复C/C++源码。构建与本机路径调整见 [car-ui/README.md](car-ui/README.md)，原APK需自行放入 [input](input/README.md)。
 
-提供原加载方式的兼容版和独立加固版；后者最低Android10，四个主DEX认证加密，原生内存类加载接口启动原Application，资源/原生库/内嵌插件保留。客户端材料和运行时代码仍可被提取，不保证绝对防反编译；源码按用户要求保持可读。见 [R9修复与验证](car-ui/R9修复与验证.md)。
+提供原加载方式的兼容版和独立加固版；后者当前最低Android9，四个主DEX认证加密，Android9接入原类加载器、Android10+使用公开内存加载接口启动原Application，资源/原生库/内嵌插件保留。客户端材料和运行时代码仍可被提取，不保证绝对防反编译；源码按用户要求保持可读。见 [R9修复与验证](car-ui/R9修复与验证.md)。
 
 59项本地测试通过。R9保护包在指定Android11 VM验证应用启动、原文件入口、互传二维码双向旋转、离线解码和返回关闭；并非全业务或实车验收。更新后首次回Launcher、再打开Home成功的既有现象仍记录。云盘真实认证/传输和root/ADB/自动化等业务未验收。
 

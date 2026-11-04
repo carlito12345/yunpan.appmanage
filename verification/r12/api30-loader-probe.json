@@ -1,0 +1,20 @@
+{
+  "api": 30,
+  "application_id": "com.carlito.secureprobe.r12",
+  "aes_apk_sha256": "0f71a52f99ece1f518b14e735ce9ad170d689d698dad4772bdc53c7e54a41788",
+  "stages": [
+    "activity",
+    "application",
+    "attach",
+    "custom-view",
+    "original-factory",
+    "provider",
+    "receiver-process",
+    "service-process",
+    "xml-inflation"
+  ],
+  "cold_starts": 2,
+  "removed": true,
+  "environment": "Authorized Android 11 ARM64 VM",
+  "android9_evidence": false
+}
