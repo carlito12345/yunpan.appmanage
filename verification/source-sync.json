@@ -1,9 +1,9 @@
 {
-  "revision": "R8",
-  "compatible_apk_sha256": "b4c65ef0cc6a8b46cce8202a397a3fcc0c89d8785ec6bff7ca9fc7117187bdd5",
-  "protected_apk_sha256": "e695ce0fe1fc6d929d2fc5e43366f450bad3b89e9c58a15b25407c859d7cffaf",
-  "ui_classes": 141,
-  "tests": 57,
+  "revision": "R9",
+  "compatible_apk_sha256": "bfa22f0ea1977f4465a90a14779d71458e34d3538364934112f5e499d6f75692",
+  "protected_apk_sha256": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074",
+  "ui_classes": 143,
+  "tests": 59,
   "ui_java_sources": {
     "src/main/java/com/yunpan/appmanage/carui/Appearance.java": "2e0ac771e7bb1b1d18b0e19723fa811ed5382c68cc03546d2667280253c7ce80",
     "src/main/java/com/yunpan/appmanage/carui/Bridge.java": "809468c6f18a1565d8f888ca93507ac2e5a1dbf8f231b5675771bdeb38977c6d",
@@ -12,7 +12,7 @@
     "src/main/java/com/yunpan/appmanage/carui/Favorites.java": "f8b5046f71c4489fad6c9ba0eca58343903a44e1975f7db440b3f4505060c9c9",
     "src/main/java/com/yunpan/appmanage/carui/FrostedDialogs.java": "e7fe40251daa7141724568f7cf62f7ecd21ebf9bd4b9485b9063349353b0ddf3",
     "src/main/java/com/yunpan/appmanage/carui/Icons.java": "da5b5a55dd23b9e8365d5461b453084e2b553dc1ca7a05935668091f6caa9995",
-    "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "bfe6df822a3da41984b75e775bb64c06092dc68a6e5cdcf3606375cc085fac67",
+    "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "239cc8e1327dac4220fa48b54c1222c2daeafba98dfcbaae4edcea97c2cfb4fd",
     "src/main/java/com/yunpan/appmanage/carui/ResourceIndex.java": "4317fe50116172f5cc7335afc0276536538a7dac46be822d96428132612368b7",
     "src/main/java/com/yunpan/appmanage/carui/ShortcutPicker.java": "54b27259485fc8e034afe0dcf25c210518e70a642c8f6b5e42274d4abafbe183",
     "src/main/java/com/yunpan/appmanage/carui/SourceInfo.java": "27caa995475e4d9272efc0f2e447031c890582383cd030e236f0ee707a4201cb",

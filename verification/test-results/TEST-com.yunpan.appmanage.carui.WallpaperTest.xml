@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yunpan.appmanage.carui.WallpaperTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:39:41.416Z" hostname="CARLITO" time="1.88">
+<testsuite name="com.yunpan.appmanage.carui.WallpaperTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-04T02:14:34.505Z" hostname="CARLITO" time="5.565">
   <properties/>
-  <testcase name="staticChooserUsesImagesAndSystemCancelDoesNotChangeSavedConfig" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.211"/>
-  <testcase name="cropGeometryFillsDetectedScreenAfterPanZoomAndRotation" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.138"/>
-  <testcase name="originalStaticWallpaperResourceAndSolidColorsPersistWithoutAPlayer" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.109"/>
-  <testcase name="previewCancelDoesNotSaveAndApplyPersistsSelection" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.248"/>
-  <testcase name="originalAdvancedBackgroundButtonOpensTheSameWallpaperCenter" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.141"/>
-  <testcase name="croppedCopiesArePrivateAndCancelCannotDeleteSavedOrOriginalImage" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.174"/>
-  <testcase name="settingsPersistAndMalformedIndexesAreBounded" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.067"/>
-  <testcase name="activityPauseAndDetachStopTheRenderLoop" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.124"/>
-  <testcase name="systemVideoRequestAndCancellationPreserveCurrentWallpaper" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.43"/>
-  <testcase name="allSixPatternsAnimateAndBothPalettesAffectPixels" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.234"/>
+  <testcase name="staticChooserUsesImagesAndSystemCancelDoesNotChangeSavedConfig" classname="com.yunpan.appmanage.carui.WallpaperTest" time="1.158"/>
+  <testcase name="cropGeometryFillsDetectedScreenAfterPanZoomAndRotation" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.596"/>
+  <testcase name="originalStaticWallpaperResourceAndSolidColorsPersistWithoutAPlayer" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.474"/>
+  <testcase name="previewCancelDoesNotSaveAndApplyPersistsSelection" classname="com.yunpan.appmanage.carui.WallpaperTest" time="1.233"/>
+  <testcase name="originalAdvancedBackgroundButtonOpensTheSameWallpaperCenter" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.351"/>
+  <testcase name="croppedCopiesArePrivateAndCancelCannotDeleteSavedOrOriginalImage" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.526"/>
+  <testcase name="settingsPersistAndMalformedIndexesAreBounded" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.246"/>
+  <testcase name="activityPauseAndDetachStopTheRenderLoop" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.221"/>
+  <testcase name="systemVideoRequestAndCancellationPreserveCurrentWallpaper" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.428"/>
+  <testcase name="allSixPatternsAnimateAndBothPalettesAffectPixels" classname="com.yunpan.appmanage.carui.WallpaperTest" time="0.313"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

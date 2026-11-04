@@ -1,10 +1,14 @@
-# 应用管家 · R8 作者来源与可选 DEX 加固
+# 应用管家 · R9 局域网二维码修复与可选 DEX 加固
 
 原生Java UI扩展接入原com.yunpan.appmanage 1.9.2/1922公签APK。可独立编译的是UI扩展；原JADX Java全工程历史仍有2593项错误，不等同于作者原始仓库。业务沿用原smali、适配器、监听器和权限处理。
 
 定制作者：**carlito**。源APK：**应用管家社区官方【应用管家】**，社区链接：https://pd.qq.com/s/7eyokceit?b=5 ，腾讯频道号 `updata3927`。主页常用功能末尾与主题中心下部均可打开“关于与来源”，完整查看用户提供的公开二维码原图；定制署名与原APK来源分开标注。
 
 本次提供兼容版与独立 AES-256-GCM 加固版。后者最低 Android 10/API29，把四个主DEX分别认证加密，以原生内存类加载接口启动原Application；资源、原生库与内嵌插件保留。加固提高静态分析门槛，客户端密钥材料与运行时代码仍可能被提取，不保证绝对防反编译。细节见 [R8加固与验证.md](R8加固与验证.md)。
+
+## R9 修复
+
+修复文件管理→文件互传中二维码缩成顶部小点。局域网互传弹窗使用独立方形白底二维码，竖屏上下、横屏左右排布；说明区滚动、原提示音/返回固定，原控件实例/ID/监听器和原二维码生成业务保留。缺码时继续保留原隐藏状态和手动地址；后到图片仍使用同一ImageView。两方向实际VM截图已离线解码并与页面地址核对，未实际传输文件。详见 [R9修复与验证.md](R9修复与验证.md) 和 [更新日志.md](更新日志.md)。
 
 ## 本版界面
 
@@ -22,16 +26,16 @@
 python car-ui/build_ui.py --patch
 java -jar <apktool.jar> b .work/decoded -p .work/framework -o .work/car-ui-compiled.apk
 java -Xmx2g -cp '.work;<apktool.jar>' CompareDex .work/original.apk .work/car-ui-compiled.apk car-ui/build/dex-review
-python car-ui/package_apk.py --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-作者与来源-兼容版-R8-20261104.apk
-python car-ui/protect_apk.py --input car-ui/应用管家-作者与来源-兼容版-R8-20261104.apk --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-AES256GCM加固版-R8-20261104.apk
+python car-ui/package_apk.py --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-局域网二维码修复-兼容版-R9-20261104.apk
+python car-ui/protect_apk.py --input car-ui/应用管家-局域网二维码修复-兼容版-R9-20261104.apk --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-局域网二维码修复-AES加固版-R9-20261104.apk
 ```
 
 构建依赖工作区原 APK、反编译资源和当前 Windows 工具链；迁移需调整脚本路径。源码和基线 smali、公钥证书随包；私钥不归档。保护打包需 Python `cryptography`（本次50.0.2）。兼容版新增 `classes4.dex`，原资源与第二第三 DEX 字节一致；加固版主DEX仅剩一个明文bootstrap，四个业务/UI DEX在assets中加密保存。每次保护构建生成新随机材料，产物SHA不同是预期行为。
 
 ## 验证范围
 
-57项本地测试通过，9组为9+8+7+7+8+4+10+3+1。新增测试校验署名/来源链接和旋转后关闭按钮可达；此前覆盖原布局实例/ID、明确原绑定接线、横竖布局、裁切与URI取消、双窗/晚到文件、连接类型换行、大QR/状态/关闭、透明度像素、主题草稿、边框和动画边界。333个原布局中326个通过结构烟测，7个特殊控件未在JVM执行；部分TV控件是AndroidX替身，不等于完整原控制器或全页面验收。
+59项本地测试通过，10组为9+8+7+7+8+4+10+3+1+2。新增测试校验署名/来源链接和旋转后关闭按钮可达；此前覆盖原布局实例/ID、明确原绑定接线、横竖布局、裁切与URI取消、双窗/晚到文件、连接类型换行、大QR/状态/关闭、透明度像素、主题草稿、边框和动画边界。333个原布局中326个通过结构烟测，7个特殊控件未在JVM执行；部分TV控件是AndroidX替身，不等于完整原控制器或全页面验收。
 
-R8加固APK在指定Android11 VM覆盖安装，安装SHA与本地相同。原Application/Provider初始化、首页、功能目录、主题中心和来源页均运行；来源图竖屏/横屏完整，关闭可达。后续一次冷启动3361ms，当前PID的AndroidRuntime/CarUi错误0条。保留测试开始时用户已选的暖橙日间、32%透明度、薄荷流光与粒子壁纸，未修改偏好；旋转还原0/0。更新后首次启动仍出现落Launcher的既有现象，重复打开Home成功。兼容R8包已完成静态校验，此轮运行记录针对加固包；实车和完整安装/云盘/权限/自动化业务未验收。
+R9加固APK在指定Android11 VM覆盖安装，安装SHA与本地相同。原应用启动、首页/文件入口、互传弹窗双向旋转、离线解码及原返回关闭已验。首次更新后仍出现回Launcher的既有现象，再次Home成功COLD3411ms；测试未修改用户偏好，旋转还原0/0。兼容R9包已静态校验，此轮运行针对加固包；实车与完整云盘/权限/自动化/安装业务未验收。
 
-R7界面细节及历史证据见R7修复与验证.md；R8证据见build/vm-r8/runtime-report.json和R8加固与验证.md。GitHub同步完整Java阅读导出、smali/资源、UI扩展及保护脚本模板。交付ZIP另附双安装包、公开来源图与安全验证证据。私钥、临时生成密钥材料、真实登录二维码、设备配置与媒体URI不归档。
+R7界面细节及历史证据见R7修复与验证.md；R9证据见build/vm-r9/runtime-report.json和R9修复与验证.md，R8加固机制与历史记录见R8加固与验证.md。GitHub同步完整Java阅读导出、smali/资源、UI扩展及保护脚本模板。交付ZIP另附双安装包、公开来源图与安全验证证据。私钥、临时生成密钥材料、真实登录二维码、设备配置与媒体URI不归档。

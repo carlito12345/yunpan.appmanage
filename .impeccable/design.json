@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T01:44:20Z",
+  "generatedAt": "2026-11-04T02:32:13Z",
   "title": "Design System: 应用管家 · 车机",
   "extensions": {
     "colorMeta": {
@@ -1194,11 +1194,21 @@
         "sha256": "f7dce8a56326f62de4f02c92bcea7653e1d7efef47ebb2debf6f3fdba362035a",
         "identity": "User-supplied public poster copied byte-identically; local asset SHA independently matched.",
         "display": "Whole original raster via FIT_CENTER on opaque white, preserving aspect/quiet space; no crop or tint.",
-        "scope": "Public community provenance poster, distinct from live private account-login QR images."
+        "scope": "Public community provenance poster, distinct from live private account-login and LAN-transfer QR images."
       },
       "dialog": "Owner-sized width/height caps 620dp/860dp at reference sizes; poster consumes remaining height; fixed 打开官方社区/关闭 row with 52dp minimum targets and 12dp gap.",
       "rotation": "SourceInfo.resize participates in CarUi.refreshDialog; no separate visual system.",
       "behavior": "Only explicit community-button selection launches ACTION_VIEW for the exact URL. Opening/closing About does not launch a browser or commit theme/appearance/wallpaper preferences."
+    },
+    "lanTransferQr": {
+      "implementation": "LegacyUi.transferQr / TransferQrBody for original dialog_share; ordinary bug fix within the incumbent world, separate from cloud login and SourceInfo.",
+      "failureBaseline": ".codex-attachments/63b9c88b-b026-43bb-bab9-a094c0aa2cc9/bdd6a7a0-73bb-4493-8c0f-088a42f032ef/1002686267.jpg",
+      "qr": "Original v_qrCode ImageView; independent opaque-white square, 18dp quiet space, untinted FIT_CENTER, bitmap filtering/antialias disabled.",
+      "measurement": "Square capped at 360dp and remaining body bounds. Portrait above scrollable information; landscape owner and body width >=600dp places it beside information. QrSquare honors an explicit height bound for this and existing cloud layouts.",
+      "footer": "Original sound group and Return in fixed WrapLayout outside the scrollable body; minimum action height 52dp.",
+      "preservation": "Original v_root2 ConstraintLayout, guideline, QR/title/content/address, sound group/icon, close IDs/instances and listeners remain. No replacement transfer/generator business behavior.",
+      "visibility": "White host follows original QR GONE/visible state; manual-address guidance remains when QR is missing; late image/visibility binds the same original instance.",
+      "evidenceBoundary": "Native fixtures use fake black content; actual protected-build VM originals establish display and offline decoding. No external-phone scan, browser connection or real transfer accepted."
     },
     "appearance": {
       "implementation": "Appearance.Edge extends native GradientDrawable; shared panel material only.",
@@ -1327,9 +1337,9 @@
       },
       "fixtureData": true,
       "fixtureDataScope": "Robolectric captures only; the installed-VM evidence below exercises the original application runtime and VM data.",
-      "currentRevision": "R8",
+      "currentRevision": "R9",
       "connectedEmulatorOrDevice": true,
-      "connectionScope": "R8 protected-build author/source UI and startup observed on Android 11/API30. This phase preserved pre-existing warm/day, 32% transparency, flow/mint and particles; no preference reset. Prior revision states remain historical.",
+      "connectionScope": "R9 protected-build dialog_share LAN QR display/rotation/Return observed on Android 11/API30. Existing warm/day, 32% transparency, flow/mint and particles were preserved, rotation restored to 0/0. R8 and earlier revision states remain historical.",
       "vehicleHardwareValidated": false,
       "runtimeValidation": {
         "revision": "R3",
@@ -1618,9 +1628,64 @@
         "reviewDisposition": "ship, scoped only to R8 author/source entries and public poster dialog.",
         "limitations": "No broader R7, security, full-business, all-theme/font/hardware-focus/vehicle or community-link/QR-scan matrix accepted; protected startup on this API30 VM is not general device support."
       },
-      "artifactStatus": "R8 ordinary attribution/poster extension has 57 reported passing local tests and four protected-build API30 captures, with scoped ship in finish-review-r8. Compatible/protected hashes stay separate. No broader runtime/security/vehicle approval asserted.",
+      "r9LocalValidation": {
+        "combinedTests": 59,
+        "suites": 10,
+        "failures": 0,
+        "errors": 0,
+        "reportedDuration": "6m35s; BUILD SUCCESSFUL",
+        "sourceLevel": 17,
+        "compiledUiClasses": 143,
+        "newTest": "car-ui/src/test/java/com/yunpan/appmanage/carui/R9RegressionTest.java",
+        "newCaseScope": "Two tests cover original instance identity, large square/opaque quiet zone, pre-adaptation sound callback, fixed footer and synthetic close dismissal across themes/orientations; GONE/manual fallback then late original ImageView visibility. The test close callback is installed after adaptation; original Return evidence comes from source/runtime.",
+        "existingCloudRegression": "Existing cloud QR size/state/dismiss test passes in the same suite; this does not renew authentication acceptance.",
+        "renders": "car-ui/previews/regressions-r4/r9-lan-{warm,cyan,mono}-{1440,1920}.png",
+        "fixtureScope": "Six native layout fixtures use a fake solid-black bitmap, not a scannable code or complete original controller execution.",
+        "inspection": "Existing ten XML result summaries independently totaled during documentation handoff; tests not rerun by documenter."
+      },
+      "r9BuildArtifacts": {
+        "compatible": {
+          "artifactName": "应用管家-局域网二维码修复-兼容版-R9-20261104.apk",
+          "sha256": "bfa22f0ea1977f4465a90a14779d71458e34d3538364934112f5e499d6f75692",
+          "bytes": 19058177
+        },
+        "protected": {
+          "artifactName": "应用管家-局域网二维码修复-AES加固版-R9-20261104.apk",
+          "sha256": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074",
+          "bytes": 30355143
+        },
+        "identityScope": "Both local APK hashes/lengths checked. runtime-report.json/final-installation.json record the protected installed package with the same hash; documentation handoff did not operate ADB.",
+        "designScope": "Release variants are metadata, not a changed visual world, security/cryptographic assessment or whole-business acceptance."
+      },
+      "r9RuntimeValidation": {
+        "target": "Android 11/API30 VM",
+        "runtimeReport": "car-ui/build/vm-r9/runtime-report.json",
+        "installationReport": "car-ui/build/vm-r9/final-installation.json",
+        "qrEvidence": "car-ui/build/vm-r9/qr-evidence.json",
+        "apkSha256": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074",
+        "mainPid": 11095,
+        "scopedUiErrors": 0,
+        "captureRoot": "car-ui/build/vm-r9",
+        "deliverableCaptures": [
+          {"path": "lan-portrait-redacted.png", "size": "1440x1920", "sha256": "e5766fe1e31549819433628f51e4447aa039a08ad8b4bd97caf78d2fac45b68e"},
+          {"path": "lan-landscape-redacted.png", "size": "1920x1440", "sha256": "eaadb7252dd321685b95e43d1d9f36a5d6483919508c6534a7b924763b9067b4"},
+          {"path": "file-after-close.png", "size": "1440x1920", "sha256": "84c4e399446c7638f738537cd8162af577ef296bd3e61c5143643cd59c5d2514"}
+        ],
+        "privateEvidence": "Both required original frames read for documentation only; live QR/address/payload are not reproduced or delivered.",
+        "checks": "Large QR with opaque white perimeter, scrollable original information and fixed original actions in both orientations; original Return dismisses; real file toolbar populates asynchronously without mocked data.",
+        "afterCloseEvidence": "file-after-close.png recaptured after rotation settled. This later dismissal evidence was outside the review's original two-frame scope; no source correction followed review.",
+        "offlineDecode": "Existing ZXing Core3.5.3 decoded both original screenshots; each URI matched its displayed LAN address, which need not match the ADB endpoint. Result records no query/credentials. No decoder rerun by documentation handoff.",
+        "externalPhoneScanOrTransfer": false,
+        "preferencesPreserved": {"theme": "warm/day", "transparency": 32, "borderStyle": "flow", "borderColor": "mint", "wallpaper": "particles", "changedByPhase": false},
+        "restoredRotation": {"userRotation": 0, "accelerometerRotation": 0},
+        "startupBoundary": "Initial update launch returned Launcher; repeated explicit Home succeeded. This does not establish general startup consistency or performance.",
+        "review": ".impeccable/finish-review-r9.md",
+        "reviewDisposition": "ship, only dialog_share LAN QR sizing/composition and original control/callback preservation.",
+        "limitations": "No actual transfer, browser connection, physical phone-camera scan, whole business/module matrix, other API/font/focus/accessibility/device/vehicle or performance/security/cryptographic acceptance. Historical unresolved boundaries remain."
+      },
+      "artifactStatus": "R9 ordinary LAN QR fix has 59 passing local tests in ten existing result summaries, two protected-build API30 orientations and offline screenshot decoding; finish-review-r9 gives narrowly scoped ship. Redacted delivery and later settled-rotation after-close evidence only; no broader runtime/security/vehicle approval.",
       "historicalInventory": "The earlier 326 resource-ID preservation/measurement checks did not prove usable production-bound layouts or close the photographed failures.",
-      "scope": "R8 adds source attribution/public poster within the incumbent world; tokens unchanged. Its 57-test/four-capture scoped verdict does not broaden historical R3–R7 acceptance or establish security, all-333-layout, full business/device/vehicle operation. Existing unrelated limits remain open.",
+      "scope": "R9 fixes the distinct dialog_share LAN QR display within the incumbent world; tokens unchanged. Its 59-test/two-orientation/decode scoped verdict does not broaden historical R3–R8 acceptance or establish real transfer, security, all-333-layout, full business/device/vehicle operation. Existing unrelated limits remain open.",
       "tonalRamps": "Synthesized panel-only OKLCH metadata, not implemented additional Android color roles.",
       "panelComponents": "HTML/CSS translations; never Android capture evidence."
     }

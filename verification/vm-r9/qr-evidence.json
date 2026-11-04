@@ -1,0 +1,50 @@
+[
+  {
+    "orientation": "portrait",
+    "private_original_sha256": "ae567a0acebbc12b3c143f15f987d4d379dfd7cf9df04edab0e402bde1f7e049",
+    "delivered_image": "lan-portrait-redacted.png",
+    "delivered_sha256": "e5766fe1e31549819433628f51e4447aa039a08ad8b4bd97caf78d2fac45b68e",
+    "offline_zxing_decode": true,
+    "decoded_uri_matches_displayed_lan_address": true,
+    "uri_query_or_credentials": false,
+    "scan_on_external_phone_or_transfer_tested": false,
+    "redaction_rectangles": [
+      [
+        370,
+        195,
+        1070,
+        900
+      ],
+      [
+        75,
+        1180,
+        1000,
+        1230
+      ]
+    ]
+  },
+  {
+    "orientation": "landscape",
+    "private_original_sha256": "0333d34aa8f35c5b82856d21ec2db7a5b2d2fa83d40e335ee092546db5eb3b58",
+    "delivered_image": "lan-landscape-redacted.png",
+    "delivered_sha256": "eaadb7252dd321685b95e43d1d9f36a5d6483919508c6534a7b924763b9067b4",
+    "offline_zxing_decode": true,
+    "decoded_uri_matches_displayed_lan_address": true,
+    "uri_query_or_credentials": false,
+    "scan_on_external_phone_or_transfer_tested": false,
+    "redaction_rectangles": [
+      [
+        230,
+        180,
+        890,
+        840
+      ],
+      [
+        935,
+        555,
+        1660,
+        625
+      ]
+    ]
+  }
+]

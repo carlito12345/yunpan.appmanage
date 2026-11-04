@@ -1,0 +1,63 @@
+{
+  "revision": "R9",
+  "apk": "应用管家-局域网二维码修复-AES加固版-R9-20261104.apk",
+  "installed_apk_sha256": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074",
+  "compatible_apk_sha256": "bfa22f0ea1977f4465a90a14779d71458e34d3538364934112f5e499d6f75692",
+  "vm": "192.168.1.18:10000",
+  "android": "11 / API30",
+  "screen_pixels": [
+    1440,
+    1920
+  ],
+  "landscape_pixels": [
+    1920,
+    1440
+  ],
+  "tests": 59,
+  "suites": 10,
+  "main_pid": 11095,
+  "scoped_AndroidRuntime_CarUi_errors": 0,
+  "initial_launch_after_update": "Returned Launcher; repeated Home succeeded COLD3411ms, matching previously recorded symptom.",
+  "verified_paths": [
+    "original home and file fragment",
+    "wait for original file toolbar population",
+    "original file transfer entry opens ha.jc",
+    "LAN QR portrait to landscape",
+    "offline screenshot QR decoding matches displayed address in both orientations",
+    "original Return closes dialog"
+  ],
+  "transfer_or_external_phone_scan_performed": false,
+  "preferences_modified": false,
+  "appearance_preserved": "warm/day,32% transparency,flow/mint,particles; not changed",
+  "rotation_restored": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "privacy": "Raw live LAN QR frames not exported; only redacted counterparts are delivered.",
+  "screenshots": [
+    {
+      "path": "lan-portrait-redacted.png",
+      "sha256": "e5766fe1e31549819433628f51e4447aa039a08ad8b4bd97caf78d2fac45b68e"
+    },
+    {
+      "path": "lan-landscape-redacted.png",
+      "sha256": "eaadb7252dd321685b95e43d1d9f36a5d6483919508c6534a7b924763b9067b4"
+    },
+    {
+      "path": "file-after-close.png",
+      "sha256": "84c4e399446c7638f738537cd8162af577ef296bd3e61c5143643cd59c5d2514"
+    }
+  ],
+  "native_fixture_screenshots": [
+    "r9-lan-warm-1440.png",
+    "r9-lan-warm-1920.png",
+    "r9-lan-cyan-1440.png",
+    "r9-lan-cyan-1920.png",
+    "r9-lan-mono-1440.png",
+    "r9-lan-mono-1920.png"
+  ],
+  "limitations": [
+    "No actual file transfer or physical phone camera scan.",
+    "No all-module,root/ADB/automation,other-API or vehicle acceptance."
+  ]
+}

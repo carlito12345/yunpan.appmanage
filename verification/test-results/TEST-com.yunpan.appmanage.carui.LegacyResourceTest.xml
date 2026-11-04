@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yunpan.appmanage.carui.LegacyResourceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:38:50.179Z" hostname="CARLITO" time="28.262">
+<testsuite name="com.yunpan.appmanage.carui.LegacyResourceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-04T02:11:18.528Z" hostname="CARLITO" time="110.592">
   <properties/>
-  <testcase name="networkFormAndLargeFontRemainReachable" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="1.99"/>
-  <testcase name="realLocationLabelsKeepContrastInAllHomeThemes" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="3.753"/>
-  <testcase name="themeSelectionPersistsAndLateRebindKeepsState" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="0.361"/>
-  <testcase name="realBinaryLandscapeThemeMatrix" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="7.484"/>
-  <testcase name="inflateOriginalBinaryLayoutAndKeepOriginalControls" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="0.097"/>
-  <testcase name="realBinaryPortraitThemeMatrix" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="6.584"/>
-  <testcase name="actualFileLayoutFitsHomeWorkspaceAndKeepsActions" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="0.667"/>
-  <testcase name="supportedOriginalLayoutsRetainAllNamedControls" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="7.324"/>
+  <testcase name="networkFormAndLargeFontRemainReachable" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="6.265"/>
+  <testcase name="realLocationLabelsKeepContrastInAllHomeThemes" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="8.853"/>
+  <testcase name="themeSelectionPersistsAndLateRebindKeepsState" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="1.533"/>
+  <testcase name="realBinaryLandscapeThemeMatrix" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="38.283"/>
+  <testcase name="inflateOriginalBinaryLayoutAndKeepOriginalControls" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="0.452"/>
+  <testcase name="realBinaryPortraitThemeMatrix" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="26.56"/>
+  <testcase name="actualFileLayoutFitsHomeWorkspaceAndKeepsActions" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="2.378"/>
+  <testcase name="supportedOriginalLayoutsRetainAllNamedControls" classname="com.yunpan.appmanage.carui.LegacyResourceTest" time="26.255"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[Invalid ID 0x00000000.
 Invalid ID 0x00000000.

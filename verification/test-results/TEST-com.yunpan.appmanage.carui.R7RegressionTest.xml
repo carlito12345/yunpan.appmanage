@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yunpan.appmanage.carui.R7RegressionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:39:37.458Z" hostname="CARLITO" time="3.825">
+<testsuite name="com.yunpan.appmanage.carui.R7RegressionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-04T02:14:03.902Z" hostname="CARLITO" time="15.353">
   <properties/>
-  <testcase name="wallpaperColorsIgnoreLegacyStrengthAndAllThemeTints" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="0.422"/>
-  <testcase name="providerPickerKeepsFullWidthOptionsAndOriginalListAndGuide" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="0.324"/>
-  <testcase name="dualBrowsersUseSingleColumnRowsAndPreserveLateDataAndActions" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="2.555"/>
-  <testcase name="qrLoginHasLargeSquareWhiteQuietZoneAndRetainsStateAndDismiss" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="0.519"/>
+  <testcase name="wallpaperColorsIgnoreLegacyStrengthAndAllThemeTints" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="0.809"/>
+  <testcase name="providerPickerKeepsFullWidthOptionsAndOriginalListAndGuide" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="1.214"/>
+  <testcase name="dualBrowsersUseSingleColumnRowsAndPreserveLateDataAndActions" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="10.617"/>
+  <testcase name="qrLoginHasLargeSquareWhiteQuietZoneAndRetainsStateAndDismiss" classname="com.yunpan.appmanage.carui.R7RegressionTest" time="2.71"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[Invalid ID 0x00000000.
 Invalid ID 0x00000000.

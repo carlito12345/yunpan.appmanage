@@ -7,7 +7,7 @@
     "src/main/java/com/yunpan/appmanage/carui/Favorites.java": "f8b5046f71c4489fad6c9ba0eca58343903a44e1975f7db440b3f4505060c9c9",
     "src/main/java/com/yunpan/appmanage/carui/FrostedDialogs.java": "e7fe40251daa7141724568f7cf62f7ecd21ebf9bd4b9485b9063349353b0ddf3",
     "src/main/java/com/yunpan/appmanage/carui/Icons.java": "da5b5a55dd23b9e8365d5461b453084e2b553dc1ca7a05935668091f6caa9995",
-    "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "bfe6df822a3da41984b75e775bb64c06092dc68a6e5cdcf3606375cc085fac67",
+    "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "239cc8e1327dac4220fa48b54c1222c2daeafba98dfcbaae4edcea97c2cfb4fd",
     "src/main/java/com/yunpan/appmanage/carui/ResourceIndex.java": "4317fe50116172f5cc7335afc0276536538a7dac46be822d96428132612368b7",
     "src/main/java/com/yunpan/appmanage/carui/ShortcutPicker.java": "54b27259485fc8e034afe0dcf25c210518e70a642c8f6b5e42274d4abafbe183",
     "src/main/java/com/yunpan/appmanage/carui/SourceInfo.java": "27caa995475e4d9272efc0f2e447031c890582383cd030e236f0ee707a4201cb",
@@ -18,6 +18,6 @@
     "src/main/java/com/yunpan/appmanage/carui/WallpaperView.java": "92e88cad81f04d926c0ff9e74ccb7548a58d45bfaba66c9a55092c2ba2b2d608",
     "src/main/java/com/yunpan/appmanage/carui/WrapLayout.java": "5da9ea3f841876148c50a7fcecc196f6e732c489975bf29597d59408663eddbe"
   },
-  "ui_dex_sha256": "6128f31dcb16b6bff0dda4042febb3519343b3ed7b9f982a055bbde1f421ca4b",
-  "ui_classes": 141
+  "ui_dex_sha256": "ce6aba17a7173290bf5fb70ea52d1f5fccf0c7f6d792e7019e51a4b284f4d9e4",
+  "ui_classes": 143
 }

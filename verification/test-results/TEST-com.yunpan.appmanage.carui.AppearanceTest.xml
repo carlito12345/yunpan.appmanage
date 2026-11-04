@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yunpan.appmanage.carui.AppearanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:38:15.242Z" hostname="CARLITO" time="24.899">
+<testsuite name="com.yunpan.appmanage.carui.AppearanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T02:09:56.702Z" hostname="CARLITO" time="58.826">
   <properties/>
-  <testcase name="globalAlphaChangesOnlyMaterialPixelsAndClampsSavedValues" classname="com.yunpan.appmanage.carui.AppearanceTest" time="22.375"/>
-  <testcase name="themeCenterDraftCancelAndApplyPreserveWallpaperAndFitBothDirections" classname="com.yunpan.appmanage.carui.AppearanceTest" time="2.398"/>
-  <testcase name="borderStylesRenderAndFlowStopsWhenHiddenOrMotionDisabled" classname="com.yunpan.appmanage.carui.AppearanceTest" time="0.126"/>
+  <testcase name="globalAlphaChangesOnlyMaterialPixelsAndClampsSavedValues" classname="com.yunpan.appmanage.carui.AppearanceTest" time="50.888"/>
+  <testcase name="themeCenterDraftCancelAndApplyPreserveWallpaperAndFitBothDirections" classname="com.yunpan.appmanage.carui.AppearanceTest" time="7.491"/>
+  <testcase name="borderStylesRenderAndFlowStopsWhenHiddenOrMotionDisabled" classname="com.yunpan.appmanage.carui.AppearanceTest" time="0.443"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
 [Robolectric] WARN: Android SDK 37 requires Java 21 (have Java 17). Tests won't be run on SDK 37 unless explicitly requested.

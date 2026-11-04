@@ -73,6 +73,7 @@ public final class LegacyUi {
         else if(name.equals("activity_key_map_logcat")||name.equals("activity_key_map_acc")||name.equals("activity_key_map_event")||name.equals("activity_auto_click_usb_set"))mappingList((ViewGroup)root,name);
         else if(name.startsWith("dialog_file_menu_"))fileMenu((ViewGroup)root);
         else if(name.equals("dialog_clean_mode"))cleanMode((ViewGroup)root);
+        else if(name.equals("dialog_share"))transferQr((ViewGroup)root);
         else if(name.equals("dialog_login_qrcode"))loginQr((ViewGroup)root);
         else if(name.equals("dialog_key_map_logcat_add")||name.equals("dialog_key_map_acc_add")||name.equals("dialog_key_map_broadcast_add")||name.equals("dialog_add_door_log"))mappingForm((ViewGroup)root,name);
         else if(name.equals("activity_code_editor")){for(String id:new String[]{"v_list_top","v_list_bottom"}){View bar=find(root,id);if(bar!=null){ViewGroup.LayoutParams p=bar.getLayoutParams();p.height=selectorHeight(bar);bar.setLayoutParams(p);}}}
@@ -241,9 +242,31 @@ public final class LegacyUi {
         add(panel,dialogClose(root),-2);
         qr.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener(){@Override public void onGlobalLayout(){if(qr.getDrawable() instanceof android.graphics.drawable.BitmapDrawable){android.graphics.drawable.BitmapDrawable b=(android.graphics.drawable.BitmapDrawable)qr.getDrawable();b.setFilterBitmap(false);b.setAntiAlias(false);}}});View inner=find(root,"v_root2");if(inner instanceof ViewGroup){fill((ViewGroup)inner,panel,false);detach(inner);fill(root,inner,false);}else fill(root,panel,false);
     }
+    /** A QR is measured content, never an unconstrained decorative overlay. */
+    private static void transferQr(final ViewGroup root){
+        final View image=find(root,"v_qrCode");View inner=find(root,"v_root2");if(!(image instanceof ImageView)||!(inner instanceof ViewGroup))return;
+        List<View> original=children((ViewGroup)inner);View title=find(root,"v_title"),content=find(root,"v_content"),ip=find(root,"v_ip"),sound=find(root,"v_btn_success_prompt"),close=find(root,"v_btn_close"),guide=find(root,"guideline");
+        LinearLayout panel=column(root.getContext());panel.setPadding(d(root,22),d(root,18),d(root,22),d(root,16));root.setTag(FULL,Boolean.TRUE);
+        title.setTag(ROLE,"title");add(panel,title,-2);
+        QrSquare square=new QrSquare(root.getContext());square.setTag(CarUi.OWN);square.setBackgroundColor(0xFFFFFFFF);square.setPadding(d(root,18),d(root,18),d(root,18),d(root,18));final ImageView qr=(ImageView)image;detach(qr);qr.setPadding(0,0,0,0);qr.setAdjustViewBounds(false);qr.setScaleType(ImageView.ScaleType.FIT_CENTER);qr.clearColorFilter();qr.setContentDescription("局域网互传二维码，使用浏览器扫码打开");square.addView(qr,new FrameLayout.LayoutParams(-1,-1));
+        qr.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener(){public void onGlobalLayout(){if(qr.getDrawable() instanceof android.graphics.drawable.BitmapDrawable){android.graphics.drawable.BitmapDrawable b=(android.graphics.drawable.BitmapDrawable)qr.getDrawable();b.setFilterBitmap(false);b.setAntiAlias(false);}}});
+        LinearLayout details=column(root.getContext());for(View v:new View[]{content,ip}){if(v instanceof TextView){((TextView)v).setSingleLine(false);((TextView)v).setMaxLines(Integer.MAX_VALUE);}add(details,v,-2);}
+        for(View v:original)if(v instanceof TextView&&v!=title&&v!=content&&v!=ip&&v!=close){v.setTag(ROLE,"help");add(details,v,-2);}
+        ScrollView instructions=new ScrollView(root.getContext());instructions.setFillViewport(false);instructions.addView(details,new ScrollView.LayoutParams(-1,-2));
+        TransferQrBody body=new TransferQrBody(root.getContext(),square,qr,instructions);weighted(panel,body);
+        WrapLayout footer=new WrapLayout(root.getContext());footer.setPadding(0,d(root,12),0,0);if(sound instanceof ViewGroup)inline((ViewGroup)sound,null,"v_btn_success_prompt_ico",24,true);
+        for(View action:new View[]{sound,close})if(action!=null){detach(action);action.setTag(ROLE,"action");action.setMinimumHeight(d(root,52));footer.addView(action,new ViewGroup.LayoutParams(-2,-2));}
+        add(panel,footer,-2);if(guide!=null){detach(guide);panel.addView(guide,new LinearLayout.LayoutParams(0,0));}
+        fill((ViewGroup)inner,panel,true);detach(inner);fill(root,inner,true);
+    }
+    private static final class TransferQrBody extends LinearLayout{
+        final QrSquare square;final ImageView image;final ScrollView instructions;
+        TransferQrBody(Context c,QrSquare square,ImageView image,ScrollView instructions){super(c);this.square=square;this.image=image;this.instructions=instructions;addView(square);addView(instructions);}
+        @Override protected void onMeasure(int w,int h){int width=MeasureSpec.getSize(w),height=MeasureSpec.getSize(h);int[] owner=CarUi.windowBounds(getContext());boolean wide=owner[0]>owner[1]&&width>=CarUi.dp(getContext(),600);setOrientation(wide?HORIZONTAL:VERTICAL);square.setVisibility(image.getVisibility());int size=image.getVisibility()==GONE?0:Math.min(CarUi.dp(getContext(),360),Math.min(wide?Math.round(width*.46f):width,wide?height:Math.round(height*.55f)));LinearLayout.LayoutParams q=new LinearLayout.LayoutParams(size,size);q.gravity=wide?Gravity.TOP:Gravity.CENTER_HORIZONTAL;if(wide)q.rightMargin=CarUi.dp(getContext(),20);else q.bottomMargin=CarUi.dp(getContext(),12);square.setLayoutParams(q);instructions.setLayoutParams(wide?new LinearLayout.LayoutParams(0,-1,1):new LinearLayout.LayoutParams(-1,0,1));super.onMeasure(w,h);}
+    }
     private static final class QrSquare extends FrameLayout{
         QrSquare(Context c){super(c);}
-        @Override protected void onMeasure(int w,int h){int[] owner=CarUi.windowBounds(getContext());int size=Math.min(MeasureSpec.getSize(w),Math.min(CarUi.dp(getContext(),380),Math.max(CarUi.dp(getContext(),120),owner[1]-CarUi.dp(getContext(),220))));super.onMeasure(MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY));}
+        @Override protected void onMeasure(int w,int h){int[] owner=CarUi.windowBounds(getContext());int size=Math.min(MeasureSpec.getSize(w),Math.min(CarUi.dp(getContext(),380),Math.max(CarUi.dp(getContext(),120),owner[1]-CarUi.dp(getContext(),220))));if(MeasureSpec.getMode(h)!=MeasureSpec.UNSPECIFIED)size=Math.min(size,MeasureSpec.getSize(h));super.onMeasure(MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY));}
     }
     private static void settings(ViewGroup root,final Dialog dialog){
         if(root.getTag(REWRITTEN)!=null)return;root.setTag(REWRITTEN,Boolean.TRUE);
