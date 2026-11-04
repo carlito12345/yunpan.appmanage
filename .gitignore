@@ -24,3 +24,8 @@ adbkey.pub
 /car-ui/*.apk
 /input/*.apk
 /*.zip
+
+# Package tool configuration and signing inputs remain local.
+/car-ui/repackage.local.json
+/car-ui/signing/
+/car-ui/input/*.apk

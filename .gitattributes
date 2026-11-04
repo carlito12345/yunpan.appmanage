@@ -24,3 +24,9 @@ car-ui/patched-smali/** -text -eol
 公签版_反编译/apktool/smali/com/yunpan/appmanage/ui/ActivityHome.smali -text -eol
 
 car-ui/protection/** -text -eol
+
+# Package verification records these exact source bytes.
+car-ui/apk_identity.py -text -eol
+car-ui/repackage_apk.py -text -eol
+car-ui/tools/PackageDexRewriter.java -text -eol
+car-ui/OneClickPackage.ps1 -text -eol

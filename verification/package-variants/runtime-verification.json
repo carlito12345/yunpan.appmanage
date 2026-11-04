@@ -1,0 +1,23 @@
+{
+  "android_api": 30,
+  "tested_package": "com.maxinf.car.codexcheck",
+  "tested_apk_sha256": "7725e46b171546f48bbe01f6b24e5eebddae0d756f2f3b96e37376fc64cf805b",
+  "formal_package": "com.maxinf.car",
+  "formal_package_installed": false,
+  "reason": "VM already contains an unrelated app with the formal package ID",
+  "launch_status": "ok; QA package confirmed foreground in both orientations",
+  "first_launch": "First explicit start returned to original app; second explicit start succeeded. Existing behavior; no first-launch fix claimed.",
+  "launcher_icon": "Supplied Android/APK icon visible in qa-app-info.png",
+  "portrait": "qa-home-portrait.png",
+  "landscape": "qa-home-landscape.png",
+  "fatal_in_recent_2500_filtered_log_lines": false,
+  "existing_apk_hashes_unchanged": true,
+  "temporary_package_uninstalled": true,
+  "rotation_settings_after": {
+    "accelerometer_rotation": "0",
+    "user_rotation": "0"
+  },
+  "scope": "Launch, launcher icon and home rotation only; no root/ADB/vehicle, cloud login or file transfer business acceptance.",
+  "evidence_script_note": "Cleanup returned Success; absent-package pm path returned nonzero and interrupted report writing. Absence and existing APK hashes were independently rechecked.",
+  "restore_foreground": "Starting: Intent { cmp=com.yunpan.appmanage/.ui.ActivityHome }"
+}

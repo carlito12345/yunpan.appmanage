@@ -1,4 +1,6 @@
-# 应用管家 · 车机UI定制 / R9
+# 应用管家 · 车机UI定制 / R9 · 包名分支 P1
+
+本分支增加 `com.maxinf.car` 定制版和用户提供的新App图标，附支持未来基础APK和多包名的Windows一键脚本。使用方法见 [包名与图标定制](car-ui/PACKAGE_VARIANTS.md)，静态报告与临时包VM证据见 [verification/package-variants](verification/package-variants)。主线R9保持独立。VM原有同名其他车机应用已保留；正式包未在该VM覆盖安装。
 
 定制作者 **carlito**。源APK：**应用管家社区官方【应用管家】**；[官方社区](https://pd.qq.com/s/7eyokceit?b=5)，腾讯频道号 updata3927。公开海报原图接入主题中心和主页来源入口，定制署名与原APK来源分开标注。
 

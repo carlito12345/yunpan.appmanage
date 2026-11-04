@@ -1,0 +1,6 @@
+2026-11-04
+python -m unittest discover -s car-ui -p test_repackage.py -v
+5 tests passed, 0 failures, 0 skipped (0.401s)
+Covers package validation, literal identity rules, short/long manifest IDs, resource IDs/icon, protection manifest.
+PowerShell OneClickPackage.ps1 -NoPrompt generated both formal APKs successfully.
+Graphical file picker was syntax checked, not clicked through.

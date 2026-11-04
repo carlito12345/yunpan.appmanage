@@ -1,0 +1,12 @@
+{
+  "package": "com.maxinf.car",
+  "input_apk": "input/base.apk",
+  "icon": "branding/gj_ico.jpg",
+  "key_file": "signing/platform.pk8",
+  "certificate": "platform.x509.pem",
+  "output_dir": "dist/package-variants",
+  "protect": true,
+  "java_home": "",
+  "android_sdk": "",
+  "python": ""
+}

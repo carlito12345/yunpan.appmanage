@@ -1,0 +1,20 @@
+Package customization tool dependencies
+
+Google Smali / dexlib2 3.0.9
+https://android.googlesource.com/platform/external/google-smali/
+https://github.com/google/smali
+Upstream project uses BSD-style licensing. The complete, unmodified published
+smali-dexlib2 artifact is redistributed in the tool ZIP; retain its root LICENSE.
+
+Guava 33.4.0-jre
+https://github.com/google/guava
+Apache License 2.0; complete, unmodified published guava artifact is redistributed.
+Retain its META-INF/LICENSE and other upstream metadata.
+
+Pinned artifact URLs and SHA256: repackage-deps.json.
+Python cryptography is an external installation requirement, not redistributed.
+
+The supplied launcher image was provided by the user in gj_ico.zip.
+Customization author: carlito
+Original APK source: 应用管家社区官方【应用管家】
+https://pd.qq.com/s/7eyokceit?b=5
