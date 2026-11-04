@@ -1,0 +1,1 @@
+5 tests passed, 0 failures, 0 skipped; 0.814s. CAR_UI_TEST_APK points at final com.yunpan.appmanage compatible APK.

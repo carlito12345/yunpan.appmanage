@@ -70,8 +70,8 @@ def repackage(source,new_id,key,cert,out_dir,icon=None,protect=False,java_home=N
     with zipfile.ZipFile(source) as before:
         if 'assets/carlito/protection.json' in before.namelist():raise ValueError('请使用兼容版或未加固基础APK，不能直接修改已加固载荷')
         info,mapping=identity_map(before.read('AndroidManifest.xml'),new_id);old_id=info['package']
-        if old_id==new_id:raise ValueError('输入APK已经使用此包名，请换一个包名或使用原基础APK')
-        manifest,manifest_changes=rewrite_xml(before.read('AndroidManifest.xml'),old_id,new_id,mapping,True)
+        if old_id==new_id and not icon:raise ValueError('输入APK已经使用此包名；如只更换图标，请指定--icon')
+        manifest,manifest_changes=rewrite_xml(before.read('AndroidManifest.xml'),old_id,new_id,mapping,True) if old_id!=new_id else (before.read('AndroidManifest.xml'),[])
         icon_ids={int(info['application'][k]) for k in ['icon','roundIcon'] if isinstance(info['application'].get(k),int)} if icon else set()
         resources,resource_report=rewrite_resources(before.read('resources.arsc'),old_id,new_id,icon_ids,image_path)
         mapping_file=work/'identities.tsv';mapping_file.write_text('\n'.join(base64.b64encode(a.encode()).decode()+'\t'+base64.b64encode(b.encode()).decode() for a,b in mapping.items()),encoding='utf-8')
@@ -79,6 +79,8 @@ def repackage(source,new_id,key,cert,out_dir,icon=None,protect=False,java_home=N
         if not dex_names:raise ValueError('APK不包含DEX')
         replacements={'AndroidManifest.xml':manifest,'resources.arsc':resources};dex_report={};xml_report={}
         for name in dex_names:
+            if old_id==new_id:
+                dex_report[name]={'classes':struct.unpack_from('<I',before.read(name),96)[0],'changed_sites':0,'comparisons_preserved':0,'symbols_preserved':True,'byte_identical':True};continue
             original=work/('original-'+name);updated=work/('updated-'+name);original.write_bytes(before.read(name));log=work/(name+'.log')
             run([executable(java,'java'),'-Xmx2g','-cp',classpath,'PackageDexRewriter',original,updated,old_id,new_id,mapping_file,source],log)
             lines=[line.split('\t',1) for line in log.read_text().splitlines() if '\t' in line]

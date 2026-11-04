@@ -1,0 +1,77 @@
+{
+  "application_id": "com.yunpan.appmanage",
+  "source_application_id": "com.yunpan.appmanage",
+  "source_apk": "应用管家-开机数值与首页修复-基础兼容版-R10-20261105.apk",
+  "source_sha256": "2a702d28ea160dd6c6353de46b1ba7a62a5f7d7f7b3a5b663aa2e0e3a59c7b89",
+  "apk": "应用管家-com.yunpan.appmanage-兼容版.apk",
+  "sha256": "7d9ac812bf2eb56e4df5257aed8525a4a2326cd4cee2f23776437d3d3a3f44c3",
+  "bytes": 19115602,
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "signed_and_aligned": true,
+  "minimum_sdk": 17,
+  "icon_sha256": "eb7fdaa3f161cf1a4fb1c59818bee6376f854f0d5811001473183abe555510e4",
+  "icon_resource": "res/carui_launcher_eb7fdaa3f161.jpg",
+  "manifest_changes": [],
+  "providers": [
+    "com.yunpan.appmanage.fileprovider",
+    "com.yunpan.appmanage.shizuku",
+    "com.yunpan.appmanage.provider",
+    "com.yunpan.appmanage.providerAcc",
+    "com.yunpan.appmanage.androidx-startup",
+    "com.yunpan.appmanage.autosize-init-provider"
+  ],
+  "permissions": [
+    "com.yunpan.appmanage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "resource_changes": {
+    "resource_package_changes": 1,
+    "icon_configurations": 1,
+    "resource_ids_preserved": true
+  },
+  "dex": {
+    "classes.dex": {
+      "classes": 9356,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true,
+      "byte_identical": true
+    },
+    "classes2.dex": {
+      "classes": 585,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true,
+      "byte_identical": true
+    },
+    "classes3.dex": {
+      "classes": 6474,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true,
+      "byte_identical": true
+    },
+    "classes4.dex": {
+      "classes": 143,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true,
+      "byte_identical": true
+    }
+  },
+  "resource_xml_changes": {},
+  "unchanged_payload_entries": 2295,
+  "native_libraries_and_embedded_apks": "byte-identical; original code namespace and native defaults preserved",
+  "private_signing_key_included": false,
+  "device_tested": false,
+  "tool_sources_sha256": {
+    "apk_identity.py": "0df877e8089832d0f54c92211653481eec005a7dc8644cb3d304f3f1fecdc8cb",
+    "repackage_apk.py": "5f172ebd1671305c5e11be6b56e3527d3099d25df02207b78b1bed66da9a0def",
+    "tools/PackageDexRewriter.java": "5197f3f385d1988ff597243f2b57defb90c537bd650b107ba8bb5310e4ba7f5b"
+  },
+  "protected": {
+    "apk": "应用管家-com.yunpan.appmanage-AES加固版.apk",
+    "sha256": "5584d69c5bfae3e00986acac71152eb131f377a1654a419ad4b9ac33e4d2cf48",
+    "bytes": 30412568,
+    "minimum_sdk": 29
+  }
+}

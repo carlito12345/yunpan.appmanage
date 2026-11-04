@@ -1,0 +1,156 @@
+{
+  "application_id": "com.maxinf.car",
+  "source_application_id": "com.yunpan.appmanage",
+  "source_apk": "应用管家-开机数值与首页修复-基础兼容版-R10-20261105.apk",
+  "source_sha256": "2a702d28ea160dd6c6353de46b1ba7a62a5f7d7f7b3a5b663aa2e0e3a59c7b89",
+  "apk": "应用管家-com.maxinf.car-兼容版.apk",
+  "sha256": "0da7c3af14b232663eb0e14191660b8e8844cf8605dfa27f1a7fb0ac3ddec3b7",
+  "bytes": 19103314,
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "signed_and_aligned": true,
+  "minimum_sdk": 17,
+  "icon_sha256": "eb7fdaa3f161cf1a4fb1c59818bee6376f854f0d5811001473183abe555510e4",
+  "icon_resource": "res/carui_launcher_eb7fdaa3f161.jpg",
+  "manifest_changes": [
+    {
+      "element": "manifest",
+      "attribute": "package",
+      "old": "com.yunpan.appmanage",
+      "new": "com.maxinf.car"
+    },
+    {
+      "element": "permission",
+      "attribute": "name",
+      "old": "com.yunpan.appmanage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "new": "com.maxinf.car.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    },
+    {
+      "element": "uses-permission",
+      "attribute": "name",
+      "old": "com.yunpan.appmanage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "new": "com.maxinf.car.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    },
+    {
+      "element": "activity",
+      "attribute": "taskAffinity",
+      "old": ".editor.CodeEditorActivity",
+      "new": "com.maxinf.car.editor.CodeEditorActivity"
+    },
+    {
+      "element": "activity-alias",
+      "attribute": "name",
+      "old": "com.yunpan.appmanage.editor.EditorActivity",
+      "new": "com.maxinf.car.editor.EditorActivity"
+    },
+    {
+      "element": "activity-alias",
+      "attribute": "taskAffinity",
+      "old": ".ui.ActivityCodeEditor",
+      "new": "com.maxinf.car.ui.ActivityCodeEditor"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.fileprovider",
+      "new": "com.maxinf.car.fileprovider"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.shizuku",
+      "new": "com.maxinf.car.shizuku"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.provider",
+      "new": "com.maxinf.car.provider"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.providerAcc",
+      "new": "com.maxinf.car.providerAcc"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.androidx-startup",
+      "new": "com.maxinf.car.androidx-startup"
+    },
+    {
+      "element": "provider",
+      "attribute": "authorities",
+      "old": "com.yunpan.appmanage.autosize-init-provider",
+      "new": "com.maxinf.car.autosize-init-provider"
+    }
+  ],
+  "providers": [
+    "com.maxinf.car.fileprovider",
+    "com.maxinf.car.shizuku",
+    "com.maxinf.car.provider",
+    "com.maxinf.car.providerAcc",
+    "com.maxinf.car.androidx-startup",
+    "com.maxinf.car.autosize-init-provider"
+  ],
+  "permissions": [
+    "com.maxinf.car.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "resource_changes": {
+    "resource_package_changes": 1,
+    "icon_configurations": 1,
+    "resource_ids_preserved": true
+  },
+  "dex": {
+    "classes.dex": {
+      "original_edition_comparisons": [
+        "Lfa/b;->a[Lcom/yunpan/appmanage/base/AppStart;]Ljava/lang/String;#22",
+        "Lua/t6;->g[Lmc/b;]V#84",
+        "Lua/x7;->q[]V#101"
+      ],
+      "classes": 9356,
+      "changed_sites": 7,
+      "comparisons_preserved": 3,
+      "symbols_preserved": true
+    },
+    "classes2.dex": {
+      "original_edition_comparisons": [],
+      "classes": 585,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true
+    },
+    "classes3.dex": {
+      "original_edition_comparisons": [],
+      "classes": 6474,
+      "changed_sites": 0,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true
+    },
+    "classes4.dex": {
+      "original_edition_comparisons": [],
+      "classes": 143,
+      "changed_sites": 1,
+      "comparisons_preserved": 0,
+      "symbols_preserved": true
+    }
+  },
+  "resource_xml_changes": {
+    "res/v2.xml": 1
+  },
+  "unchanged_payload_entries": 2290,
+  "native_libraries_and_embedded_apks": "byte-identical; original code namespace and native defaults preserved",
+  "private_signing_key_included": false,
+  "device_tested": false,
+  "tool_sources_sha256": {
+    "apk_identity.py": "0df877e8089832d0f54c92211653481eec005a7dc8644cb3d304f3f1fecdc8cb",
+    "repackage_apk.py": "5f172ebd1671305c5e11be6b56e3527d3099d25df02207b78b1bed66da9a0def",
+    "tools/PackageDexRewriter.java": "5197f3f385d1988ff597243f2b57defb90c537bd650b107ba8bb5310e4ba7f5b"
+  },
+  "protected": {
+    "apk": "应用管家-com.maxinf.car-AES加固版.apk",
+    "sha256": "7c453355466ae00d5b8b2067901941253ba1efc9da255d2ed523688d543fcddb",
+    "bytes": 30523160,
+    "minimum_sdk": 29
+  }
+}

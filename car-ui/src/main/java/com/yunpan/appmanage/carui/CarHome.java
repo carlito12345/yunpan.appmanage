@@ -93,7 +93,7 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         LinearLayout time=vertical();time.setGravity(Gravity.END);
         TextClock clock=new TextClock(activity);clock.setFormat24Hour("HH:mm");clock.setFormat12Hour("HH:mm");clock.setTextColor(skin.ink);clock.setTextSize(25);clock.setIncludeFontPadding(false);time.addView(clock);
         TextClock date=new TextClock(activity);date.setFormat24Hour("MM月dd日");date.setFormat12Hour("MM月dd日");date.setTextColor(skin.muted);date.setTextSize(13);date.setGravity(Gravity.END);time.addView(date);
-        heading.addView(time,lp(-2,-2));main.addView(heading,lp(-1,-2));
+        heading.addView(time,lp(-2,-2));LinearLayout.LayoutParams headingParams=lp(-1,-2);headingParams.bottomMargin=d(16);main.addView(heading,headingParams);
         FrameLayout body=new FrameLayout(activity);main.addView(body,new LinearLayout.LayoutParams(-1,0,1));
         legacyFrame=new FrameLayout(activity);body.addView(legacyFrame,new FrameLayout.LayoutParams(-1,-1));
         if(legacy!=null){legacyFrame.addView(legacy,new FrameLayout.LayoutParams(-1,-1));CarUi.theme(legacy);LegacyUi.retheme(legacy);}
@@ -104,7 +104,7 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         LinearLayout section=horizontal();section.setPadding(d(12),d(20),d(12),d(14));if(!wallpaperConfig.mode.equals("off"))section.setBackground(CarUi.rounded(activity,skin.surface,18));
         section.addView(label("常用功能",25,skin.ink,true),new LinearLayout.LayoutParams(0,-2,1));
         edit=button(editing?"完成":"编辑",editing?null:"edit",false,new OnClickListener(){@Override public void onClick(View view){editing=!editing;build();}});
-        edit.setContentDescription(editing?"完成编辑常用功能":"编辑常用功能");section.addView(edit,lp(-2,-2));content.addView(section,lp(-1,-2));
+        edit.setContentDescription(editing?"完成编辑常用功能":"编辑常用功能");section.addView(edit,lp(-2,-2));LinearLayout.LayoutParams sectionParams=lp(-1,-2);sectionParams.topMargin=d(18);sectionParams.bottomMargin=d(14);content.addView(section,sectionParams);
         if(editing){TextView help=label("拖动卡片排序，点卡片修改名称或位置",16,skin.muted,false);help.setPadding(0,0,0,d(14));content.addView(help);}
         grid=vertical();content.addView(grid,lp(-1,-2));renderGrid();
         if(favorites.all().isEmpty()){TextView empty=label("把常用入口放在这里\n应用、内置功能或任意可打开的页面",20,skin.muted,false);empty.setGravity(Gravity.CENTER);empty.setPadding(d(12),d(30),d(12),d(30));content.addView(empty,lp(-1,-2));}
@@ -135,7 +135,7 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
     }
     private View tile(final Favorites.Item item){
         FrameLayout frame=new FrameLayout(activity);frame.setMinimumHeight(d(landscape?132:146));frame.setFocusable(true);frame.setClickable(true);
-        frame.setBackground(CarUi.buttonBackground(activity,skin.surface,skin.soft,skin.ink,26));
+        frame.setBackground(favoriteBackground(skin.surface,skin.soft));
         if(Build.VERSION.SDK_INT>=21&&"mono".equals(skin.theme)){frame.setElevation(d(5));frame.setOutlineProvider(android.view.ViewOutlineProvider.BACKGROUND);}
         LinearLayout content=vertical();content.setPadding(d(20),d(18),d(20),d(18));frame.addView(content,new FrameLayout.LayoutParams(-1,-2));
         ImageView image=new ImageView(activity);Drawable installed=bridge.icon(item);image.setImageDrawable(installed!=null?installed:new Icons(item.icon,skin.ink));content.addView(image,lp(d(36),d(36)));
@@ -172,6 +172,15 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         android.graphics.drawable.GradientDrawable background=CarUi.rounded(activity,skin.background,26);background.setStroke(d(1),skin.outline,d(6),d(5));android.graphics.drawable.StateListDrawable addStates=new android.graphics.drawable.StateListDrawable();android.graphics.drawable.GradientDrawable focused=CarUi.rounded(activity,skin.background,26);focused.setStroke(d(2),skin.ink);addStates.addState(new int[]{android.R.attr.state_focused},focused);addStates.addState(new int[]{android.R.attr.state_pressed},CarUi.rounded(activity,skin.soft,26));addStates.addState(new int[]{},background);view.setBackground(addStates);
         view.addView(icon("add",skin.muted,30));TextView text=label("添加跳转",18,skin.muted,true);text.setPadding(0,d(14),0,0);view.addView(text);
         view.setFocusable(true);view.setClickable(true);view.setContentDescription("添加新的常用功能或跳转");view.setOnClickListener(new OnClickListener(){@Override public void onClick(View v){showAdd();}});return view;
+    }
+    /** Favorites opt out of global edge decoration in every theme; focus/press feedback uses the fill. */
+    private Drawable favoriteBackground(int normal,int pressed){
+        Appearance.Config config=Appearance.load(activity);config.style=0;
+        float radius="cyan".equals(skin.theme)?10:"mono".equals(skin.theme)?16:26;
+        android.graphics.drawable.StateListDrawable states=new android.graphics.drawable.StateListDrawable();
+        states.addState(new int[]{android.R.attr.state_pressed},Appearance.background(activity,pressed,radius,config));
+        states.addState(new int[]{android.R.attr.state_focused},Appearance.background(activity,pressed,radius,config));
+        states.addState(new int[]{},Appearance.background(activity,normal,radius,config));return states;
     }
     private String title(){return page<0?"应用管家":page==0?"全部功能":page==1?"文件管理":"网络存储";}
     private void buildRail(){

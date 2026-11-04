@@ -150,6 +150,9 @@ public final class CarUi {
         if(view instanceof EditText) {
             EditText input=(EditText)view;input.setTextColor(skin.ink);input.setHintTextColor(skin.muted);input.setTextSize(19);
             input.setMinimumHeight(dp(context,54));input.setPadding(dp(context,18),dp(context,10),dp(context,18),dp(context,10));
+            int numericWidth=0;if((input.getInputType()&android.text.InputType.TYPE_MASK_CLASS)==android.text.InputType.TYPE_CLASS_NUMBER){numericWidth=Math.max(dp(context,104),(int)Math.ceil(input.getPaint().measureText("00000"))+dp(context,36));input.setMinimumWidth(numericWidth);}
+            ViewGroup.LayoutParams bounds=input.getLayoutParams();
+            if(bounds!=null){if(bounds.height>0&&bounds.height<dp(context,54))bounds.height=ViewGroup.LayoutParams.WRAP_CONTENT;if(bounds.width>0&&bounds.width<numericWidth)bounds.width=numericWidth;input.setLayoutParams(bounds);}
             input.setBackground(buttonBackground(context,skin.surface,skin.soft,skin.ink,18));
         }else if(view instanceof TextView) {
             TextView text=(TextView)view;

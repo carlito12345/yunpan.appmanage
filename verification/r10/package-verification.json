@@ -1,0 +1,485 @@
+{
+  "apk": "应用管家-开机数值与首页修复-基础兼容版-R10-20261105.apk",
+  "bytes": 19058177,
+  "sha256": "2a702d28ea160dd6c6353de46b1ba7a62a5f7d7f7b3a5b663aa2e0e3a59c7b89",
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "v1_v2_v3_verified": true,
+  "zip_alignment_verified": true,
+  "unchanged_original_payload_entries": 2293,
+  "original_resources_byte_identical": true,
+  "original_classes2_classes3_byte_identical": true,
+  "additional_ui_dex": "classes4.dex",
+  "ui_java_sources_current": true,
+  "ui_classes": 143,
+  "legacy_changed_classes": 9,
+  "author": "carlito",
+  "source": "应用管家社区官方【应用管家】",
+  "source_url": "https://pd.qq.com/s/7eyokceit?b=5",
+  "public_source_poster_sha256": "f7dce8a56326f62de4f02c92bcea7653e1d7efef47ebb2debf6f3fdba362035a",
+  "unmodified_legacy_classes_compared": 16406,
+  "orientation_attributes_changed": 92,
+  "orientation": "unspecified; follows device configuration",
+  "orientation_details": [
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityHome",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityApps",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppBatch",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppStorage",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityRunMemory",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityImmersive",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityStart",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityShell",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityClean",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityImage",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityImage2",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityLaboratory",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNissan",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDownload",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAccessibility",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppDetails",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDesktop",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityPermissions",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAutomation",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppShowAppOpen",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityRotation",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDesktopSelected",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityBootStartTask",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppTraffic",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppInstallTime",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppHistoryLog",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppDetailHistoryLog",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityCleanMemoryWhitelist",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityPs",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityPss",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityJiliE01",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityJiliE02",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivitySystemAnimator",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDebugLogcat",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityInputMethod",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivitySystemHasWrite",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppShowAppClose",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapLogcat",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapLogcatSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapEvent",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapAcc",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapAccSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNezha",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNezhaWallpaper",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNezhaWallpaperL",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNezhaWallpaperX",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityOuShang",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityOuShangWhitelist",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityOuShangStatusBar",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityOuShangStatusBarNoRoot",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityWindowInputAdbPair",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAutoClick",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivitySidebar",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivitySidebarSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAutoClickUsbSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityPresentation",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityPresentation2",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDisplayStartApp",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityDisplayManager",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextHzh",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityStudy",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapLogcatHelp",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAdb",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeymapJieT",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityJieTText",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityJieTText2",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextFlyOS12",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextFlyOS18",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextFlyOSAll",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNissanTextVehicle",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNissanTextReverse",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityNissanTextGN",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapNissan",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapNissanSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityFloatButtonSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppsPermissions",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityAppsPermissionsAllow",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeymapFlyOS18",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeyMapXingyuanSet",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityKeymapAiOnY",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityVoiceIflytek",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextAiOnY",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextAiOnYP",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityGjDiy",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivitySeccompRoot",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextIflytek",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityTextDesaysvVds",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityFloatButton",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityUsers",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityUsersApps",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityInstaller",
+      "original": 6,
+      "new": -1
+    },
+    {
+      "activity": "com.yunpan.appmanage.ui.ActivityCodeEditor",
+      "original": 6,
+      "new": -1
+    }
+  ],
+  "real_device_tested": false
+}

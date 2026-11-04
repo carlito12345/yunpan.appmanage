@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.AppearanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T18:32:02.827Z" hostname="CARLITO" time="1.408">
+  <properties/>
+  <testcase name="globalAlphaChangesOnlyMaterialPixelsAndClampsSavedValues" classname="com.yunpan.appmanage.carui.AppearanceTest" time="0.236"/>
+  <testcase name="themeCenterDraftCancelAndApplyPreserveWallpaperAndFitBothDirections" classname="com.yunpan.appmanage.carui.AppearanceTest" time="1.075"/>
+  <testcase name="borderStylesRenderAndFlowStopsWhenHiddenOrMotionDisabled" classname="com.yunpan.appmanage.carui.AppearanceTest" time="0.097"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

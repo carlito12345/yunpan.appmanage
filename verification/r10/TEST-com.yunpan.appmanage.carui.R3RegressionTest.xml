@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.R3RegressionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-04T18:32:31.168Z" hostname="CARLITO" time="2.472">
+  <properties/>
+  <testcase name="installerModeMenuUsesContentHeightInActualDialogWindow" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.162"/>
+  <testcase name="automationActionsAndOriginalLaboratoryRowsStayHorizontal" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.346"/>
+  <testcase name="legacyAuthoredToolIconsRecolorAfterThemeChanges" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.408"/>
+  <testcase name="functionVersionIsFooterAfterLateTextBinding" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.362"/>
+  <testcase name="originalFileRootAndPathBindersKeepLabelsAndColoredIcons" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.452"/>
+  <testcase name="networkPopulatedToolsAndVisibleHiveKeepBoundsInLandscape" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.347"/>
+  <testcase name="networkPopulatedToolsAndVisibleHiveKeepBoundsInPortrait" classname="com.yunpan.appmanage.carui.R3RegressionTest" time="0.394"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

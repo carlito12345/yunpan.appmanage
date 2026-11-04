@@ -1,5 +1,5 @@
 {
-  "package": "com.maxinf.car",
+  "package": "com.yunpan.appmanage,com.maxinf.car",
   "input_apk": "input/base.apk",
   "icon": "branding/gj_ico.jpg",
   "key_file": "signing/platform.pk8",

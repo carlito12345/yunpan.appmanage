@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.R10RegressionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-04T18:31:26.597Z" hostname="CARLITO" time="36.204">
+  <properties/>
+  <testcase name="bootNumericValuesFitAndKeepOriginalInputsAcrossThemesRotationAndFontScale" classname="com.yunpan.appmanage.carui.R10RegressionTest" time="25.34"/>
+  <testcase name="landscapeKeepsSeparatePanelsAndBorderlessFavorites" classname="com.yunpan.appmanage.carui.R10RegressionTest" time="6.137"/>
+  <testcase name="homeKeepsSeparatePanelsAndBorderlessFavoritesInEveryThemeAndEdgeStyle" classname="com.yunpan.appmanage.carui.R10RegressionTest" time="4.72"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
+[Robolectric] WARN: Android SDK 37 requires Java 21 (have Java 17). Tests won't be run on SDK 37 unless explicitly requested.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

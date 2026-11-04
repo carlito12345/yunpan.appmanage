@@ -314,6 +314,7 @@ public final class LegacyUi {
         if(content(group)||group instanceof WrapLayout||group.getTag(ROLE)!=null)return;
         if(group.isClickable()&&!contentPanel)return;
         if(formFooter(group))return;
+        if(numericFormRow(group))return;
         List<View> original=children(group);Object ordered=group.getTag(ORDER);if(ordered instanceof String){List<View> sorted=new ArrayList<View>();try{for(String n:((String)ordered).split(","))sorted.add(original.get(Integer.parseInt(n)));if(sorted.size()==original.size())original=sorted;}catch(Exception ignored){/* Dynamic children retain insertion order. */}}
         for(View v:original)if(v instanceof ViewGroup)generic((ViewGroup)v,false);
         if(group.getClass().getName().contains("ConstraintLayout")){
@@ -335,6 +336,16 @@ public final class LegacyUi {
         if(!CarUi.name(group).equals("v_lay_bottom")||find(group,"v_btn_return")==null||find(group,"v_btn_yes")==null)return false;
         List<View> original=children(group);for(View v:original)if(!(v instanceof TextView)&&!(v instanceof ViewGroup&&v.isClickable()))return false;
         WrapLayout row=new WrapLayout(group.getContext());row.setPadding(d(group,12),d(group,10),d(group,12),d(group,10));for(View v:original){if(v instanceof ViewGroup)inline((ViewGroup)v,null,null,24,true);detach(v);if(v instanceof TextView)((TextView)v).setGravity(Gravity.START|Gravity.CENTER_VERTICAL);if(v instanceof EditText)v.setMinimumWidth(d(group,160));row.addView(v,new ViewGroup.LayoutParams(-2,-2));}fill(group,row,false);return true;
+    }
+    /** Old inline number fields had fixed 50x30dp bounds; wrap their real labels/help instead of squeezing the value. */
+    private static boolean numericFormRow(ViewGroup group){
+        if(group.getClass()!=LinearLayout.class||((LinearLayout)group).getOrientation()!=LinearLayout.HORIZONTAL)return false;
+        List<View> parts=children(group);EditText field=null;
+        for(View v:parts){if(v instanceof EditText){if(field!=null||(((EditText)v).getInputType()&android.text.InputType.TYPE_MASK_CLASS)!=android.text.InputType.TYPE_CLASS_NUMBER)return false;field=(EditText)v;}else if(!(v instanceof TextView)||v.isClickable())return false;}
+        if(field==null||parts.size()<2)return false;
+        WrapLayout row=new WrapLayout(group.getContext());row.setPadding(0,d(group,6),0,d(group,10));
+        for(View v:parts){detach(v);if(v==field){field.setMinimumWidth(Math.max(d(group,104),Math.round(field.getPaint().measureText("00000"))+d(group,36)));field.setMinimumHeight(d(group,54));}else ((TextView)v).setGravity(Gravity.START|Gravity.CENTER_VERTICAL);row.addView(v,new ViewGroup.LayoutParams(-2,-2));}
+        group.setTag(ROLE,"formField");fill(group,row,false);return true;
     }
     private static boolean compactActions(List<View> views){if(views.size()<2)return false;for(View v:views)if(!v.isClickable()||v instanceof EditText||v instanceof android.widget.SeekBar)return false;return true;}
     private static boolean hasScroll(View root){if(scroll(root))return true;if(root instanceof ViewGroup)for(View child:children((ViewGroup)root))if(hasScroll(child))return true;return false;}

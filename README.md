@@ -1,6 +1,6 @@
-# 应用管家 · 车机UI定制 / R9 · 包名分支 P1
+# 应用管家 · 车机UI定制 / R10 · 双包名分支 P2
 
-本分支增加 `com.maxinf.car` 定制版和用户提供的新App图标，附支持未来基础APK和多包名的Windows一键脚本。使用方法见 [包名与图标定制](car-ui/PACKAGE_VARIANTS.md)，静态报告与临时包VM证据见 [verification/package-variants](verification/package-variants)。主线R9保持独立。VM原有同名其他车机应用已保留；正式包未在该VM覆盖安装。
+本分支R10修复开机任务设置的数字裁切、首页分区间距，并仅取消已添加常用功能卡片的包边，添加跳转保留包边。新图标下分别提供 `com.yunpan.appmanage` 与 `com.maxinf.car`；一键工具支持原包名换图标、其他包名及未来基础APK。见 [R10修复与验证](car-ui/R10修复与验证.md)、[包名工具](car-ui/PACKAGE_VARIANTS.md) 和 [verification/r10](verification/r10)。62项本地UI测试及5项包名测试通过；本轮VM不可达，完成审查为recapture，设备运行待补。主线R9及旧版本VM记录保持历史身份。
 
 定制作者 **carlito**。源APK：**应用管家社区官方【应用管家】**；[官方社区](https://pd.qq.com/s/7eyokceit?b=5)，腾讯频道号 updata3927。公开海报原图接入主题中心和主页来源入口，定制署名与原APK来源分开标注。
 
@@ -10,7 +10,7 @@ R9修复局域网互传二维码缩成小点：独立方形白底、竖屏上下
 
 | 目录 | 内容 |
 |---|---|
-| car-ui/src | 可编译原生Java UI、59项本地回归和公开来源图片 |
+| car-ui/src | 可编译原生Java UI、62项本地回归和公开来源图片 |
 | car-ui/baseline / patched-smali | 九个接入类的原基线和修改 |
 | car-ui/protection / protect_apk.py | 可选AES-256-GCM保护模板与打包脚本，API29+ |
 | 公签版_反编译/apktool | 清单、资源、smali、原生库与内嵌插件 |
