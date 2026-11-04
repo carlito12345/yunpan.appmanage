@@ -1,8 +1,12 @@
 {
   "revision": "R8",
-  "tracked_source_files_scanned": 34036,
+  "tracked_source_files_scanned": 34037,
   "issues": [],
   "private_key_extensions_forbidden": true,
   "generated_encryption_material_excluded": true,
-  "device_screenshots_excluded": true
+  "device_screenshots_excluded": true,
+  "full_scan_files": 34036,
+  "incremental_paths": [
+    "car-ui/更新日志.md"
+  ]
 }
