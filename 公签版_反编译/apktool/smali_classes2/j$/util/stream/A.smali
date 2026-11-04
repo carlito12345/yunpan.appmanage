@@ -1,0 +1,98 @@
+.class abstract Lj$/util/stream/A;
+.super Lj$/util/stream/B;
+.source "SourceFile"
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .line 623
+    const-class v0, Lj$/util/stream/B;
+
+    return-void
+.end method
+
+.method constructor <init>(Lj$/util/stream/b;I)V
+    .locals 0
+
+    .line 635
+    invoke-direct {p0, p1, p2}, Lj$/util/stream/B;-><init>(Lj$/util/stream/b;I)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method final T0()Z
+    .locals 1
+
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public final bridge synthetic parallel()Lj$/util/stream/E;
+    .locals 1
+
+    .line 623
+    invoke-virtual {p0}, Lj$/util/stream/b;->parallel()Lj$/util/stream/BaseStream;
+
+    move-object v0, p0
+
+    check-cast v0, Lj$/util/stream/E;
+
+    return-object v0
+.end method
+
+.method public final bridge synthetic sequential()Lj$/util/stream/E;
+    .locals 1
+
+    .line 623
+    invoke-virtual {p0}, Lj$/util/stream/b;->sequential()Lj$/util/stream/BaseStream;
+
+    move-object v0, p0
+
+    check-cast v0, Lj$/util/stream/E;
+
+    return-object v0
+.end method
+
+.method public final bridge synthetic spliterator()Lj$/util/Spliterator;
+    .locals 1
+
+    .line 623
+    invoke-virtual {p0}, Lj$/util/stream/B;->spliterator()Lj$/util/F;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public final unordered()Lj$/util/stream/BaseStream;
+    .locals 3
+
+    .line 309
+    invoke-virtual {p0}, Lj$/util/stream/b;->P0()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    move-object v0, p0
+
+    goto :goto_0
+
+    .line 311
+    :cond_0
+    new-instance v0, Lj$/util/stream/t;
+
+    sget v1, Lj$/util/stream/f3;->r:I
+
+    const/4 v2, 0x1
+
+    invoke-direct {v0, p0, v1, v2}, Lj$/util/stream/t;-><init>(Lj$/util/stream/b;II)V
+
+    :goto_0
+    return-object v0
+.end method

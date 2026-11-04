@@ -1,0 +1,20 @@
+.class interface abstract Lorg/bouncycastle/cms/CMSSecureReadable;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# virtual methods
+.method public abstract getAuthAttrSet()Lorg/bouncycastle/asn1/ASN1Set;
+.end method
+
+.method public abstract getContentType()Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+.end method
+
+.method public abstract getInputStream()Ljava/io/InputStream;
+.end method
+
+.method public abstract hasAdditionalData()Z
+.end method
+
+.method public abstract setAuthAttrSet(Lorg/bouncycastle/asn1/ASN1Set;)V
+.end method

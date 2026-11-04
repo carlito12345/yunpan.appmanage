@@ -1,0 +1,1806 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T01:44:20Z",
+  "title": "Design System: 应用管家 · 车机",
+  "extensions": {
+    "colorMeta": {
+      "canvas-day": {
+        "role": "neutral",
+        "displayName": "Cream Canvas",
+        "tonalRamp": [
+          "oklch(15.00% 0.00984 87.47)",
+          "oklch(26.43% 0.00984 87.47)",
+          "oklch(37.86% 0.00984 87.47)",
+          "oklch(49.29% 0.00984 87.47)",
+          "oklch(60.71% 0.00984 87.47)",
+          "oklch(72.14% 0.00984 87.47)",
+          "oklch(83.57% 0.00984 87.47)",
+          "oklch(95.00% 0.00984 87.47)"
+        ]
+      },
+      "surface-day": {
+        "role": "neutral",
+        "displayName": "Milk Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00537 95.10)",
+          "oklch(26.43% 0.00537 95.10)",
+          "oklch(37.86% 0.00537 95.10)",
+          "oklch(49.29% 0.00537 95.10)",
+          "oklch(60.71% 0.00537 95.10)",
+          "oklch(72.14% 0.00537 95.10)",
+          "oklch(83.57% 0.00537 95.10)",
+          "oklch(95.00% 0.00537 95.10)"
+        ]
+      },
+      "soft-day": {
+        "role": "neutral",
+        "displayName": "Soft Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01569 86.43)",
+          "oklch(26.43% 0.01569 86.43)",
+          "oklch(37.86% 0.01569 86.43)",
+          "oklch(49.29% 0.01569 86.43)",
+          "oklch(60.71% 0.01569 86.43)",
+          "oklch(72.14% 0.01569 86.43)",
+          "oklch(83.57% 0.01569 86.43)",
+          "oklch(95.00% 0.01569 86.43)"
+        ]
+      },
+      "ink-day": {
+        "role": "neutral",
+        "displayName": "Ink Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00969 124.91)",
+          "oklch(26.43% 0.00969 124.91)",
+          "oklch(37.86% 0.00969 124.91)",
+          "oklch(49.29% 0.00969 124.91)",
+          "oklch(60.71% 0.00969 124.91)",
+          "oklch(72.14% 0.00969 124.91)",
+          "oklch(83.57% 0.00969 124.91)",
+          "oklch(95.00% 0.00969 124.91)"
+        ]
+      },
+      "muted-day": {
+        "role": "neutral",
+        "displayName": "Muted Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01583 120.56)",
+          "oklch(26.43% 0.01583 120.56)",
+          "oklch(37.86% 0.01583 120.56)",
+          "oklch(49.29% 0.01583 120.56)",
+          "oklch(60.71% 0.01583 120.56)",
+          "oklch(72.14% 0.01583 120.56)",
+          "oklch(83.57% 0.01583 120.56)",
+          "oklch(95.00% 0.01583 120.56)"
+        ]
+      },
+      "outline-day": {
+        "role": "neutral",
+        "displayName": "Outline Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01660 95.25)",
+          "oklch(26.43% 0.01660 95.25)",
+          "oklch(37.86% 0.01660 95.25)",
+          "oklch(49.29% 0.01660 95.25)",
+          "oklch(60.71% 0.01660 95.25)",
+          "oklch(72.14% 0.01660 95.25)",
+          "oklch(83.57% 0.01660 95.25)",
+          "oklch(95.00% 0.01660 95.25)"
+        ]
+      },
+      "accent-day": {
+        "role": "primary",
+        "displayName": "Warm Orange",
+        "tonalRamp": [
+          "oklch(15.00% 0.12743 56.40)",
+          "oklch(26.43% 0.12743 56.40)",
+          "oklch(37.86% 0.12743 56.40)",
+          "oklch(49.29% 0.12743 56.40)",
+          "oklch(60.71% 0.12743 56.40)",
+          "oklch(72.14% 0.12743 56.40)",
+          "oklch(83.57% 0.12743 56.40)",
+          "oklch(95.00% 0.12743 56.40)"
+        ]
+      },
+      "pressed-accent-day": {
+        "role": "primary",
+        "displayName": "Pressed Accent Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.10292 63.16)",
+          "oklch(26.43% 0.10292 63.16)",
+          "oklch(37.86% 0.10292 63.16)",
+          "oklch(49.29% 0.10292 63.16)",
+          "oklch(60.71% 0.10292 63.16)",
+          "oklch(72.14% 0.10292 63.16)",
+          "oklch(83.57% 0.10292 63.16)",
+          "oklch(95.00% 0.10292 63.16)"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Espresso Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.02510 58.02)",
+          "oklch(26.43% 0.02510 58.02)",
+          "oklch(37.86% 0.02510 58.02)",
+          "oklch(49.29% 0.02510 58.02)",
+          "oklch(60.71% 0.02510 58.02)",
+          "oklch(72.14% 0.02510 58.02)",
+          "oklch(83.57% 0.02510 58.02)",
+          "oklch(95.00% 0.02510 58.02)"
+        ]
+      },
+      "rail": {
+        "role": "neutral",
+        "displayName": "Rail",
+        "tonalRamp": [
+          "oklch(15.00% 0.01035 132.69)",
+          "oklch(26.43% 0.01035 132.69)",
+          "oklch(37.86% 0.01035 132.69)",
+          "oklch(49.29% 0.01035 132.69)",
+          "oklch(60.71% 0.01035 132.69)",
+          "oklch(72.14% 0.01035 132.69)",
+          "oklch(83.57% 0.01035 132.69)",
+          "oklch(95.00% 0.01035 132.69)"
+        ]
+      },
+      "rail-foreground": {
+        "role": "neutral",
+        "displayName": "Rail Foreground",
+        "tonalRamp": [
+          "oklch(15.00% 0.01933 119.78)",
+          "oklch(26.43% 0.01933 119.78)",
+          "oklch(37.86% 0.01933 119.78)",
+          "oklch(49.29% 0.01933 119.78)",
+          "oklch(60.71% 0.01933 119.78)",
+          "oklch(72.14% 0.01933 119.78)",
+          "oklch(83.57% 0.01933 119.78)",
+          "oklch(95.00% 0.01933 119.78)"
+        ]
+      },
+      "canvas-night": {
+        "role": "neutral",
+        "displayName": "Night Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.00418 128.69)",
+          "oklch(26.43% 0.00418 128.69)",
+          "oklch(37.86% 0.00418 128.69)",
+          "oklch(49.29% 0.00418 128.69)",
+          "oklch(60.71% 0.00418 128.69)",
+          "oklch(72.14% 0.00418 128.69)",
+          "oklch(83.57% 0.00418 128.69)",
+          "oklch(95.00% 0.00418 128.69)"
+        ]
+      },
+      "surface-night": {
+        "role": "neutral",
+        "displayName": "Charcoal Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00741 118.32)",
+          "oklch(26.43% 0.00741 118.32)",
+          "oklch(37.86% 0.00741 118.32)",
+          "oklch(49.29% 0.00741 118.32)",
+          "oklch(60.71% 0.00741 118.32)",
+          "oklch(72.14% 0.00741 118.32)",
+          "oklch(83.57% 0.00741 118.32)",
+          "oklch(95.00% 0.00741 118.32)"
+        ]
+      },
+      "soft-night": {
+        "role": "neutral",
+        "displayName": "Soft Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01049 114.68)",
+          "oklch(26.43% 0.01049 114.68)",
+          "oklch(37.86% 0.01049 114.68)",
+          "oklch(49.29% 0.01049 114.68)",
+          "oklch(60.71% 0.01049 114.68)",
+          "oklch(72.14% 0.01049 114.68)",
+          "oklch(83.57% 0.01049 114.68)",
+          "oklch(95.00% 0.01049 114.68)"
+        ]
+      },
+      "ink-night": {
+        "role": "neutral",
+        "displayName": "Ink Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01270 86.83)",
+          "oklch(26.43% 0.01270 86.83)",
+          "oklch(37.86% 0.01270 86.83)",
+          "oklch(49.29% 0.01270 86.83)",
+          "oklch(60.71% 0.01270 86.83)",
+          "oklch(72.14% 0.01270 86.83)",
+          "oklch(83.57% 0.01270 86.83)",
+          "oklch(95.00% 0.01270 86.83)"
+        ]
+      },
+      "muted-night": {
+        "role": "neutral",
+        "displayName": "Muted Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01809 106.82)",
+          "oklch(26.43% 0.01809 106.82)",
+          "oklch(37.86% 0.01809 106.82)",
+          "oklch(49.29% 0.01809 106.82)",
+          "oklch(60.71% 0.01809 106.82)",
+          "oklch(72.14% 0.01809 106.82)",
+          "oklch(83.57% 0.01809 106.82)",
+          "oklch(95.00% 0.01809 106.82)"
+        ]
+      },
+      "outline-night": {
+        "role": "neutral",
+        "displayName": "Outline Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01629 116.28)",
+          "oklch(26.43% 0.01629 116.28)",
+          "oklch(37.86% 0.01629 116.28)",
+          "oklch(49.29% 0.01629 116.28)",
+          "oklch(60.71% 0.01629 116.28)",
+          "oklch(72.14% 0.01629 116.28)",
+          "oklch(83.57% 0.01629 116.28)",
+          "oklch(95.00% 0.01629 116.28)"
+        ]
+      },
+      "accent-night": {
+        "role": "primary",
+        "displayName": "Night Apricot",
+        "tonalRamp": [
+          "oklch(15.00% 0.12462 58.14)",
+          "oklch(26.43% 0.12462 58.14)",
+          "oklch(37.86% 0.12462 58.14)",
+          "oklch(49.29% 0.12462 58.14)",
+          "oklch(60.71% 0.12462 58.14)",
+          "oklch(72.14% 0.12462 58.14)",
+          "oklch(83.57% 0.12462 58.14)",
+          "oklch(95.00% 0.12462 58.14)"
+        ]
+      },
+      "pressed-accent-night": {
+        "role": "primary",
+        "displayName": "Pressed Accent Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.10876 57.71)",
+          "oklch(26.43% 0.10876 57.71)",
+          "oklch(37.86% 0.10876 57.71)",
+          "oklch(49.29% 0.10876 57.71)",
+          "oklch(60.71% 0.10876 57.71)",
+          "oklch(72.14% 0.10876 57.71)",
+          "oklch(83.57% 0.10876 57.71)",
+          "oklch(95.00% 0.10876 57.71)"
+        ]
+      },
+      "cyan-canvas-day": {
+        "role": "neutral",
+        "displayName": "Cyan Canvas Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01285 221.43)",
+          "oklch(26.43% 0.01285 221.43)",
+          "oklch(37.86% 0.01285 221.43)",
+          "oklch(49.29% 0.01285 221.43)",
+          "oklch(60.71% 0.01285 221.43)",
+          "oklch(72.14% 0.01285 221.43)",
+          "oklch(83.57% 0.01285 221.43)",
+          "oklch(95.00% 0.01285 221.43)"
+        ]
+      },
+      "cyan-surface-day": {
+        "role": "neutral",
+        "displayName": "Cyan Surface Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00445 214.33)",
+          "oklch(26.43% 0.00445 214.33)",
+          "oklch(37.86% 0.00445 214.33)",
+          "oklch(49.29% 0.00445 214.33)",
+          "oklch(60.71% 0.00445 214.33)",
+          "oklch(72.14% 0.00445 214.33)",
+          "oklch(83.57% 0.00445 214.33)",
+          "oklch(95.00% 0.00445 214.33)"
+        ]
+      },
+      "cyan-soft-day": {
+        "role": "neutral",
+        "displayName": "Cyan Soft Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.02323 220.73)",
+          "oklch(26.43% 0.02323 220.73)",
+          "oklch(37.86% 0.02323 220.73)",
+          "oklch(49.29% 0.02323 220.73)",
+          "oklch(60.71% 0.02323 220.73)",
+          "oklch(72.14% 0.02323 220.73)",
+          "oklch(83.57% 0.02323 220.73)",
+          "oklch(95.00% 0.02323 220.73)"
+        ]
+      },
+      "cyan-ink-day": {
+        "role": "neutral",
+        "displayName": "Cyan Ink Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.04480 236.51)",
+          "oklch(26.43% 0.04480 236.51)",
+          "oklch(37.86% 0.04480 236.51)",
+          "oklch(49.29% 0.04480 236.51)",
+          "oklch(60.71% 0.04480 236.51)",
+          "oklch(72.14% 0.04480 236.51)",
+          "oklch(83.57% 0.04480 236.51)",
+          "oklch(95.00% 0.04480 236.51)"
+        ]
+      },
+      "cyan-muted-day": {
+        "role": "neutral",
+        "displayName": "Cyan Muted Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.04431 228.85)",
+          "oklch(26.43% 0.04431 228.85)",
+          "oklch(37.86% 0.04431 228.85)",
+          "oklch(49.29% 0.04431 228.85)",
+          "oklch(60.71% 0.04431 228.85)",
+          "oklch(72.14% 0.04431 228.85)",
+          "oklch(83.57% 0.04431 228.85)",
+          "oklch(95.00% 0.04431 228.85)"
+        ]
+      },
+      "cyan-outline-day": {
+        "role": "neutral",
+        "displayName": "Cyan Outline Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.04228 220.10)",
+          "oklch(26.43% 0.04228 220.10)",
+          "oklch(37.86% 0.04228 220.10)",
+          "oklch(49.29% 0.04228 220.10)",
+          "oklch(60.71% 0.04228 220.10)",
+          "oklch(72.14% 0.04228 220.10)",
+          "oklch(83.57% 0.04228 220.10)",
+          "oklch(95.00% 0.04228 220.10)"
+        ]
+      },
+      "cyan-accent-day": {
+        "role": "primary",
+        "displayName": "Deep Cyan",
+        "tonalRamp": [
+          "oklch(15.00% 0.08944 221.53)",
+          "oklch(26.43% 0.08944 221.53)",
+          "oklch(37.86% 0.08944 221.53)",
+          "oklch(49.29% 0.08944 221.53)",
+          "oklch(60.71% 0.08944 221.53)",
+          "oklch(72.14% 0.08944 221.53)",
+          "oklch(83.57% 0.08944 221.53)",
+          "oklch(95.00% 0.08944 221.53)"
+        ]
+      },
+      "cyan-pressed-accent-day": {
+        "role": "primary",
+        "displayName": "Cyan Pressed Accent Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.07897 223.86)",
+          "oklch(26.43% 0.07897 223.86)",
+          "oklch(37.86% 0.07897 223.86)",
+          "oklch(49.29% 0.07897 223.86)",
+          "oklch(60.71% 0.07897 223.86)",
+          "oklch(72.14% 0.07897 223.86)",
+          "oklch(83.57% 0.07897 223.86)",
+          "oklch(95.00% 0.07897 223.86)"
+        ]
+      },
+      "cyan-on-accent-day": {
+        "role": "neutral",
+        "displayName": "Cyan On Accent Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "cyan-rail-day": {
+        "role": "neutral",
+        "displayName": "Cyan Rail Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.04165 242.94)",
+          "oklch(26.43% 0.04165 242.94)",
+          "oklch(37.86% 0.04165 242.94)",
+          "oklch(49.29% 0.04165 242.94)",
+          "oklch(60.71% 0.04165 242.94)",
+          "oklch(72.14% 0.04165 242.94)",
+          "oklch(83.57% 0.04165 242.94)",
+          "oklch(95.00% 0.04165 242.94)"
+        ]
+      },
+      "cyan-rail-foreground-day": {
+        "role": "neutral",
+        "displayName": "Cyan Rail Foreground Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.03355 212.84)",
+          "oklch(26.43% 0.03355 212.84)",
+          "oklch(37.86% 0.03355 212.84)",
+          "oklch(49.29% 0.03355 212.84)",
+          "oklch(60.71% 0.03355 212.84)",
+          "oklch(72.14% 0.03355 212.84)",
+          "oklch(83.57% 0.03355 212.84)",
+          "oklch(95.00% 0.03355 212.84)"
+        ]
+      },
+      "cyan-canvas-night": {
+        "role": "neutral",
+        "displayName": "Deep Blue Canvas",
+        "tonalRamp": [
+          "oklch(15.00% 0.02823 249.03)",
+          "oklch(26.43% 0.02823 249.03)",
+          "oklch(37.86% 0.02823 249.03)",
+          "oklch(49.29% 0.02823 249.03)",
+          "oklch(60.71% 0.02823 249.03)",
+          "oklch(72.14% 0.02823 249.03)",
+          "oklch(83.57% 0.02823 249.03)",
+          "oklch(95.00% 0.02823 249.03)"
+        ]
+      },
+      "cyan-surface-night": {
+        "role": "neutral",
+        "displayName": "Cyan Surface Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.03599 243.49)",
+          "oklch(26.43% 0.03599 243.49)",
+          "oklch(37.86% 0.03599 243.49)",
+          "oklch(49.29% 0.03599 243.49)",
+          "oklch(60.71% 0.03599 243.49)",
+          "oklch(72.14% 0.03599 243.49)",
+          "oklch(83.57% 0.03599 243.49)",
+          "oklch(95.00% 0.03599 243.49)"
+        ]
+      },
+      "cyan-soft-night": {
+        "role": "neutral",
+        "displayName": "Cyan Soft Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.04309 237.35)",
+          "oklch(26.43% 0.04309 237.35)",
+          "oklch(37.86% 0.04309 237.35)",
+          "oklch(49.29% 0.04309 237.35)",
+          "oklch(60.71% 0.04309 237.35)",
+          "oklch(72.14% 0.04309 237.35)",
+          "oklch(83.57% 0.04309 237.35)",
+          "oklch(95.00% 0.04309 237.35)"
+        ]
+      },
+      "cyan-ink-night": {
+        "role": "neutral",
+        "displayName": "Cyan Ink Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.02007 216.19)",
+          "oklch(26.43% 0.02007 216.19)",
+          "oklch(37.86% 0.02007 216.19)",
+          "oklch(49.29% 0.02007 216.19)",
+          "oklch(60.71% 0.02007 216.19)",
+          "oklch(72.14% 0.02007 216.19)",
+          "oklch(83.57% 0.02007 216.19)",
+          "oklch(95.00% 0.02007 216.19)"
+        ]
+      },
+      "cyan-muted-night": {
+        "role": "neutral",
+        "displayName": "Cyan Muted Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.04302 225.75)",
+          "oklch(26.43% 0.04302 225.75)",
+          "oklch(37.86% 0.04302 225.75)",
+          "oklch(49.29% 0.04302 225.75)",
+          "oklch(60.71% 0.04302 225.75)",
+          "oklch(72.14% 0.04302 225.75)",
+          "oklch(83.57% 0.04302 225.75)",
+          "oklch(95.00% 0.04302 225.75)"
+        ]
+      },
+      "cyan-outline-night": {
+        "role": "neutral",
+        "displayName": "Cyan Outline Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.06054 227.68)",
+          "oklch(26.43% 0.06054 227.68)",
+          "oklch(37.86% 0.06054 227.68)",
+          "oklch(49.29% 0.06054 227.68)",
+          "oklch(60.71% 0.06054 227.68)",
+          "oklch(72.14% 0.06054 227.68)",
+          "oklch(83.57% 0.06054 227.68)",
+          "oklch(95.00% 0.06054 227.68)"
+        ]
+      },
+      "cyan-accent-night": {
+        "role": "primary",
+        "displayName": "Fluorescent Ice",
+        "tonalRamp": [
+          "oklch(15.00% 0.11962 213.58)",
+          "oklch(26.43% 0.11962 213.58)",
+          "oklch(37.86% 0.11962 213.58)",
+          "oklch(49.29% 0.11962 213.58)",
+          "oklch(60.71% 0.11962 213.58)",
+          "oklch(72.14% 0.11962 213.58)",
+          "oklch(83.57% 0.11962 213.58)",
+          "oklch(95.00% 0.11962 213.58)"
+        ]
+      },
+      "cyan-pressed-accent-night": {
+        "role": "primary",
+        "displayName": "Cyan Pressed Accent Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.07741 209.15)",
+          "oklch(26.43% 0.07741 209.15)",
+          "oklch(37.86% 0.07741 209.15)",
+          "oklch(49.29% 0.07741 209.15)",
+          "oklch(60.71% 0.07741 209.15)",
+          "oklch(72.14% 0.07741 209.15)",
+          "oklch(83.57% 0.07741 209.15)",
+          "oklch(95.00% 0.07741 209.15)"
+        ]
+      },
+      "cyan-on-accent-night": {
+        "role": "neutral",
+        "displayName": "Cyan On Accent Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.03751 226.15)",
+          "oklch(26.43% 0.03751 226.15)",
+          "oklch(37.86% 0.03751 226.15)",
+          "oklch(49.29% 0.03751 226.15)",
+          "oklch(60.71% 0.03751 226.15)",
+          "oklch(72.14% 0.03751 226.15)",
+          "oklch(83.57% 0.03751 226.15)",
+          "oklch(95.00% 0.03751 226.15)"
+        ]
+      },
+      "cyan-rail-night": {
+        "role": "neutral",
+        "displayName": "Cyan Rail Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.02570 242.74)",
+          "oklch(26.43% 0.02570 242.74)",
+          "oklch(37.86% 0.02570 242.74)",
+          "oklch(49.29% 0.02570 242.74)",
+          "oklch(60.71% 0.02570 242.74)",
+          "oklch(72.14% 0.02570 242.74)",
+          "oklch(83.57% 0.02570 242.74)",
+          "oklch(95.00% 0.02570 242.74)"
+        ]
+      },
+      "cyan-rail-foreground-night": {
+        "role": "neutral",
+        "displayName": "Cyan Rail Foreground Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.04591 224.63)",
+          "oklch(26.43% 0.04591 224.63)",
+          "oklch(37.86% 0.04591 224.63)",
+          "oklch(49.29% 0.04591 224.63)",
+          "oklch(60.71% 0.04591 224.63)",
+          "oklch(72.14% 0.04591 224.63)",
+          "oklch(83.57% 0.04591 224.63)",
+          "oklch(95.00% 0.04591 224.63)"
+        ]
+      },
+      "mono-canvas-day": {
+        "role": "neutral",
+        "displayName": "Cool Gray Canvas",
+        "tonalRamp": [
+          "oklch(15.00% 0.00344 247.86)",
+          "oklch(26.43% 0.00344 247.86)",
+          "oklch(37.86% 0.00344 247.86)",
+          "oklch(49.29% 0.00344 247.86)",
+          "oklch(60.71% 0.00344 247.86)",
+          "oklch(72.14% 0.00344 247.86)",
+          "oklch(83.57% 0.00344 247.86)",
+          "oklch(95.00% 0.00344 247.86)"
+        ]
+      },
+      "mono-surface-day": {
+        "role": "neutral",
+        "displayName": "White Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "mono-soft-day": {
+        "role": "neutral",
+        "displayName": "Mono Soft Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00696 247.90)",
+          "oklch(26.43% 0.00696 247.90)",
+          "oklch(37.86% 0.00696 247.90)",
+          "oklch(49.29% 0.00696 247.90)",
+          "oklch(60.71% 0.00696 247.90)",
+          "oklch(72.14% 0.00696 247.90)",
+          "oklch(83.57% 0.00696 247.90)",
+          "oklch(95.00% 0.00696 247.90)"
+        ]
+      },
+      "mono-ink-day": {
+        "role": "neutral",
+        "displayName": "Mono Ink Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00846 264.38)",
+          "oklch(26.43% 0.00846 264.38)",
+          "oklch(37.86% 0.00846 264.38)",
+          "oklch(49.29% 0.00846 264.38)",
+          "oklch(60.71% 0.00846 264.38)",
+          "oklch(72.14% 0.00846 264.38)",
+          "oklch(83.57% 0.00846 264.38)",
+          "oklch(95.00% 0.00846 264.38)"
+        ]
+      },
+      "mono-muted-day": {
+        "role": "neutral",
+        "displayName": "Mono Muted Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01980 251.04)",
+          "oklch(26.43% 0.01980 251.04)",
+          "oklch(37.86% 0.01980 251.04)",
+          "oklch(49.29% 0.01980 251.04)",
+          "oklch(60.71% 0.01980 251.04)",
+          "oklch(72.14% 0.01980 251.04)",
+          "oklch(83.57% 0.01980 251.04)",
+          "oklch(95.00% 0.01980 251.04)"
+        ]
+      },
+      "mono-outline-day": {
+        "role": "neutral",
+        "displayName": "Mono Outline Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01739 250.88)",
+          "oklch(26.43% 0.01739 250.88)",
+          "oklch(37.86% 0.01739 250.88)",
+          "oklch(49.29% 0.01739 250.88)",
+          "oklch(60.71% 0.01739 250.88)",
+          "oklch(72.14% 0.01739 250.88)",
+          "oklch(83.57% 0.01739 250.88)",
+          "oklch(95.00% 0.01739 250.88)"
+        ]
+      },
+      "mono-accent-day": {
+        "role": "primary",
+        "displayName": "Graphite Action",
+        "tonalRamp": [
+          "oklch(15.00% 0.01091 254.02)",
+          "oklch(26.43% 0.01091 254.02)",
+          "oklch(37.86% 0.01091 254.02)",
+          "oklch(49.29% 0.01091 254.02)",
+          "oklch(60.71% 0.01091 254.02)",
+          "oklch(72.14% 0.01091 254.02)",
+          "oklch(83.57% 0.01091 254.02)",
+          "oklch(95.00% 0.01091 254.02)"
+        ]
+      },
+      "mono-pressed-accent-day": {
+        "role": "primary",
+        "displayName": "Mono Pressed Accent Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.01759 254.73)",
+          "oklch(26.43% 0.01759 254.73)",
+          "oklch(37.86% 0.01759 254.73)",
+          "oklch(49.29% 0.01759 254.73)",
+          "oklch(60.71% 0.01759 254.73)",
+          "oklch(72.14% 0.01759 254.73)",
+          "oklch(83.57% 0.01759 254.73)",
+          "oklch(95.00% 0.01759 254.73)"
+        ]
+      },
+      "mono-on-accent-day": {
+        "role": "neutral",
+        "displayName": "Mono On Accent Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "mono-rail-day": {
+        "role": "neutral",
+        "displayName": "Mono Rail Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00674 258.37)",
+          "oklch(26.43% 0.00674 258.37)",
+          "oklch(37.86% 0.00674 258.37)",
+          "oklch(49.29% 0.00674 258.37)",
+          "oklch(60.71% 0.00674 258.37)",
+          "oklch(72.14% 0.00674 258.37)",
+          "oklch(83.57% 0.00674 258.37)",
+          "oklch(95.00% 0.00674 258.37)"
+        ]
+      },
+      "mono-rail-foreground-day": {
+        "role": "neutral",
+        "displayName": "Mono Rail Foreground Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.00626 255.48)",
+          "oklch(26.43% 0.00626 255.48)",
+          "oklch(37.86% 0.00626 255.48)",
+          "oklch(49.29% 0.00626 255.48)",
+          "oklch(60.71% 0.00626 255.48)",
+          "oklch(72.14% 0.00626 255.48)",
+          "oklch(83.57% 0.00626 255.48)",
+          "oklch(95.00% 0.00626 255.48)"
+        ]
+      },
+      "mono-canvas-night": {
+        "role": "neutral",
+        "displayName": "Mono Canvas Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00262 247.98)",
+          "oklch(26.43% 0.00262 247.98)",
+          "oklch(37.86% 0.00262 247.98)",
+          "oklch(49.29% 0.00262 247.98)",
+          "oklch(60.71% 0.00262 247.98)",
+          "oklch(72.14% 0.00262 247.98)",
+          "oklch(83.57% 0.00262 247.98)",
+          "oklch(95.00% 0.00262 247.98)"
+        ]
+      },
+      "mono-surface-night": {
+        "role": "neutral",
+        "displayName": "Mono Surface Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00476 248.01)",
+          "oklch(26.43% 0.00476 248.01)",
+          "oklch(37.86% 0.00476 248.01)",
+          "oklch(49.29% 0.00476 248.01)",
+          "oklch(60.71% 0.00476 248.01)",
+          "oklch(72.14% 0.00476 248.01)",
+          "oklch(83.57% 0.00476 248.01)",
+          "oklch(95.00% 0.00476 248.01)"
+        ]
+      },
+      "mono-soft-night": {
+        "role": "neutral",
+        "displayName": "Mono Soft Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00670 248.03)",
+          "oklch(26.43% 0.00670 248.03)",
+          "oklch(37.86% 0.00670 248.03)",
+          "oklch(49.29% 0.00670 248.03)",
+          "oklch(60.71% 0.00670 248.03)",
+          "oklch(72.14% 0.00670 248.03)",
+          "oklch(83.57% 0.00670 248.03)",
+          "oklch(95.00% 0.00670 248.03)"
+        ]
+      },
+      "mono-ink-night": {
+        "role": "neutral",
+        "displayName": "Mono Ink Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00171 247.84)",
+          "oklch(26.43% 0.00171 247.84)",
+          "oklch(37.86% 0.00171 247.84)",
+          "oklch(49.29% 0.00171 247.84)",
+          "oklch(60.71% 0.00171 247.84)",
+          "oklch(72.14% 0.00171 247.84)",
+          "oklch(83.57% 0.00171 247.84)",
+          "oklch(95.00% 0.00171 247.84)"
+        ]
+      },
+      "mono-muted-night": {
+        "role": "neutral",
+        "displayName": "Mono Muted Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01012 252.83)",
+          "oklch(26.43% 0.01012 252.83)",
+          "oklch(37.86% 0.01012 252.83)",
+          "oklch(49.29% 0.01012 252.83)",
+          "oklch(60.71% 0.01012 252.83)",
+          "oklch(72.14% 0.01012 252.83)",
+          "oklch(83.57% 0.01012 252.83)",
+          "oklch(95.00% 0.01012 252.83)"
+        ]
+      },
+      "mono-outline-night": {
+        "role": "neutral",
+        "displayName": "Mono Outline Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.01398 248.09)",
+          "oklch(26.43% 0.01398 248.09)",
+          "oklch(37.86% 0.01398 248.09)",
+          "oklch(49.29% 0.01398 248.09)",
+          "oklch(60.71% 0.01398 248.09)",
+          "oklch(72.14% 0.01398 248.09)",
+          "oklch(83.57% 0.01398 248.09)",
+          "oklch(95.00% 0.01398 248.09)"
+        ]
+      },
+      "mono-accent-night": {
+        "role": "primary",
+        "displayName": "Silver Action",
+        "tonalRamp": [
+          "oklch(15.00% 0.00288 264.54)",
+          "oklch(26.43% 0.00288 264.54)",
+          "oklch(37.86% 0.00288 264.54)",
+          "oklch(49.29% 0.00288 264.54)",
+          "oklch(60.71% 0.00288 264.54)",
+          "oklch(72.14% 0.00288 264.54)",
+          "oklch(83.57% 0.00288 264.54)",
+          "oklch(95.00% 0.00288 264.54)"
+        ]
+      },
+      "mono-pressed-accent-night": {
+        "role": "primary",
+        "displayName": "Mono Pressed Accent Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00818 253.86)",
+          "oklch(26.43% 0.00818 253.86)",
+          "oklch(37.86% 0.00818 253.86)",
+          "oklch(49.29% 0.00818 253.86)",
+          "oklch(60.71% 0.00818 253.86)",
+          "oklch(72.14% 0.00818 253.86)",
+          "oklch(83.57% 0.00818 253.86)",
+          "oklch(95.00% 0.00818 253.86)"
+        ]
+      },
+      "mono-on-accent-night": {
+        "role": "neutral",
+        "displayName": "Mono On Accent Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00509 248.08)",
+          "oklch(26.43% 0.00509 248.08)",
+          "oklch(37.86% 0.00509 248.08)",
+          "oklch(49.29% 0.00509 248.08)",
+          "oklch(60.71% 0.00509 248.08)",
+          "oklch(72.14% 0.00509 248.08)",
+          "oklch(83.57% 0.00509 248.08)",
+          "oklch(95.00% 0.00509 248.08)"
+        ]
+      },
+      "mono-rail-night": {
+        "role": "neutral",
+        "displayName": "Mono Rail Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00295 246.26)",
+          "oklch(26.43% 0.00295 246.26)",
+          "oklch(37.86% 0.00295 246.26)",
+          "oklch(49.29% 0.00295 246.26)",
+          "oklch(60.71% 0.00295 246.26)",
+          "oklch(72.14% 0.00295 246.26)",
+          "oklch(83.57% 0.00295 246.26)",
+          "oklch(95.00% 0.00295 246.26)"
+        ]
+      },
+      "mono-rail-foreground-night": {
+        "role": "neutral",
+        "displayName": "Mono Rail Foreground Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.00631 255.48)",
+          "oklch(26.43% 0.00631 255.48)",
+          "oklch(37.86% 0.00631 255.48)",
+          "oklch(49.29% 0.00631 255.48)",
+          "oklch(60.71% 0.00631 255.48)",
+          "oklch(72.14% 0.00631 255.48)",
+          "oklch(83.57% 0.00631 255.48)",
+          "oklch(95.00% 0.00631 255.48)"
+        ]
+      },
+      "rail-pressed": {
+        "role": "neutral",
+        "displayName": "Rail Pressed",
+        "tonalRamp": [
+          "oklch(15.00% 0.01992 115.04)",
+          "oklch(26.43% 0.01992 115.04)",
+          "oklch(37.86% 0.01992 115.04)",
+          "oklch(49.29% 0.01992 115.04)",
+          "oklch(60.71% 0.01992 115.04)",
+          "oklch(72.14% 0.01992 115.04)",
+          "oklch(83.57% 0.01992 115.04)",
+          "oklch(95.00% 0.01992 115.04)"
+        ]
+      },
+      "hero-action-pressed": {
+        "role": "neutral",
+        "displayName": "Hero Action Pressed",
+        "tonalRamp": [
+          "oklch(15.00% 0.01835 107.30)",
+          "oklch(26.43% 0.01835 107.30)",
+          "oklch(37.86% 0.01835 107.30)",
+          "oklch(49.29% 0.01835 107.30)",
+          "oklch(60.71% 0.01835 107.30)",
+          "oklch(72.14% 0.01835 107.30)",
+          "oklch(83.57% 0.01835 107.30)",
+          "oklch(95.00% 0.01835 107.30)"
+        ]
+      },
+      "theme-control-pressed": {
+        "role": "neutral",
+        "displayName": "Theme Control Pressed",
+        "tonalRamp": [
+          "oklch(15.00% 0.01224 252.95)",
+          "oklch(26.43% 0.01224 252.95)",
+          "oklch(37.86% 0.01224 252.95)",
+          "oklch(49.29% 0.01224 252.95)",
+          "oklch(60.71% 0.01224 252.95)",
+          "oklch(72.14% 0.01224 252.95)",
+          "oklch(83.57% 0.01224 252.95)",
+          "oklch(95.00% 0.01224 252.95)"
+        ]
+      },
+      "brand-foreground": {
+        "role": "neutral",
+        "displayName": "Brand Foreground",
+        "tonalRamp": [
+          "oklch(15.00% 0.00984 87.47)",
+          "oklch(26.43% 0.00984 87.47)",
+          "oklch(37.86% 0.00984 87.47)",
+          "oklch(49.29% 0.00984 87.47)",
+          "oklch(60.71% 0.00984 87.47)",
+          "oklch(72.14% 0.00984 87.47)",
+          "oklch(83.57% 0.00984 87.47)",
+          "oklch(95.00% 0.00984 87.47)"
+        ]
+      },
+      "hero-action-foreground": {
+        "role": "neutral",
+        "displayName": "Hero Action Foreground",
+        "tonalRamp": [
+          "oklch(15.00% 0.00537 95.10)",
+          "oklch(26.43% 0.00537 95.10)",
+          "oklch(37.86% 0.00537 95.10)",
+          "oklch(49.29% 0.00537 95.10)",
+          "oklch(60.71% 0.00537 95.10)",
+          "oklch(72.14% 0.00537 95.10)",
+          "oklch(83.57% 0.00537 95.10)",
+          "oklch(95.00% 0.00537 95.10)"
+        ]
+      },
+      "danger-day": {
+        "role": "neutral",
+        "displayName": "Danger Day",
+        "tonalRamp": [
+          "oklch(15.00% 0.15496 31.86)",
+          "oklch(26.43% 0.15496 31.86)",
+          "oklch(37.86% 0.15496 31.86)",
+          "oklch(49.29% 0.15496 31.86)",
+          "oklch(60.71% 0.15496 31.86)",
+          "oklch(72.14% 0.15496 31.86)",
+          "oklch(83.57% 0.15496 31.86)",
+          "oklch(95.00% 0.15496 31.86)"
+        ]
+      },
+      "danger-night": {
+        "role": "neutral",
+        "displayName": "Danger Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.11319 34.29)",
+          "oklch(26.43% 0.11319 34.29)",
+          "oklch(37.86% 0.11319 34.29)",
+          "oklch(49.29% 0.11319 34.29)",
+          "oklch(60.71% 0.11319 34.29)",
+          "oklch(72.14% 0.11319 34.29)",
+          "oklch(83.57% 0.11319 34.29)",
+          "oklch(95.00% 0.11319 34.29)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Portrait action-panel heading."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Console and landscape action-panel heading."
+      },
+      "legacy-title": {
+        "displayName": "Legacy Title",
+        "purpose": "Recomposed module heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Favorite section heading; clock uses normal weight."
+      },
+      "card-title": {
+        "displayName": "Card Title",
+        "purpose": "Favorite names, two lines maximum."
+      },
+      "legacy-section": {
+        "displayName": "Legacy Section",
+        "purpose": "Settings section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Native fields and destination rows."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Helper buttons and add action."
+      },
+      "support": {
+        "displayName": "Support",
+        "purpose": "Contextual/editing instructions."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Destination kind and rail labels."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Dates and secondary detail."
+      }
+    },
+    "shadows": [
+      {
+        "name": "mono-favorite",
+        "value": "Android View elevation 5dp",
+        "purpose": "Monochrome favorite tiles; platform defines shadow, no CSS equivalent asserted."
+      },
+      {
+        "name": "mono-legacy-app",
+        "value": "Android View elevation 4dp",
+        "purpose": "Monochrome app/appFace roles on API 21+; platform owns shadow."
+      },
+      {
+        "name": "frosted-dialog-window",
+        "value": "Android decor elevation 20dp on API 21+",
+        "purpose": "Native depth for the requested frosted modal panel; no CSS shadow or vehicle-rendering claim."
+      }
+    ],
+    "modalMaterial": {
+      "implementation": "FrostedDialogs",
+      "scope": "Shared legacy and owned Dialog decoration; existing palette and original interactive content retained.",
+      "sample": "Owning Activity decor at 1/12 resolution; two CPU separable box-blur passes, radius 4 in the sampled bitmap; positioned relative to owner/decor screen origins.",
+      "surfaceAlpha255": {"day": 210, "night": 220, "fallbackWithoutSample": 245},
+      "alphaScope": "Baseline tonal values. R7 applies the configured panel opacity once across snapshot/tonal composition, preserving proportions rather than independently fading both layers. Foreground/wallpaper and opaque QR content are outside this budget.",
+      "nativeWindowDim": {"flag": "FLAG_DIM_BEHIND", "day": 0.46, "night": 0.58},
+      "boardCorners": "28dp warm/mono; 16dp cyan, drawn outside the generic radius-cap helper, with a thin theme outline.",
+      "content": "Sharp text and controls over transparent root/scroll hosts; field, selected and focus backgrounds stay meaningful.",
+      "lifecycle": "Bounded open/owner-resize/theme refresh. Keyed Board replacement/detach releases bitmap/listeners and animated-border scheduling/callback. No per-frame sampling or replacement of external dismiss callbacks.",
+      "callbacks": "Original external dismiss/close callbacks are retained.",
+      "persistence": "Panel snapshot stays only in application memory and is never persisted.",
+      "limits": "App-owned snapshot panel; no system realtime cross-window blur, ordinary View capture of SurfaceView content, or vehicle-performance acceptance."
+    },
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "native-landscape",
+        "value": "actual window width > actual window height"
+      },
+      {
+        "name": "legacy-action-wrap",
+        "value": "measured child width exceeds remaining available native width; 8dp row/column gap"
+      }
+    ],
+    "themePalettes": {
+      "warm": {
+        "day": {
+          "background": "{colors.canvas-day}",
+          "surface": "{colors.surface-day}",
+          "soft": "{colors.soft-day}",
+          "ink": "{colors.ink-day}",
+          "muted": "{colors.muted-day}",
+          "outline": "{colors.outline-day}",
+          "accent": "{colors.accent-day}",
+          "pressedAccent": "{colors.pressed-accent-day}",
+          "onAccent": "{colors.on-accent}",
+          "rail": "{colors.rail}",
+          "railInk": "{colors.rail-foreground}"
+        },
+        "night": {
+          "background": "{colors.canvas-night}",
+          "surface": "{colors.surface-night}",
+          "soft": "{colors.soft-night}",
+          "ink": "{colors.ink-night}",
+          "muted": "{colors.muted-night}",
+          "outline": "{colors.outline-night}",
+          "accent": "{colors.accent-night}",
+          "pressedAccent": "{colors.pressed-accent-night}",
+          "onAccent": "{colors.on-accent}",
+          "rail": "{colors.rail}",
+          "railInk": "{colors.rail-foreground}"
+        }
+      },
+      "cyan": {
+        "day": {
+          "background": "{colors.cyan-canvas-day}",
+          "surface": "{colors.cyan-surface-day}",
+          "soft": "{colors.cyan-soft-day}",
+          "ink": "{colors.cyan-ink-day}",
+          "muted": "{colors.cyan-muted-day}",
+          "outline": "{colors.cyan-outline-day}",
+          "accent": "{colors.cyan-accent-day}",
+          "pressedAccent": "{colors.cyan-pressed-accent-day}",
+          "onAccent": "{colors.cyan-on-accent-day}",
+          "rail": "{colors.cyan-rail-day}",
+          "railInk": "{colors.cyan-rail-foreground-day}"
+        },
+        "night": {
+          "background": "{colors.cyan-canvas-night}",
+          "surface": "{colors.cyan-surface-night}",
+          "soft": "{colors.cyan-soft-night}",
+          "ink": "{colors.cyan-ink-night}",
+          "muted": "{colors.cyan-muted-night}",
+          "outline": "{colors.cyan-outline-night}",
+          "accent": "{colors.cyan-accent-night}",
+          "pressedAccent": "{colors.cyan-pressed-accent-night}",
+          "onAccent": "{colors.cyan-on-accent-night}",
+          "rail": "{colors.cyan-rail-night}",
+          "railInk": "{colors.cyan-rail-foreground-night}"
+        }
+      },
+      "mono": {
+        "day": {
+          "background": "{colors.mono-canvas-day}",
+          "surface": "{colors.mono-surface-day}",
+          "soft": "{colors.mono-soft-day}",
+          "ink": "{colors.mono-ink-day}",
+          "muted": "{colors.mono-muted-day}",
+          "outline": "{colors.mono-outline-day}",
+          "accent": "{colors.mono-accent-day}",
+          "pressedAccent": "{colors.mono-pressed-accent-day}",
+          "onAccent": "{colors.mono-on-accent-day}",
+          "rail": "{colors.mono-rail-day}",
+          "railInk": "{colors.mono-rail-foreground-day}"
+        },
+        "night": {
+          "background": "{colors.mono-canvas-night}",
+          "surface": "{colors.mono-surface-night}",
+          "soft": "{colors.mono-soft-night}",
+          "ink": "{colors.mono-ink-night}",
+          "muted": "{colors.mono-muted-night}",
+          "outline": "{colors.mono-outline-night}",
+          "accent": "{colors.mono-accent-night}",
+          "pressedAccent": "{colors.mono-pressed-accent-night}",
+          "onAccent": "{colors.mono-on-accent-night}",
+          "rail": "{colors.mono-rail-night}",
+          "railInk": "{colors.mono-rail-foreground-night}"
+        }
+      }
+    },
+    "themeBehavior": {
+      "defaultTheme": "warm",
+      "defaultMode": "day",
+      "storedKeys": [
+        "car_ui_v1.theme",
+        "car_ui_v1.dark"
+      ],
+      "switchingToDifferentTheme": {
+        "warm": "day",
+        "cyan": "night",
+        "mono": "day"
+      },
+      "reselectingCurrentTheme": "Preserve current dark flag.",
+      "modeToggle": "Toggle current scheme; one saved mode flag, not per-theme mode history.",
+      "shapeCaps": {
+        "warm": "requested radius",
+        "cyan": "min(requested radius, 10dp)",
+        "mono": "min(requested radius, 16dp)"
+      },
+      "dynamicColor": false,
+      "automaticSystemNightSync": false
+    },
+    "sourceInfo": {
+      "implementation": "SourceInfo; ordinary extension reusing incumbent native type/material/actions, with no new tokens/world.",
+      "author": "carlito",
+      "authorRole": "Customization author, separate from original APK/source attribution.",
+      "source": "应用管家社区官方【应用管家】",
+      "url": "https://pd.qq.com/s/7eyokceit?b=5",
+      "tencentChannel": "updata3927",
+      "entries": ["Theme center lower 关于与来源 section", "Home content scroll-footer 定制作者：carlito · 官方来源"],
+      "poster": {
+        "asset": "car-ui/src/main/assets/carui/source_channel.jpg",
+        "sha256": "f7dce8a56326f62de4f02c92bcea7653e1d7efef47ebb2debf6f3fdba362035a",
+        "identity": "User-supplied public poster copied byte-identically; local asset SHA independently matched.",
+        "display": "Whole original raster via FIT_CENTER on opaque white, preserving aspect/quiet space; no crop or tint.",
+        "scope": "Public community provenance poster, distinct from live private account-login QR images."
+      },
+      "dialog": "Owner-sized width/height caps 620dp/860dp at reference sizes; poster consumes remaining height; fixed 打开官方社区/关闭 row with 52dp minimum targets and 12dp gap.",
+      "rotation": "SourceInfo.resize participates in CarUi.refreshDialog; no separate visual system.",
+      "behavior": "Only explicit community-button selection launches ACTION_VIEW for the exact URL. Opening/closing About does not launch a browser or commit theme/appearance/wallpaper preferences."
+    },
+    "appearance": {
+      "implementation": "Appearance.Edge extends native GradientDrawable; shared panel material only.",
+      "entry": "Bounded 主题中心 with scrolling controls/material preview, fixed Apply/Cancel footer and 壁纸中心 title action.",
+      "storedKeys": ["car_ui_v1.transparency", "car_ui_v1.borderStyle", "car_ui_v1.borderColor"],
+      "defaults": {"transparency": 0, "style": 0, "color": 0},
+      "transparency": "0–100; 0 opaque/100 transparent. Fill opacity is baseline alpha * (100-transparency)/100. Text, icons, wallpaper and opaque QR quiet zones are not faded.",
+      "styles": ["主题默认", "纯色包边", "多彩渐变", "流光飞舞"],
+      "primaryColors": [
+        {"name": "冰蓝", "value": "#65E4FF"},
+        {"name": "霓虹紫", "value": "#AA8AFF"},
+        {"name": "暖金", "value": "#FFC466"},
+        {"name": "薄荷", "value": "#80EDB2"},
+        {"name": "樱粉", "value": "#FF88B8"},
+        {"name": "银白", "value": "#E9F2FF"}
+      ],
+      "colorScope": "Feature edge-color choices, separate from wallpaper choices and normative Skin roles.",
+      "draft": "Changes update the sample only. Cancel and opening Wallpaper Center do not save. Apply, a theme row or day/night choice commits appearance together; the combined action is stated visibly.",
+      "windowBounds": "min(owner width-40dp,620dp) x min(owner height-48dp,760dp); scrolling controls with fixed footer.",
+      "functionalStates": "Focus/pressed boundaries remain functional; decorative edge drawing yields to those states.",
+      "flow": "8s linear cycle, draw-driven 33ms invalidation, one pending tick; hidden/closed/no-callback edges do not continue scheduling.",
+      "animationReduction": "API26+ checks ValueAnimator.areAnimatorsEnabled at draw and uses static edge when disabled. API17–25 reads animator scale at drawable creation only.",
+      "limits": "Scheduler/hidden/reduced-animation checks are local; old-API hardware, all-theme/device matrices, GPU/power and long-running vehicle performance are not accepted."
+    },
+    "wallpaper": {
+      "implementation": ["Wallpapers", "WallpaperView", "WallpaperPicker", "WallpaperCropper"],
+      "scope": "Optional application main-shell/hosted-workspace background, not a system launcher WallpaperService.",
+      "entry": "主题中心 title-row 壁纸中心 and original Settings/Advanced/修改管家背景 action open the same wallpaper center.",
+      "modes": ["off", "static", "particles", "video"],
+      "staticSources": {
+        "entry": "选择静态壁纸 · 按屏幕裁切; default-star/moon restoration is a separate action.",
+        "original": "Original AppStart bj_2 star/moon asset, with 0.7/0.25 focal placement in both orientations.",
+        "solid": "Existing six background choices.",
+        "legacy": "Prior private bj.png/jpg option only appears when present; decode edge bounded to 2048 and original file never modified/deleted.",
+        "selected": "Local image document to bounded async decode/crop/private draft, then wallpaper preview and explicit Apply."
+      },
+      "styles": ["星河漂移", "连线星网", "流萤波纹", "轻雪漫游", "轨道光环", "流星雨"],
+      "backgroundOptions": [
+        {"name": "深海蓝", "value": "#061222"},
+        {"name": "石墨黑", "value": "#111216"},
+        {"name": "暮光紫", "value": "#241127"},
+        {"name": "青碧", "value": "#073638"},
+        {"name": "墨绿", "value": "#132D22"},
+        {"name": "暖棕", "value": "#493027"}
+      ],
+      "particleColorOptions": [
+        {"name": "冰蓝", "value": "#72E9FF"},
+        {"name": "浅紫", "value": "#B8A1FF"},
+        {"name": "暖金", "value": "#FFCF85"},
+        {"name": "薄荷", "value": "#97F3BB"},
+        {"name": "樱粉", "value": "#FFA4CB"},
+        {"name": "银白", "value": "#F1F6FF"}
+      ],
+      "optionScope": "Feature choices/user configuration; do not replace the normative shared Skin color roles.",
+      "defaults": {"mode": "off", "speed": 50, "density": 45, "strength": 70, "still": false},
+      "controlRanges": "Particle speed/density: 0–100. Background-strength control removed in R7.",
+      "legacyStrength": "Existing strength key/default 70 remains serialized for compatibility but is ignored by rendering.",
+      "renderingLayer": "Shared veil fully removed in R7 for static/star-moon/solid/particle/video. Preview and applied wallpaper retain their own authored colors/alpha. Off uses current theme canvas. Global transparency affects panels separately.",
+      "editor": "Bounded preview above scrolling controls in portrait, beside controls at >=720dp available width; fixed Apply/Cancel footer. Owner resize updates existing Editor bounds/draft/scroll rather than rebuilding them.",
+      "cropper": {
+        "aspect": "Actual owning-window screen ratio; pan/pinch, keyboard movement/zoom, Reset and rotation preserving crop center/relative zoom.",
+        "sourceDecode": "Async; longest edge 4096 and approximately 8MP bound, API24+ EXIF orientation handling.",
+        "targetOutputs": [[1440, 1920], [1920, 1440]],
+        "savedCropDisplayDecode": "R7 permits 4096px/~8MP, avoiding former 2048px secondary halving; legacy bj.png/jpg keeps its separate bound.",
+        "largeOutputLimit": "Aspect retained; longest edge 2560 and approximately 4MP maximum.",
+        "draft": "使用裁切 creates a private app-owned draft copy; only Apply commits it. Cancel removes unsaved copies; replacement cleanup is confined to the dedicated private image directory; originals remain unchanged.",
+        "evidenceBoundary": "Target output pixels verified by local native geometry tests, not by reading private VM JPEG metadata. VM pan/keyboard zoom/rotation observed; pinch implemented but not injected."
+      },
+      "controlTints": "Native SeekBar uses theme accent for thumb/progress and outline for track; energy-saving CheckBox uses accent checked/muted unchecked. Final VM tint evidence is cyan; not a hardware/all-theme guarantee.",
+      "video": "Platform MediaPlayer + TextureView, muted looping, centered crop. ACTION_OPEN_DOCUMENT requests video/*, OPENABLE and EXTRA_LOCAL_ONLY; content URI must be readable and persistent read access is requested when available.",
+      "draftAndGrants": "Native result Fragment carries draft/unused grant across picker/state restoration. Apply saves car_wallpaper_v1; Cancel releases new unused access and preserves previous saved URI/grant. Replacement/removal Apply releases old access when stored URI changes; Off may retain URI for reuse.",
+      "lifecycle": "Particles schedule bounded 33ms invalidation only while attached/active/visible and not still. Video resources are released on hidden/pause/detach/source change. Static mode stops repeated particle ticks or holds video playback.",
+      "fallback": "Native feedback and readable solid/theme-blended fallback for unavailable chooser, unreadable source, nonpersistent permission or decoder failure.",
+      "limits": "App-shell feature only; no measured frame-rate, universal image/video contrast, all-codec, power or vehicle-performance guarantee. Runtime engine/final phases and their narrower gesture/picker limits remain separate."
+    },
+    "layoutContracts": {
+      "genericComposition": "Protect compact interactive groups and content widgets, while a recognized dialog content panel still composes when its original listener consumes panel clicks. Unknown adapter rows retain structure. WRAP_CONTENT selectors are not elastic; retain positive-height local lists/plain-View geometry and synchronize elastic wrappers with original visibility.",
+      "functions": "fragment_cmd/v_ts is a measured footer below the elastic original grid, including after late text binding.",
+      "automation": "Wrapping compact horizontal header actions; item_laboratory uses an icon beside a wrapping description and retains original callbacks.",
+      "fileLocations": "item_root/v_pathName is a horizontal location row with complete visible label bounds, original colored artwork and aspect ratio; it is not a category or checkbox selector.",
+      "networkRows": "MT-style independent cloud/local panes remain side by side in both orientations with separate source/path, single-column flat file rows, states and bottom toolbars. Original thumbnail/icon/badge/name/metadata/selection Views and callbacks remain.",
+      "providerChoices": "Original TV list/adapter with native V7Grid; 1–4 columns determined by available width and font scale, wrapping horizontally while retaining original positions and Close.",
+      "qrLogin": "Original image/state/container contract, untinted FIT_CENTER bitmap inside bounded opaque-white square with 18dp quiet zone and fixed Close. Global transparency does not fade code/state surface. Layout evidence is not scan/authentication acceptance.",
+      "overlays": "Retain positive original dimensions; visible HiveProgressView keeps its original bounded 100dp square and supported accent color role.",
+      "emptyStates": "Show selection or directory-empty guidance only for an empty adapter without visible loading/error; choose the message from actual path state.",
+      "compactDialogs": "Use owning Activity bounds; wrap actual content with a bounded height, horizontal full-width choice rows and a 380dp cap for dialog_menu. The installer-mode menu and installed-app chooser are separate paths.",
+      "fullDialogs": "Explicit settings/shell/media/DIY and bounded file/form roles may receive the bounded full-dialog height; compact menus remain content-sized. Preserve original scroll viewports, fixed bottom actions and grouped settings hierarchy.",
+      "viewportRoles": "Distinguish fixed geometry, content-height selectors, bounded original ScrollView/NestedScrollView and genuine remaining-space content before reparenting. Preserve fixed actions and region-specific state layers; nonpositive height alone does not define a workspace.",
+      "mappingWorkspaces": "Float/DIY retain key-to-map columns; sidebar adds region-to-key-to-map. One shared remaining-height workspace sits below the command strip, with flexible map width and full original help afterward. Former decorative separator instances are retained outside content measurement.",
+      "actionGroups": "Wrap complete original action groups by measured width, including compact horizontal action-only groups; keep the title and main viewport distinct.",
+      "scrollForms": "Keep one original bounded scroll viewport, natural-height form content and fixed footer outside it. Preserve positive local-list heights and functional preview regions; no arbitrary hiding or collapse of plain Views.",
+      "formLabelsAndFooters": "Noninteractive labels align START. Supported v_lay_bottom groups with original return/yes controls retain original buttons, note inputs and clickable enable controls in one WrapLayout; note inputs have 160dp minimum width. The real door toggle/return/confirm footer stays outside the original scroll viewport.",
+      "mappingForms": "Log/key/broadcast/door forms retain original fields/local lists, composing each label, input and optional selector on a compact row. Five real log-check options use a responsive grid.",
+      "inlineTargets": "Set the inner standard LinearLayout minimum to 52dp as well as the outer original target, preventing real enable controls collapsing when ConstraintLayout ignores its own minimum.",
+      "fileMenus": "Keep original t1 action rows and APK-information Views through show-before-data, hidden information and late metadata. Hidden information reserves no blank panel; original callbacks/data remain authoritative.",
+      "downloadRegions": "Split file browsing from incoming links/tasks; measure actual six-command toolbars at natural row height, retaining original status/QR/history/help ownership and adapter-driven guidance.",
+      "editorHost": "CodeEditor keeps v_root as its direct late-content host and original top/bottom anchors. Only toolbar height is explicit; SurfaceView fixture checks do not execute the real editor.",
+      "sidebarPreview": "Preserve original sidebar-appearance preview coordinates and functional left/right/bottom regions.",
+      "help": "Keep full original mapping/help text without ellipsis or line-limit truncation; distinguish it from the short functions-version footer.",
+      "themeRail": "Center the existing theme TextView beneath its icon; the reported defect is text position. Mono/day brand mark uses rail foreground for contrast.",
+      "artwork": "Retain original colored app/control/storage/network raster artwork, colors and aspect ratio. The legacy theme pass identifies authored Icons by drawable type and recolors them to current ink on live theme changes regardless of View ID, including ID-less file-toolbar icons after warm-to-cyan switching. Tint known monochrome controls or authored Icons only. Icons supplies intrinsic 24x24 bounds for legacy ImageViews."
+    },
+    "evidence": {
+      "renderer": "Robolectric API 28 Native Graphics",
+      "moduleSource": "Original APK compiled binary XML and resource table",
+      "testSubstitutions": {
+        "TvRecyclerView/MyRecycleView": "AndroidX RecyclerView",
+        "HiveProgressView": "Original measurement, path and non-image drawing contract copied into a test-only static sample; complete runtime and animator lifecycle excluded.",
+        "MyTextView": "android.widget.TextView",
+        "AppCompatSeekBar": "android.widget.SeekBar"
+      },
+      "authoritativeFailures": {
+        "photosRoot": ".codex-attachments/8d3a5254-f4ce-42c3-ac20-1c860b3deb19",
+        "photos": ["1002686230.jpg", "1002686229.jpg", "1002686228.jpg", "1002686227.jpg", "1002686226.jpg"],
+        "review": ".impeccable/failure-review-r3.md",
+        "themeClarification": "Theme-button text position; no persistence rewrite is implied.",
+        "exteriorBlackBands": "Unattributed; photographs alone do not establish an app-window/inset defect."
+      },
+      "targetedRegressions": {
+        "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/R3RegressionTest.java",
+        "preparation": "car-ui/prepare_binding_tests.py",
+        "provenance": "car-ui/build/original-binding-test-provenance.json",
+        "rowBinders": "Original adapter row-binding bodies compiled with minimal test-only adapter/model plumbing; provenance records hashes and decompilation corrections.",
+        "renders": "car-ui/previews/regressions-r3",
+        "scope": "Bound-row geometry, footer separation, centered theme label, original callbacks/instances, preserved artwork, actual menu-window sizing and visible custom-loader bounds. Live-recolor assertions check visible current-ink pixels after warm-to-cyan switching and no filter on original service raster artwork. Fixture data and test counterparts remain."
+      },
+      "fixtureData": true,
+      "fixtureDataScope": "Robolectric captures only; the installed-VM evidence below exercises the original application runtime and VM data.",
+      "currentRevision": "R8",
+      "connectedEmulatorOrDevice": true,
+      "connectionScope": "R8 protected-build author/source UI and startup observed on Android 11/API30. This phase preserved pre-existing warm/day, 32% transparency, flow/mint and particles; no preference reset. Prior revision states remain historical.",
+      "vehicleHardwareValidated": false,
+      "runtimeValidation": {
+        "revision": "R3",
+        "applicability": "Historical bounded target-path validation of the exact R3 artifact; does not validate R4 or every original screen.",
+        "target": "User-specified test VM 192.168.1.18:10000",
+        "model": "G636",
+        "androidVersion": "11",
+        "apiLevel": 30,
+        "apkSha256": "ca7eac737e65e4afe55d3283c3e228f5672997b0a51622851a0b50603022eed2",
+        "installation": "adb install -r succeeded with data preserved; installed package SHA-256 matches the exact R3 artifact.",
+        "captureRoot": "car-ui/build/vm-validation",
+        "portrait": "1440x1920",
+        "landscape": "1920x1440 after system rotation",
+        "capturedPaths": {
+          "functions": "Version footer separated from the original grid.",
+          "automation": "Compact header actions and horizontal original bound rows in portrait and landscape.",
+          "files": "Named original storage rows and toolbar actions, loaded internal directories, and correct authored-icon recoloring on warm/day to cyan/night switching.",
+          "network": "Stacked/side-by-side panes and visibly bounded original Hive loader; no real network-account operation established.",
+          "settings": "Four-section hierarchy opened in the original runtime; no blanket settings/permission execution claim.",
+          "installerMenu": "Compact original four-choice menu, evidenced only by r3-installer-menu-only.png; installation execution remains unverified.",
+          "themes": "Centered theme label, actual picker in r3-theme-dialog-mono.png and r3-theme-dialog-landscape.png, warm/day to cyan/night and return to mono/day.",
+          "apps": "Personal app list and MT search with working IME; duplicate search results remain an open original business defect."
+        },
+        "knownBusinessIssue": "Original ha/o.java case 8 merges search_name with search_pack via addAll without deduplication; MT results duplicate. Unfixed.",
+        "logScope": "No FATAL EXCEPTION in the captured current-process PID 26126 log; not a guarantee against every runtime failure.",
+        "railRendering": "Original PNG pixels and crops confirm complete rail drawing. Apparent omission in a scaled viewer is not an APK defect.",
+        "laterFailure": "The floating-button orange-block failure subsequently reproduced in this installed R3, recorded in r3-float-before.png and r3-float-before-hierarchy.txt; earlier target-path successes do not establish other-page adaptation.",
+        "reviewPath": ".impeccable/vm-review-r3.md",
+        "unverified": "Car hardware, all original modules, real network-account/install/permission operations, vehicle insets, broader form/IME/lifecycle behavior, rotary/D-pad, TalkBack, drag/gestures, animation quality and performance."
+      },
+      "r4FailureBaseline": {
+        "photo": ".codex-attachments/b66f9e7b-6015-4e0f-bb4f-6e63b194a28a/778da6c1-98ba-4176-b20e-05a623541cce/1002686233.jpg",
+        "vmImage": "car-ui/build/vm-validation/r3-float-before.png",
+        "vmHierarchy": "car-ui/build/vm-validation/r3-float-before-hierarchy.txt",
+        "review": ".impeccable/failure-review-r4.md",
+        "failure": "Selector/key/map lists had zero height while thin separators consumed the content region as an orange block. Confirmed source/layout failure, distinct from the earlier scaled-viewer rail concern.",
+        "scope": "Six shared layout families; not visual or business acceptance of all 333 indexed layouts."
+      },
+      "r4TargetedRegressions": {
+        "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/R4RegressionTest.java",
+        "renders": "car-ui/previews/regressions-r4",
+        "source": "Original compiled binary XML with explicit test row layouts/data and native test counterparts; complete business controllers are not exercised.",
+        "families": ["related mapping lists", "selector and main list", "compact action groups and main content", "bounded scroll forms with fixed footers", "multiple content/status regions and editor hosts", "natural-height selector forms"],
+        "dynamicContent": "SurfaceView substitutes check host visibility and CodeEditor direct-root/top-bottom anchors, not real editor execution.",
+        "fontScale": "Representative sidebar-appearance form at 1.3; not all-page large-font acceptance.",
+        "finalTestLog": "car-ui/build/gradle-test-r4-final.log",
+        "testCompletion": {
+          "result": "SUCCESS",
+          "total": 31,
+          "failures": 0,
+          "errors": 0,
+          "groupCounts": [9, 8, 7, 7],
+          "buildDuration": "1m46s",
+          "compiledUiClasses": 62,
+          "scope": "Combined final local regression/fixture suite; not full-module or installed-runtime acceptance."
+        },
+        "dialogWindowMeasurement": "Decor measured using the owning Activity's actual bounds and final Window attributes.",
+        "formCaptures": ["dialog_add_intent-1440.png", "dialog_add_intent-1920.png"],
+        "review": ".impeccable/finish-review-r4.md",
+        "reviewBoundary": "Installed recapture required; source/fixture evidence is not runtime approval."
+      },
+      "r4RuntimeValidation": {
+        "atHandoff": "2026-11-04: team installation attempts were offline/timed out; no team R4 install at that handoff.",
+        "installed": true,
+        "installationSource": "Later user-installed R4, verified after VM reconnected; not a retroactive R4 runtime pass.",
+        "artifactName": "应用管家-全面适配测试-R4-20261104.apk",
+        "apkSha256": "e0ad467687277272d523e6569808194eb6ec6f0226771aca6febda03203ced83",
+        "attempts": "Historical handoff: device offline and connection timeout 10060. Subsequent user-installation identity was verified.",
+        "subsequentEvidence": "Ten new user runtime images exposed the named R5 integration/layout failures; local R4 test success did not close them."
+      },
+      "r5FailureBaseline": {
+        "request": "User explicitly requested a frosted dialog panel and dimmed owner while preserving themes and business widgets.",
+        "attachments": [".codex-attachments/d3bedf21-cff6-4e2f-b04c-948f6aa849b2", ".codex-attachments/f287549d-9968-47ee-af0e-7f7561b4e816"],
+        "review": ".impeccable/failure-review-r5.md",
+        "scope": "Ten named runtime images: real clickable modal integration, file-menu late binding, download toolbar height, empty network allocation and named form/task-context failures."
+      },
+      "r5TargetedRegressions": {
+        "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/R5RegressionTest.java",
+        "source": "Original binary XML and binding contracts with explicit test plumbing; real clickable-panel listener setup is modeled, not the complete original business lifecycle.",
+        "status": "Final local combined suite completed; representative contracts only.",
+        "testCompletion": {
+          "result": "SUCCESS",
+          "total": 39,
+          "groupCounts": [9, 8, 7, 7, 8],
+          "failures": 0,
+          "errors": 0,
+          "buildDuration": "2m8s",
+          "compiledUiClasses": 66,
+          "scope": "Combined local regression/fixture suite, including eight R5 tests; no USB-specific fixture and no full-business/runtime acceptance."
+        },
+        "usbBoundary": "Structural XML inspection only. No USB-specific fixture or runtime test; exercising the page requires changing an existing auto-click setting.",
+        "review": ".impeccable/finish-review-r5.md",
+        "boundary": "Board replacement/resize/detach and original dismiss callback, actual toolbar/menu/form geometry and bounded windows are local contracts; not full runtime/vehicle approval."
+      },
+      "r5RuntimeValidation": {
+        "applicability": "Historical exact R5 UI-path evidence; does not establish the R6 wallpaper feature.",
+        "intermediateInstallSucceeded": true,
+        "installMode": "Data-preserving install -r after verifying user-installed exact R4 hash.",
+        "finalArtifactName": "应用管家-弹窗与子页修复-R5-20261104.apk",
+        "finalApkSha256": "489a88d3a27106020124ff1582a1e1cd6a98d7a2668edf3bea00c2316eec30e8",
+        "finalArtifactBytes": 18927028,
+        "packaging": "Unchanged public certificate; v1/v2/v3 signatures and alignment verified; 2293 preserved payload entries matched.",
+        "finalInstallSucceeded": true,
+        "installedPackageHashMatched": true,
+        "runtimeReport": "car-ui/build/vm-r5/runtime-report.json",
+        "reportRecordedAtUtc": "2026-11-03T22:25:16.929275+00:00",
+        "target": "192.168.1.18:10000; G636, Android 11/API 30; 1440x1920 and 1920x1440",
+        "startupBoundary": "First explicit Home launch returned to Launcher; a second explicit Home launch reached PID 12749. Cold start is not accepted as fully verified; previous secondary-process service failures are not assigned to the current main-UI scope.",
+        "finalFacts": "Exact frozen artifact installed and hash-matched; bounded UI-path facts recorded in the runtime report.",
+        "finalCaptureScope": "22 release/ screenshots recorded against the exact final hash, with per-image hashes in the runtime report; intermediate filenames alone do not establish final identity.",
+        "uiChecks": {
+          "cleanModal": "Warm/day, mono/day and cyan/night; cyan rotation while open; dismissal leaves a clear owner.",
+          "ownedDialogs": "ThemePicker mono/cyan, ShortcutPicker and edit favorite show frosted panel/dim; no favorites changed.",
+          "fileMenu": "Existing directory with original actions visible, not invoked; asynchronous APK metadata runtime unverified.",
+          "download": "Empty-state page and all six commands visible in both orientations; no actual download executed.",
+          "log": "Main page nine actions/empty state; editor fields, five original options, four action types and save/delete visible; not saved.",
+          "door": "Upper fields, full lower help via scrolling, original fixed footer and open-dialog rotation/landscape; not saved.",
+          "nativeKey": "Original enable control readable; setting not changed.",
+          "broadcast": "Real event-broadcast Action, enable, add-condition/add-action/save/delete visible; not saved.",
+          "network": "Unselected remote pane compacts in portrait; local path remains LOADING. No loaded-local or real-account acceptance."
+        },
+        "windowDimEvidence": {
+          "runtime": "Actual DIM_BEHIND flag and bounded application Window frame.",
+          "numericAmounts": "0.46 day / 0.58 night proven by source/local Window tests; not read from the runtime text dump."
+        },
+        "mainUiErrors": {"pid": 12749, "filter": "CarUi:E AndroidRuntime:E", "entries": 0, "scope": "Captured main-process filter only, not all processes or complete runtime."},
+        "actionsNotPerformed": "No save, cleanup, delete, service change or favorite change.",
+        "restoredState": {"theme": "mono/day", "userRotation": 0, "accelerometerRotation": 0, "foreground": "ActivityHome"},
+        "unverified": ["USB fine-settings runtime and dedicated fixture", "loaded network list, remote account and real downloads", "asynchronous APK metadata runtime", "full IME/large-font/lifecycle coverage", "real vehicle, all modules, install/permissions/automation execution", "cold-start reliability, rotary/D-pad, TalkBack, gestures, animation quality and performance"],
+        "intermediateCaptures": "Captures associated with ac415b, including final-* filenames, are intermediate and must not count as final-build acceptance.",
+        "scope": "Partial runtime UI paths only; no full-business execution, real network/install/cleanup/mapping operation or car-hardware approval."
+      },
+      "r5Checkpoint": {
+        "artifactName": "应用管家_弹窗与子页修复_R5_源码与检查_20261104.zip",
+        "sha256": "4afbf58859aaa7f411a74b6caf86f3711fbb39098e2fb6b2d5d46d48bc10d5d4",
+        "bytes": 29778826,
+        "scope": "Frozen prior checkpoint; retains its 39-test/22-capture R5 boundaries and does not establish R6 behavior."
+      },
+      "r6EnginePhase": {
+        "artifactName": "应用管家-动态壁纸-R6-20261104.apk",
+        "apkSha256": "17bed211bdde26d7fdaa071e1e2da88db92ce8cf64f7621939633cb84793f2c4",
+        "bytes": 18939316,
+        "compiledUiClasses": 96,
+        "combinedTests": 44,
+        "testSuites": 6,
+        "result": "BUILD SUCCESSFUL",
+        "buildDuration": "1m56s",
+        "packaging": "Signing/alignment verified; 2293 preserved payload entries unchanged.",
+        "runtimeManifest": "car-ui/build/vm-r6/runtime-report.json:engine_phase",
+        "captureCount": 20,
+        "mediaEvidence": "car-ui/build/vm-r6/media-evidence.json",
+        "runtimeScope": "Six styles/colors and video selection/Cancel/Apply/rotation/background release/resume/static hold; evidence belongs only to the engine hash, not the final crop version."
+      },
+      "r6LocalValidation": {
+        "artifactName": "应用管家-壁纸中心-R6-20261104.apk",
+        "apkSha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+        "bytes": 18947508,
+        "compiledUiClasses": 114,
+        "test": "car-ui/src/test/java/com/yunpan/appmanage/carui/WallpaperTest.java",
+        "combinedTests": 49,
+        "groupCounts": [9, 8, 7, 7, 8, 10],
+        "testSuites": 6,
+        "failures": 0,
+        "errors": 0,
+        "result": "PASS",
+        "scope": "Combined local contracts/fixtures, including ten WallpaperTest cases; no all-module or complete-runtime acceptance."
+      },
+      "r6RuntimeValidation": {
+        "applicability": "Historical exact R6 engine/final scope; its veil and mono/day/off restoration are not current R7 behavior or reset instructions.",
+        "status": "Exact final package installed and VM SHA-256 matched; bounded final-path evidence recorded separately from engine phase.",
+        "runtimeReport": "car-ui/build/vm-r6/runtime-report.json",
+        "finalApkSha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+        "mainPid": 26338,
+        "target": "192.168.1.18:10000, Android 11/API30, 1440x1920 and 1920x1440",
+        "finalCaptureCount": 16,
+        "finalCaptureScope": "Only the runtime report's final_phase allowlist/hash manifest, not all files or engine-phase release/ captures.",
+        "checks": [
+          "Theme and original advanced-background actions open the same wallpaper center",
+          "Image selection, async decode, crop, preview, Apply and reopen show the private cropped result",
+          "Pan and keyboard zoom; owner rotation changes portrait/landscape crop ratio",
+          "Default star/moon restore; off/static/particles/video choices retained",
+          "Cyan particle, SeekBar and energy-saving CheckBox theme tints",
+          "Narrow final AVC video confirmation: own PID26338 frames 46 to 80, muted looping; cancel releases player"
+        ],
+        "mediaEvidence": "car-ui/build/vm-r6/media-evidence-final.json",
+        "filteredUiErrorLines": 0,
+        "errorScope": "Captured filtered main-UI lines only; not all processes or complete lifecycle.",
+        "restoredState": {"theme": "mono/day", "wallpaper": "off", "userRotation": 0, "accelerometerRotation": 0, "ownMediaClientPresent": false},
+        "cleanup": "Two self-created test source files removed; originals/user files not changed.",
+        "limitations": [
+          "DocumentsUI selection completed with keyboard; touch selection not accepted",
+          "Cropper pan/keyboard zoom/rotation observed; pinch implemented but not VM-injected",
+          "Exact crop-output pixel dimensions are local native-geometry evidence; private VM output JPEG metadata not read",
+          "Large outputs limited to 2560px/~4MP, source decode 4096px/~8MP, EXIF handling API24+",
+          "First explicit Home start returned Launcher; second warm Home succeeded, so cold start not fully accepted",
+          "App-only main shell; no system wallpaper or independent Surface replacement",
+          "Original network loading, USB fine settings, real automation/door/permissions/install/download business, complete IME/lifecycle and car hardware remain unverified"
+        ],
+        "scope": "Exact-final static/crop/entry and narrow video/particle UI confirmation. Engine evidence stays at 17bed/44; R5 and earlier captures do not establish this hash's behavior."
+      },
+      "r7LocalValidation": {
+        "artifactName": "应用管家-MT双窗与全局外观-R7-20261104.apk",
+        "apkSha256": "af4249ca5d37057bf0e84085e47089633e677714dda0ea7f65ad355ead0b505d",
+        "bytes": 18955700,
+        "compiledUiClasses": 135,
+        "combinedTests": 56,
+        "testSuites": 8,
+        "groupCounts": [9, 8, 7, 7, 8, 4, 10, 3],
+        "newTests": ["car-ui/src/test/java/com/yunpan/appmanage/carui/R7RegressionTest.java", "car-ui/src/test/java/com/yunpan/appmanage/carui/AppearanceTest.java"],
+        "failures": 0,
+        "errors": 0,
+        "duration": "2m4s",
+        "scope": "Combined local source/native-fixture contracts; original TV/business runtime and all devices are not inferred from totals."
+      },
+      "r7RuntimeValidation": {
+        "runtimeReport": "car-ui/build/vm-r7/runtime-report.json",
+        "installationReport": "car-ui/build/vm-r7/final-installation.json",
+        "installedApkSha256": "af4249ca5d37057bf0e84085e47089633e677714dda0ea7f65ad355ead0b505d",
+        "target": "192.168.1.18:10000, Android 11/API30; 1440x1920 and 1920x1440",
+        "mainPid": 9546,
+        "filteredUiErrorLines": 0,
+        "runtimeCaptureCount": 15,
+        "nativeFixtureCaptureCount": 12,
+        "captureScope": "Separate screenshots/native_previews allowlists and per-file hashes in the runtime report. Real QR captures are redacted; unredacted codes are excluded.",
+        "checks": [
+          "Independent side-by-side panes, separate paths/toolbars and late-arriving real local rows",
+          "Provider options wrap in three columns with original adapter positions and Close retained",
+          "Large QR request/read/cancel only; no scan or account confirmation",
+          "35% panel transparency, flow style3 and pink color4 draft/application visible across home/network/modal",
+          "Two border-region samples differ; visual sampling, not a GPU benchmark",
+          "Theme-center footer and combined-commit explanatory copy visible",
+          "Existing video visible without shared veil; static/original/solid/particle pixel checks are local, not repeated runtime paths"
+        ],
+        "appearanceApplied": {"transparency": 35, "style": 3, "color": 4},
+        "appearanceRestored": {"transparency": 0, "style": 0, "color": 0},
+        "userStatePreserved": {"theme": "warm/day", "wallpaper": "existing selected local video", "videoUriRecorded": false},
+        "rotationRestored": {"userRotation": 0, "accelerometerRotation": 0},
+        "restorationBoundary": "Do not restore historical R6 mono/day/off over the user's current selection.",
+        "startup": "First explicit launch returned Launcher; a later COLD Home start succeeded in 2985ms. One observation does not establish general cold-start reliability.",
+        "qrEvidence": "car-ui/build/vm-r7/qr-evidence.json",
+        "review": ".impeccable/finish-review-r7.md",
+        "limitations": [
+          "No QR phone-camera scan, confirmed account, authenticated directory or provider transfer acceptance",
+          "Local browsing may still load transiently or persistently; layout is not all-storage business acceptance",
+          "API17–25 animation-scale behavior is creation-time/source only; old devices not tested",
+          "33ms/hidden/closed/reduced-animation checks local; no vehicle GPU/power/long-run benchmark",
+          "R6 media lifecycle/SAF/crop paths remain historical rather than all repeated on R7",
+          "No full module/IME/font/device matrix, real automation/install/permissions/transfer or vehicle acceptance",
+          "Video URI, unredacted QR, raw logs, private settings and DocumentsUI captures are not archived"
+        ]
+      },
+      "r8LocalValidation": {
+        "combinedTests": 57,
+        "reportedResult": "All local tests passed.",
+        "newTest": "car-ui/src/test/java/com/yunpan/appmanage/carui/SourceInfoTest.java",
+        "newCaseScope": "Exact author/source/URL/channel strings, owner sizes 1440x1920 and 1920x1440, Close minimum height/reachability and dismissal.",
+        "posterIdentityScope": "Asset SHA matching is separate metadata evidence; the new test's exact-copy assertions concern attribution/link/channel text.",
+        "scope": "Local source/reference-size contract; no complete business, all-theme/font/hardware or link/QR-scan acceptance."
+      },
+      "r8BuildArtifacts": {
+        "compatible": {
+          "artifactName": "应用管家-作者与来源-兼容版-R8-20261104.apk",
+          "sha256": "b4c65ef0cc6a8b46cce8202a397a3fcc0c89d8785ec6bff7ca9fc7117187bdd5",
+          "bytes": 19058177
+        },
+        "protected": {
+          "artifactName": "应用管家-AES256GCM加固版-R8-20261104.apk",
+          "sha256": "e695ce0fe1fc6d929d2fc5e43366f450bad3b89e9c58a15b25407c859d7cffaf",
+          "bytes": 30351047
+        },
+        "identityScope": "Both local artifact hashes verified; supplied VM captures are associated with the protected hash in the R8 packet.",
+        "designScope": "Packaging variants are release-pipeline metadata, not a visual-system change, security assessment or whole-business claim."
+      },
+      "r8RuntimeValidation": {
+        "target": "Android 11/API30 VM; protected-build startup/source UI observed.",
+        "captureRoot": "car-ui/build/vm-r8",
+        "captures": [
+          {"path": "protected-source-portrait.png", "size": "1440x1920"},
+          {"path": "protected-source-landscape.png", "size": "1920x1440"},
+          {"path": "protected-theme-lower.png", "size": "1440x1920"},
+          {"path": "protected-home-source-footer.png", "size": "1440x1920"}
+        ],
+        "checks": "Four actual captures opened: full untinted public poster, exact separated attribution and visible fixed dialog actions in both orientations; theme-center lower section and home scroll-footer entry visible.",
+        "preferencesPreserved": {"theme": "warm/day", "transparency": 32, "borderStyle": "flow", "borderColor": "mint", "wallpaper": "particles", "changedByPhase": false},
+        "review": ".impeccable/finish-review-r8.md",
+        "reviewDisposition": "ship, scoped only to R8 author/source entries and public poster dialog.",
+        "limitations": "No broader R7, security, full-business, all-theme/font/hardware-focus/vehicle or community-link/QR-scan matrix accepted; protected startup on this API30 VM is not general device support."
+      },
+      "artifactStatus": "R8 ordinary attribution/poster extension has 57 reported passing local tests and four protected-build API30 captures, with scoped ship in finish-review-r8. Compatible/protected hashes stay separate. No broader runtime/security/vehicle approval asserted.",
+      "historicalInventory": "The earlier 326 resource-ID preservation/measurement checks did not prove usable production-bound layouts or close the photographed failures.",
+      "scope": "R8 adds source attribution/public poster within the incumbent world; tokens unchanged. Its 57-test/four-capture scoped verdict does not broaden historical R3–R7 acceptance or establish security, all-333-layout, full business/device/vehicle operation. Existing unrelated limits remain open.",
+      "tonalRamps": "Synthesized panel-only OKLCH metadata, not implemented additional Android color roles.",
+      "panelComponents": "HTML/CSS translations; never Android capture evidence."
+    }
+  },
+  "components": [
+    {
+      "name": "Warm Primary · Day",
+      "kind": "button",
+      "refersTo": "button-primary-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-primary-warm\">保存</button>",
+      "css": ".ds-primary-warm { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:26px; background:#E99657; color:#271B12; font:700 18px sans-serif; cursor:pointer; } .ds-primary-warm:hover { background:#E99657; } .ds-primary-warm:focus-visible { outline:2px solid #271B12; outline-offset:-2px; } .ds-primary-warm:active { background:#F1B37A; outline:2px solid #271B12; outline-offset:-2px; }"
+    },
+    {
+      "name": "Cyan Primary · Night",
+      "kind": "button",
+      "refersTo": "cyan-button-primary-night",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-primary-cyan\">保存</button>",
+      "css": ".ds-primary-cyan { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:10px; background:#61E4FF; color:#06212B; font:700 18px sans-serif; cursor:pointer; } .ds-primary-cyan:hover { background:#61E4FF; } .ds-primary-cyan:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-primary-cyan:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
+    },
+    {
+      "name": "Monochrome Primary · Day",
+      "kind": "button",
+      "refersTo": "mono-button-primary-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-primary-mono\">保存</button>",
+      "css": ".ds-primary-mono { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 18px; border:0; border-radius:16px; background:#24282D; color:#FFFFFF; font:700 18px sans-serif; cursor:pointer; } .ds-primary-mono:hover { background:#24282D; } .ds-primary-mono:focus-visible { outline:2px solid #FFFFFF; outline-offset:-2px; } .ds-primary-mono:active { background:#454C55; outline:2px solid #FFFFFF; outline-offset:-2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-secondary\">编辑</button>",
+      "css": ".ds-secondary { min-height:52px; padding:12px 18px; border:0; border-radius:26px; background:#EAE5DA; color:#20221D; font:700 18px sans-serif; cursor:pointer; } .ds-secondary:hover { background:#EAE5DA; } .ds-secondary:focus-visible { outline:2px solid #20221D; outline-offset:-2px; } .ds-secondary:active { background:#FFFEFA; outline:2px solid #20221D; outline-offset:-2px; }"
+    },
+    {
+      "name": "Native Field",
+      "kind": "input",
+      "refersTo": "field-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<input class=\"ds-field\" type=\"text\" aria-label=\"入口名称\" placeholder=\"例如：导航回家\">",
+      "css": ".ds-field { width:100%; min-height:54px; box-sizing:border-box; padding:10px 18px; border:0; border-radius:18px; background:#FFFEFA; color:#20221D; font:400 19px sans-serif; } .ds-field::placeholder { color:#66695F; opacity:1; } .ds-field:hover { background:#FFFEFA; } .ds-field:focus-visible, .ds-field:active { outline:2px solid #20221D; outline-offset:-2px; }"
+    },
+    {
+      "name": "Selected Rail Destination",
+      "kind": "nav",
+      "refersTo": "navigation-selected-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-rail\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/></svg><span>常用</span></button>",
+      "css": ".ds-rail { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; width:72px; min-height:76px; padding:12px 0; border:0; border-radius:28px; background:#E99657; color:#271B12; font:700 14px sans-serif; cursor:pointer; } .ds-rail svg { width:25px; height:25px; } .ds-rail:hover { background:#E99657; } .ds-rail:focus-visible { outline:2px solid #271B12; outline-offset:-2px; } .ds-rail:active { background:#F1B37A; outline:2px solid #271B12; outline-offset:-2px; }"
+    },
+    {
+      "name": "Favorite Tile",
+      "kind": "card",
+      "refersTo": "favorite-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" class=\"ds-favorite\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/></svg><span class=\"ds-favorite-name\">应用管理</span><span class=\"ds-favorite-kind\">内置功能</span></button>",
+      "css": ".ds-favorite { display:flex; flex-direction:column; align-items:flex-start; width:278px; min-height:146px; box-sizing:border-box; padding:18px 20px; border:0; border-radius:26px; background:#FFFEFA; color:#20221D; text-align:left; font-family:sans-serif; cursor:pointer; } .ds-favorite svg { width:36px; height:36px; } .ds-favorite-name { margin-top:15px; margin-bottom:5px; font-size:21px; font-weight:700; } .ds-favorite-kind { color:#66695F; font-size:14px; } .ds-favorite:hover { background:#FFFEFA; } .ds-favorite:focus-visible { outline:2px solid #20221D; outline-offset:-2px; } .ds-favorite:active { background:#EAE5DA; outline:2px solid #20221D; outline-offset:-2px; }"
+    },
+    {
+      "name": "Checked Legacy Row",
+      "kind": "custom",
+      "refersTo": "legacy-check-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot. Production reads original bound model state; this static sample demonstrates the selected role.",
+      "html": "<button type=\"button\" role=\"checkbox\" aria-checked=\"true\" class=\"ds-check\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\"/><path d=\"m7 12 4 4 6-8\"/></svg><span>安装时为应用授予运行时权限</span></button>",
+      "css": ".ds-check { display:flex; align-items:center; gap:12px; min-height:52px; padding:14px; border:0; border-radius:14px; background:#EAE5DA; color:#20221D; text-align:left; font:400 17px sans-serif; cursor:pointer; } .ds-check svg { flex:none; width:24px; height:24px; color:#20221D; } .ds-check:hover { background:#EAE5DA; } .ds-check:focus-visible, .ds-check:active { outline:2px solid #20221D; outline-offset:-2px; }"
+    },
+    {
+      "name": "Cyan Category Chip",
+      "kind": "chip",
+      "refersTo": "cyan-chip-selected-night",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot.",
+      "html": "<button type=\"button\" aria-pressed=\"true\" class=\"ds-chip\">全部应用</button>",
+      "css": ".ds-chip { min-height:48px; margin-right:8px; padding:8px 14px; border:0; border-radius:10px; background:#61E4FF; color:#06212B; white-space:nowrap; font:400 17px sans-serif; cursor:pointer; } .ds-chip:hover { background:#61E4FF; } .ds-chip:focus-visible { outline:2px solid #06212B; outline-offset:-2px; } .ds-chip:active { background:#A5F2FF; outline:2px solid #06212B; outline-offset:-2px; }"
+    },
+    {
+      "name": "Theme Choices",
+      "kind": "custom",
+      "refersTo": "theme-choice-mono-day",
+      "description": "Panel-only CSS translation at 1 CSS px per native dp/sp; shipping UI is Android Views. Native focus/pressed behavior is immediate; this is not an Android screenshot. Source rows use selected outline/current marker plus explicit focus and pressed drawables with a 3dp preview-accent stroke. Browser translation does not verify hardware or D-pad traversal.",
+      "html": "<div class=\"ds-theme-list\"><button type=\"button\" class=\"ds-theme-warm\">暖橙 · 奶油</button><button type=\"button\" class=\"ds-theme-cyan\">冰蓝 · 荧光科技</button><button type=\"button\" class=\"ds-theme-mono\" aria-pressed=\"true\">黑白 · 墨镜阴影 · 当前</button></div>",
+      "css": ".ds-theme-list { display:flex; flex-direction:column; gap:12px; font-family:sans-serif; } .ds-theme-list button { min-height:86px; padding:16px 18px; text-align:left; font:700 21px sans-serif; cursor:pointer; } .ds-theme-warm { border:1px solid #D6D3C7; border-radius:16px; background:#F4F1EA; color:#20221D; } .ds-theme-cyan { border:1px solid #366579; border-radius:8px; background:#07121D; color:#E8FAFF; } .ds-theme-mono { border:3px solid #24282D; border-radius:16px; background:#EDEFF1; color:#17191D; } .ds-theme-list button:hover { opacity:1; } .ds-theme-warm:focus-visible, .ds-theme-warm:active { outline:3px solid #E99657; outline-offset:-3px; } .ds-theme-cyan:focus-visible, .ds-theme-cyan:active { outline:3px solid #61E4FF; outline-offset:-3px; } .ds-theme-mono:focus-visible, .ds-theme-mono:active { outline:3px solid #24282D; outline-offset:-3px; } .ds-theme-warm:active { background:#EAE5DA; } .ds-theme-cyan:active { background:#1A3444; } .ds-theme-mono:active { background:#DDE1E5; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "个人控制台 / Personal Control Console",
+    "overview": "A practical personal console for Chinese car-display users. The original reference establishes the warm orange and cream identity. The user has expanded that approved world to three selectable expressions: 暖橙 · 奶油, 冰蓝 · 荧光科技 and 黑白 · 墨镜阴影. They share readable Chinese system type, persistent dark navigation, explicit selection and the same real application workflows.\n\nWarm keeps broad, rounded surfaces; cyan uses cool blue panels, bright selection and tighter outlined corners; monochrome uses neutral contrast, restrained corners and native shadow on app/favorite cards. Original business widgets remain the functional authority. Optional static/Canvas/video wallpaper keeps its own colors behind the application main shell; shared panel transparency and selectable borders are separate appearance controls. Shipping UI is native Java Views and Android drawables.",
+    "keyCharacteristics": [
+      "Three complete, manually selected day/night palettes with paired foregrounds.",
+      "A persistent dark rail and clear labeled routes to real tools.",
+      "Role-specific app cards, category chips, checkbox rows, fields and wrapping actions.",
+      "Actual installed-app icons alongside the shared authored line-icon family.",
+      "Editable favorites with explicit add, rename, remove, move and recovery controls.",
+      "Optional app-shell static/particle/video wallpaper with preview, crop, Apply and Cancel.",
+      "Shared panel transparency and optional borders that preserve foreground and wallpaper opacity."
+    ],
+    "rules": [
+      {
+        "name": "The Paired States Rule",
+        "body": "Resolve fill, foreground, icon and focus stroke from the same theme and mode. Primary controls keep their on-accent foreground when pressed; neutral controls keep ink on surface-family fills.",
+        "section": "colors"
+      },
+      {
+        "name": "The Native Units Rule",
+        "body": "Keep geometry in dp, text in sp, and reflow tied to actual available native bounds. Reference capture pixels are not a fixed layout canvas.",
+        "section": "layout"
+      },
+      {
+        "name": "The Bound Content Rule",
+        "body": "Use each production layout's real IDs and row-binding contract. Verify visible labels inside ancestor bounds, footer separation, content-sized menus and visible custom-loader bounds; successful inflation and measurement alone are insufficient.",
+        "section": "layout"
+      },
+      {
+        "name": "The Viewport Roles Rule",
+        "body": "Distinguish fixed geometry, content-height selectors, bounded scroll viewports and actual remaining-space content before recomposing a parent. Preserve fixed actions and region-specific state layers; never infer a usable workspace from resource IDs or nonpositive height alone.",
+        "section": "layout"
+      },
+      {
+        "name": "The Modal Layers Rule",
+        "body": "Keep the frosted panel, sharp interactive content and native owner dim as separate roles. Refresh and release the in-memory sample at bounded lifecycle events, retain original close/dismiss callbacks, and apply the configured panel opacity once to the fallback or sampled material.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Surface Opacity Rule",
+        "body": "Apply transparency to shared panel material only, preserve foreground and wallpaper opacity, and keep QR quiet zones opaque. Use one compositing budget for the frosted snapshot and tonal fill.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Appearance Commit Rule",
+        "body": "Keep draft appearance changes local until Apply, a theme choice or a day/night choice commits them together. State that combined action visibly and keep Cancel unsaved.",
+        "section": "components"
+      },
+      {
+        "name": "The Wallpaper Draft Rule",
+        "body": "Keep preview separate from saved wallpaper, render both without a shared veil, and commit only on Apply. Preserve the previous video URI grant on Cancel, release unused/replaced grants at their proper boundary, discard unsaved private image copies without changing originals, and stop rendering resources when inactive.",
+        "section": "components"
+      },
+      {
+        "name": "The Original Widgets Rule",
+        "body": "Recompose original controls without replacing their IDs, instances, adapters, business data or click handlers. ResourceIndex supplies original resource identity, composition strategy and XML order; role styling runs after original binding.",
+        "section": "components"
+      },
+      {
+        "name": "The Semantic Composition Rule",
+        "body": "Preserve compact clickable controls and unknown adapter-row structure. Compose known rows by their real label/icon roles, retain original focus/key callbacks, and keep action names visible for touch use.",
+        "section": "components"
+      },
+      {
+        "name": "The Visible Alternatives Rule",
+        "body": "Keep editing, adding and recovery understandable through labels and explicit controls. Gesture support supplements those paths rather than becoming the only way to manage favorites.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve all three user-approved themes and their separately authored day/night roles.",
+      "Do resolve foregrounds, pressed fills, icons and focus strokes as a complete scheme.",
+      "Do adapt native layouts to measured available width and let forms scroll vertically.",
+      "Do distinguish app cards, category chips, checkbox rows, fields and toolbar actions by native role.",
+      "Do preserve original widget instances, IDs, adapters, listeners and real business content.",
+      "Do verify production row labels, artwork, footers, menus and visible loading geometry against the real binding contract.",
+      "Do preserve fixed geometry, selector roles, original scroll viewports, fixed footers and full help text across representative layout families.",
+      "Do keep dialog content sharp over the bounded in-memory frosted panel and native dim, with a readable fallback and preserved callbacks.",
+      "Do preserve wallpaper colors and foreground opacity while applying panel transparency separately, with explicit draft commits and lifecycle-bound rendering.",
+      "Do retain actual app icons, the shared line family and labeled favorite-management alternatives.",
+      "Do label Robolectric binary-XML renders, test substitutions and device/runtime gaps accurately."
+    ],
+    "donts": [
+      "Don't mix a foreground from one theme with a fill from another or invent automatic theme synchronization.",
+      "Don't extend the dialog sampling blur into page-wide effects or monochrome card elevation to every control.",
+      "Don't force old fixed-column arrangements or rigid horizontal forms into narrower native viewports.",
+      "Don't flatten settings into an unstructured vertical stack; preserve grouped hierarchy and responsive use of space.",
+      "Don't replace original controls with visual mocks or fabricate permission, network or vehicle state.",
+      "Don't flatten compact actions or unknown adapter rows, tint all legacy artwork, or give every dialog the same fixed height.",
+      "Don't assume every focusable view has a visible state drawable or every legacy target meets the minimum.",
+      "Don't treat preserved resource IDs and successful measurement as proof of visible, usable bound content.",
+      "Don't treat WRAP_CONTENT or every zero-height list as elastic, or reuse one revision's VM captures to accept a later APK.",
+      "Don't treat a wallpaper preview as saved state, discard the prior URI grant on Cancel, or equate app-shell backgrounds with system wallpaper.",
+      "Don't treat panel HTML/CSS, earlier finish verdicts or fixture previews as current full-runtime or device approval."
+    ]
+  }
+}

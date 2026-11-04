@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/tp_rename1"
+        android:id="@+id/menu_wp_rename"
+        android:title="改名"/>
+    <item
+        android:icon="@drawable/tp_rename3"
+        android:id="@+id/menu_wp_modify"
+        android:title="修改"/>
+    <item
+        android:icon="@drawable/delete1"
+        android:id="@+id/menu_wp_delete"
+        android:title="删除"/>
+</menu>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:background="@drawable/focus_app_list_piliang"
+    android:padding="@dimen/dp_1"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/v_ico"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        android:layout_margin="@dimen/dp_3"
+        android:src="@drawable/apk"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
+    <TextView
+        android:textSize="@dimen/sp_28"
+        android:textColor="@android:color/white"
+        android:ellipsize="marquee"
+        android:id="@+id/v_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Name"
+        android:singleLine="true"
+        android:layout_weight="2"
+        android:marqueeRepeatLimit="marquee_forever"/>
+    <TextView
+        android:textSize="@dimen/sp_28"
+        android:textColor="@android:color/white"
+        android:ellipsize="marquee"
+        android:id="@+id/v_zt"
+        android:background="@drawable/focus_app_list_piliang"
+        android:padding="@dimen/dp_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="待卸载"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:layout_marginEnd="@dimen/dp_5"/>
+</LinearLayout>

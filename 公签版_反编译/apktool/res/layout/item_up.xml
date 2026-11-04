@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@drawable/shape_user_focus" android:padding="@dimen/dp_2" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="@dimen/dp_40"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_width="@dimen/dp_35" android:layout_height="@dimen/dp_35" android:src="@drawable/upload" android:layout_marginEnd="@dimen/dp_6" />
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="@dimen/sp_14" android:textColor="#fffff000" android:ellipsize="marquee" android:gravity="center_vertical" android:id="@id/v_name" android:layout_width="@dimen/dp_260" android:layout_height="fill_parent" android:text="电视剧_v33.333.333.apk" android:singleLine="true" android:layout_weight="2.0" />
+        <TextView android:textSize="@dimen/sp_12" android:textColor="@color/color_9" android:gravity="center_vertical" android:id="@id/v_progress" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="上传中：80%" android:singleLine="true" android:layout_weight="2.0" />
+    </LinearLayout>
+</LinearLayout>

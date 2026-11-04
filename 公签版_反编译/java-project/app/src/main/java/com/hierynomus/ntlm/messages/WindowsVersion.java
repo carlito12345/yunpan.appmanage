@@ -1,0 +1,113 @@
+package com.hierynomus.ntlm.messages;
+
+import com.hierynomus.protocol.commons.EnumWithValue;
+import com.hierynomus.protocol.commons.buffer.Buffer;
+import j$.util.Objects;
+
+/* loaded from: classes.dex */
+public class WindowsVersion {
+    private ProductMajorVersion majorVersion;
+    private ProductMinorVersion minorVersion;
+    private NtlmRevisionCurrent ntlmRevision;
+    private int productBuild;
+
+    public enum NtlmRevisionCurrent implements EnumWithValue<NtlmRevisionCurrent> {
+        NTLMSSP_REVISION_W2K3(15);
+
+        private long value;
+
+        NtlmRevisionCurrent(int i10) {
+            this.value = i10;
+        }
+
+        @Override // com.hierynomus.protocol.commons.EnumWithValue
+        public long getValue() {
+            return this.value;
+        }
+    }
+
+    public enum ProductMajorVersion implements EnumWithValue<ProductMajorVersion> {
+        WINDOWS_MAJOR_VERSION_5(5),
+        WINDOWS_MAJOR_VERSION_6(6),
+        WINDOWS_MAJOR_VERSION_10(10);
+
+        private long value;
+
+        ProductMajorVersion(int i10) {
+            this.value = i10;
+        }
+
+        @Override // com.hierynomus.protocol.commons.EnumWithValue
+        public long getValue() {
+            return this.value;
+        }
+    }
+
+    public enum ProductMinorVersion implements EnumWithValue<ProductMinorVersion> {
+        WINDOWS_MINOR_VERSION_0(0),
+        WINDOWS_MINOR_VERSION_1(1),
+        WINDOWS_MINOR_VERSION_2(2),
+        WINDOWS_MINOR_VERSION_3(3);
+
+        private long value;
+
+        ProductMinorVersion(int i10) {
+            this.value = i10;
+        }
+
+        @Override // com.hierynomus.protocol.commons.EnumWithValue
+        public long getValue() {
+            return this.value;
+        }
+    }
+
+    public WindowsVersion(ProductMajorVersion productMajorVersion, ProductMinorVersion productMinorVersion, int i10, NtlmRevisionCurrent ntlmRevisionCurrent) {
+        this.majorVersion = productMajorVersion;
+        this.minorVersion = productMinorVersion;
+        this.productBuild = i10;
+        this.ntlmRevision = ntlmRevisionCurrent;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        WindowsVersion windowsVersion = (WindowsVersion) obj;
+        return this.productBuild == windowsVersion.productBuild && this.majorVersion == windowsVersion.majorVersion && this.minorVersion == windowsVersion.minorVersion && this.ntlmRevision == windowsVersion.ntlmRevision;
+    }
+
+    public NtlmRevisionCurrent getNtlmRevision() {
+        return this.ntlmRevision;
+    }
+
+    public int hashCode() {
+        return Objects.hash(this.majorVersion, this.minorVersion, Integer.valueOf(this.productBuild), this.ntlmRevision);
+    }
+
+    public WindowsVersion readFrom(Buffer.PlainBuffer plainBuffer) throws Buffer.BufferException {
+        this.majorVersion = (ProductMajorVersion) EnumWithValue.EnumUtils.valueOf(plainBuffer.readByte(), ProductMajorVersion.class, null);
+        this.minorVersion = (ProductMinorVersion) EnumWithValue.EnumUtils.valueOf(plainBuffer.readByte(), ProductMinorVersion.class, null);
+        this.productBuild = plainBuffer.readUInt16();
+        plainBuffer.skip(3);
+        this.ntlmRevision = (NtlmRevisionCurrent) EnumWithValue.EnumUtils.valueOf(plainBuffer.readByte(), NtlmRevisionCurrent.class, null);
+        return this;
+    }
+
+    public String toString() {
+        return String.format("WindowsVersion[%s, %s, %d, %s]", this.majorVersion, this.minorVersion, Integer.valueOf(this.productBuild), this.ntlmRevision);
+    }
+
+    public void writeTo(Buffer.PlainBuffer plainBuffer) {
+        plainBuffer.putByte((byte) this.majorVersion.value);
+        plainBuffer.putByte((byte) this.minorVersion.value);
+        plainBuffer.putUInt16(this.productBuild);
+        plainBuffer.putRawBytes(new byte[]{0, 0, 0});
+        plainBuffer.putByte((byte) this.ntlmRevision.getValue());
+    }
+
+    public WindowsVersion() {
+    }
+}

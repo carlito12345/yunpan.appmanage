@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/wu_focus"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/sp_12"
+        android:textColor="#ffffff"
+        android:id="@+id/v_name"
+        android:layout_width="@dimen/dp_66"
+        android:layout_height="wrap_content"
+        android:text="最后更改："
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textSize="@dimen/sp_10"
+        android:textColor="@color/btn_text_color1"
+        android:id="@+id/v_value"
+        android:background="@drawable/bg_btn5"
+        android:padding="@dimen/dp_4"
+        android:duplicateParentState="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="应用名"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/v_modify"
+        app:layout_constraintStart_toEndOf="@+id/v_name"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textSize="@dimen/sp_10"
+        android:textColor="#e3416b"
+        android:layout_gravity="center"
+        android:id="@+id/v_modify"
+        android:background="@drawable/bg_btn5"
+        android:padding="@dimen/dp_4"
+        android:duplicateParentState="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改&gt;&gt;"
+        android:layout_marginEnd="@dimen/dp_6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

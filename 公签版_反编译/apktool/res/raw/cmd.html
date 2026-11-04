@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta
+                name="wechat-enable-text-zoom-em"
+                content="true">
+        <title>应用管家</title>
+        <meta
+                name="layoutmode"
+                content="standard">
+        <link
+                rel="stylesheet"
+                type="text/css"
+                href="ui.css">
+    </head>
+
+    <body>
+        <div class="div1" style="margin-top: 50px;text-align: center;">
+            <input
+                    id="api_cmd"
+                    class="input_url"
+                    type="text"
+                    value=""
+                    style="margin-top: 20px; margin-left: auto; margin-right: auto; width:98%; height:50px;"
+                    placeholder="请输入命令" />
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <button
+                    style="width:200px;height:70px;"
+                    onclick="apiCmd(0); return false;"
+                    class="btn_api">执行本机命令
+            </button>
+
+            <button
+                    style="width:200px;height:70px;"
+                    onclick="apiCmd(1); return false;"
+                    class="btn_api">执行adb命令
+            </button>
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <p>输入要执行的命令,无需输入前缀(adb shell)，如果你是已授权root的，点击Linux shell即可，如果是连接adb的则点击adb shell</p>
+        </div>
+
+        <div class="div1" style="margin-top: 50px;text-align: center;">
+            <textarea
+                    id="input_copy"
+                    class="input_url"
+                    style="margin-top: 20px; margin-left: auto; margin-right: auto; width:98%; height:50px;"
+                    placeholder="在这里可以输入要复制的内容，然后点击复制，即可将内容复制到对方设备的剪切板"></textarea>
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <button
+                    style="width:200px;height:70px;"
+                    onclick="apiCopy(2); return false;"
+                    class="btn_api">复制内容到剪切板
+            </button>
+        </div>
+
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            function apiCmd(mode) {
+                    $.post('/cmd',{
+                    shareUrl : mode+$("#api_cmd").val()
+                    }, function (res) {
+                        warnToast('已发送');
+                    }).fail(function () {
+                        warnToast('发送失败');
+                    });
+            }
+            function apiCopy(mode) {
+                    $.post('/cmd',{
+                    shareUrl : mode+$("#input_copy").val()
+                    }, function (res) {
+                        warnToast('已发送');
+                    }).fail(function () {
+                        warnToast('发送失败');
+                    });
+            }
+        </script>
+    </body>
+
+</html>

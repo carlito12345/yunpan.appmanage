@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_jh_1"
+        android:title="激活shizuku"/>
+    <item
+        android:id="@+id/menu_jh_2"
+        android:title="激活dhizuku"/>
+    <item
+        android:id="@+id/menu_jh_3"
+        android:title="激活权限狗"/>
+</menu>

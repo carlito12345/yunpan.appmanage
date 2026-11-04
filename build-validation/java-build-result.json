@@ -1,0 +1,8 @@
+{
+  "compiler": "javac 17.0.20.1",
+  "source_files": 12072,
+  "release": 8,
+  "android_platform": 36,
+  "exit_code": 1,
+  "note": "Direct compiler validation of exported Java; not an Android Gradle build."
+}

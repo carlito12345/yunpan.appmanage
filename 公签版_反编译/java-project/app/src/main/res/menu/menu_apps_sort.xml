@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu0"
+        android:title="不排序"/>
+    <item
+        android:id="@+id/menu1"
+        android:title="应用名(0&gt;9&gt;a&gt;z&gt;A&gt;Z)"/>
+    <item
+        android:id="@+id/menu2"
+        android:title="应用名(Z&gt;A&gt;z&gt;a&gt;9&gt;0)"/>
+</menu>

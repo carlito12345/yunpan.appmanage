@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/v_root" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="@dimen/dp_16">
+        <com.owen.tvrecyclerview.widget.TvRecyclerView android:scrollbarThumbVertical="@drawable/scrollbar1" android:id="@id/v_list_app" android:background="#00000000" android:padding="@dimen/dp_10" android:scrollbars="vertical" android:clipChildren="false" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" app:tv_horizontalSpacingWithMargins="@dimen/dp_20" app:tv_selectedItemIsCentered="true" app:tv_verticalSpacingWithMargins="@dimen/dp_20" />
+        <TextView android:textSize="@dimen/sp_14" android:textColor="@color/color_6" android:padding="@dimen/dp_20" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/activity_start_ts1" android:layout_weight="1.0" />
+    </LinearLayout>
+    <TextView android:textSize="@dimen/sp_16" android:textColor="@color/button" android:gravity="center" android:layout_gravity="end|bottom|center" android:id="@id/v_btn_return" android:background="@drawable/background_item_btn_white" android:duplicateParentState="true" android:layout_width="@dimen/dp_120" android:layout_height="@dimen/dp_60" android:layout_marginBottom="@dimen/dp_80" android:text="返回" android:layout_marginEnd="@dimen/dp_80" />
+    <ProgressBar android:layout_gravity="center" android:id="@id/v_loading" android:focusable="false" android:layout_width="@dimen/dp_130" android:layout_height="@dimen/dp_130" android:indeterminateOnly="true" android:indeterminateDrawable="@drawable/anim_loading" android:indeterminateBehavior="repeat" />
+</FrameLayout>

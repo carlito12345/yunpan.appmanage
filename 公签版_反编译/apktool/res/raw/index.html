@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+	<meta name="wechat-enable-text-zoom-em" content="true">
+	<title>文件互传</title>
+	<meta name="layoutmode" content="standard">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="ui.css">
+</head>
+
+<body>
+
+	<input type="file" id="file_uploader" style="display:none;" onchange="uploadTip()" multiple />
+
+	<div class="button-sp-area" style="margin: 20px;">
+		<a href="javascript:void(0)" style="width: 145px;height: 55px; margin:5px; background-color: #FFFFFF; text-align: center; font-size: 26px;" role="button"
+				class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea"
+				href="javascript:void(0)" onclick="uploadFile()">传文件</a>
+
+		<a href="javascript:void(0)" style="width: 145px;height: 55px; margin:5px; background-color: #FFFFFF; text-align: center; font-size: 26px;" role="button"
+				class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea"
+				href="javascript:void(0)" onclick="installApk()">装应用</a>
+	</div>
+
+	<p style="margin-top: 10px; margin-left: 20px; ">点击文件即可下载文件到本地</p>
+	<p id="file_path" style="margin-top: 10px; margin-left: 20px; ">当前位置：<a href="javascript:void(0)" onclick="listFile('',false)">内部存储</a> > <a href="javascript:void(0)" onclick="listFile('Download',false)">Download</a></p>
+	<div class="weui-cells" id="file_list"></div>
+
+	<div role="dialog" aria-hidden="true" aria-modal="true" id="uploadTip" style="display: none;">
+		<div class="weui-mask"></div>
+		<div class="weui-dialog">
+			<div class="weui-dialog__hd"><strong class="weui-dialog__title" id="uploadTipTitle">确认上传?</strong></div>
+			<div class="weui-dialog__bd" id="uploadTipContent"></div>
+			<div class="weui-dialog__ft">
+				<a role="button" href="javascript:void(0)" onclick="doUpload(0)"
+					class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+				<a role="button" href="javascript:void(0)" onclick="doUpload(1)"
+					class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+			</div>
+		</div>
+	</div>
+
+	<div role="alert" id="warnToast" style="display: none;">
+		<div class="weui-mask_transparent"></div>
+		<div class="weui-toast">
+			<i class="weui-icon-warn weui-icon_toast"></i>
+			<p class="weui-toast__content" id="warnToastContent"></p>
+		</div>
+	</div>
+
+	<div role="alert" id="loadingToast" style="display: none;">
+		<div class="weui-mask_transparent"></div>
+		<div class="weui-toast">
+			<span class="weui-primary-loading weui-icon_toast">
+				<span class="weui-primary-loading__dot"></span>
+			</span>
+			<p class="weui-toast__content">加载中</p>
+		</div>
+	</div>
+	<div role="alert" id="uploadingToast" style="display: none;">
+		<div class="weui-mask_transparent"></div>
+		<div class="weui-toast">
+			<span class="weui-primary-loading weui-icon_toast">
+				<span class="weui-primary-loading__dot"></span>
+			</span>
+			<p class="weui-toast__content">上传中</p>
+			<span id="progress"></span>
+		</div>
+	</div>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

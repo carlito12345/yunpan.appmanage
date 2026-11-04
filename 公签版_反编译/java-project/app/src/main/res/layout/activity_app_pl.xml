@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/v_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.owen.tvrecyclerview.widget.TvRecyclerView
+        android:id="@+id/v_list_gn"
+        android:paddingTop="@dimen/dp_50"
+        android:paddingBottom="@dimen/dp_50"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/dp_30"
+        android:paddingEnd="@dimen/dp_25"
+        app:tv_horizontalSpacingWithMargins="@dimen/dp_20"
+        app:tv_selectedItemIsCentered="true"
+        app:tv_verticalSpacingWithMargins="@dimen/dp_20"/>
+    <com.owen.tvrecyclerview.widget.TvRecyclerView
+        android:id="@+id/v_list_app"
+        android:paddingTop="@dimen/dp_30"
+        android:paddingBottom="@dimen/dp_30"
+        android:scrollbars="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/dp_22"
+        android:paddingEnd="@dimen/dp_30"
+        app:tv_horizontalSpacingWithMargins="@dimen/dp_20"
+        app:tv_selectedItemIsCentered="true"
+        app:tv_verticalSpacingWithMargins="@dimen/dp_20"/>
+</LinearLayout>

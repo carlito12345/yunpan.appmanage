@@ -1,0 +1,29 @@
+{
+  "revision": "R8",
+  "compatible_apk_sha256": "b4c65ef0cc6a8b46cce8202a397a3fcc0c89d8785ec6bff7ca9fc7117187bdd5",
+  "protected_apk_sha256": "e695ce0fe1fc6d929d2fc5e43366f450bad3b89e9c58a15b25407c859d7cffaf",
+  "ui_classes": 141,
+  "tests": 57,
+  "ui_java_sources": {
+    "src/main/java/com/yunpan/appmanage/carui/Appearance.java": "2e0ac771e7bb1b1d18b0e19723fa811ed5382c68cc03546d2667280253c7ce80",
+    "src/main/java/com/yunpan/appmanage/carui/Bridge.java": "809468c6f18a1565d8f888ca93507ac2e5a1dbf8f231b5675771bdeb38977c6d",
+    "src/main/java/com/yunpan/appmanage/carui/CarHome.java": "6fa16ecf086b839c4d4cbb252f7c71f1cc16d7140ac0f24b48d94ea7ce75b3fd",
+    "src/main/java/com/yunpan/appmanage/carui/CarUi.java": "a2b7b0800300d3667b1702869f21b12b39965df12090c265280c94dcb4abcdaa",
+    "src/main/java/com/yunpan/appmanage/carui/Favorites.java": "f8b5046f71c4489fad6c9ba0eca58343903a44e1975f7db440b3f4505060c9c9",
+    "src/main/java/com/yunpan/appmanage/carui/FrostedDialogs.java": "e7fe40251daa7141724568f7cf62f7ecd21ebf9bd4b9485b9063349353b0ddf3",
+    "src/main/java/com/yunpan/appmanage/carui/Icons.java": "da5b5a55dd23b9e8365d5461b453084e2b553dc1ca7a05935668091f6caa9995",
+    "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "bfe6df822a3da41984b75e775bb64c06092dc68a6e5cdcf3606375cc085fac67",
+    "src/main/java/com/yunpan/appmanage/carui/ResourceIndex.java": "4317fe50116172f5cc7335afc0276536538a7dac46be822d96428132612368b7",
+    "src/main/java/com/yunpan/appmanage/carui/ShortcutPicker.java": "54b27259485fc8e034afe0dcf25c210518e70a642c8f6b5e42274d4abafbe183",
+    "src/main/java/com/yunpan/appmanage/carui/SourceInfo.java": "27caa995475e4d9272efc0f2e447031c890582383cd030e236f0ee707a4201cb",
+    "src/main/java/com/yunpan/appmanage/carui/ThemePicker.java": "f28625ca8c097c796ed6a62eaea9eb3260ca73476d21af8aceea9d620c15372d",
+    "src/main/java/com/yunpan/appmanage/carui/WallpaperCropper.java": "e1b236daeb8d0b82ad44ac376309a3b402c8b8cad0b195a658961d5fa2ac9c36",
+    "src/main/java/com/yunpan/appmanage/carui/WallpaperPicker.java": "4595a9c62ba5b081f655ccfe0cf859b52b1feb8820450a45bc31c46672fc68d4",
+    "src/main/java/com/yunpan/appmanage/carui/Wallpapers.java": "7993734d2834dcb86c89aa2990d80dccce4c665ed2007e3b366732487993631a",
+    "src/main/java/com/yunpan/appmanage/carui/WallpaperView.java": "92e88cad81f04d926c0ff9e74ccb7548a58d45bfaba66c9a55092c2ba2b2d608",
+    "src/main/java/com/yunpan/appmanage/carui/WrapLayout.java": "5da9ea3f841876148c50a7fcecc196f6e732c489975bf29597d59408663eddbe"
+  },
+  "private_keys_included": false,
+  "generated_encryption_material_included": false,
+  "device_screenshots_included": false
+}

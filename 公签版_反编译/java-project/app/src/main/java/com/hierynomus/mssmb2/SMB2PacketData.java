@@ -1,0 +1,53 @@
+package com.hierynomus.mssmb2;
+
+import com.hierynomus.mserref.NtStatus;
+import com.hierynomus.protocol.commons.EnumWithValue;
+import com.hierynomus.smb.SMBBuffer;
+import com.hierynomus.smb.SMBPacketData;
+
+/* loaded from: classes.dex */
+public class SMB2PacketData extends SMBPacketData<SMB2PacketHeader> {
+    public SMB2PacketData(byte[] bArr) {
+        super(new SMB2PacketHeader(), bArr);
+    }
+
+    public long getSequenceNumber() {
+        return getHeader().getMessageId();
+    }
+
+    public boolean isCompounded() {
+        return getHeader().getNextCommandOffset() != 0;
+    }
+
+    public boolean isDecrypted() {
+        return false;
+    }
+
+    public boolean isIntermediateAsyncResponse() {
+        return EnumWithValue.EnumUtils.isSet(getHeader().getFlags(), SMB2MessageFlag.SMB2_FLAGS_ASYNC_COMMAND) && getHeader().getStatusCode() == NtStatus.STATUS_PENDING.getValue();
+    }
+
+    public boolean isOplockBreakNotification() {
+        return getHeader().getMessageId() == -1 && getHeader().getMessage() == SMB2MessageCommandCode.SMB2_OPLOCK_BREAK;
+    }
+
+    public boolean isSuccess() {
+        long statusCode = getHeader().getStatusCode();
+        return NtStatus.isSuccess(statusCode) && statusCode != NtStatus.STATUS_PENDING.getValue();
+    }
+
+    public SMB2PacketData next() {
+        if (isCompounded()) {
+            return new SMB2PacketData(this.dataBuffer);
+        }
+        return null;
+    }
+
+    public String toString() {
+        return getHeader().getMessage() + " with message id << " + getHeader().getMessageId() + " >>";
+    }
+
+    public SMB2PacketData(SMBBuffer sMBBuffer) {
+        super(new SMB2PacketHeader(), sMBBuffer);
+    }
+}

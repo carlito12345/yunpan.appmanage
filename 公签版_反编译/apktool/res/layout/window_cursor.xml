@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@android:color/transparent" android:focusable="false" android:clickable="false" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/v_cursor" android:tag="cursor" android:background="@drawable/shape_noback_nofocus" android:focusable="false" android:clickable="false" android:layout_width="48.0dip" android:layout_height="48.0dip" android:src="@drawable/tp_gb2" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+</FrameLayout>

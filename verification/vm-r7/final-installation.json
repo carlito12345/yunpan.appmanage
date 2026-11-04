@@ -1,0 +1,23 @@
+{
+  "installed_apk_sha256": "af4249ca5d37057bf0e84085e47089633e677714dda0ea7f65ad355ead0b505d",
+  "main_pid": "9546",
+  "filtered_ui_error_lines": 0,
+  "rotation": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "system_animator_duration_scale": "null",
+  "theme_preserved": "warm/day",
+  "wallpaper_selection_preserved": "existing user local video; URI not recorded",
+  "appearance_test_applied": {
+    "transparency": 35,
+    "borderStyle": 3,
+    "borderColor": 4
+  },
+  "appearance_restored": {
+    "transparency": 0,
+    "borderStyle": 0,
+    "borderColor": 0
+  },
+  "qr_login": "request/read/cancel only; no scan or account confirmation"
+}

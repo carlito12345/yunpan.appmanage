@@ -1,0 +1,109 @@
+[
+  {
+    "source": "com/yunpan/appmanage/R.java",
+    "original_sha256": "1f8fccabd3336ab12d134512c223d0a4ce05d4e22420b3e30bac107b71120af1",
+    "test_sha256": "1f8fccabd3336ab12d134512c223d0a4ce05d4e22420b3e30bac107b71120af1",
+    "correction": null
+  },
+  {
+    "source": "com/yunpan/appmanage/bean/StrIntBoolBean.java",
+    "original_sha256": "5ff0bbf6e184970fee3689def1c241597cce4120578f52d3408259d527c0336b",
+    "test_sha256": "5ff0bbf6e184970fee3689def1c241597cce4120578f52d3408259d527c0336b",
+    "correction": null
+  },
+  {
+    "source": "x9/n4.java",
+    "original_sha256": "d3ec4452bf2f2b4ca42517d183a01a74d709c8d6e67bacd133ec54ea3c6a0dfd",
+    "test_sha256": "d3ec4452bf2f2b4ca42517d183a01a74d709c8d6e67bacd133ec54ea3c6a0dfd",
+    "correction": null
+  },
+  {
+    "source": "x9/i3.java",
+    "original_sha256": "a4b66d15ffbdbf05821134c48bd04949e780ec66b884bef687c04f74911ae28d",
+    "test_sha256": "a4b66d15ffbdbf05821134c48bd04949e780ec66b884bef687c04f74911ae28d",
+    "correction": null
+  },
+  {
+    "source": "x9/h0.java",
+    "original_sha256": "8f07909e0336e6c6300cb348fd485c3907b0286794951fa794060df486aadcb8",
+    "test_sha256": "8f07909e0336e6c6300cb348fd485c3907b0286794951fa794060df486aadcb8",
+    "correction": null
+  },
+  {
+    "source": "x9/o5.java",
+    "original_sha256": "d2afadcb21c16813f30a8fb863a75943be9d939fb8f72c4f1d538645f2fd30c1",
+    "test_sha256": "d2afadcb21c16813f30a8fb863a75943be9d939fb8f72c4f1d538645f2fd30c1",
+    "correction": null
+  },
+  {
+    "source": "x9/a6.java",
+    "original_sha256": "c998d341abb9d411838306e79ac17214bc7ad0f290aef9fb54c5715f2ce502d1",
+    "test_sha256": "c998d341abb9d411838306e79ac17214bc7ad0f290aef9fb54c5715f2ce502d1",
+    "correction": null
+  },
+  {
+    "source": "x9/g0.java",
+    "original_sha256": "cd3c2cbda6bb70b2c965db8149e145e0bbc13ac9ae1074b867adb6c43efd8209",
+    "test_sha256": "cd3c2cbda6bb70b2c965db8149e145e0bbc13ac9ae1074b867adb6c43efd8209",
+    "correction": null
+  },
+  {
+    "source": "x9/k3.java",
+    "original_sha256": "c9a27085455d6412e335c1f14ae6fadc54fe9a459c3cd46a521933e5c9f92202",
+    "test_sha256": "c9a27085455d6412e335c1f14ae6fadc54fe9a459c3cd46a521933e5c9f92202",
+    "correction": null
+  },
+  {
+    "source": "x9/l3.java",
+    "original_sha256": "cb725330e46701080ef657ca131dc10b3b408af085cb5582abf45fdeb5bfc75f",
+    "test_sha256": "cb725330e46701080ef657ca131dc10b3b408af085cb5582abf45fdeb5bfc75f",
+    "correction": null
+  },
+  {
+    "source": "x9/m1.java",
+    "original_sha256": "ff9814561e171a361a45179b68a07466752db49d3721960441833dd784b768f1",
+    "test_sha256": "ff9814561e171a361a45179b68a07466752db49d3721960441833dd784b768f1",
+    "correction": null
+  },
+  {
+    "source": "x9/b1.java",
+    "original_sha256": "c856311f9666acd8d5f0d791eeae17264d26eb9b021787f0cd42995d6f256f03",
+    "test_sha256": "c856311f9666acd8d5f0d791eeae17264d26eb9b021787f0cd42995d6f256f03",
+    "correction": null
+  },
+  {
+    "source": "x9/s5.java",
+    "original_sha256": "1436c8abeee0292a63d61fc9e82fa0559a910fafee2a99c9b4275ae950932c6d",
+    "test_sha256": "fa895d70972f623f237a1cce15b3efa40a435caf7a5defa2a5ae3ad6b16defb4",
+    "correction": "anonymous outer capture"
+  },
+  {
+    "source": "x9/t1.java",
+    "original_sha256": "0c53da9bc1cb5acd98803a1e009936b32cbcd84427e263500f891a9fe8513a8c",
+    "test_sha256": "0c53da9bc1cb5acd98803a1e009936b32cbcd84427e263500f891a9fe8513a8c",
+    "correction": null
+  },
+  {
+    "source": "x9/w0.java",
+    "original_sha256": "1e1ac4c77740a2949408611874c8c311c5e015cbb395d8e6ef80d161758cea6a",
+    "test_sha256": "1e1ac4c77740a2949408611874c8c311c5e015cbb395d8e6ef80d161758cea6a",
+    "correction": null
+  },
+  {
+    "source": "x9/y0.java",
+    "original_sha256": "5f4322d2bc229c5a5423d8757e28c64cd065dfb4167cc6513404b8dd5feece05",
+    "test_sha256": "5f4322d2bc229c5a5423d8757e28c64cd065dfb4167cc6513404b8dd5feece05",
+    "correction": null
+  },
+  {
+    "source": "x9/x0.java",
+    "original_sha256": "1ad9c5b640d97243d9c29996015af7aebe78b3019b262cfe64aab6869f0a54a9",
+    "test_sha256": "1ad9c5b640d97243d9c29996015af7aebe78b3019b262cfe64aab6869f0a54a9",
+    "correction": null
+  },
+  {
+    "source": "com/yunpan/appmanage/view/HiveProgressView.java",
+    "original_sha256": "3fcec3fb5322cfcd8d6d64f79eaea923ab2ddec5b9acb3c06152776fea4cd8b5",
+    "scope": "original measure/path/non-image draw bodies; static sample; helpers inlined; one JADX path local corrected; animator and image branch excluded"
+  }
+]

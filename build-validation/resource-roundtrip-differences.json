@@ -1,0 +1,176 @@
+{
+  "affected_resource_ids": 34,
+  "differences": [
+    {
+      "id": "0x7f080006",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_checked_unchecked__0"
+    },
+    {
+      "id": "0x7f080007",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_checked_unchecked__1"
+    },
+    {
+      "id": "0x7f080008",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_checked_unchecked__2"
+    },
+    {
+      "id": "0x7f080009",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_checked_indeterminate__0"
+    },
+    {
+      "id": "0x7f08000a",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__0"
+    },
+    {
+      "id": "0x7f08000b",
+      "original": null,
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__1"
+    },
+    {
+      "id": "0x7f08000c",
+      "original": "drawable/$mtrl_checkbox_button_checked_unchecked__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__2"
+    },
+    {
+      "id": "0x7f08000d",
+      "original": "drawable/$mtrl_checkbox_button_checked_unchecked__1",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_indeterminate_checked__0"
+    },
+    {
+      "id": "0x7f08000e",
+      "original": "drawable/$mtrl_checkbox_button_checked_unchecked__2",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__0"
+    },
+    {
+      "id": "0x7f08000f",
+      "original": "drawable/$mtrl_checkbox_button_icon_checked_indeterminate__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__1"
+    },
+    {
+      "id": "0x7f080010",
+      "original": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__2"
+    },
+    {
+      "id": "0x7f080011",
+      "original": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__1",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__0"
+    },
+    {
+      "id": "0x7f080012",
+      "original": "drawable/$mtrl_checkbox_button_icon_checked_unchecked__2",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__1"
+    },
+    {
+      "id": "0x7f080013",
+      "original": "drawable/$mtrl_checkbox_button_icon_indeterminate_checked__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__2"
+    },
+    {
+      "id": "0x7f080014",
+      "original": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__0"
+    },
+    {
+      "id": "0x7f080015",
+      "original": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__1",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__1"
+    },
+    {
+      "id": "0x7f080016",
+      "original": "drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__2",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__2"
+    },
+    {
+      "id": "0x7f080017",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__0",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_unchecked_checked__0"
+    },
+    {
+      "id": "0x7f080018",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__1",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_unchecked_checked__1"
+    },
+    {
+      "id": "0x7f080019",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_checked__2",
+      "full_roundtrip": "drawable/$mtrl_checkbox_button_unchecked_checked__2"
+    },
+    {
+      "id": "0x7f08001a",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__0",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_checked_pressed__0"
+    },
+    {
+      "id": "0x7f08001b",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__1",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_checked_unchecked__0"
+    },
+    {
+      "id": "0x7f08001c",
+      "original": "drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__2",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_checked_unchecked__1"
+    },
+    {
+      "id": "0x7f08001d",
+      "original": "drawable/$mtrl_checkbox_button_unchecked_checked__0",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_pressed_checked__0"
+    },
+    {
+      "id": "0x7f08001e",
+      "original": "drawable/$mtrl_checkbox_button_unchecked_checked__1",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_pressed_unchecked__0"
+    },
+    {
+      "id": "0x7f08001f",
+      "original": "drawable/$mtrl_checkbox_button_unchecked_checked__2",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_unchecked_checked__0"
+    },
+    {
+      "id": "0x7f080020",
+      "original": "drawable/$mtrl_switch_thumb_checked_pressed__0",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_unchecked_checked__1"
+    },
+    {
+      "id": "0x7f080021",
+      "original": "drawable/$mtrl_switch_thumb_checked_unchecked__0",
+      "full_roundtrip": "drawable/$mtrl_switch_thumb_unchecked_pressed__0"
+    },
+    {
+      "id": "0x7f080022",
+      "original": "drawable/$mtrl_switch_thumb_checked_unchecked__1",
+      "full_roundtrip": null
+    },
+    {
+      "id": "0x7f080023",
+      "original": "drawable/$mtrl_switch_thumb_pressed_checked__0",
+      "full_roundtrip": null
+    },
+    {
+      "id": "0x7f080024",
+      "original": "drawable/$mtrl_switch_thumb_pressed_unchecked__0",
+      "full_roundtrip": null
+    },
+    {
+      "id": "0x7f080025",
+      "original": "drawable/$mtrl_switch_thumb_unchecked_checked__0",
+      "full_roundtrip": null
+    },
+    {
+      "id": "0x7f080026",
+      "original": "drawable/$mtrl_switch_thumb_unchecked_checked__1",
+      "full_roundtrip": null
+    },
+    {
+      "id": "0x7f080027",
+      "original": "drawable/$mtrl_switch_thumb_unchecked_pressed__0",
+      "full_roundtrip": null
+    }
+  ],
+  "resolution": "Keep original non-DEX payload; replace only the three rebuilt DEX files."
+}

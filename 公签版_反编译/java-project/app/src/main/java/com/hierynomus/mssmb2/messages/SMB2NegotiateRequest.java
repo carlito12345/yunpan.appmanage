@@ -1,0 +1,113 @@
+package com.hierynomus.mssmb2.messages;
+
+import com.hierynomus.msdtyp.MsDataTypes;
+import com.hierynomus.mssmb2.SMB2Dialect;
+import com.hierynomus.mssmb2.SMB2GlobalCapability;
+import com.hierynomus.mssmb2.SMB2MessageCommandCode;
+import com.hierynomus.mssmb2.SMB2Packet;
+import com.hierynomus.mssmb2.SMB3EncryptionCipher;
+import com.hierynomus.mssmb2.SMB3HashAlgorithm;
+import com.hierynomus.mssmb2.messages.negotiate.SMB2EncryptionCapabilities;
+import com.hierynomus.mssmb2.messages.negotiate.SMB2NegotiateContext;
+import com.hierynomus.mssmb2.messages.negotiate.SMB2PreauthIntegrityCapabilities;
+import com.hierynomus.protocol.commons.EnumWithValue;
+import com.hierynomus.smb.SMBBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+/* loaded from: classes.dex */
+public class SMB2NegotiateRequest extends SMB2Packet {
+    private Set<SMB2GlobalCapability> capabilities;
+    private UUID clientGuid;
+    private boolean clientSigningRequired;
+    private Set<SMB2Dialect> dialects;
+    private List<SMB2NegotiateContext> negotiateContextList;
+
+    public SMB2NegotiateRequest(Set<SMB2Dialect> set, UUID uuid, boolean z, Set<SMB2GlobalCapability> set2, byte[] bArr) {
+        super(36, SMB2Dialect.UNKNOWN, SMB2MessageCommandCode.SMB2_NEGOTIATE, 0L, 0L);
+        this.dialects = set;
+        this.clientGuid = uuid;
+        this.clientSigningRequired = z;
+        this.capabilities = set2;
+        this.negotiateContextList = buildNegotiateContextList(bArr);
+    }
+
+    private List<SMB2NegotiateContext> buildNegotiateContextList(byte[] bArr) {
+        if (!this.dialects.contains(SMB2Dialect.SMB_3_1_1)) {
+            return Collections.emptyList();
+        }
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new SMB2PreauthIntegrityCapabilities(Arrays.asList(SMB3HashAlgorithm.SHA_512), bArr));
+        if (this.capabilities.contains(SMB2GlobalCapability.SMB2_GLOBAL_CAP_ENCRYPTION)) {
+            arrayList.add(new SMB2EncryptionCapabilities(Arrays.asList(SMB3EncryptionCipher.AES_128_GCM, SMB3EncryptionCipher.AES_128_CCM)));
+        }
+        return arrayList;
+    }
+
+    private void putCapabilities(SMBBuffer sMBBuffer) {
+        if (SMB2Dialect.supportsSmb3x(this.dialects)) {
+            sMBBuffer.putUInt32(EnumWithValue.EnumUtils.toLong(this.capabilities));
+        } else {
+            sMBBuffer.putReserved4();
+        }
+    }
+
+    private void putDialects(SMBBuffer sMBBuffer) {
+        Iterator<SMB2Dialect> it = this.dialects.iterator();
+        while (it.hasNext()) {
+            sMBBuffer.putUInt16(it.next().getValue());
+        }
+    }
+
+    private void putNegotiateContextList(SMBBuffer sMBBuffer) {
+        int i10;
+        if (this.dialects.contains(SMB2Dialect.SMB_3_1_1)) {
+            for (int i11 = 0; i11 < this.negotiateContextList.size(); i11++) {
+                int iWrite = this.negotiateContextList.get(i11).write(sMBBuffer);
+                if (i11 < this.negotiateContextList.size() - 1 && (i10 = iWrite % 8) != 0) {
+                    sMBBuffer.putReserved(8 - i10);
+                }
+            }
+        }
+    }
+
+    private void putNegotiateContextOrStartTime(SMBBuffer sMBBuffer) {
+        if (!this.dialects.contains(SMB2Dialect.SMB_3_1_1)) {
+            sMBBuffer.putReserved(8);
+            return;
+        }
+        sMBBuffer.putUInt32((this.dialects.size() * 2) + this.structureSize + 64 + (8 - (((this.dialects.size() * 2) + this.structureSize) % 8)));
+        sMBBuffer.putUInt16(this.negotiateContextList.size());
+        sMBBuffer.putReserved2();
+    }
+
+    private int securityMode() {
+        return this.clientSigningRequired ? 2 : 1;
+    }
+
+    public List<SMB2NegotiateContext> getNegotiateContextList() {
+        return this.negotiateContextList;
+    }
+
+    @Override // com.hierynomus.mssmb2.SMB2Packet
+    public void writeTo(SMBBuffer sMBBuffer) {
+        sMBBuffer.putUInt16(this.structureSize);
+        sMBBuffer.putUInt16(this.dialects.size());
+        sMBBuffer.putUInt16(securityMode());
+        sMBBuffer.putReserved(2);
+        putCapabilities(sMBBuffer);
+        MsDataTypes.putGuid(this.clientGuid, sMBBuffer);
+        putNegotiateContextOrStartTime(sMBBuffer);
+        putDialects(sMBBuffer);
+        int size = ((this.dialects.size() * 2) + this.structureSize) % 8;
+        if (size > 0) {
+            sMBBuffer.putReserved(8 - size);
+        }
+        putNegotiateContextList(sMBBuffer);
+    }
+}

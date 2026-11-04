@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta
+                name="wechat-enable-text-zoom-em"
+                content="true">
+        <title>应用管家</title>
+        <meta
+                name="layoutmode"
+                content="standard">
+        <link
+                rel="stylesheet"
+                type="text/css"
+                href="ui.css">
+    </head>
+
+    <body>
+        <div class="div1" style="margin-top: 50px;text-align: center;">
+            <textarea
+                    id="v_input"
+                    class="input"
+                    style="margin-top: 20px;width:300px;height:120px;padding:10px;resize:vertical;"
+                    placeholder="请输入"></textarea>
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <button
+                    style="width:60px;height:30px;"
+                    onclick="api(); return false;"
+                    class="btn_api">确定
+            </button>
+        </div>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            function api() {
+                    $.post('/input',{
+                    str1 : $("#v_input").val()
+                    }, function (res) {
+                        warnToast('已发送');
+                    }).fail(function () {
+                        warnToast('发送失败');
+                    });
+            }
+        </script>
+    </body>
+
+</html>

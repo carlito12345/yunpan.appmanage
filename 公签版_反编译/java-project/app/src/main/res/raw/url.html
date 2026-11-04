@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta
+                name="wechat-enable-text-zoom-em"
+                content="true">
+        <title>应用管家</title>
+        <meta
+                name="layoutmode"
+                content="standard">
+        <link
+                rel="stylesheet"
+                type="text/css"
+                href="ui.css">
+    </head>
+
+    <body>
+        <div class="div1" style="margin-top: 50px;text-align: center;">
+            <input
+                    id="api_url"
+                    class="input_url"
+                    type="text"
+                    value=""
+                    style="margin-top: 20px;width:300px;height:30px;"
+                    placeholder="请输入分享地址" />
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <button
+                    style="width:60px;height:30px;"
+                    onclick="api(); return false;"
+                    class="btn_api">确定
+            </button>
+        </div>
+        <div class="div2" style="margin-top: 20px;text-align: center;">
+            <p>输入格式：网盘文件分享地址#分享密码</p>
+            <p>如：https://wwty.lanzouc.com/x8dg8g88#6666</p>
+            <p>目前只支持：蓝奏云、123网盘、小飞机网盘</p>
+
+        </div>
+
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript">
+            function api() {
+                    $.post('/url',{
+                    shareUrl : $("#api_url").val()
+                    }, function (res) {
+                        warnToast('已发送');
+                    }).fail(function () {
+                        warnToast('发送失败');
+                    });
+            }
+        </script>
+    </body>
+
+</html>

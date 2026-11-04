@@ -1,0 +1,76 @@
+.class public final Lce/c;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# instance fields
+.field public final a:J
+
+.field public final b:Ljava/util/HashMap;
+
+
+# direct methods
+.method public constructor <init>(J)V
+    .locals 4
+
+    .line 1
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 2
+    .line 3
+    .line 4
+    const-wide/16 v0, 0x0
+
+    .line 5
+    .line 6
+    cmp-long v2, p1, v0
+
+    .line 7
+    .line 8
+    if-nez v2, :cond_0
+
+    .line 9
+    .line 10
+    sget-wide p1, Lce/d;->e:J
+
+    .line 11
+    .line 12
+    :cond_0
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    .line 13
+    .line 14
+    .line 15
+    move-result-wide v0
+
+    .line 16
+    const-wide/16 v2, 0x3e8
+
+    .line 17
+    .line 18
+    mul-long p1, p1, v2
+
+    .line 19
+    .line 20
+    add-long/2addr p1, v0
+
+    .line 21
+    iput-wide p1, p0, Lce/c;->a:J
+
+    .line 22
+    .line 23
+    new-instance p1, Ljava/util/HashMap;
+
+    .line 24
+    .line 25
+    invoke-direct {p1}, Ljava/util/HashMap;-><init>()V
+
+    .line 26
+    .line 27
+    .line 28
+    iput-object p1, p0, Lce/c;->b:Ljava/util/HashMap;
+
+    .line 29
+    .line 30
+    return-void
+.end method

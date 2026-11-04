@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.R5RegressionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:39:33.606Z" hostname="CARLITO" time="3.83">
+  <properties/>
+  <testcase name="nativeKeyEnableToggleCannotCollapseToOriginalZeroHeight" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.531"/>
+  <testcase name="blurSoftensEdgeAndWindowDimDoesNotReplaceDismissCallback" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.063"/>
+  <testcase name="downloadUsesActualSixRowResourcesWithoutOneLineCap" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.119"/>
+  <testcase name="replacementAndOwnerResizeReleasePreviousSnapshotAndDismissReleasesLast" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.111"/>
+  <testcase name="doorFooterRetainsToggleOutsideBoundedScroll" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="1.452"/>
+  <testcase name="networkEmptyRemoteKeepsParallelLocalBrowser" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.075"/>
+  <testcase name="realLongLogChecksAndEveryCommandFitClickablePanel" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.938"/>
+  <testcase name="fileMenuLatePopulationShrinksAndRetainsRealBinder" classname="com.yunpan.appmanage.carui.R5RegressionTest" time="0.54"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

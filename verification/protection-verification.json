@@ -1,0 +1,35 @@
+{
+  "apk": "应用管家-AES256GCM加固版-R8-20261104.apk",
+  "bytes": 30351047,
+  "sha256": "e695ce0fe1fc6d929d2fc5e43366f450bad3b89e9c58a15b25407c859d7cffaf",
+  "compatible_apk": "应用管家-作者与来源-兼容版-R8-20261104.apk",
+  "compatible_sha256": "b4c65ef0cc6a8b46cce8202a397a3fcc0c89d8785ec6bff7ca9fc7117187bdd5",
+  "algorithm": "AES-256-GCM",
+  "key_bits": 256,
+  "tag_bits": 128,
+  "unique_nonce_bytes": 12,
+  "encrypted_top_level_dex": 4,
+  "clear_bootstrap_classes": 1,
+  "minimum_sdk": 29,
+  "loader": "AppComponentFactory / InMemoryDexClassLoader; original Application unchanged",
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "v1_v2_v3_verified": true,
+  "zip_alignment_verified": true,
+  "preserved_non_dex_entries": 2292,
+  "all_four_dex_roundtrip_verified": true,
+  "tamper_checks": {
+    "changed_tag": "rejected",
+    "changed_aad": "rejected",
+    "wrong_key": "rejected"
+  },
+  "source_template_sha256": "b6d965bd42026eaea565ae90ea707660abc0abab8b0d2846b7cbe5aaedd33860",
+  "generated_key_material_in_repository": false,
+  "vm_tested": false,
+  "limitations": [
+    "Client-side key material and decrypted code can be recovered by a determined analyst.",
+    "Embedded plugin APKs, resources and native libraries are preserved, not encrypted.",
+    "Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing."
+  ],
+  "all_three_signature_schemes_checked_with_min_sdk_override": 18,
+  "packager_script_sha256": "2ff566dd47778c2aed5476d9c638565fba8d9081d49acbe80be450af09f59bb8"
+}

@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1922"
+    android:versionName="1.9.2"
+    android:compileSdkVersion="36"
+    android:compileSdkVersionCodename="16"
+    package="com.yunpan.appmanage"
+    platformBuildVersionCode="36"
+    platformBuildVersionName="16">
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="28"/>
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.BATTERY_STATS"/>
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23"/>
+    <uses-permission android:name="android.permission.SUSPEND_APPS"/>
+    <uses-permission android:name="android.permission.ACCESS_CONTENT_PROVIDERS_EXTERNALLY"/>
+    <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE"/>
+    <uses-permission android:name="android.permission.GET_APP_OPS_STATS"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_NETWORK_USAGE_HISTORY"/>
+    <uses-permission android:name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+    <uses-permission android:name="android.permission.UPDATE_APP_OPS_STATS"/>
+    <uses-permission android:name="android.permission.MANAGE_APP_OPS_MODES"/>
+    <uses-permission android:name="android.permission.MANAGE_USERS"/>
+    <uses-permission android:name="android.permission.CREATE_USERS"/>
+    <uses-permission android:name="android.permission.GRANT_RUNTIME_PERMISSIONS"/>
+    <uses-permission android:name="android.permission.GRANT_REVOKE_PERMISSIONS"/>
+    <uses-permission android:name="android.permission.REVOKE_RUNTIME_PERMISSIONS"/>
+    <uses-permission android:name="android.permission.SET_TIME_ZONE"/>
+    <uses-permission android:name="android.permission.SET_TIME"/>
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"/>
+    <uses-permission android:name="android.permission.KILL_UID"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND"/>
+    <uses-permission android:name="android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND"/>
+    <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <uses-permission android:name="com.android.alarm.permission.GRANT_RUNTIME_PERMISSIONS"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS"/>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false"/>
+    <uses-permission android:name="com.android.phone.CHANGE_NETWORK_MODE"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.RESET_SHORTCUT_MANAGER_THROTTLING"/>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="com.iflytek.autofly.EventBus"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.MANAGE_DEBUGGING"/>
+    <uses-permission android:name="android.permission.SET_PROCESS_LIMIT"/>
+    <uses-permission android:name="android.permission.MODIFY_QUIET_MODE"/>
+    <uses-permission android:name="android.permission.TETHER_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.NETWORK_SETTINGS"/>
+    <uses-permission android:name="android.permission.NETWORK_STACK"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.OVERRIDE_WIFI_CONFIG"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>
+    <uses-permission android:name="android.permission.ASEC_ACCESS"/>
+    <uses-permission android:name="android.permission.DELETE_CACHE_FILES"/>
+    <uses-permission android:name="android.permission.DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.FORCE_BACK"/>
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.DEVICE_POWER"/>
+    <uses-permission android:name="android.permission.MASTER_CLEAR"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_USER_DATA"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <uses-permission android:name="android.permission.CONTROL_AUDIO"/>
+    <uses-permission android:name="android.car.permission.CAR_AUDIO_VOLUME"/>
+    <uses-permission android:name="android.car.permission.CAR_AUDIO_CONTROL"/>
+    <uses-permission android:name="android.car.permission.CAR_CONTROL_AUDIO_VOLUME"/>
+    <uses-permission android:name="android.car.permission.CAR_CONTROL_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.car.permission.CAR_INSTRUMENT_CLUSTER_CONTROL"/>
+    <uses-permission android:name="android.car.permission.CAR_DISPLAY_IN_CLUSTER"/>
+    <uses-permission android:name="android.car.permission.CAR_INFO"/>
+    <uses-permission android:name="android.car.permission.PRIVILEGED_CAR_INFO"/>
+    <uses-permission android:name="android.car.permission.CONTROL_CAR_CLIMATE"/>
+    <uses-permission android:name="android.car.permission.CAR_ENERGY"/>
+    <uses-permission android:name="android.car.permission.CAR_VENDOR_EXTENSION"/>
+    <uses-permission android:name="flyme.intent.permission.SYSTEM_START_SERVICE"/>
+    <uses-permission android:name="intent.permission.flyme.SYSTEM_START_SERVICE"/>
+    <uses-permission android:name="android.car.permission.CAR_POWER"/>
+    <uses-permission android:name="android.car.permission.READ_CAR_POWER_POLICY"/>
+    <uses-permission android:name="com.flyme.auto.coreservice.permission.CONNECTION"/>
+    <uses-permission android:name="com.flyme.auto.data.permission.DATA"/>
+    <uses-permission android:name="ecarx.oem.permission.OPENAPI_NAVI_PERMISSION"/>
+    <uses-permission android:name="android.permission.REMOVE_TASKS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACTIVITY_TASKS"/>
+    <uses-permission android:name="android.permission.READ_CLIPBOARD_IN_BACKGROUND"/>
+    <uses-permission android:name="android.permission.DUMP"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.REAL_GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_RUNNING_SERVICES"/>
+    <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW"/>
+    <uses-permission android:name="android.permission.MANAGE_ACTIVITY_STACKS"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        android:minSdkVersion="33"/>
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_AUDIO"
+        android:minSdkVersion="33"/>
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VIDEO"
+        android:minSdkVersion="33"/>
+    <uses-permission android:name="android.permission.NO_ISOLATED_STORAGE"/>
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.WRITE_CLIPBOARD_IN_BACKGROUND"/>
+    <uses-permission android:name="com.android.permission.GET_INSTALLED_APPS"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_NAME"/>
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_ACCESSIBILITY"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.BIND_APPWIDGET"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <protected-broadcast android:name="android.intent.action.SHOW_MISSED_CALLS_NOTIFICATION"/>
+    <protected-broadcast android:name="com.android.server.telecom.MESSAGE_SENT"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.TETHER_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.MANAGE_USERS"/>
+    <uses-permission android:name="android.permission.CREATE_USERS"/>
+    <uses-permission android:name="android.permission.STATUS_BAR"/>
+    <uses-feature android:name="android.hardware.usb.host"/>
+    <uses-permission android:name="android.hardware.usb.accessory"/>
+    <uses-feature android:name="android.hardware.wifi.direct"/>
+    <uses-permission android:name="android.permission.USB_PERMISSION"/>
+    <uses-permission android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+    <uses-permission android:name="android.permission.MANAGE_USB"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="true"/>
+    <queries>
+        <package android:name="com.desaysv.ivi.vds.carinfo"/>
+    </queries>
+    <queries>
+        <package android:name="com.baidu.mapauto.pass"/>
+    </queries>
+    <queries>
+        <package android:name="com.baidu.chetutu"/>
+    </queries>
+    <queries>
+        <package android:name="cn.cyberIdentity.certification"/>
+    </queries>
+    <queries>
+        <intent>
+            <action android:name="com.baidu.naviauto.imaplbs.lbsservice"/>
+        </intent>
+    </queries>
+    <queries>
+        <intent>
+            <action android:name="AUTONAVI_STANDARD_BROADCAST_RECV"/>
+        </intent>
+    </queries>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:mimeType="*/*"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+        </intent>
+        <intent>
+            <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+        </intent>
+    </queries>
+    <permission
+        android:name="com.yunpan.appmanage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.yunpan.appmanage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <application
+        android:theme="@style/Theme.AppStartLoad"
+        android:label="@string/app_name"
+        android:icon="@drawable/gj_ico"
+        android:name="com.yunpan.appmanage.base.AppStart"
+        android:configChanges="screenSize|orientation|keyboardHidden"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:banner="@drawable/gj_banner"
+        android:extractNativeLibs="true"
+        android:usesCleartextTraffic="true"
+        android:resizeableActivity="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:appCategory="productivity"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:zygotePreloadName="com.yunpan.appmanage.magica.MagicaAppZygote"
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
+        android:requestRawExternalStorageAccess="true">
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="960"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="540"/>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4"/>
+        <receiver
+            android:name="com.yunpan.appmanage.service.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc"
+            android:directBootAware="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.FIRST_BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="autochips.intent.action.QB_POWERON"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="com.geely.doortest.ENSURE_SERVICE_RUNNING"/>
+                <action android:name="android.intent.action.SCREEN_ON"/>
+                <action android:name="com.ecarx.intent.action.WAKEUP"/>
+                <action android:name="com.ecarx.intent.action.STR_RESUME"/>
+                <action android:name="com.ecarx.intent.action.POWER_ON"/>
+                <action android:name="com.geely.intent.action.WAKEUP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ecarx.intent.action.power.STRMODE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.lynkco.intent.action.SYSTEM_READY"/>
+                <action android:name="com.lynkco.intent.action.WAKEUP"/>
+                <action android:name="com.lynkco.intent.action.STR_RESUME"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.yunpan.appmanage.service.UsbBootTaskReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.SCREEN_ON"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityUsbStartTask"
+            android:enabled="true"
+            android:process=":acc"
+            android:fitsSystemWindows="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:scheme="https"
+                    android:host="pilablu.de"
+                    android:path="/apps/gps/gps-connector"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/usb_vendors"/>
+        </activity>
+        <service
+            android:name="com.yunpan.appmanage.service.BootTaskService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc"
+            android:directBootAware="true"/>
+        <service
+            android:name="com.yunpan.appmanage.service.AccRestartService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc1"
+            android:directBootAware="true"/>
+        <service
+            android:name="com.yunpan.appmanage.service.HttpService"
+            android:enabled="true"/>
+        <service
+            android:label="@string/accessibility_service_name"
+            android:name="com.yunpan.appmanage.service.AccService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc"
+            android:stopWithTask="false">
+            <intent-filter android:priority="10000">
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config"/>
+        </service>
+        <service
+            android:label="自动化服务"
+            android:name="com.yunpan.appmanage.service.StartService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:enabled="true"
+            android:process=":acc"
+            android:foregroundServiceType="mediaProjection|connectedDevice|location|phoneCall|mediaPlayback|dataSync">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.yunpan.appmanage.service.AdbPairService"/>
+        <service
+            android:name="com.yunpan.appmanage.magica.MagicaService"
+            android:exported="false"
+            android:isolatedProcess="true"
+            android:useAppZygote="true"/>
+        <activity
+            android:theme="@style/Theme.AppStartLoad"
+            android:name="com.yunpan.appmanage.ui.ActivityHome"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="density|smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
+            android:allowTaskReparenting="true"
+            android:resizeableActivity="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.installer.InstallerConfirmActivity"
+            android:excludeFromRecents="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.utilacc.GroundStartAppActivity"
+            android:enabled="true"
+            android:process=":acc"
+            android:excludeFromRecents="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityApps"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppBatch"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppStorage"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityRunMemory"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityImmersive"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityStart"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityShell"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="density|smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+            <meta-data
+                android:name="systemUINavigationBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityClean"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityImage"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityImage2"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityLaboratory"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNissan"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDownload"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAccessibility"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppDetails"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDesktop"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityPermissions"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAutomation"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppShowAppOpen"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityRotation"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDesktopSelected"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityBootStartTask"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppTraffic"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppInstallTime"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppHistoryLog"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppDetailHistoryLog"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityCleanMemoryWhitelist"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityPs"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityPss"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityJiliE01"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityJiliE02"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivitySystemAnimator"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDebugLogcat"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityInputMethod"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivitySystemHasWrite"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppShowAppClose"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapLogcat"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapLogcatSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapEvent"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapAcc"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapAccSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNezha"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNezhaWallpaper"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNezhaWallpaperL"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNezhaWallpaperX"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityOuShang"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityOuShangWhitelist"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityOuShangStatusBar"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityOuShangStatusBarNoRoot"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityWindowInputAdbPair"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAutoClick"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivitySidebar"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivitySidebarSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAutoClickUsbSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityPresentation"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityPresentation2"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDisplayStartApp"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityDisplayManager"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextHzh"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityStudy"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapLogcatHelp"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAdb"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeymapJieT"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityJieTText"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityJieTText2"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextFlyOS12"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextFlyOS18"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextFlyOSAll"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNissanTextVehicle"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNissanTextReverse"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityNissanTextGN"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapNissan"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapNissanSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityFloatButtonSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppsPermissions"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityAppsPermissionsAllow"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeymapFlyOS18"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeyMapXingyuanSet"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityKeymapAiOnY"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityVoiceIflytek"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextAiOnY"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextAiOnYP"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityGjDiy"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivitySeccompRoot"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextIflytek"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTextDesaysvVds"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityFloatButton"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityUsers"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityUsersApps"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity
+            android:name="com.yunpan.appmanage.ui.ActivityTrans"
+            android:enabled="true"
+            android:process=":acc"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"/>
+        <activity
+            android:label="@string/str_gj_installer"
+            android:name="com.yunpan.appmanage.ui.ActivityInstaller"
+            android:enabled="false"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+                <data android:host="*"/>
+                <data android:mimeType="application/vnd.android.package-archive"/>
+                <data android:mimeType="application/vnd.apkm"/>
+                <data android:mimeType="application/xapk-package-archive"/>
+                <data android:mimeType="application/octet-stream"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+                <data android:host="*"/>
+                <data android:mimeType="*/*"/>
+                <data android:pathPattern=".*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.apkm"/>
+                <data android:pathPattern=".*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.apks"/>
+                <data android:pathPattern=".*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\..*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.xapk"/>
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.xapk"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.yunpan.appmanage.shizuku.ShizukuTriggerActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:label="@string/str_gj_editor"
+            android:name="com.yunpan.appmanage.ui.ActivityCodeEditor"
+            android:exported="false"
+            android:taskAffinity=".editor.CodeEditorActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+        </activity>
+        <activity-alias
+            android:label="@string/str_gj_editor"
+            android:name="com.yunpan.appmanage.editor.EditorActivity"
+            android:exported="true"
+            android:taskAffinity=".ui.ActivityCodeEditor"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation"
+            android:targetActivity="com.yunpan.appmanage.ui.ActivityCodeEditor"
+            android:windowSoftInputMode="adjustResize"
+            android:resizeableActivity="true">
+            <meta-data
+                android:name="systemUIStatusBarStyle"
+                android:value="Hide"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+                <data android:mimeType="text/*"/>
+                <data android:mimeType="application/axml"/>
+                <data android:mimeType="application/json"/>
+                <data android:mimeType="application/xml"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.EDIT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+                <data android:mimeType="text/*"/>
+                <data android:mimeType="application/xml"/>
+                <data android:mimeType="application/xhtml+xml"/>
+                <data android:mimeType="application/vnd.wap.xhtml+xml"/>
+                <data android:mimeType="application/javascript"/>
+                <data android:mimeType="application/json"/>
+                <data android:mimeType="application/x-php"/>
+                <data android:mimeType="application/x-httpd-php"/>
+                <data android:mimeType="application/x-tcl"/>
+                <data android:mimeType="application/x-sh"/>
+                <data android:mimeType="application/x-csh"/>
+                <data android:mimeType="application/bat"/>
+                <data android:mimeType="application/mpegurl"/>
+                <data android:mimeType="application/x-mpegurl"/>
+                <data android:mimeType="application/x-bittorrent"/>
+                <data android:mimeType="application/vnd.google-earth.kml+xml"/>
+                <data android:mimeType="application/vnd.google-earth.kmz"/>
+                <data android:mimeType="application/x-sql"/>
+                <data android:mimeType="application/x-latex"/>
+                <data android:mimeType="application/x-subrip"/>
+                <data android:mimeType="application/x-yaml"/>
+                <data android:mimeType="application/axml"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.EDIT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+                <data android:pathPattern="/.*.TXT"/>
+                <data android:pathPattern="/.*.txt"/>
+                <data android:pathPattern="/.*.txt?.*"/>
+                <data android:pathPattern="/.*..*.TXT"/>
+                <data android:pathPattern="/.*..*.txt"/>
+                <data android:pathPattern="/.*..*.txt?.*"/>
+                <data android:pathPattern="/.*.tex"/>
+                <data android:pathPattern="/.*.tex?.*"/>
+                <data android:pathPattern="/.*.micfg"/>
+                <data android:pathPattern="/.*.micfg?.*"/>
+                <data android:pathPattern="/.*..*.micfg"/>
+                <data android:pathPattern="/.*..*.micfg?.*"/>
+                <data android:pathPattern="/.*.mic"/>
+                <data android:pathPattern="/.*.mic?.*"/>
+                <data android:pathPattern="/.*..*.mic"/>
+                <data android:pathPattern="/.*..*.mic?.*"/>
+                <data android:pathPattern="/.*.JAVA"/>
+                <data android:pathPattern="/.*.java"/>
+                <data android:pathPattern="/.*.java?.*"/>
+                <data android:pathPattern="/.*..*.JAVA"/>
+                <data android:pathPattern="/.*..*.java"/>
+                <data android:pathPattern="/.*..*.java?.*"/>
+                <data android:pathPattern="/.*.KT"/>
+                <data android:pathPattern="/.*.kt"/>
+                <data android:pathPattern="/.*.kt?.*"/>
+                <data android:pathPattern="/.*..*.KT"/>
+                <data android:pathPattern="/.*..*.kt"/>
+                <data android:pathPattern="/.*..*.kt?.*"/>
+                <data android:pathPattern="/.*.KTS"/>
+                <data android:pathPattern="/.*.kts"/>
+                <data android:pathPattern="/.*.kts?.*"/>
+                <data android:pathPattern="/.*..*.KTS"/>
+                <data android:pathPattern="/.*..*.kts"/>
+                <data android:pathPattern="/.*..*.kts?.*"/>
+                <data android:pathPattern="/.*.SMALI"/>
+                <data android:pathPattern="/.*.smali"/>
+                <data android:pathPattern="/.*.smali?.*"/>
+                <data android:pathPattern="/.*..*.SMALI"/>
+                <data android:pathPattern="/.*..*.smali"/>
+                <data android:pathPattern="/.*..*.smali?.*"/>
+                <data android:pathPattern="/.*.CSS"/>
+                <data android:pathPattern="/.*.css"/>
+                <data android:pathPattern="/.*.css?.*"/>
+                <data android:pathPattern="/.*..*.CSS"/>
+                <data android:pathPattern="/.*..*.css"/>
+                <data android:pathPattern="/.*..*.css?.*"/>
+                <data android:pathPattern="/.*.HTM"/>
+                <data android:pathPattern="/.*.htm"/>
+                <data android:pathPattern="/.*.htm?.*"/>
+                <data android:pathPattern="/.*..*.HTM"/>
+                <data android:pathPattern="/.*..*.htm"/>
+                <data android:pathPattern="/.*..*.htm?.*"/>
+                <data android:pathPattern="/.*.HTML"/>
+                <data android:pathPattern="/.*.html"/>
+                <data android:pathPattern="/.*.html?.*"/>
+                <data android:pathPattern="/.*..*.HTML"/>
+                <data android:pathPattern="/.*..*.html"/>
+                <data android:pathPattern="/.*..*.html?.*"/>
+                <data android:pathPattern="/.*.PROP"/>
+                <data android:pathPattern="/.*.prop"/>
+                <data android:pathPattern="/.*.prop?.*"/>
+                <data android:pathPattern="/.*..*.PROP"/>
+                <data android:pathPattern="/.*..*.prop"/>
+                <data android:pathPattern="/.*..*.prop?.*"/>
+                <data android:pathPattern="/.*.SQL"/>
+                <data android:pathPattern="/.*.sql"/>
+                <data android:pathPattern="/.*.sql?.*"/>
+                <data android:pathPattern="/.*..*.SQL"/>
+                <data android:pathPattern="/.*..*.sql"/>
+                <data android:pathPattern="/.*..*.sql?.*"/>
+                <data android:pathPattern="/.*.TORRENT"/>
+                <data android:pathPattern="/.*.torrent"/>
+                <data android:pathPattern="/.*.torrent?.*"/>
+                <data android:pathPattern="/.*..*.TORRENT"/>
+                <data android:pathPattern="/.*..*.torrent"/>
+                <data android:pathPattern="/.*..*.torrent?.*"/>
+                <data android:pathPattern="/.*.XML"/>
+                <data android:pathPattern="/.*.xml"/>
+                <data android:pathPattern="/.*.xml?.*"/>
+                <data android:pathPattern="/.*..*.XML"/>
+                <data android:pathPattern="/.*..*.xml"/>
+                <data android:pathPattern="/.*..*.xml?.*"/>
+                <data android:pathPattern="/.*.GPG"/>
+                <data android:pathPattern="/.*.gpg"/>
+                <data android:pathPattern="/.*.gpg?.*"/>
+                <data android:pathPattern="/.*..*.GPG"/>
+                <data android:pathPattern="/.*..*.gpg"/>
+                <data android:pathPattern="/.*..*.gpg?.*"/>
+            </intent-filter>
+        </activity-alias>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:authorities="com.yunpan.appmanage.fileprovider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:authorities="com.yunpan.appmanage.shizuku"/>
+        <provider
+            android:name="com.gj.server.GjBinderProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:authorities="com.yunpan.appmanage.provider"/>
+        <provider
+            android:name="com.gj.server.GjBinderProviderAcc"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":acc"
+            android:multiprocess="false"
+            android:authorities="com.yunpan.appmanage.providerAcc"/>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            android:authorities="com.yunpan.appmanage.androidx-startup">
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup"/>
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup"/>
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup"/>
+        </provider>
+        <uses-library
+            android:name="androidx.window.extensions"
+            android:required="false"/>
+        <uses-library
+            android:name="androidx.window.sidecar"
+            android:required="false"/>
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:exported="false"
+            android:directBootAware="true"/>
+        <provider
+            android:name="me.jessyan.autosize.InitProvider"
+            android:exported="false"
+            android:multiprocess="true"
+            android:authorities="com.yunpan.appmanage.autosize-init-provider"/>
+        <meta-data
+            android:name="moe.shizuku.client.V3_SUPPORT"
+            android:value="true"/>
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            android:permission="android.permission.DUMP"
+            android:enabled="true"
+            android:exported="true"
+            android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

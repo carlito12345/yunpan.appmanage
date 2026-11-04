@@ -1,0 +1,223 @@
+{
+  "final_apk": "应用管家-壁纸中心-R6-20261104.apk",
+  "installed_apk_sha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+  "vm": "192.168.1.18:10000",
+  "android": "11 / API30",
+  "screen_pixels": [
+    1440,
+    1920
+  ],
+  "landscape_pixels": [
+    1920,
+    1440
+  ],
+  "local_tests": 49,
+  "theme_restored": "mono/day",
+  "wallpaper_restored": "off",
+  "rotation_restored": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "final_installation": {
+    "installed_apk_sha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+    "main_pid": "26338",
+    "rotation": {
+      "user_rotation": 0,
+      "accelerometer_rotation": 0
+    },
+    "filtered_ui_error_lines": 0,
+    "own_media_client_after_cancel_and_restore": false,
+    "own_test_files_cleanup": [
+      {
+        "path": "/sdcard/Download/codex-r6-wallpaper-test-20261104-94d8673b.mp4",
+        "sha256": "4214bd8738457db4819e254c1616b7a6c3227995579f3bea85bb4ea5f1cc3059",
+        "removed": true
+      },
+      {
+        "path": "/sdcard/Download/codex-r6-crop-test-20261104-49ec905c.jpg",
+        "sha256": "49ec905c09cc2cb9741144528d8fd5451ad784e1b2c8e7cd7962f4ddd121cac2",
+        "removed": true
+      }
+    ]
+  },
+  "final_phase": {
+    "apk_sha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+    "screenshots": [
+      {
+        "path": "final/theme-current.png",
+        "sha256": "086f2441fedf98611a6ae88d21aef8eea74025953984b01e7221995b4fcd1c0f"
+      },
+      {
+        "path": "final/static-new-entry.png",
+        "sha256": "4db7a48c6f9819c7b03a9983dec1de14594629ee4eedcb517d04887ad9f44e3c"
+      },
+      {
+        "path": "final/crop-check.png",
+        "sha256": "086552f86e864a7c1dc5fd0294122d5d85fcbd7930fbd931fa3de694bd2b741a"
+      },
+      {
+        "path": "final/crop-pan-zoom-portrait.png",
+        "sha256": "8ac4ca2cb32c751f13748c6c2244c220a6aca89b3d3fa95b813e8d39bb4d148d"
+      },
+      {
+        "path": "final/crop-landscape.png",
+        "sha256": "ca1d1d9be4c0ce94125959daac98439a3a2bb595107cdc44485028583cb80e82"
+      },
+      {
+        "path": "final/cropped-preview.png",
+        "sha256": "66d2c091c76f433286d0617aea23ec9869f9bae90c5534025729502e066a91ef"
+      },
+      {
+        "path": "final/cropped-applied.png",
+        "sha256": "f6570421798f19949ac348ea14339872fd0b874848784f57a2554056fb6c3767"
+      },
+      {
+        "path": "final/cropped-reopened.png",
+        "sha256": "5fc322d8545707a398171b5070b7af136a41677df91f581bb50149a32e4b9d82"
+      },
+      {
+        "path": "final/video-controls-final.png",
+        "sha256": "30c1e3e14fe1eeee966a1a82da859941007f469cef5e391453e47fd7340bb742"
+      },
+      {
+        "path": "final/video-playing-final.png",
+        "sha256": "0a6a7873dc37497d2f18fb2c178724d99bbbe3ad1d92e02b5f2e766727833324"
+      },
+      {
+        "path": "final/original-background-entry-crop.png",
+        "sha256": "483f374c5492c8577d4ed8abf3c92cb129812ef96b9d41295f41903a35bd59d8"
+      },
+      {
+        "path": "final/original-entry-opens-center.png",
+        "sha256": "44a795378d5f52c55d2e637b4be1c1252667a92e9a43f87a4a08f3366fa9bdba"
+      },
+      {
+        "path": "final/particles-cyan-final.png",
+        "sha256": "89493688810b0e97226e9eeadff7ac550aa8ed17b6b80309e875d0e05922c477"
+      },
+      {
+        "path": "final/particle-controls-cyan-final.png",
+        "sha256": "56bf32dfafc94a3eae06322967c5bcf0e39e97a10aa02861b2b00e29cf26805b"
+      },
+      {
+        "path": "final/energy-control-cyan-final.png",
+        "sha256": "73d176f644d44603f55d8eed8c223f0e38fa3d594aebaec41f32de0c3b0e5745"
+      },
+      {
+        "path": "final/restored-mono-off.png",
+        "sha256": "ce04132324de21a62d03d4a032e5f6d1211243f59b4becb827fe03f260905945"
+      }
+    ],
+    "checks": [
+      "旧 设置/高级/修改管家背景 原按钮打开壁纸中心",
+      "静态选择→系统选图→异步解码→裁切→预览→应用→重新打开仍为已裁切图片",
+      "拖动和键盘缩放；1440×1920与1920×1440裁切框随owner旋转",
+      "恢复默认星月；壁纸选择界面保留静态/粒子/视频/关闭",
+      "本地视频最终窄确认：own PID26338 frames46→80，AVC，静音循环",
+      "冰蓝主题SeekBar与节能CheckBox着色；静态模式保留首帧",
+      "取消视频预览释放播放器；恢复mono/day、off、原旋转设置"
+    ],
+    "media_evidence": "media-evidence-final.json"
+  },
+  "engine_phase": {
+    "apk_sha256": "17bed211bdde26d7fdaa071e1e2da88db92ce8cf64f7621939633cb84793f2c4",
+    "local_tests_at_phase": 44,
+    "screenshots": [
+      {
+        "path": "release/editor-off.png",
+        "sha256": "03e39ddcbec975ce390a072b291c0f8c7920a896283645749733d958b312f159"
+      },
+      {
+        "path": "release/particles-preview-portrait.png",
+        "sha256": "4128b2b77f35c7c0149f6908074bf03414916c2d2e707f799d7f33fed45058bd"
+      },
+      {
+        "path": "release/style-stars.png",
+        "sha256": "37e36ed07ad799260486cee6eab40823fbbb76fc364380186718b5f9cc35888d"
+      },
+      {
+        "path": "release/style-constellation.png",
+        "sha256": "651b4c5d924ff479a858bcde3fca2962ce07ccdffed30e92c9264fc1b2de0957"
+      },
+      {
+        "path": "release/style-fireflies.png",
+        "sha256": "e677686dd47761b8d38acf4e6b7fcbf55c4cec7e211259a3795f1610c5652197"
+      },
+      {
+        "path": "release/style-snow.png",
+        "sha256": "e2d7d84e862347a53a4d01c962b6fae34fd522a1f5231edbab0af2bd3216aec2"
+      },
+      {
+        "path": "release/style-orbits.png",
+        "sha256": "f9638f633a73e0260be63f4308f78b17dc7dcc5ef8090764bd7c8165b60e7833"
+      },
+      {
+        "path": "release/style-meteors.png",
+        "sha256": "ca4b85516c29f35bb36373c2382726c9e6fcd8087f5abea85eb249f2d49d8f8f"
+      },
+      {
+        "path": "release/particles-editor-landscape.png",
+        "sha256": "9784a636a1c7e480f828ce86e7a3018655f7a67e0b872387d6c356eb4d7bedca"
+      },
+      {
+        "path": "release/particles-controls-lower.png",
+        "sha256": "04451b95e10e9bbbb2a0d17a65b3902aa85dedb4e950ce0910a9ace5ce4eff4f"
+      },
+      {
+        "path": "release/particles-applied-mono.png",
+        "sha256": "45f4cf7ec2f44c0596863a7d5f8704887fe83f3b725c98120975e674727f3851"
+      },
+      {
+        "path": "release/particles-applied-mono-frame2.png",
+        "sha256": "46d91195ee1c635ea6c9e1ace83997b4fa37ca2d85e5ad7a058c0db3454c293b"
+      },
+      {
+        "path": "release/particles-editor-cyan.png",
+        "sha256": "9805bbb94e5c70545d8d52667545529de42aeadfefb680c02ad2453792214ddd"
+      },
+      {
+        "path": "release/video-preview-1.png",
+        "sha256": "a6cde760ed1f556473e18ba7b35e4a96df0ffe48f9c8a1c55d399e95f423e87c"
+      },
+      {
+        "path": "release/video-preview-2.png",
+        "sha256": "7377cc8e17be35688a32cfc9f793aea8e863f5bdef6da85f9aa35d3012acf57f"
+      },
+      {
+        "path": "release/video-cancel-preserves-particles.png",
+        "sha256": "6f77c151058e9796376a334e9ca06b37383a6a9aa25f57aff0befaa6f3f9a3ab"
+      },
+      {
+        "path": "release/video-applied-portrait.png",
+        "sha256": "d76ff3f5c55432ea9703136b6a75a22f64c0dd282b1794b2a8ee65400ab76aa1"
+      },
+      {
+        "path": "release/video-applied-landscape.png",
+        "sha256": "a686a502de57e677f91976ee5fc5e772b066359a8c261de2db0ecb10677993bd"
+      },
+      {
+        "path": "release/video-settings-lower.png",
+        "sha256": "5004cb6a9283a60f1d4d58d5b4cb98f2acc56aaf05cb2810f39b3c9d510f390e"
+      },
+      {
+        "path": "release/remove-video-draft.png",
+        "sha256": "b215ab0b0b9b1a4668dfbd9cabb450acf3bcf4ef0669ce15314748ffcb8b9122"
+      }
+    ],
+    "media_evidence": "media-evidence.json",
+    "checks": [
+      "六粒子样式与颜色",
+      "视频选择/取消/应用/旋转/后台释放/回前台恢复/静态模式停止帧"
+    ],
+    "notice": "这些是动态引擎阶段截图，不是最终裁切版截图。"
+  },
+  "limitations": [
+    "系统DocumentsUI触控点选未成功验收，使用键盘选择自建测试文件完成返回；本轮裁切器拖动/键盘缩放实测，双指多触点仅实现，未做VM输入注入",
+    "裁切1440×1920与1920×1440输出像素由本地原生几何测试校验；VM验证选图/预览/应用往返，未读取私有输出JPEG元数据",
+    "超大屏保持比例，输出最长边2560且约400万像素上限；源图下采样最长4096、约800万像素，API24起处理EXIF方向",
+    "仅应用内部背景；系统Launcher壁纸和独立Surface画面不由此替换",
+    "首次显式Home启动落到Launcher；第二次WARM Home成功，不能称冷启动完全通过",
+    "原网络本地列表可能停在加载；USB细分设置、真实车门/自动化/权限/安装/下载业务、IME完整路径、实车未验收",
+    "系统文件选择器截图、原高级设置敏感截图、原始日志/个人数据不归档"
+  ]
+}

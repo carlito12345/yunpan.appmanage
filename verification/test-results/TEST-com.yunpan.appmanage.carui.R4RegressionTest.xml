@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.R4RegressionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:39:23.487Z" hostname="CARLITO" time="10.097">
+  <properties/>
+  <testcase name="sidebarPreviewAndLongFormsPreserveFunctionalRegions" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="0.885"/>
+  <testcase name="hiddenOriginalContentCannotReserveVisibleEditorsSpace" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="0.093"/>
+  <testcase name="originalMappingEditorsRetainCommandsSelectorsAndMapArea" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="6.028"/>
+  <testcase name="codeEditorKeepsDirectAnchorsForLateBusinessContent" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="0.08"/>
+  <testcase name="floatingAppearanceKeepsOneBoundedScrollAndFixedFooter" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="0.721"/>
+  <testcase name="selectorAndBodyFamiliesHaveIndependentBoundedAreas" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="0.161"/>
+  <testcase name="dialogFormsAndFilePickerKeepTheirOriginalViewports" classname="com.yunpan.appmanage.carui.R4RegressionTest" time="2.129"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+Invalid ID 0x00000000.
+]]></system-err>
+</testsuite>

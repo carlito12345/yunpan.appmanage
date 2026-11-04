@@ -1,0 +1,193 @@
+{
+  "revision": "R7",
+  "apk": "应用管家-MT双窗与全局外观-R7-20261104.apk",
+  "installed_apk_sha256": "af4249ca5d37057bf0e84085e47089633e677714dda0ea7f65ad355ead0b505d",
+  "android": "11 / API30",
+  "vm": "192.168.1.18:10000",
+  "screen_pixels": [
+    1440,
+    1920
+  ],
+  "landscape_pixels": [
+    1920,
+    1440
+  ],
+  "local_tests": 56,
+  "local_test_groups": {
+    "AppearanceTest": 3,
+    "CarHomeTest": 9,
+    "LegacyResourceTest": 8,
+    "R3RegressionTest": 7,
+    "R4RegressionTest": 7,
+    "R5RegressionTest": 8,
+    "R7RegressionTest": 4,
+    "WallpaperTest": 10
+  },
+  "final_installation": {
+    "installed_apk_sha256": "af4249ca5d37057bf0e84085e47089633e677714dda0ea7f65ad355ead0b505d",
+    "main_pid": "9546",
+    "filtered_ui_error_lines": 0,
+    "rotation": {
+      "user_rotation": 0,
+      "accelerometer_rotation": 0
+    },
+    "system_animator_duration_scale": "null",
+    "theme_preserved": "warm/day",
+    "wallpaper_selection_preserved": "existing user local video; URI not recorded",
+    "appearance_test_applied": {
+      "transparency": 35,
+      "borderStyle": 3,
+      "borderColor": 4
+    },
+    "appearance_restored": {
+      "transparency": 0,
+      "borderStyle": 0,
+      "borderColor": 0
+    },
+    "qr_login": "request/read/cancel only; no scan or account confirmation"
+  },
+  "theme_preserved": "warm/day",
+  "wallpaper_selection_preserved": "existing user local video; URI not recorded",
+  "appearance_restored": {
+    "transparency": 0,
+    "borderStyle": 0,
+    "borderColor": 0
+  },
+  "rotation_restored": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "screenshots": [
+    {
+      "path": "current-home-default.png",
+      "sha256": "d1f712148f6aae1002916241061c75d0fd2c245aa2e0c13905e3841bed21843d"
+    },
+    {
+      "path": "current-theme-center-default.png",
+      "sha256": "7ce2531622807b6f2b1f19dc77f3684ad690f0e75ea15e5e669cf7ad82755243"
+    },
+    {
+      "path": "current-appearance-draft-flow.png",
+      "sha256": "283eaa6ad865cefd8a108da3eb66bb65de957a8562fd8b7edff4c6cd03522245"
+    },
+    {
+      "path": "current-appearance-applied-1.png",
+      "sha256": "dab020a85db98d695c3dfbb92ece67cf4889e31758730de373155a1308ff0168"
+    },
+    {
+      "path": "current-appearance-applied-2.png",
+      "sha256": "1472e234749b0ff093a7996aabc321a0c7b2c9245fed23fb0623c7144f32e543"
+    },
+    {
+      "path": "current-network-portrait-flow.png",
+      "sha256": "cf02ebcc50399180c24da2df0e96452654c7d50cc8c1ac0386a7c5e5bf942a6c"
+    },
+    {
+      "path": "current-provider-wrap-portrait-flow.png",
+      "sha256": "083fee3bcbd43c36b4df5e0231a685bb8695b164f2da3ec5bd8b5d16b11eda4c"
+    },
+    {
+      "path": "current-qr-portrait-redacted.png",
+      "sha256": "93610c8bc7c4ea6846aa4c804ca534be19037b4edceaee7c1e72a6e4fb8554e7"
+    },
+    {
+      "path": "current-qr-landscape-redacted.png",
+      "sha256": "e17d958432d57aa3e43b5674a5d4afd6959a7e31d596aec79fff899b6bee8303"
+    },
+    {
+      "path": "current-network-landscape-flow.png",
+      "sha256": "f05350f771a0d89494cd7c58aa64efb5d5db3caef18a175b4fcb6aa95d56ecb7"
+    },
+    {
+      "path": "current-provider-wrap-landscape-flow.png",
+      "sha256": "64253ed8d273168c2369a546ad9ec065273495825dbfa52b801313707f6f35cb"
+    },
+    {
+      "path": "current-theme-center-lower.png",
+      "sha256": "ee97d602f41ed5d7a4d9b64a8f6dd1beb956fc982f54c61444fa0ec914b11b46"
+    },
+    {
+      "path": "current-theme-restored.png",
+      "sha256": "4845f36b250f85f2b763432af0625ce2b6cfec26c09081630def0c92f9116c85"
+    },
+    {
+      "path": "current-wallpaper-preserved.png",
+      "sha256": "20aaa341b87b5077cd34c072279ede1ecf9f9630d5f0b1aeb387a61623b31df1"
+    },
+    {
+      "path": "current-home-restored-final.png",
+      "sha256": "f27a4093a2b4f4d90bfc32eef496e2a41ddd583563d4e76182f91491c71a808f"
+    }
+  ],
+  "native_previews": [
+    {
+      "path": "r7-network-mono-1100.png",
+      "sha256": "85d089b8103244da3cd13492fb5d6bf8638877e60d4eb5fbb3840d18acad074a"
+    },
+    {
+      "path": "r7-network-mono-1580.png",
+      "sha256": "55d613232a9854b24f853d417067794052f01c54af88dafcfb31701499fcefd4"
+    },
+    {
+      "path": "r7-network-cyan-1100.png",
+      "sha256": "8ed467cf01344f58c2a6d3db3eb57c740d8380d00831f24ba951b667f2da3c65"
+    },
+    {
+      "path": "r7-network-cyan-1580.png",
+      "sha256": "5a1d33d53fad527dbaf792e04ed296ad872f0ca64b362cbea81866e16b6e2af5"
+    },
+    {
+      "path": "r7-network-warm-1100.png",
+      "sha256": "980fe65db0c5b4bf8bb99d1a7e474c2f15b0979f21a2360594a78293f9b17260"
+    },
+    {
+      "path": "r7-network-warm-1580.png",
+      "sha256": "bcce60b132e9b579fb6972d1019590f8c15f2b12fbfaba2356599d767e1aeae6"
+    },
+    {
+      "path": "r7-qr-1440.png",
+      "sha256": "99aad964f150a9517a20f31a06d0be1742405ee355582c37b9b816d883fd5e53"
+    },
+    {
+      "path": "r7-qr-1920.png",
+      "sha256": "99aad964f150a9517a20f31a06d0be1742405ee355582c37b9b816d883fd5e53"
+    },
+    {
+      "path": "r7-provider-picker-1440.png",
+      "sha256": "95f5d4f4b263015192a27cd9a33b0ae77cd809736d6a699f3eebb6f670c3069b"
+    },
+    {
+      "path": "r7-provider-picker-1920.png",
+      "sha256": "95f5d4f4b263015192a27cd9a33b0ae77cd809736d6a699f3eebb6f670c3069b"
+    },
+    {
+      "path": "r7-theme-center-1440.png",
+      "sha256": "276704911baf99a791a4ddff1be3bc4ed82b7d82f54e1552aaf3de8e1b218055"
+    },
+    {
+      "path": "r7-theme-center-1920.png",
+      "sha256": "c74cd5649d14edea0f1e091b72a996e9a8d210cc700da8f7ab35e61c91d1ec03"
+    }
+  ],
+  "checks": [
+    "左右独立云端/本地列表、路径和固定工具栏；真实本地列表晚到填充",
+    "添加云端选项3列横向排列并自动换行，原adapter位置和关闭按钮保留",
+    "123云盘仅获取/查看二维码后取消，未扫码或确认；portrait可见黑白图案bbox约634×634px，landscape只作布局证据，不以旋转阈值bbox当精确尺寸",
+    "面板透明度35% + 流光飞舞 + 樱粉：草稿预览、应用、主页与网络/弹窗显示",
+    "两次主页边框ROI(260,90,264,124)像素变化；仅视觉采样，不是GPU基准",
+    "恢复透明度0、主题默认边框、冰蓝主色，原暖橙日间和用户视频保留，旋转0/0",
+    "视频实际原色预览和主页可见；静态原图/纯色/粒子的原色像素由本地测试确认",
+    "首次显式启动落Launcher，第二次COLD Home成功；main PID9546定向UI/AndroidRuntime错误0"
+  ],
+  "qr_evidence": "qr-evidence.json",
+  "limitations": [
+    "未扫码/确认账号，未验收认证后目录、上传下载及跨provider业务",
+    "交付的真实二维码图均遮盖，未做实际手机摄像头扫码验收",
+    "原本地浏览仍可短暂或持续loading，不以布局测试证明所有存储业务正常",
+    "VM与本地检查不代表实车、全部原模块、IME/字体及所有设备矩阵通过",
+    "API26+流光按系统动画开关降级静态；API17-25仅在Drawable创建时读取scale，旧API设备未实测",
+    "33ms调度与hidden/关闭/reduced-motion边界由本地测试确认，未做整车GPU/耗电长时基准",
+    "R6视频后台/恢复/静态模式等旧engine证据保持历史，不冒充R7逐项重做",
+    "保留用户现有视频；URI、原始日志、敏感设置、系统文件选择器及未遮盖二维码不归档"
+  ]
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/v_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/btn_text_color1"
+        android:id="@+id/v_btn_return"
+        android:background="@drawable/bg_btn1"
+        android:paddingLeft="@dimen/dp_18"
+        android:paddingTop="@dimen/dp_11"
+        android:paddingRight="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_11"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="返回"
+        android:singleLine="true"
+        android:layout_marginStart="@dimen/dp_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/color_2"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="多屏异显：在不同屏幕显示不同的应用，比如（仪表盘、HUD、画中画 等副屏）"
+        app:layout_constraintBottom_toBottomOf="@+id/v_btn_return"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/v_btn_return"
+        app:layout_constraintTop_toTopOf="@+id/v_btn_return"/>
+    <com.owen.tvrecyclerview.widget.TvRecyclerView
+        android:id="@+id/v_list_app"
+        android:padding="@dimen/dp_12"
+        android:scrollbars="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_btn_return"
+        app:tv_horizontalSpacingWithMargins="@dimen/dp_22"
+        app:tv_selectedItemIsCentered="true"
+        app:tv_verticalSpacingWithMargins="@dimen/dp_18"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

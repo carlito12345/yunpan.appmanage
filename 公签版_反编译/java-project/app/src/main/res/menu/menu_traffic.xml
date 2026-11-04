@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_jr"
+        android:title="今日用量"/>
+    <item
+        android:id="@+id/menu_zr"
+        android:title="昨日用量"/>
+    <item
+        android:id="@+id/menu_jz"
+        android:title="本周用量"/>
+    <item
+        android:id="@+id/menu_jy"
+        android:title="本月用量"/>
+    <item
+        android:id="@+id/menu_yy"
+        android:title="30天用量"/>
+</menu>

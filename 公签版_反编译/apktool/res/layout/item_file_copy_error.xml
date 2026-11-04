@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/shape_user_focus" android:padding="@dimen/dp_3" android:focusable="true" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/sp_11" android:textColor="#ffffffff" android:ellipsize="end" android:id="@id/v_path" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="/data/data/dssg.txt" android:maxLines="2" android:minLines="1" android:lineSpacingExtra="-4.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:textSize="@dimen/sp_12" android:textColor="@color/color_9" android:ellipsize="end" android:id="@id/v_state" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="失败原因：文件名太长" android:maxLines="2" android:minLines="1" android:lineSpacingExtra="-4.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/v_path" />
+</androidx.constraintlayout.widget.ConstraintLayout>

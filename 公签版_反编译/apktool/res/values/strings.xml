@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="EditorActivity">com.yunpan.appmanage.editor.EditorActivity</string>
+    <string name="abc_action_bar_up_description">Navigate up</string>
+    <string name="abc_action_menu_overflow_description">More options</string>
+    <string name="abc_action_mode_done">Done</string>
+    <string name="abc_capital_off">OFF</string>
+    <string name="abc_capital_on">ON</string>
+    <string name="abc_menu_alt_shortcut_label">Alt+</string>
+    <string name="abc_menu_ctrl_shortcut_label">Ctrl+</string>
+    <string name="abc_menu_delete_shortcut_label">delete</string>
+    <string name="abc_menu_enter_shortcut_label">enter</string>
+    <string name="abc_menu_function_shortcut_label">Function+</string>
+    <string name="abc_menu_meta_shortcut_label">Meta+</string>
+    <string name="abc_menu_shift_shortcut_label">Shift+</string>
+    <string name="abc_menu_space_shortcut_label">space</string>
+    <string name="abc_menu_sym_shortcut_label">Sym+</string>
+    <string name="abc_prepend_shortcut_label">Menu+</string>
+    <string name="abc_search_hint">Search…</string>
+    <string name="abc_searchview_description_clear">Clear query</string>
+    <string name="abc_searchview_description_search">Search</string>
+    <string name="abc_searchview_description_submit">Submit query</string>
+    <string name="abc_searchview_description_voice">Voice search</string>
+    <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="accessibility_service_description">应用管家：使用自动化任务，需开启此无障碍服务，这是总开关</string>
+    <string name="accessibility_service_name">应用管家自动化</string>
+    <string name="accessibility_service_super_description">临时辅助功能：此服务仅在临时需要时会请求启动，请勿自己开启</string>
+    <string name="accessibility_service_super_name">临时辅助服务</string>
+    <string name="activity_desktop_v_right_text">"桌面应用管理：有些人想禁用系统桌面，但又不知道哪款是系统的桌面，那么在这里就一目了然！ 目前功能试验中，个别系统有些不是桌面的app也显示在其中，请自行分辨
+
+这里特别要说明的是：国内厂商的系统大多是绑定自家桌面的，如果您禁用了系统桌面 那么开机将没有界面(白屏或黑屏)，如果你禁用了导致开机进入不了怎么办，可以用甲壳虫adb：连接adb解除系统桌面的禁用即可恢复，，，注意：禁用前请用甲壳虫连接系统，为了保留adb授权验证
+
+注意：如果看不懂上面字，请不要尝试禁用(系统桌面)，不明确你设备禁用系统桌面会不会开机无法进入的，请一定不要禁用，后果自负
+警告：请务必至少保留一个桌面，否则无法开机"</string>
+    <string name="activity_immersive_ts1">"通过此设置，可将所有应用实现全屏模式或其它模式！
+
+应用沉浸功能只支持：安卓4.4到安卓10的系统，沉浸功能是由系统实现，不是管家说了算，管家只负责把你的设置提交给系统
+
+注：沉浸式模式 是从 安卓4.4 才开始有的功能，而且安卓11之后安卓取消了这个功能，还有一部分系统可能已去除此系统设置，所以就算在这里设置了也无法生效的！ 
+因为安卓官方更推荐让开发者app自己实现沉浸式，而不是让系统实现
+
+此功能只相对于车机用户来说比较实用，对于电视用户由系统默认就好(因为电视系统默认就是全屏，所以怎么设置都一样)！
+注意：此功能是由系统实现，凡是设置后还是不行，或不兼容的话，则说明你系统不支持不适合使用，恢复默认即可！这不是bug，不用向我反馈"</string>
+    <string name="activity_key_map_acc_help">"等待间隔默认是300毫秒，间隔是什么意思呢？比如：(下面根据300毫秒来说) 
+ 一个按键你设置有双击或组合！那么单击时就要等待300毫秒，如果300毫秒内没有触发双击或组合的话，才会视为单击！如果设置有长按的话，按下后会等待300ms按键还没松开的话触发，否则为单击操作！
+
+ 如果你不需要组合键的话，那么300毫秒就够了，如果需要组合键的话请设置700毫秒或以上，根据自己手速来设置
+
+ 如果您的按键无法用这个模式捕获到，再考虑其它模式
+
+为什么无法捕获按键？？？那是因为你的按键不是直接对接安卓系统的，比如某些车机的方向盘按键，是厂商自定义的按键以及单独的硬件驱动，那么是无法用这个模式监听到按键的，可以尝试用日志映射！日志模式也不是百分百的，因为有些车企应用是不留日志的话，那么也没办法的！"</string>
+    <string name="activity_key_map_logcat_help">"请先用【按键映射】，如果监听不了按键才考虑用日志映射！日志对于新手会比较繁杂，难以用几句话就能说得明白，以后会在QQ频道里面详细介绍一下用法
+
+ 日志需要像编程一样严谨，编写错一点都会导致无效
+ 如果监听时一条日志都没有，请在系统的工程菜单中开启日志
+
+ 如果日志里有动态字段，怎么办？
+ 可以将日志前面 或者 后面无用的删除，但是不能单单删除中间一段，否则就触发不了！！如果非要删除中间一段，可用两个符号：&amp;&amp; 来代替，就是【而且】的意思，，那么就会将日志拆分成多段，每一段都符合的话才会触发！
+
+ 为什么按一下会切换多首歌？
+ 这是因为你设置的日志不是唯一的，意思是按按键时系统会产生多条一样的日志(你设置的那条)，这样就会出现这种情况，你要设置一条唯一的日志才行，不要乱删掉日志中有用的信息，不是那么随意的！
+
+ 为什么有时候长按不行？
+ 凡是任何不对，您首先要考虑的就是日志问题，有些系统日志 短按有松开日志，长按就没有松开日志，或者松开日志和短按的松开日志不一样，这种情况的话只能放弃长按操作了！
+
+ 为什么有时候监听到日志有时候又一条都没有？
+ 这大概率是因为你系统日志是缓冲机制，等到日志缓冲满时才输出，也就是说等到日志够一定的数量后，系统才会把日志交给管家，所以就导致这种情况！如果你系统就是这样的，那么就无法用日志模式了！
+
+ 组合键触发条件：是先按主键，再按组合键！
+
+ 日志映射是无法拦截按键的原功能的，所以不要跑来问我！想要废除按键本身的功能唯一办法就是：自己去修改系统app
+
+ 什么是系统日志？
+ 是用于记录系统运行过程中发生的各种事件、错误、调试信息等的文本信息，除了各类系统日志外，还有应用日志，简单来说就是：任何app都可以写系统日志，系统日志一般是用来开发者调试检测app问题用的！对于编程的人来说很熟悉，对于普通用户而言可能就一脸懵！
+
+ 那么方向盘按键、车门、大灯等等这些车机的日志是如何产生的？
+ 方向盘按键连接到车机系统，车机系统某些系统服务或系统应用读取到这些信号后，会做出相应的操作，同时这些开发者为了方便测试往往会写下系统日志，用来调试！
+
+ 经过上面的说明，想必你应该明白以下几点：
+ 一：日志映射的方式，是无法拦截的系统原本的按键操作的，系统应用从按键硬件中读取到信号后，系统应用做出操作并写下系统日志，然后才轮到管家接收日志并做出映射！
+ 二：系统应用的开发者不一定就会写相关的系统日志的，所以很多车没车门，安全带等等日志都是很正常的！
+"</string>
+    <string name="activity_key_map_logcat_set">"等待间隔默认是300毫秒，间隔是什么意思呢？比如：(下面根据300毫秒来说) 
+ 一个按键你设置有双击或组合！那么单击时就要等待300毫秒，如果300毫秒内没有触发双击或组合的话，才会视为单击！
+
+ 如果你不需要组合键的话，那么300毫秒就够了，如果需要组合键的话请设置700毫秒或以上，根据自己手速来设置
+
+ 日志等级：VERBOSE > DEBUG > INFO > WARN > ERROR
+ 一般的系统都是默认打印全部日志的！也就是管家能读取所有日志！！但是某些吉利车机的系统会自己把等级改为ERROR，这样的话就无法读取到INFO之类的日志了！所以需要上面的设置来自动修改！VERBOSE等级是包括全部的，但某吉利车机用VERBOSE的话会卡，所以用INFO，某些吉利车机要DEBUG的话，请自己选择即可！其它车机一般不用设置，因为一般车机不会自己改动的！"</string>
+    <string name="activity_key_map_nissan_help">"等待间隔默认是300毫秒，间隔是什么意思呢？比如：(下面根据300毫秒来说) 
+ 一个按键你设置有双击或组合！那么单击时就要等待300毫秒，如果300毫秒内没有触发双击或组合的话，才会视为单击！如果设置有长按的话，按下后会等待300ms按键还没松开的话触发，否则为单击操作！
+
+ 如果你不需要组合键的话，那么300毫秒就够了，如果需要组合键的话请设置700毫秒或以上，根据自己手速来设置
+
+ 日产车机：有屏幕按键 和 方向盘按键！屏幕的按键请直接用【按键映射】即可，如果是方向盘按键的话则需要用这个，虽然日产也支持日志映射，但是现在这个是直接与系统对接，能更快更稳定，比日志映射要好！
+
+ 建议清空所有的日志映射！避免不必要的开销！直接用现在这个就好！
+
+ 方向盘上有一些按键是无法映射的，因为那些按键没有接入车机，只对接仪表盘，所以是不行的！
+
+ 注意：仅支持飞思卡尔芯片的系统"</string>
+    <string name="activity_ps_help">"USER：进程所属的用户（如 root、system、app_xxx 等）
+ PID ：进程 ID，系统内唯一标识进程的数字
+ PPID：父进程 ID，表示创建当前进程的父进程的 PID
+ VSZ ：表示进程可用的虚拟内存总量（包括共享库等）
+ RSS ：使用的物理内存（缺点是：包含共享库的内存）
+ NAME：进程名称或命令行
+ 如需查询应用的实际内存使用量，请使用【已运行应用】功能"</string>
+    <string name="activity_seccomp_root">"仅支持小部分设备，利用某系统漏洞，绕过系统安全限制，实现root权限，但是此功能仅支持小部分设备，请自行测试，请勿用于非法用途！
+
+ 但是用处大不，有个缺点：这个方法提升的root权限，不能操作文件，也就是不能执行与文件相关的命令！比如删除文件，安装应用，删除系统应用这些都不行！
+
+ 如果你设备不支持无线adb，那么可以尝试用这个方法提权(如果可以的话)，获得临时root权限，可以执行除了文件相关以外的命令！"</string>
+    <string name="activity_start_ts1">"自启动：意思是当设备开机时，应用会自动启动。 但是大多数系统都是默认禁止自启动的。 所以就算APP具有自启动功能也没用，也就没必要管理都行！
+
+ 自启动的方式一般有多种：而这里管理的是开机广播的启动！如果应用是通过其它方法自启动的话，那么是无法管理的
+
+ 注：重复的APP说明一个APP有多个开机服务,不一样的
+
+ 注：这里显示的已启用，不是说就可以自启动，首先需要系统支持自启动才行，如果系统不支持那么这里设不设置都一样！
+
+ 注：多数系统是无法用普通adb修改自启动的，须提权为root权限 或者 公签
+特别注意：不要乱禁止系统APP的自启"</string>
+    <string name="activity_system_animator_ts1">"简单介绍：
+ 了解过（开发者选项）的人，应该知道里面可以设置过渡动画速度！值越小(动画时间越短)，速度越快
+ 如果你的设备是车机或机顶盒，那么我建议您关闭所有动画效果，能有效加快系统流畅性，因为动画是影响系统流畅性的主要因素之一
+ 注：当关闭[开发者模式]时，此设置会被重置为1，需重新在这设置"</string>
+    <string name="activity_voice_iflytek_1">这是个简易的语音加强功能，基于你车机自带的语音识别</string>
+    <string name="add_voice_log_dialog_1">从语音日志中取出语音识别后的文字：用两个换行来代替语音识别的文字，注意删除日志前后的动态字段</string>
+    <string name="add_voice_log_dialog_2">不推荐用正则表达式，因为慢！需要自己写表达式并考虑转义问题！匹配分组1来获取识别后的文字</string>
+    <string name="add_voice_log_dialog_3">"这是个简易的语音加强功能，基于你车机自带的语音识别，前提是您车机识别语音后会写下系统日志才行
+如果有时候行有时候不行，或者重复映射，这种情况一般是你日志选错了，请选一条稳定且唯一的日志
+如何快速抓取语音日志：点监听日志输入关键字(我爱你们)，唤醒语音，说(我爱你们)，这样可快速筛选得到语音日志"</string>
+    <string name="androidx_startup">androidx.startup</string>
+    <string name="app_name">应用管家</string>
+    <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="bottom_sheet_behavior">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
+    <string name="bottomsheet_action_expand">Expand the bottom sheet</string>
+    <string name="bottomsheet_action_expand_halfway">Expand halfway</string>
+    <string name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
+    <string name="bottomsheet_drag_handle_content_description">Drag handle</string>
+    <string name="brvah_load_complete">点击加载更多</string>
+    <string name="brvah_load_end">没有更多数据</string>
+    <string name="brvah_load_failed">加载失败，点击重试</string>
+    <string name="brvah_loading">加载中...</string>
+    <string name="call_notification_answer_action">Answer</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Decline</string>
+    <string name="call_notification_hang_up_action">Hang Up</string>
+    <string name="call_notification_incoming_text">Incoming call</string>
+    <string name="call_notification_ongoing_text">Ongoing call</string>
+    <string name="call_notification_screening_text">Screening an incoming call</string>
+    <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
+    <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
+    <string name="character_counter_pattern">%1$d/%2$d</string>
+    <string name="clear_text_end_icon_content_description">Clear text</string>
+    <string name="dest_title">destination title</string>
+    <string name="dialog_adb_pair_ts1">"如果您系统里的【开发者选项】也是和左图一样，是这种无线调试的话(配对码)，可以在这里连接adb
+
+ 点击上面的【输入配对码】，会提供两种输入方式（通知栏模式 和 小窗口模式）
+
+ 通知栏输入模式：管家会创建一个通知，然后您去【开发者选项】中开启USB调试和开启无线调试，在【无线调试】页面中点【使用配对码配对】，看到配对码后(不要关闭窗口)，下拉通知栏中，然后输入匹配码，点(发送图标)，然后点(返回图标)，即可完成配对！
+
+ 小窗口输入模式：管家会打开输入页面，自己滑动将管家小窗口模式，然后您去【开发者选项】和上面的操作一样，然后在小窗口中输入配对码，点击连接即可
+
+ 正常的设备，仅需配对一次即可，后面无需再次配对，打开管家即可自动连接adb（前提是已开启【无线调试】）
+
+ 注：某些手机系统(小米)开发者选项里如果有USB调试(安全设置)的话，请勾选！
+
+ 打开无线调试页面，看到下面的已配对设备有您的，就不需要再次配对了，打开管家就会自动连接adb，除非您的无线调试开关被关闭了，那么你开启后，重新打开管家就会自动连接adb了
+
+ 但有些恶心系统，做了限制，配对后系统不会保存配对信息，如果您的系统属于这类的话，那么每次连接都需要输配对码
+
+ 无线调试：需要连接wifi，才可开启无线调试，才能连接adb，连接后可以修改为网络adb(端口5555)，修改后可以不用连wifi也能连接adb"</string>
+    <string name="dialog_add_door_log_help1">"日志里面分别用[door1]、[door2]、[door3]、[door4]、[door5]...来替代车门的开关值
+[door1]代表主驾门开关值，2副驾门，3左后门，4右后门，5尾门，6机盖门，7主驾门锁，8副驾门锁，9尾门锁"</string>
+    <string name="dialog_add_door_log_help2">"有两种情况的车门日志需要用这个功能来实现映射：
+ 一：所有门开关都在一条日志里面！
+ 二：每个门一条日志，但是每次开关门时，所有门的日志全部都会出现一次！
+
+ 如果你的车门日志不是这种的，那不需要专门用这个车门日志功能，直接用普通日志映射即可！
+
+ 如果日志里没有某些门的值，可不用管！如果日志的中间存在无用的动态值可用[door111]来替代"</string>
+    <string name="dialog_auto_size_dp_ts">"如果您觉得界面适配不佳,可修改此值,从而达到更好的适配！默认是960
+如果您是超宽屏可以增大数值，如果觉得字体过小，可以调小数值
+
+注意：微调即可！不要恶意改得非常大非常小，否则无法显示"</string>
+    <string name="dialog_clean_mode_v_text">"终结模式：把所有程序关闭，包括各种后台进程和服务，通通清理 (车机勿用此模式)
+车机模式：保留桌面和系统应用、其它全部清理(包括地图)，避免杀死驱动程序
+窗口模式：速度快，只清理已打开 且 具有可视窗口的应用（不清理桌面）
+温柔模式：清理比较温柔，只清理已经不运行的应用(用处不大)
+暴力模式：把内存爆满，迫使系统把个人应用杀死(包括管家)，无需权限(适合手机用)
+极速模式：速度超级快，只清理系统给与清理的应用 (用处不大)"</string>
+    <string name="dialog_input_shizuku_ts">执行命令后会自动检测是否已成功激活，如果检测到未激活，会再次重新激活一次</string>
+    <string name="dialog_keymap_diy">"功能说明：弹出按键面板时，将拦截所有按键，您可以为此按键面板定义各个按键的映射功能！ 如果弹出面板后，然后按此面板没有定义的按键时，则关闭此面板，并恢复！
+
+ 设置说明：可以为每个按键单独设置不同的映射功能！ 如何删除某个已定义的按键：长按！
+ 在顶部为面板添加自定义按键，在左侧选择指定按键，在右侧为此按键添加映射功能！"</string>
+    <string name="dialog_warning1">"警告：不要轻易禁用、卸载或删除系统原有的东西，除非你了解，否则不要乱动，乱改系统的东西导致无法开机的话，后果自负！后果自负！后果自负！
+
+ 改动系统的东西之前，请一定要给设备留一条后路
+ 后路一：设备支持不进入系统就能线刷或OTA完整包！
+ 后路二：确保车机连接过手机热点，车机开机就能连接adb，用手机或电脑连接过车机的adb，连接车机adb时，务必勾选始终允许（主要是授权过，留下授权信息，方便后续连接adb修复）
+
+ 后路三：使用自动化任务，映射某个按键，映射为：打开应用管家！预防用(强烈建议)！
+
+ 如果不懂的话，请勿乱动【根】里面的系统文件，请勿使用adb提权！不要轻易禁用或卸载系统应用，除非你了解没问题后再考虑操作，特别是系统自带的桌面app
+ 如果您把车机弄坏了，4S不给免费修的话，试了N多办法都无法恢复的话 并且 过了多天也不会自动恢复的话，请到外面找人修，花几百块刷字库芯片重置即可
+ 如果您把电视、机顶盒弄坏了，并且没留后路的话，那就直接刷机吧
+"</string>
+    <string name="dialog_warning_serious">严重警告</string>
+    <string name="dialog_xingtu_adb_ts1">"首次连接adb时需要授权点允许，但是这个车系统很难弹出adb授权窗口
+ 如果你是首次连接adb，无法连上的话，请按下面的步骤来尝试
+
+ 点上面的【开始尝试】后，管家会退至后台！授权窗口弹出后一定要勾选(一律允许)
+
+ 如果不能弹窗，可以尝试用悬浮窗(有权限的话)
+
+ 授权成功后，管家会自动关闭，重新打开即可自动连接adb
+
+ 请在工程模式、原生设置、开发者选项中开启usb调试再点连接"</string>
+    <string name="error_a11y_label">Error: invalid</string>
+    <string name="error_icon_content_description">Error</string>
+    <string name="exo_controls_cc_disabled_description">Enable subtitles</string>
+    <string name="exo_controls_cc_enabled_description">Disable subtitles</string>
+    <string name="exo_controls_fullscreen_enter_description">Enter fullscreen</string>
+    <string name="exo_controls_fullscreen_exit_description">Exit fullscreen</string>
+    <string name="exo_controls_hide">Hide player controls</string>
+    <string name="exo_controls_next_description">Next</string>
+    <string name="exo_controls_overflow_hide_description">Hide additional settings</string>
+    <string name="exo_controls_overflow_show_description">Show additional settings</string>
+    <string name="exo_controls_pause_description">Pause</string>
+    <string name="exo_controls_play_description">Play</string>
+    <string name="exo_controls_playback_speed">Speed</string>
+    <string name="exo_controls_previous_description">Previous</string>
+    <string name="exo_controls_repeat_all_description">Current mode: Repeat all. Toggle repeat mode.</string>
+    <string name="exo_controls_repeat_off_description">Current mode: Repeat none. Toggle repeat mode.</string>
+    <string name="exo_controls_repeat_one_description">Current mode: Repeat one. Toggle repeat mode.</string>
+    <string name="exo_controls_settings_description">Settings</string>
+    <string name="exo_controls_show">Show player controls</string>
+    <string name="exo_controls_shuffle_off_description">Enable shuffle mode</string>
+    <string name="exo_controls_shuffle_on_description">Disable shuffle mode</string>
+    <string name="exo_controls_time_placeholder">00:00:00</string>
+    <string name="exo_controls_vr_description">VR mode</string>
+    <string name="exo_item_list">%1$s, %2$s</string>
+    <string name="exo_track_bitrate">%1$.2f Mbps</string>
+    <string name="exo_track_mono">Mono</string>
+    <string name="exo_track_resolution">%1$d × %2$d</string>
+    <string name="exo_track_role_alternate">Alternate</string>
+    <string name="exo_track_role_closed_captions">CC</string>
+    <string name="exo_track_role_commentary">Commentary</string>
+    <string name="exo_track_role_supplementary">Supplementary</string>
+    <string name="exo_track_selection_auto">Auto</string>
+    <string name="exo_track_selection_none">None</string>
+    <string name="exo_track_selection_title_audio">Audio</string>
+    <string name="exo_track_stereo">Stereo</string>
+    <string name="exo_track_surround">Surround sound</string>
+    <string name="exo_track_surround_5_point_1">5.1 surround sound</string>
+    <string name="exo_track_surround_7_point_1">7.1 surround sound</string>
+    <string name="exo_track_unknown">Unknown</string>
+    <string name="exo_track_unknown_name">Unknown (%1$s)</string>
+    <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
+    <string name="fab_transformation_scrim_behavior">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
+    <string name="fab_transformation_sheet_behavior">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="fh_doule_yjt">>></string>
+    <string name="hide_bottom_view_on_scroll_behavior">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
+    <string name="icon_content_description">Dialog Icon</string>
+    <string name="installer_rootless_error2_install_failed_aborted">安装已被用户取消或中止</string>
+    <string name="installer_rootless_error2_install_failed_already_exists">此软件包已经安装</string>
+    <string name="installer_rootless_error2_install_failed_bad_dex_metadata">Dex元数据文件无效或没有匹配 APK文件的dex元数据文件</string>
+    <string name="installer_rootless_error2_install_failed_bad_signature">APK的签名有问题</string>
+    <string name="installer_rootless_error2_install_failed_conflicting_provider">软件包包含一个与系统中已经安装且具有相同授权的内容提供者</string>
+    <string name="installer_rootless_error2_install_failed_container_error">无法在外部媒体访问安全容器挂载点</string>
+    <string name="installer_rootless_error2_install_failed_cpu_abi_incompatible">软件包不包含与此设备的CPU兼容的本地代码</string>
+    <string name="installer_rootless_error2_install_failed_dexopt">当优化和验证软件包dex文件时候安装失败，原因是存储不足或者验证失败</string>
+    <string name="installer_rootless_error2_install_failed_duplicate_package">已安装具有相同包名的软件包</string>
+    <string name="installer_rootless_error2_install_failed_duplicate_permission">软件包正在尝试定义一个已被其他已安装软件包定义的权限</string>
+    <string name="installer_rootless_error2_install_failed_instant_app_invalid">APK无效 或 系统有限制，请先解除</string>
+    <string name="installer_rootless_error2_install_failed_insufficient_storage">设备空间不足，无法安装应用</string>
+    <string name="installer_rootless_error2_install_failed_internal_error">由于系统问题安装失败</string>
+    <string name="installer_rootless_error2_install_failed_invalid_apk">APK文件无效</string>
+    <string name="installer_rootless_error2_install_failed_invalid_install_location">无法在指定位置安装软件包</string>
+    <string name="installer_rootless_error2_install_failed_invalid_uri">传递的URI无效</string>
+    <string name="installer_rootless_error2_install_failed_media_unavailable">由于媒体不可用，无法在指定位置安装软件包</string>
+    <string name="installer_rootless_error2_install_failed_missing_feature">此设备不支持该软件包需要的功能</string>
+    <string name="installer_rootless_error2_install_failed_missing_shared_library">应用请求了一个未安装在设备上的共享库</string>
+    <string name="installer_rootless_error2_install_failed_missing_split">软件包需要拆分，但是没有提供</string>
+    <string name="installer_rootless_error2_install_failed_multipackage_inconsistency">一个子软件包安装会话与上级会话中有关分阶段或回滚启用的参数不匹配</string>
+    <string name="installer_rootless_error2_install_failed_newer_sdk">设备的 Android 版本高于软件包的要求</string>
+    <string name="installer_rootless_error2_install_failed_no_matching_abis">软件包需要不包含与此设备的 CPU 兼容的本地代码</string>
+    <string name="installer_rootless_error2_install_failed_no_shared_user">软件包请求共享的用户不存在</string>
+    <string name="installer_rootless_error2_install_failed_older_sdk">设备的 Android 版本低于软件包的要求</string>
+    <string name="installer_rootless_error2_install_failed_other_staged_session_in_progress">此软件包名称的另一个安装会话已经在进行中</string>
+    <string name="installer_rootless_error2_install_failed_package_changed">软件包安装路径发生意外的更改</string>
+    <string name="installer_rootless_error2_install_failed_permission_model_downgrade">新版本的软件包不支持运行时权限，但当前已安装的版本却支持</string>
+    <string name="installer_rootless_error2_install_failed_replace_couldnt_delete">系统无法删除此软件包的之前的版本</string>
+    <string name="installer_rootless_error2_install_failed_sandbox_version_downgrade">新版本的软件包需要一个低于当前已安装版本的沙箱版本</string>
+    <string name="installer_rootless_error2_install_failed_shared_user_incompatible">应用已经请求了一个已存在的共享用户，但他们的签名不匹配</string>
+    <string name="installer_rootless_error2_install_failed_test_only">已安装的软件包是仅测试的，但未提供INSTALL_ALLOW_TEST标志</string>
+    <string name="installer_rootless_error2_install_failed_uid_changed">软件包被分配了一个不同于先前持有的UID</string>
+    <string name="installer_rootless_error2_install_failed_update_incompatible">应用签名与已安装的相同包名的应用的签名不匹配</string>
+    <string name="installer_rootless_error2_install_failed_user_restricted">此用户被限制安装应用</string>
+    <string name="installer_rootless_error2_install_failed_verification_failure">软件包需要验证失败</string>
+    <string name="installer_rootless_error2_install_failed_verification_timeout">软件包需要验证超时</string>
+    <string name="installer_rootless_error2_install_failed_version_downgrade">此软件包的更新版本已经安装</string>
+    <string name="installer_rootless_error2_install_failed_wrong_installed_version">已安装软件包的所需版本与已安装软件包的实际版本不匹配</string>
+    <string name="installer_rootless_error2_install_parse_failed_bad_manifest">无法获取APK配置清单信息</string>
+    <string name="installer_rootless_error2_install_parse_failed_bad_package_name">APK的包名不正确或缺失</string>
+    <string name="installer_rootless_error2_install_parse_failed_bad_shared_user_id">APK的共享用户ID错误</string>
+    <string name="installer_rootless_error2_install_parse_failed_certificate_encoding">证书编码错误</string>
+    <string name="installer_rootless_error2_install_parse_failed_inconsistent_certificates">在APK中发现不一致的证书</string>
+    <string name="installer_rootless_error2_install_parse_failed_manifest_empty">APK的配置清单为空</string>
+    <string name="installer_rootless_error2_install_parse_failed_manifest_malformed">APK的配置清单格式不正确</string>
+    <string name="installer_rootless_error2_install_parse_failed_no_certificates">APK中不包含任何证书</string>
+    <string name="installer_rootless_error2_install_parse_failed_not_apk">提供的文件不是APK文件</string>
+    <string name="installer_rootless_error2_install_parse_failed_unexpected_exception">APK解析器出现了一个意外异常</string>
+    <string name="installer_rootless_error2_unknown">未知错误</string>
+    <string name="item_view_role_description">Tab</string>
+    <string name="lb_control_display_fast_forward_multiplier">%1$dX</string>
+    <string name="lb_control_display_rewind_multiplier">%1$dX</string>
+    <string name="lb_guidedaction_continue_title">Continue</string>
+    <string name="lb_guidedaction_finish_title">Finish</string>
+    <string name="lb_media_player_error">MediaPlayer error code %1$d extra %2$d</string>
+    <string name="lb_navigation_menu_contentDescription">Navigation menu</string>
+    <string name="lb_onboarding_accessibility_next">Next</string>
+    <string name="lb_onboarding_get_started">GET STARTED</string>
+    <string name="lb_playback_controls_closed_captioning_disable">Disable Closed Captioning</string>
+    <string name="lb_playback_controls_closed_captioning_enable">Enable Closed Captioning</string>
+    <string name="lb_playback_controls_fast_forward">Fast Forward</string>
+    <string name="lb_playback_controls_fast_forward_multiplier">Fast Forward %1$dX</string>
+    <string name="lb_playback_controls_hidden">Media controls hidden, press d-pad to show</string>
+    <string name="lb_playback_controls_high_quality_disable">Disable High Quality</string>
+    <string name="lb_playback_controls_high_quality_enable">Enable High Quality</string>
+    <string name="lb_playback_controls_more_actions">More Actions</string>
+    <string name="lb_playback_controls_pause">Pause</string>
+    <string name="lb_playback_controls_picture_in_picture">Enter Picture In Picture Mode</string>
+    <string name="lb_playback_controls_play">Play</string>
+    <string name="lb_playback_controls_repeat_all">Repeat All</string>
+    <string name="lb_playback_controls_repeat_none">Repeat None</string>
+    <string name="lb_playback_controls_repeat_one">Repeat One</string>
+    <string name="lb_playback_controls_rewind">Rewind</string>
+    <string name="lb_playback_controls_rewind_multiplier">Rewind %1$dX</string>
+    <string name="lb_playback_controls_shown">Media controls shown</string>
+    <string name="lb_playback_controls_shuffle_disable">Disable Shuffle</string>
+    <string name="lb_playback_controls_shuffle_enable">Enable Shuffle</string>
+    <string name="lb_playback_controls_skip_next">Skip Next</string>
+    <string name="lb_playback_controls_skip_previous">Skip Previous</string>
+    <string name="lb_playback_controls_thumb_down">Deselect Thumb Down</string>
+    <string name="lb_playback_controls_thumb_down_outline">Select Thumb Down</string>
+    <string name="lb_playback_controls_thumb_up">Deselect Thumb Up</string>
+    <string name="lb_playback_controls_thumb_up_outline">Select Thumb Up</string>
+    <string name="lb_playback_time_separator">/</string>
+    <string name="lb_search_bar_hint">Search</string>
+    <string name="lb_search_bar_hint_speech">Speak to search</string>
+    <string name="lb_search_bar_hint_with_title">Search %1$s</string>
+    <string name="lb_search_bar_hint_with_title_speech">Speak to search %1$s</string>
+    <string name="m3_exceed_max_badge_text_suffix">%1$s%2$s</string>
+    <string name="m3_ref_typeface_brand_regular">sans-serif</string>
+    <string name="m3_ref_typeface_plain_medium">sans-serif-medium</string>
+    <string name="m3_ref_typeface_plain_regular">sans-serif</string>
+    <string name="m3_sys_motion_easing_emphasized_path_data">M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1</string>
+    <string name="material_clock_display_divider">:</string>
+    <string name="material_clock_toggle_content_description">Select AM or PM</string>
+    <string name="material_motion_easing_accelerated">cubic-bezier(0.4, 0.0, 1.0, 1.0)</string>
+    <string name="material_motion_easing_decelerated">cubic-bezier(0.0, 0.0, 0.2, 1.0)</string>
+    <string name="material_motion_easing_emphasized">path(M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1)</string>
+    <string name="material_motion_easing_linear">cubic-bezier(0.0, 0.0, 1.0, 1.0)</string>
+    <string name="material_motion_easing_standard">cubic-bezier(0.4, 0.0, 0.2, 1.0)</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="mount_system_read_write">挂载系统读写</string>
+    <string name="mtrl_badge_numberless_content_description">New notification</string>
+    <string name="mtrl_checkbox_button_icon_path_checked">M14,18.2 11.4,15.6 10,17 14,21 22,13 20.6,11.6z</string>
+    <string name="mtrl_checkbox_button_icon_path_group_name">icon</string>
+    <string name="mtrl_checkbox_button_icon_path_indeterminate">M13.4,15 11,15 11,17 13.4,17 21,17 21,15z</string>
+    <string name="mtrl_checkbox_button_icon_path_name">icon path</string>
+    <string name="mtrl_checkbox_button_path_checked">M23,7H9C7.9,7,7,7.9,7,9v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9C25,7.9,24.1,7,23,7z</string>
+    <string name="mtrl_checkbox_button_path_group_name">button</string>
+    <string name="mtrl_checkbox_button_path_name">button path</string>
+    <string name="mtrl_checkbox_button_path_unchecked">M23,7H9C7.9,7,7,7.9,7,9v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9C25,7.9,24.1,7,23,7z M23,23H9V9h14V23z</string>
+    <string name="mtrl_checkbox_state_description_checked">Checked</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Partially checked</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Not checked</string>
+    <string name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description">More than %1$d new notifications</string>
+    <string name="mtrl_exceed_max_badge_number_suffix">%1$d%2$s</string>
+    <string name="mtrl_picker_a11y_next_month">Change to next month</string>
+    <string name="mtrl_picker_a11y_prev_month">Change to previous month</string>
+    <string name="mtrl_picker_announce_current_range_selection">Start date selection: %1$s – End date selection: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">Current selection: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">none</string>
+    <string name="mtrl_picker_cancel">Cancel</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Select Date</string>
+    <string name="mtrl_picker_date_header_unselected">Selected date</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">End date %1$s</string>
+    <string name="mtrl_picker_invalid_format">Invalid format.</string>
+    <string name="mtrl_picker_invalid_format_example">Example: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Use: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Invalid range.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Navigate to current year %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">Navigate to year %1$d</string>
+    <string name="mtrl_picker_out_of_range">Out of range: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Start date – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – End date</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Select Range</string>
+    <string name="mtrl_picker_range_header_unselected">Start date – End date</string>
+    <string name="mtrl_picker_save">Save</string>
+    <string name="mtrl_picker_start_date_description">Start date %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Date</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">End date</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Start date</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">y</string>
+    <string name="mtrl_picker_today_description">Today %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Switch to calendar input mode</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Tap to switch to Calendar view</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Switch to text input mode</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Tap to switch to year view</string>
+    <string name="mtrl_switch_thumb_group_name">circle_group</string>
+    <string name="mtrl_switch_thumb_path_checked">M4,16 A12,12 0 0,1 16,4 H16 A12,12 0 0,1 16,28 H16 A12,12 0 0,1 4,16</string>
+    <string name="mtrl_switch_thumb_path_morphing">M0,16 A11,11 0 0,1 11,5 H21 A11,11 0 0,1 21,27 H11 A11,11 0 0,1 0,16</string>
+    <string name="mtrl_switch_thumb_path_name">circle</string>
+    <string name="mtrl_switch_thumb_path_pressed">M2,16 A14,14 0 0,1 16,2 H16 A14,14 0 0,1 16,30 H16 A14,14 0 0,1 2,16</string>
+    <string name="mtrl_switch_thumb_path_unchecked">M8,16 A8,8 0 0,1 16,8 H16 A8,8 0 0,1 16,24 H16 A8,8 0 0,1 8,16</string>
+    <string name="mtrl_switch_track_decoration_path">M1,16 A15,15 0 0,1 16,1 H36 A15,15 0 0,1 36,31 H16 A15,15 0 0,1 1,16</string>
+    <string name="mtrl_switch_track_path">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
+    <string name="mtrl_timepicker_cancel">Cancel</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="nav_app_bar_navigate_up_description">Navigate up</string>
+    <string name="nav_app_bar_open_drawer_description">Open navigation drawer</string>
+    <string name="orb_search_action">Search Action</string>
+    <string name="password_toggle_content_description">Show password</string>
+    <string name="path_password_eye">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
+    <string name="path_password_eye_mask_strike_through">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
+    <string name="search_menu_title">Search</string>
+    <string name="searchbar_scrolling_view_behavior">com.google.android.material.search.SearchBar$ScrollingViewBehavior</string>
+    <string name="searchview_clear_text_content_description">Clear text</string>
+    <string name="searchview_navigation_content_description">Back</string>
+    <string name="side_sheet_accessibility_pane_title">Side Sheet</string>
+    <string name="sign_sha256_fske">7fbae817b7db24642d8959c347b561c003c6cfde2cb10f909c932f21a4d6d804</string>
+    <string name="sign_sha256_gj">f0f93935192c96d7b854a2b37d263ce0aa8662a55d1bb808b89af33699e93e65</string>
+    <string name="sign_sha256_rk3288">cf2ab3818595c4eda08cec72bbe39bc377a30b764a3eebde52536eae01808525</string>
+    <string name="sign_sha256_sc9853">a40da80a59d170caa950cf15c18c454d47a39b26989d8b640ecd745ba71bf5dc</string>
+    <string name="sign_sha256_ys">c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8</string>
+    <string name="sora_editor_clip_text_length_too_large">Text is too large to copy</string>
+    <string name="sora_editor_diagnostics_more_actions">More Actions...</string>
+    <string name="sora_editor_editor_formatting">Formatting your code…</string>
+    <string name="sora_editor_editor_search_busy">Editor is still preparing…</string>
+    <string name="sora_editor_editor_search_replacing">Replacing texts…</string>
+    <string name="sora_editor_long_select">Long Select</string>
+    <string name="sora_editor_replaceAll">Replace All</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="str_gj">管家</string>
+    <string name="str_gj_editor">文本编辑器</string>
+    <string name="str_gj_installer">应用安装器</string>
+    <string name="t_add_key_mapping">添加按键</string>
+    <string name="t_add_keymap">添加映射</string>
+    <string name="t_description">说明</string>
+    <string name="t_return">返回</string>
+    <string name="t_title">标题</string>
+    <string name="ts1">"正常情况下不需要转为系统应用，哪种情况适合呢！
+
+ 情况一：有些车机系统限制，只能装为系统应用
+ 情况二：有些车机系统限制，系统应用才能使用无障碍服务(比如 2代哈佛H6)
+ 情况三：如果管家不能自启动，那么将管家安装为系统应用，可以解决此问题
+ 情况四：有些系统因为安装了不兼容的应用(比如车机装手机类app)，导致重启后被恢复出厂设置，建议将管家装为系统应用，预防管家也被清理！
+ 情况五：像carlife这类需要灵敏的自启动应用的话，建议安装为系统应用
+ 警告：系统分区容量不多，不要将不必要的app转为系统应用，卸载并释放空间的时候比较麻烦"</string>
+    <string name="ts_hide_gn">请先阅读严重警告，方可使用此功能</string>
+    <string name="views_mount">查看挂载</string>
+</resources>

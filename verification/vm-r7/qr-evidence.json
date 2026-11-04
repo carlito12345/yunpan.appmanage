@@ -1,0 +1,18 @@
+{
+  "portrait": {
+    "black_pixels": 195805,
+    "black_bbox_size": [
+      634,
+      634
+    ],
+    "ready": true
+  },
+  "landscape": {
+    "black_pixels": 178467,
+    "black_bbox_size": [
+      703,
+      715
+    ],
+    "ready": true
+  }
+}

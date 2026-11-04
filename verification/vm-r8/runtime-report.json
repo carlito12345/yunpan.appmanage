@@ -1,0 +1,86 @@
+{
+  "revision": "R8",
+  "apk": "应用管家-AES256GCM加固版-R8-20261104.apk",
+  "installed_apk_sha256": "e695ce0fe1fc6d929d2fc5e43366f450bad3b89e9c58a15b25407c859d7cffaf",
+  "vm": "192.168.1.18:10000",
+  "android": "11 / API30",
+  "screen_pixels": [
+    1440,
+    1920
+  ],
+  "landscape_pixels": [
+    1920,
+    1440
+  ],
+  "initial_launch_after_update": "Returned Launcher; repeated explicit Home launch succeeded. Same symptom observed before protection.",
+  "later_cold_start": {
+    "status": "ok",
+    "activity": "com.yunpan.appmanage/.ui.ActivityHome",
+    "total_time_ms": 3361
+  },
+  "main_pid": 1923,
+  "scoped_AndroidRuntime_CarUi_errors": 0,
+  "verified_paths": [
+    "real original Application / provider initialization / home",
+    "function module catalogue",
+    "theme center scroll to source entry",
+    "source poster portrait to landscape",
+    "home footer opens the same source poster",
+    "fixed close and Back dismissal"
+  ],
+  "preferences_modified": false,
+  "appearance_seen": "warm/day; transparency32; flow/mint; particle wallpaper. User selections retained.",
+  "rotation_restored": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "community_link": "Exact supplied URL verified in constants/test; no join or message sent.",
+  "cloud_login_performed": false,
+  "limitations": [
+    "No full business/root/ADB/isolated service or real-car acceptance.",
+    "No performance benchmark or anti-reversing guarantee.",
+    "The compatible R8 APK was verified statically; this runtime report concerns the protected APK."
+  ],
+  "screenshots": [
+    {
+      "path": "protected-home.png",
+      "sha256": "1d26a40b9aab819aabcacf0467cfb025922476032b0b208fe7068f395d4734bf",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-theme-upper.png",
+      "sha256": "e8ed3624b46eaa10666152d9af4c71438554a9dc7ec652124cbd3bdf7d13b141",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-theme-lower.png",
+      "sha256": "ac7f713586d910afd442045d0856986860b874c5ce301f51ca452ae6679003b0",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-source-portrait.png",
+      "sha256": "117aa324adc78256555a8e6269cfc8a82bc5d62a9d123dd59f8bda549814851a",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-source-landscape.png",
+      "sha256": "df90c583eed5dcfc2c9a4c5419093219d7be3fafb1b3fbb7eb255e0053e3996e",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-home-source-footer.png",
+      "sha256": "c62613400f41110e0e526c936f81eb4b6bd23695703514bdef53bf2e11d6880c",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-functions.png",
+      "sha256": "8a25d44dbe7a12a5cd364dcaba6d320d9ed83ab272523fa7feb88544ef9fb519",
+      "public_source_qr_only": true
+    },
+    {
+      "path": "protected-home-restored.png",
+      "sha256": "d9defac7267c8131fe7db04f25796037daa06c8ccebb07ad1904999984cb54a8",
+      "public_source_qr_only": true
+    }
+  ]
+}

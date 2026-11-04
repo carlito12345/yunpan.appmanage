@@ -1,0 +1,26 @@
+# Local credentials and task attachments
+.codex-attachments/
+.work/
+*.pk8
+*.jks
+*.keystore
+*.p12
+*.pfx
+.env
+.env.*
+id_rsa*
+id_ed25519*
+adbkey
+adbkey.pub
+# Generated builds, logs and local configuration
+**/build/
+**/dist/
+**/.gradle/
+**/__pycache__/
+**/local.properties
+*.log
+*.pyc
+/car-ui/previews/
+/car-ui/*.apk
+/input/*.apk
+/*.zip

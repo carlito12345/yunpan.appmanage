@@ -1,0 +1,22 @@
+{
+  "installed_apk_sha256": "1b1bca46afcbf65d3d38ce65d9e9b64c1caa395b98bc44c68566a7e8156a85fc",
+  "main_pid": "26338",
+  "rotation": {
+    "user_rotation": 0,
+    "accelerometer_rotation": 0
+  },
+  "filtered_ui_error_lines": 0,
+  "own_media_client_after_cancel_and_restore": false,
+  "own_test_files_cleanup": [
+    {
+      "path": "/sdcard/Download/codex-r6-wallpaper-test-20261104-94d8673b.mp4",
+      "sha256": "4214bd8738457db4819e254c1616b7a6c3227995579f3bea85bb4ea5f1cc3059",
+      "removed": true
+    },
+    {
+      "path": "/sdcard/Download/codex-r6-crop-test-20261104-49ec905c.jpg",
+      "sha256": "49ec905c09cc2cb9741144528d8fd5451ad784e1b2c8e7cd7962f4ddd121cac2",
+      "removed": true
+    }
+  ]
+}

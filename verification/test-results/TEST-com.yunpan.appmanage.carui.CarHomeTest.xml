@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yunpan.appmanage.carui.CarHomeTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-04T01:38:40.207Z" hostname="CARLITO" time="9.92">
+  <properties/>
+  <testcase name="favoritesPersistRenameReorderDeleteAndEmpty" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.197"/>
+  <testcase name="emptyFavoritesStayUsable" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.836"/>
+  <testcase name="nativeLandscapeAndLargeFont" classname="com.yunpan.appmanage.carui.CarHomeTest" time="1.416"/>
+  <testcase name="nativePressedAndFocusedRolesHaveContrast" classname="com.yunpan.appmanage.carui.CarHomeTest" time="4.1"/>
+  <testcase name="nativePortraitLandscapeNightAndEditing" classname="com.yunpan.appmanage.carui.CarHomeTest" time="1.476"/>
+  <testcase name="parsesDeepLinksAndExplicitComponents" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.276"/>
+  <testcase name="customJumpFormValidatesAndPersists" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.706"/>
+  <testcase name="malformedSavedDataIsKeptForRecovery" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.057"/>
+  <testcase name="addingInternalFunctionThroughPickerPersists" classname="com.yunpan.appmanage.carui.CarHomeTest" time="0.856"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

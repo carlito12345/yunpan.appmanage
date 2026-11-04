@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_gravity="center" android:background="@drawable/shape_btn_focus" android:paddingLeft="@dimen/dp_20" android:paddingTop="@dimen/dp_10" android:paddingRight="@dimen/dp_20" android:paddingBottom="@dimen/dp_10" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="@dimen/sp_18" android:textColor="@color/btn_text_color1" android:id="@id/v_name" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="模式" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

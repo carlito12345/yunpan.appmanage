@@ -1,0 +1,18 @@
+[
+  {
+    "artifact": "androidx.constraintlayout:constraintlayout:2.0.1",
+    "aar_sha256": "ec15b5d4a2eff07888bc1499ce2e2c6efe24c0ed60cc57b08c9dc4b6fd3c2189"
+  },
+  {
+    "artifact": "androidx.recyclerview:recyclerview:1.1.0",
+    "aar_sha256": "f0d2b5a67d0a91ee1b1c73ef2b636a81f3563925ddd15a1d4e1c41ec28de7a4f"
+  },
+  {
+    "artifact": "androidx.core:core:1.13.1",
+    "aar_sha256": "2c27de199535675005553066597a4b20fa1eea7c228ab4ef6b32b5fe39ca1f59"
+  },
+  {
+    "artifact": "androidx.customview:customview:1.1.0",
+    "aar_sha256": "01f76ab043770a97b054046f9815717b82ce0355c02967d16c61981359dc189a"
+  }
+]

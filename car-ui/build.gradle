@@ -1,0 +1,29 @@
+plugins { id 'java' }
+
+repositories { mavenCentral(); google() }
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+def androidSdk = 'C:/Users/di-yu/Documents/Codex/2026-10-10/gd-gd/toolchain/android-sdk'
+dependencies {
+    compileOnly files("${androidSdk}/platforms/android-36/android.jar")
+    testImplementation files("${androidSdk}/platforms/android-36/android.jar")
+    testImplementation('org.robolectric:robolectric:4.17') {
+        exclude group: 'androidx.test', module: 'monitor'
+        exclude group: 'androidx.test.espresso', module: 'espresso-idling-resource'
+    }
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation fileTree(dir: 'build/test-deps', include: '*.jar')
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+compileJava { options.release = 8 }
+sourceSets.test.java.srcDir 'build/test-r'
+sourceSets.test.java.srcDir 'build/test-legacy'
+test {
+    maxHeapSize = '2g'
+    systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
+    systemProperty 'carui.preview.dir', file('previews').absolutePath
+    systemProperty 'java.awt.headless', 'true'
+    systemProperty 'carui.original.apk', file('../.work/original.apk').absolutePath
+    systemProperty 'carui.decoded.res', file('../公签版_反编译/apktool/res').absolutePath
+    testLogging { events 'passed', 'failed'; exceptionFormat 'full'; showStandardStreams = true }
+}

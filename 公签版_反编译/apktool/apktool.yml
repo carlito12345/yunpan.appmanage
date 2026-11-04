@@ -1,0 +1,40 @@
+version: 2.11.1
+apkFileName: 公签版.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  tag: null
+sdkInfo:
+  minSdkVersion: 17
+  targetSdkVersion: 28
+packageInfo:
+  forcedPackageId: 127
+  renameManifestPackage: null
+versionInfo:
+  versionCode: 1922
+  versionName: 1.9.2
+sharedLibrary: false
+sparseResources: false
+compactEntries: false
+doNotCompress:
+- arsc
+- gif
+- jpg
+- mp3
+- ogg
+- png
+- assets/dexopt/baseline.prof
+- assets/dexopt/baseline.profm
+- res/raw/favicon.ico
+- res/raw/jks0
+- res/raw/jks1
+- res/raw/jks2
+- res/raw/jks3
+- res/raw/jks4
+- res/raw/nissan_device.dat
+- res/raw/nissan_device2.dat
+- res/raw/nissan_func.dat
+- res/raw/nissan_func2.dat
+- res/raw/openfilecj.apk
+- res/raw/tclsu

@@ -1,0 +1,38 @@
+{
+  "com/yunpan/appmanage/base/AppStart.smali": {
+    "original_sha256": "316e117b7179d8e5277de569bf3c3420df034118ecdfd58edbafcc3c7a6f7686",
+    "patched_sha256": "4a2fda2fd8ec68ed33588fe02348667a01e0481a730608207d26b5aeea614c7b"
+  },
+  "da/g.smali": {
+    "original_sha256": "fab40f417441303a89df121f169aeeb98ab0ceb8b760d952eb8e9f79f76e9d7b",
+    "patched_sha256": "fa52c14cd1fb3539fc2d489e88f1487433bab29df531ca0846dc645acdd3faf4"
+  },
+  "com/owen/tvrecyclerview/widget/V7GridLayoutManager.smali": {
+    "original_sha256": "61342c312663f56923d44daca523be2d9cb198694c76029142b10b983f435642",
+    "patched_sha256": "be1840b6ec1f0138748a82a168a65cb143749922ce224c1b2276095b0ea2381e"
+  },
+  "c6/g.smali": {
+    "original_sha256": "f1744031fdfbae21a45b56b768beaf2ca2dca99a879b40242260ca2e42091087",
+    "patched_sha256": "152d2badeec664505b42ac856f1bd662f1037006127050a8ab27084f46a8a6e1"
+  },
+  "h6/a.smali": {
+    "original_sha256": "0d78f34da401ef8e6ecf0bdbe33cb4a4974dc047c8880485cab68387558d4bf3",
+    "patched_sha256": "4f58b58bf6c095bf92bea1980ce5ed7a73850e08f45f4c8a0e590f6f5de7a565"
+  },
+  "da/h.smali": {
+    "original_sha256": "fdc9bf1fecc9481de1adfef9e8c0b38fcd76898d2501f84b50441ab1463cfe96",
+    "patched_sha256": "0c84653f97063551f7c720288ae6bbb6805e67f7a2db5c6652b75ec7c9e404dc"
+  },
+  "v8/a.smali": {
+    "original_sha256": "d124614339d113b0175ac9bd4318bce4b3e72cadd83884735e2ad85bf6e05715",
+    "patched_sha256": "83cd6d57166acd56f15dd162475cb532723d0c47854129ca88517c02caf5fa3d"
+  },
+  "ha/a4.smali": {
+    "original_sha256": "f436c43adad87a40c671341a5bd4b7117b3d820e742366581f41c9bd81433d68",
+    "patched_sha256": "6e5eb5d55fe9543dd69cb01ad295f5ea54a97154e0c49741c320228fb5325982"
+  },
+  "com/yunpan/appmanage/ui/ActivityHome.smali": {
+    "original_sha256": "b439ac5a079a499d96b65729719db3c066b2f048fcd76f915205a368bf5516f6",
+    "patched_sha256": "4483729929519d25ae659582ebce51b1f97b0a072a44da442a2d91fba059037b"
+  }
+}

@@ -1,0 +1,3 @@
+rootProject.name = '打开插件(管家)'
+
+include 'app'

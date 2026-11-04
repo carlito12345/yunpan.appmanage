@@ -1,0 +1,6 @@
+package p7;
+
+/* loaded from: classes.dex */
+public interface d {
+    void a(h hVar);
+}

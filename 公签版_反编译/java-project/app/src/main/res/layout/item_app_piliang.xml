@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/focus_app_list_piliang"
+    android:padding="@dimen/dp_1"
+    android:focusable="true"
+    android:layout_width="@dimen/dp_130"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/v_ico"
+        android:paddingTop="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_30"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/apk"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:paddingStart="@dimen/dp_25"
+        android:paddingEnd="@dimen/dp_25"/>
+    <ImageView
+        android:layout_gravity="right"
+        android:id="@+id/v_bs"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:src="@drawable/tick1"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
+    <TextView
+        android:textSize="@dimen/sp_16"
+        android:textColor="@android:color/white"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:id="@+id/v_name"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Name"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"/>
+</FrameLayout>

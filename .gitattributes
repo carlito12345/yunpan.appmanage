@@ -1,0 +1,26 @@
+* text=auto
+*.java text eol=lf
+*.smali text eol=lf
+*.xml text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.png binary
+*.jpg binary
+*.so binary
+*.apk binary
+
+# Sources referenced by packaged SHA manifests retain original bytes.
+car-ui/src/** -text -eol
+car-ui/baseline/** -text -eol
+car-ui/patched-smali/** -text -eol
+公签版_反编译/apktool/smali/com/yunpan/appmanage/base/AppStart.smali -text -eol
+公签版_反编译/apktool/smali/da/g.smali -text -eol
+公签版_反编译/apktool/smali/com/owen/tvrecyclerview/widget/V7GridLayoutManager.smali -text -eol
+公签版_反编译/apktool/smali/c6/g.smali -text -eol
+公签版_反编译/apktool/smali/h6/a.smali -text -eol
+公签版_反编译/apktool/smali/da/h.smali -text -eol
+公签版_反编译/apktool/smali/v8/a.smali -text -eol
+公签版_反编译/apktool/smali/ha/a4.smali -text -eol
+公签版_反编译/apktool/smali/com/yunpan/appmanage/ui/ActivityHome.smali -text -eol
+
+car-ui/protection/** -text -eol

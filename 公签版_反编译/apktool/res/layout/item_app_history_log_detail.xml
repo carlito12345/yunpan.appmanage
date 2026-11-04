@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/shape_user_focus" android:padding="@dimen/dp_8" android:focusable="true" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/sp_18" android:textColor="@color/color_FFB800" android:ellipsize="marquee" android:gravity="center" android:id="@id/v_time" android:layout_width="@dimen/dp_100" android:layout_height="wrap_content" android:text="01:12:50" android:singleLine="true" />
+    <TextView android:textSize="@dimen/sp_18" android:textColor="@color/color_4" android:ellipsize="marquee" android:id="@id/v_pack" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="ccc.comdsgfsgd.dfgdfhfghfgsdg" android:singleLine="true" android:layout_weight="3.0" />
+    <TextView android:textSize="@dimen/sp_18" android:textColor="@color/color_5" android:ellipsize="marquee" android:gravity="center" android:id="@id/v_state" android:layout_width="@dimen/dp_130" android:layout_height="wrap_content" android:text="进入" android:singleLine="true" />
+</LinearLayout>

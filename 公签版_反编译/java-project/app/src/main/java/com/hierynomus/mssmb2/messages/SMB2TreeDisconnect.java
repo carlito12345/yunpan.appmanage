@@ -1,0 +1,29 @@
+package com.hierynomus.mssmb2.messages;
+
+import com.hierynomus.mssmb2.SMB2Dialect;
+import com.hierynomus.mssmb2.SMB2MessageCommandCode;
+import com.hierynomus.mssmb2.SMB2Packet;
+import com.hierynomus.protocol.commons.buffer.Buffer;
+import com.hierynomus.smb.SMBBuffer;
+
+/* loaded from: classes.dex */
+public class SMB2TreeDisconnect extends SMB2Packet {
+    public SMB2TreeDisconnect() {
+    }
+
+    @Override // com.hierynomus.mssmb2.SMB2Packet
+    public void readMessage(SMBBuffer sMBBuffer) throws Buffer.BufferException {
+        sMBBuffer.readUInt16();
+        sMBBuffer.skip(2);
+    }
+
+    @Override // com.hierynomus.mssmb2.SMB2Packet
+    public void writeTo(SMBBuffer sMBBuffer) {
+        sMBBuffer.putUInt16(this.structureSize);
+        sMBBuffer.putReserved(2);
+    }
+
+    public SMB2TreeDisconnect(SMB2Dialect sMB2Dialect, long j10, long j11) {
+        super(4, sMB2Dialect, SMB2MessageCommandCode.SMB2_TREE_DISCONNECT, j10, j11);
+    }
+}
