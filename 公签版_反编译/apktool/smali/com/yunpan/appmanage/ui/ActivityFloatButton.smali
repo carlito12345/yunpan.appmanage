@@ -1525,6 +1525,13 @@
     const/4 v1, -0x1
 
     .line 35
+    iget-object v1, p0, Lcom/yunpan/appmanage/ui/ActivityFloatButton;->M:Landroid/widget/ImageView;
+    invoke-static {v1, v0}, Lcom/yunpan/appmanage/carui/PetIcons;->apply(Landroid/widget/ImageView;I)Z
+    move-result v1
+    if-eqz v1, :carui_static_icon
+    return-void
+    :carui_static_icon
+    const/4 v1, -0x1
     if-ne v0, v1, :cond_1
 
     .line 36

@@ -1,0 +1,8 @@
+Floating-button art supplied in the workspace resource folder:
+小熊.zip, 小棕熊.zip, 小狗.zip, 动态悬浮图标黑白小熊猫.zip
+
+The five PNG frames in each archive retain their order and transparency.
+Each set shares a single crop and scale so the art stays aligned while playing.
+
+The grok directory contains animated sprites rendered from TyCoding's Grok Ball.
+See grok/SOURCE.txt and grok/LICENSE.txt for the pinned source and MIT notice.

@@ -2,6 +2,8 @@
 .super Lda/g;
 .source "SourceFile"
 
+.implements Lcom/yunpan/appmanage/carui/PetIcons$Selection;
+
 
 # static fields
 .field public static final synthetic E:I
@@ -875,6 +877,13 @@
 
     .line 1
     iget v0, p0, Lcom/yunpan/appmanage/ui/ActivityFloatButtonSet;->D:I
+    iget-object v1, p0, Lcom/yunpan/appmanage/ui/ActivityFloatButtonSet;->C:Landroid/widget/ImageView;
+    invoke-static {v1, v0}, Lcom/yunpan/appmanage/carui/PetIcons;->apply(Landroid/widget/ImageView;I)Z
+    move-result v1
+    if-eqz v1, :carui_static_icon
+    return-void
+    :carui_static_icon
+    # carui_pet_preview
 
     .line 2
     .line 3
@@ -1100,5 +1109,12 @@
     .line 109
     .line 110
     :goto_0
+    return-void
+.end method
+
+.method public final selectPet(I)V
+    .locals 0
+    iput p1, p0, Lcom/yunpan/appmanage/ui/ActivityFloatButtonSet;->D:I
+    invoke-virtual {p0}, Lcom/yunpan/appmanage/ui/ActivityFloatButtonSet;->x()V
     return-void
 .end method

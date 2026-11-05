@@ -140,6 +140,44 @@ def patch_sources():
             return body.replace('.locals 7','.locals 7\n\n    invoke-static {p0}, Lcom/yunpan/appmanage/carui/CarUi;->back(Landroid/app/Activity;)Z\n    move-result v0\n    if-eqz v0, :carui_original_back\n    return-void\n    :carui_original_back',1)
         return method(text,'onBackPressed()V',insert)
     patch('com/yunpan/appmanage/ui/ActivityHome.smali',back)
+
+    def pet_preview(text, owner, field, value, scratch, anchor, exit_code, reset=''):
+        assert text.count(anchor) == 1, (owner, anchor)
+        hook = f'''    iget-object {scratch}, {owner}, {field}:Landroid/widget/ImageView;
+    invoke-static {{{scratch}, {value}}}, Lcom/yunpan/appmanage/carui/PetIcons;->apply(Landroid/widget/ImageView;I)Z
+    move-result {scratch}
+    if-eqz {scratch}, :carui_static_icon
+    {exit_code}
+    :carui_static_icon
+{reset}'''
+        return text.replace(anchor, hook + anchor)
+
+    def pet_settings(text):
+        owner = 'Lcom/yunpan/appmanage/ui/ActivityFloatButtonSet;'
+        anchor = f'    iget v0, p0, {owner}->D:I\n'
+        assert text.count(anchor) == 1
+        text = text.replace('.source "SourceFile"\n', '.source "SourceFile"\n\n'
+                            '.implements Lcom/yunpan/appmanage/carui/PetIcons$Selection;\n', 1)
+        # Insert after the saved draft ID is loaded, before the legacy static icon branches.
+        text = text.replace(anchor, anchor + '    # carui_pet_preview\n')
+        text = pet_preview(text, 'p0', owner + '->C', 'v0', 'v1',
+                           '    # carui_pet_preview\n', 'return-void')
+        return text + f'''
+.method public final selectPet(I)V
+    .locals 0
+    iput p1, p0, {owner}->D:I
+    invoke-virtual {{p0}}, {owner}->x()V
+    return-void
+.end method
+'''
+
+    patch('com/yunpan/appmanage/ui/ActivityFloatButtonSet.smali', pet_settings)
+    patch('com/yunpan/appmanage/ui/ActivityFloatButton.smali', lambda text: pet_preview(
+        text, 'p0', 'Lcom/yunpan/appmanage/ui/ActivityFloatButton;->M', 'v0', 'v1',
+        '    if-ne v0, v1, :cond_1\n', 'return-void', '    const/4 v1, -0x1\n'))
+    patch('ya/e.smali', lambda text: pet_preview(
+        text, 'v0', 'Lya/e;->i', 'v1', 'v7', '    if-ne v1, v7, :cond_8\n',
+        'goto/16 :goto_4', '    const/4 v7, -0x1\n'))
     (BUILD/'source-patches.json').write_text(json.dumps(changes,indent=2),encoding='utf-8')
     print('Patched '+str(len(changes))+' UI integration classes; backups retained.',flush=True)
 

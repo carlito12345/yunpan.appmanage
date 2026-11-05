@@ -42,7 +42,8 @@ public final class LegacyUi {
     private static Object field(Object o,String name)throws Exception{Class<?> c=o.getClass();while(c!=null){try{Field f=c.getDeclaredField(name);f.setAccessible(true);return f.get(o);}catch(NoSuchFieldException e){c=c.getSuperclass();}}throw new NoSuchFieldException(name);}
 
     public static void activity(Activity a){
-        try{int res=(Integer)a.getClass().getMethod("t").invoke(a);ViewGroup content=(ViewGroup)a.findViewById(android.R.id.content);if(content!=null&&content.getChildCount()>0)surface(content.getChildAt(0),res);}
+        try{int res=(Integer)a.getClass().getMethod("t").invoke(a);ViewGroup content=(ViewGroup)a.findViewById(android.R.id.content);if(content!=null&&content.getChildCount()>0)surface(content.getChildAt(0),res);
+            if(a instanceof PetIcons.Selection)PetIcons.addPicker(a,(PetIcons.Selection)a);}
         catch(Exception e){Log.w(TAG,"Activity layout adaptation: "+a.getClass().getName(),e);}
     }
     public static void fragment(Object f){try{surface((View)field(f,"a"),(Integer)f.getClass().getMethod("j").invoke(f));}catch(Exception e){Log.w(TAG,"Fragment layout adaptation",e);}}

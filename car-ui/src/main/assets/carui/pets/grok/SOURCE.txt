@@ -1,0 +1,4 @@
+Grok Ball by TyCoding, MIT License.
+https://github.com/TyCoding/grok-ball
+Upstream de368ce3acdc5a70e871ee46ebbe8f60b11d3d6a.
+Generated from src/grok-ball.js as 12 transparent frames per expression at 150 ms per frame.

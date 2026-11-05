@@ -977,6 +977,13 @@
     const/4 v7, -0x1
 
     .line 327
+    iget-object v7, v0, Lya/e;->i:Landroid/widget/ImageView;
+    invoke-static {v7, v1}, Lcom/yunpan/appmanage/carui/PetIcons;->apply(Landroid/widget/ImageView;I)Z
+    move-result v7
+    if-eqz v7, :carui_static_icon
+    goto/16 :goto_4
+    :carui_static_icon
+    const/4 v7, -0x1
     if-ne v1, v7, :cond_8
 
     .line 328

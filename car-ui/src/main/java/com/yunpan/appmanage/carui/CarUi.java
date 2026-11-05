@@ -206,7 +206,7 @@ public final class CarUi {
         decorateDialog(dialog);
     }
     public static void decorateDialog(Dialog dialog){boolean known=false;for(WeakReference<Dialog> ref:dialogs)if(ref.get()==dialog)known=true;if(!known)dialogs.add(new WeakReference<Dialog>(dialog));FrostedDialogs.apply(dialog);}
-    static void refreshDialog(Dialog dialog){if(SourceInfo.resize(dialog)||ThemePicker.resize(dialog)||WallpaperPicker.resize(dialog)||WallpaperCropper.resize(dialog)){decorateDialog(dialog);return;}if(LegacyUi.dialogLayout(dialog)!=0)dialog(dialog);else decorateDialog(dialog);}
+    static void refreshDialog(Dialog dialog){if(SourceInfo.resize(dialog)||ThemePicker.resize(dialog)||WallpaperPicker.resize(dialog)||WallpaperCropper.resize(dialog)||PetIcons.resize(dialog)){decorateDialog(dialog);return;}if(LegacyUi.dialogLayout(dialog)!=0)dialog(dialog);else decorateDialog(dialog);}
     static int[] windowBounds(Context context){
         Context current=context;for(int i=0;i<12;i++){if(current instanceof Activity){View decor=((Activity)current).getWindow().getDecorView();if(decor.getWidth()>0&&decor.getHeight()>0)return new int[]{decor.getWidth(),decor.getHeight()};break;}if(!(current instanceof android.content.ContextWrapper))break;Context base=((android.content.ContextWrapper)current).getBaseContext();if(base==current)break;current=base;}
         DisplayMetrics m=new DisplayMetrics();((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(m);return new int[]{m.widthPixels,m.heightPixels};
