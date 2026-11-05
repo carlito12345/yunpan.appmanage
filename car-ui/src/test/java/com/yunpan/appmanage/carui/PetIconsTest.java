@@ -1,6 +1,5 @@
 package com.yunpan.appmanage.carui;
 
-import android.app.Dialog;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,7 +7,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
@@ -32,7 +33,7 @@ import static org.junit.Assert.*;
 public class PetIconsTest {
     @Rule public final TemporaryFolder temp = new TemporaryFolder();
 
-    @Test public void originalSettingsPreviewPlaysAndSelectsGrokExpressions() throws Exception {
+    @Test public void resizedPreviewUsesCurrentLayoutParamsAndGrokRotatesWithoutADialog() throws Exception {
         R4RegressionTest fixture = new R4RegressionTest();
         fixture.setup();
         Path archive = temp.newFile("pet-assets.apk").toPath();
@@ -53,6 +54,11 @@ public class PetIconsTest {
 
         View root = fixture.fixture.inflate(fixture.context, "activity_float_button_set");
         ImageView preview = (ImageView) fixture.id(root, "v_ico");
+        SeekBar size = (SeekBar) fixture.id(root, "v_seek_size");
+        ViewGroup.LayoutParams originalParams = preview.getLayoutParams();
+        size.setMax(100);
+        size.setProgress(20);
+        PetIcons.bindSizePreview(size, preview);
         View save = fixture.id(root, "v_btn_yes");
         fixture.adapt(root, "activity_float_button_set");
         int[] selection = {0};
@@ -62,6 +68,16 @@ public class PetIconsTest {
         });
         fixture.fixture.layout(fixture.activity.getWindow().getDecorView(), 1440, 1920);
         assertSame(save, fixture.id(root, "v_btn_yes"));
+        ViewGroup.LayoutParams currentParams = preview.getLayoutParams();
+        assertNotSame("Themed layout reparents the preview", originalParams, currentParams);
+        assertNotEquals(originalParams.getClass(), currentParams.getClass());
+        for (int progress : new int[]{0, 1, 100, 37, 20}) {
+            size.setProgress(progress);
+            fixture.fixture.layout(fixture.activity.getWindow().getDecorView(), 1440, 1920);
+            assertSame(currentParams, preview.getLayoutParams());
+            assertEquals(progress * 5, preview.getWidth());
+            assertEquals(progress * 5, preview.getHeight());
+        }
         assertTrue(text(root, "小狗").performClick());
         assertEquals(-1003, selection[0]);
         Drawable icon = preview.getDrawable();
@@ -72,22 +88,25 @@ public class PetIconsTest {
         ((Runnable) icon).run();
         assertTrue("Hidden icon returns to its static frame", first.sameAs(render(icon)));
         preview.setVisibility(View.VISIBLE);
-        fixture.capture(root, 1440, 1920, "r14-pets-settings.png");
-
-        assertTrue(text(root, "Grok Bot\n32 款表情").performClick());
-        Dialog dialog = ShadowDialog.getLatestDialog();
-        View catalog = dialog.getWindow().getDecorView();
-        assertNotNull(text(catalog, "生命周期"));
-        assertNotNull(text(catalog, "情绪反应"));
-        assertNotNull(text(catalog, "工作状态"));
-        fixture.capture(catalog, dialog.getWindow().getAttributes().width,
-                dialog.getWindow().getAttributes().height, "r14-grok-catalog.png");
-        assertTrue(text(catalog, "思考中").performClick());
-        assertEquals(-1130, selection[0]);
-        assertFalse(dialog.isShowing());
-        assertTrue(text(root, "Grok Bot\n思考中").isSelected());
+        assertNull(ShadowDialog.getLatestDialog());
+        TextView grok = text(root, "Grok Bot\n随机表情");
+        assertTrue(grok.performClick());
+        assertEquals(-1099, selection[0]);
+        assertNull(ShadowDialog.getLatestDialog());
+        assertTrue(grok.isSelected());
+        Drawable random = preview.getDrawable();
+        assertTrue(PetIcons.apply(preview, -1130));
+        assertSame("An old expression ID resolves to the same random mode", random, preview.getDrawable());
+        Field expression = random.getClass().getDeclaredField("expression");
+        expression.setAccessible(true);
+        int initial = expression.getInt(random);
+        for (int frame = 0; frame < 47; frame++) ((Runnable) random).run();
+        assertEquals(initial, expression.getInt(random));
+        ((Runnable) random).run();
+        assertNotEquals("Next expression differs after four complete loops", initial, expression.getInt(random));
+        fixture.capture(root, 1440, 1920, "r15-grok-random.png");
         assertFalse(PetIcons.apply(preview, 1));
-        assertFalse(text(root, "Grok Bot\n32 款表情").isSelected());
+        assertFalse(grok.isSelected());
     }
 
     private static Bitmap render(Drawable icon) {

@@ -162,6 +162,17 @@ def patch_sources():
         text = text.replace(anchor, anchor + '    # carui_pet_preview\n')
         text = pet_preview(text, 'p0', owner + '->C', 'v0', 'v1',
                            '    # carui_pet_preview\n', 'return-void')
+        def bind_size(body):
+            old_listener = (r'    new-instance v3, Lha/u4;\s+const/4 v4, 0x1\s+'
+                            r'invoke-direct \{v3, p0, v4, v1\}, Lha/u4;-><init>\(Ljava/lang/Object;ILjava/lang/Object;\)V\s+'
+                            r'invoke-virtual \{v6, v3\}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener\(Landroid/widget/SeekBar\$OnSeekBarChangeListener;\)V')
+            replacement = (f'    iget-object v3, p0, {owner}->C:Landroid/widget/ImageView;\n'
+                           '    invoke-static {v6, v3}, Lcom/yunpan/appmanage/carui/PetIcons;->bindSizePreview'
+                           '(Landroid/widget/SeekBar;Landroid/widget/ImageView;)V')
+            updated, count = re.subn(old_listener, replacement, body)
+            assert count == 1, count
+            return updated
+        text = method(text, 'u()V', bind_size)
         return text + f'''
 .method public final selectPet(I)V
     .locals 0

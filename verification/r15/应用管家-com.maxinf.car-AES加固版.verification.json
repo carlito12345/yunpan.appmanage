@@ -1,0 +1,59 @@
+{
+  "apk": "应用管家-com.maxinf.car-AES加固版.apk",
+  "bytes": 36698759,
+  "sha256": "0ffd78d3255a5b9cb5e555ceefdb9279f06ef70a46590a76500fde5ab94a4938",
+  "compatible_apk": "应用管家-com.maxinf.car-兼容版.apk",
+  "compatible_sha256": "bf5c8b418b7f927de0191991961be6f8f7f24cb6beedbdd628f35425e82d92ed",
+  "algorithm": "AES-256-GCM",
+  "key_bits": 256,
+  "tag_bits": 128,
+  "unique_nonce_bytes": 12,
+  "encrypted_top_level_dex": 4,
+  "clear_bootstrap_classes": 1,
+  "minimum_sdk": 28,
+  "application_id": "com.maxinf.car",
+  "loader": "AppComponentFactory / InMemoryDexClassLoader; original Application unchanged",
+  "bootstrap_class": "com.carlito.secure.Root",
+  "app_process_entry_patches": [
+    {
+      "entry": "lib/arm64-v8a/libgj.so",
+      "before_sha256": "a3df6ec52f4e24064bb88a99c6c33e926679cf158c7ed5c0a996ed6c813ef6bf",
+      "after_sha256": "f2c3555cb771a9b0dd1efc39db8d54621f5ee4567c75b8f7faa51912283b911a",
+      "changed_bytes": 18
+    },
+    {
+      "entry": "lib/armeabi-v7a/libgj.so",
+      "before_sha256": "dd0d7a8cdb20857292b93438f5c190db85306847008b8dc32038f7aeae084bf9",
+      "after_sha256": "226ca39a178763f7a36e35c8949259330fff57bab6cc6b55f45301c513599ca3",
+      "changed_bytes": 18
+    }
+  ],
+  "app_process_loader": "authenticated in-memory bootstrap -> original com.gj.server.GjService.main",
+  "loader_paths": {
+    "28": "instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained",
+    "29+": "public instantiateClassLoader + InMemoryDexClassLoader native search path"
+  },
+  "plaintext_dex_written_to_disk": false,
+  "android9_non_sdk_fields": [
+    "BaseDexClassLoader.pathList",
+    "DexPathList.dexElements"
+  ],
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "v1_v2_v3_verified": true,
+  "zip_alignment_verified": true,
+  "preserved_non_dex_entries": 2330,
+  "all_dex_roundtrip_verified": true,
+  "tamper_checks": {
+    "changed_tag": "rejected",
+    "changed_aad": "rejected",
+    "wrong_key": "rejected"
+  },
+  "source_template_sha256": "27a040a3b300e3de00de9b6844511c1ae4904c9ccb72e13989e4ed8b2e0b3ca3",
+  "generated_key_material_in_repository": false,
+  "vm_tested": false,
+  "limitations": [
+    "Client-side key material and decrypted code can be recovered by a determined analyst.",
+    "Embedded plugin APKs and resources are preserved. libgj.so receives only a same-length server-entry class-name patch; other native libraries are unchanged.",
+    "Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing."
+  ]
+}
