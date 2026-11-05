@@ -18,6 +18,15 @@ class IdentityUnitTest(unittest.TestCase):
         self.assertEqual(new+'/'+old+'.ui.ActivityHome',replace_literal(old+'/.ui.ActivityHome',old,new,m))
         self.assertEqual(old+'.ui.ActivityHome',replace_literal(old+'.ui.ActivityHome',old,new,m))
         self.assertEqual(new+'.ACTION_REPLY',replace_literal(old+'.ACTION_REPLY',old,new,m))
+    def test_native_server_entry_is_a_bounded_same_length_patch(self):
+        from protect_apk import patch_server,SERVER_ENTRY,FACTORY
+        original=b'ELF instructions\0'+SERVER_ENTRY+b'\0tail'
+        patched=patch_server('lib/arm64-v8a/libgj.so',original)
+        self.assertEqual(len(original),len(patched))
+        self.assertEqual(original.replace(SERVER_ENTRY,FACTORY.encode()),patched)
+        self.assertEqual(original,patch_server('lib/arm64-v8a/other.so',original))
+        for invalid in [b'unsupported',original+SERVER_ENTRY+b'\0']:
+            with self.assertRaises(ValueError):patch_server('lib/arm64-v8a/libgj.so',invalid)
 
 @unittest.skipUnless(BASE.is_file(),'Set CAR_UI_TEST_APK to the compatible base APK')
 class RealApkIdentityTest(unittest.TestCase):
@@ -46,8 +55,8 @@ class RealApkIdentityTest(unittest.TestCase):
         from protect_apk import patch_manifest,MINIMUM_SDK
         with zipfile.ZipFile(BASE) as z:
             original=z.read('AndroidManifest.xml');data=patch_manifest(original);a=manifest_info(original);b=manifest_info(data)
-            self.assertEqual(28,MINIMUM_SDK);self.assertEqual(a['package'],b['package']);self.assertEqual(a['application']['name'],b['application']['name']);self.assertEqual(28,b['sdk']['minSdkVersion']);self.assertEqual('com.carlito.secure.Factory',b['application']['appComponentFactory'])
-            higher=protect_manifest(original,'com.carlito.secure.Factory',31)
+            self.assertEqual(28,MINIMUM_SDK);self.assertEqual(a['package'],b['package']);self.assertEqual(a['application']['name'],b['application']['name']);self.assertEqual(28,b['sdk']['minSdkVersion']);self.assertEqual('com.carlito.secure.Root',b['application']['appComponentFactory'])
+            higher=protect_manifest(original,'com.carlito.secure.Root',31)
             self.assertEqual(31,manifest_info(patch_manifest(higher))['sdk']['minSdkVersion'])
 
 if __name__=='__main__':unittest.main(verbosity=2)

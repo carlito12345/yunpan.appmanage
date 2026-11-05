@@ -1,0 +1,182 @@
+{
+  "version": "R13",
+  "ui_source_snapshot": {
+    "source_files": {
+      "src/main/java/com/yunpan/appmanage/carui/AdbPairUi.java": "9812be1466a6aa4ac0c0a99d4f2934e0e4616400c0b253b6a24d5409c7a476d3",
+      "src/main/java/com/yunpan/appmanage/carui/Appearance.java": "2e0ac771e7bb1b1d18b0e19723fa811ed5382c68cc03546d2667280253c7ce80",
+      "src/main/java/com/yunpan/appmanage/carui/Bridge.java": "809468c6f18a1565d8f888ca93507ac2e5a1dbf8f231b5675771bdeb38977c6d",
+      "src/main/java/com/yunpan/appmanage/carui/CarHome.java": "b5d9a0a2d2477a97747e8d10af64cc0490a2843ddbd7e6eb14554b11908ede28",
+      "src/main/java/com/yunpan/appmanage/carui/CarUi.java": "569d0a9c8d1ded748c5e43988a66d0d23f6197d2b96613a4111a7bf18c81da57",
+      "src/main/java/com/yunpan/appmanage/carui/Favorites.java": "f8b5046f71c4489fad6c9ba0eca58343903a44e1975f7db440b3f4505060c9c9",
+      "src/main/java/com/yunpan/appmanage/carui/FrostedDialogs.java": "d95a3f60e1394cd4d110246c44bbd6cd051157b32204fa7e95b98e2251a7fe7b",
+      "src/main/java/com/yunpan/appmanage/carui/Icons.java": "da5b5a55dd23b9e8365d5461b453084e2b553dc1ca7a05935668091f6caa9995",
+      "src/main/java/com/yunpan/appmanage/carui/LegacyUi.java": "72a72bd10b3034ddc9bffe2a39552ce43c328e111764b0c682abf8e9c2114511",
+      "src/main/java/com/yunpan/appmanage/carui/ResourceIndex.java": "4317fe50116172f5cc7335afc0276536538a7dac46be822d96428132612368b7",
+      "src/main/java/com/yunpan/appmanage/carui/ShortcutPicker.java": "54b27259485fc8e034afe0dcf25c210518e70a642c8f6b5e42274d4abafbe183",
+      "src/main/java/com/yunpan/appmanage/carui/SourceInfo.java": "27caa995475e4d9272efc0f2e447031c890582383cd030e236f0ee707a4201cb",
+      "src/main/java/com/yunpan/appmanage/carui/ThemePicker.java": "251a0a1b91c2c0f0ff6ca6f9af6c9e7bad79ebc5167b746499def55d8255fba5",
+      "src/main/java/com/yunpan/appmanage/carui/WallpaperCropper.java": "e1b236daeb8d0b82ad44ac376309a3b402c8b8cad0b195a658961d5fa2ac9c36",
+      "src/main/java/com/yunpan/appmanage/carui/WallpaperPicker.java": "4595a9c62ba5b081f655ccfe0cf859b52b1feb8820450a45bc31c46672fc68d4",
+      "src/main/java/com/yunpan/appmanage/carui/Wallpapers.java": "7993734d2834dcb86c89aa2990d80dccce4c665ed2007e3b366732487993631a",
+      "src/main/java/com/yunpan/appmanage/carui/WallpaperView.java": "92e88cad81f04d926c0ff9e74ccb7548a58d45bfaba66c9a55092c2ba2b2d608",
+      "src/main/java/com/yunpan/appmanage/carui/WrapLayout.java": "5da9ea3f841876148c50a7fcecc196f6e732c489975bf29597d59408663eddbe"
+    },
+    "ui_dex_sha256": "674cfaabfcad21578ff880b4a1073c7db5bbfee853d60ee546b5af8822a6f227",
+    "ui_classes": 165
+  },
+  "formal_artifacts": [
+    {
+      "apk": "应用管家-com.maxinf.car-AES加固版.apk",
+      "sha256": "43337a2a4585ac69b4d953e4861080088e08734f5c885d71fd03b2b5173ea46e",
+      "bytes": 30547736,
+      "application_id": "com.maxinf.car"
+    },
+    {
+      "apk": "应用管家-com.maxinf.car-兼容版.apk",
+      "sha256": "05cdb8e52d8ce5b9431bafcb3fd16a0e204827042091c43c8d6b1c37840e7e68",
+      "bytes": 19111506,
+      "application_id": "com.maxinf.car"
+    },
+    {
+      "apk": "应用管家-com.yunpan.appmanage-AES加固版.apk",
+      "sha256": "2385726337ec72c7efafcbaab9e0bbff5e5db45fd94beb0b0e5f99a0534bc384",
+      "bytes": 30433048,
+      "application_id": "com.yunpan.appmanage"
+    },
+    {
+      "apk": "应用管家-com.yunpan.appmanage-兼容版.apk",
+      "sha256": "534241e038f952f49454e825b133712a50615098b6f88ff8319478148c234825",
+      "bytes": 19123794,
+      "application_id": "com.yunpan.appmanage"
+    }
+  ],
+  "local_test_runs": [
+    {
+      "scope": "full regression before direct entry/notification additions",
+      "tests": 66,
+      "suites": 12,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "scope": "focused R13 after notification fallback, before last Stop edit",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "scope": "final notification plus Stop action targeted test",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "scope": "final package identity,icon,manifest,native entry patch tools",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "scope": "after finish fixes: pairing validation plus neutral/failure/busy/success status color",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "gradle_build": "BUILD SUCCESSFUL in3m"
+    }
+  ],
+  "aes_loader_probe": {
+    "serial": "192.168.1.18:10000",
+    "api": 30,
+    "application_id": "com.carlito.secureprobe.r12",
+    "aes_apk_sha256": "370b5a5f8611d5e1fbe11a90b7a1bc28ee3e1812d7d292cf1192cde738ce6202",
+    "stages": [
+      "activity",
+      "application",
+      "attach",
+      "custom-view",
+      "original-factory",
+      "provider",
+      "receiver-process",
+      "service-process",
+      "xml-inflation"
+    ],
+    "cold_starts": 2,
+    "removed": true,
+    "app_process_server": true
+  },
+  "vm_notification": {
+    "own_notification_records": 1,
+    "foreground_service_flag": true,
+    "channel_is_original": true,
+    "one_input_action": true,
+    "stopped_service": true
+  },
+  "vm_scope": {
+    "qa_package": "com.maxinf.car.codexcheck",
+    "compatible_sha256": "239467fc691a07f7479b02b099637cfb3886898394425224b7eedf24bc02636e",
+    "aes_sha256": "86b347256c7bb98a367011c40571a710b6e655ddfc1dc8a2a99495e76c5837f3",
+    "synthetic_fields": [
+      "demo-only",
+      "015234"
+    ],
+    "real_pairing_submitted": false,
+    "overlay_observed_on_assistant": true,
+    "developer_settings_hides_overlay": true,
+    "notification_shade_input_visually_accepted": false
+  },
+  "limits": [
+    "Android9 runtime deferred by user; API30 probe only.",
+    "Final source was not run through one combined all-tests invocation.",
+    "Production application IDs were packaged but not installed over existing apps.",
+    "Notification service foreground record and stop checked; shade showed no notification, so notification text entry is unaccepted on this VM.",
+    "Legacy BootTaskService foreground deadline and StartService receiver teardown errors occurred in compatible QA too; full background/vehicle business acceptance is not claimed.",
+    "First final-AES launch returned launcher; subsequent explicit cold launch opened Home.",
+    "Root/ADB real server handshake and commands are not accepted by the isolated loader probe."
+  ],
+  "vm_cleanup": {
+    "after": {
+      "accelerometer_rotation": "0",
+      "user_rotation": "0",
+      "font_scale": "1.0",
+      "com.maxinf.car": "66c48e139e3637b4a804ff370d7128ad80750fc887f75078376537ddd884fd2d",
+      "com.yunpan.appmanage": "d4ac9b4e3f7b5e0fc2a9ff54db23f1af36061fc47d6c422badb35b77052bb074"
+    },
+    "matches_before": true,
+    "qa_removed": true,
+    "removed_final_qa_sha256": "86b347256c7bb98a367011c40571a710b6e655ddfc1dc8a2a99495e76c5837f3"
+  },
+  "pre_finish_native_capture_hashes": {
+    "settings-warm-portrait.png": "27bdbd11932f0d80e8f0f063a1da0468f1f3d2708d1541fef20ee012932e07ff",
+    "settings-warm-landscape-or-navigation.png": "966574910bd4a8e90ea025949ea502e59ae7d8392e85cedf92d53d6f41858188",
+    "aes-connection-entry-portrait.png": "6abe4b5d679eac7b35435d4a35b65e763c3e4180723234cb2285e3363ca5f2c4",
+    "aes-assistant-portrait.png": "bb7c4640283b9bd2ff4c8c552a0b2624c09fdc4d34e3410b91e68c4d6607edfe",
+    "aes-assistant-five-digits.png": "2348cffe25af312cc73e6576339056dd649d64a79b5c04a1bf93824f225e02ba",
+    "aes-assistant-six-digits.png": "84bbd00a5eaf07af65566c24b69bab92d7a8618ee481b6e480ee0375d13d0669",
+    "aes-assistant-notification-active.png": "f87d7f09f753f23da4dbdba154b35d4bfe9aca5bae7c3461dd33b5b2beee8cec",
+    "aes-overlay-expanded-portrait.png": "8b89ebe393e1231589ed275a5958bfe23cd64f604fa6703ed162560a5134696a",
+    "aes-overlay-collapsed-moved.png": "6ff571fc063d19b3a91b7c7c6bf099410bbbe75d604bace95fb80137057c19ef",
+    "aes-assistant-after-close.png": "34d8065e9a8ec8540a0acfb93c5bcd364e119113f382e7b72d3ec216b676947d",
+    "aes-assistant-landscape-font130.png": "faf429bf5288a322095b3c615700067c4c81a672167cc40ba8abd12ca895e32d"
+  },
+  "finish_fix_captures": {
+    "aes-assistant-portrait.png": "a82de49fa996e86ca04cc6f58dc0749ebb813308fa5d8f77fe322f9d02f62849",
+    "aes-overlay-expanded-portrait.png": "10ae36c168ad7ed143642a2ff3dc2ae6b92068bc307ac5681ee4cd9eca1121fb",
+    "aes-overlay-collapsed-moved.png": "1d93c749036c0a429b6569452ccc2dfacdcef8f32dd6ad48e9e9bd358114a237",
+    "aes-assistant-after-close.png": "a82de49fa996e86ca04cc6f58dc0749ebb813308fa5d8f77fe322f9d02f62849"
+  },
+  "capture_freshness": "Settings implementation unchanged after captures;4 assistant/overlay captures replaced after final8dp/color fix; other11-view review evidence is historical metadata only.",
+  "source_hashes": {
+    "protect_apk.py": "7708fc58838d25f7152b93dbf05e9eafbb6e9b6a5f813f8d515bb6212a027a14",
+    "test_repackage.py": "07e978ea1aeccb52fb349bd37af74b89be80dfdfcc2de2b09bb39c014e4b3416",
+    "make_package_toolkit.py": "b87d366af43170c759665dd47341b5c3aaf71a6cc9df2a4f4a56a1dc91d0405a",
+    "protection/Factory.java.in": "27a040a3b300e3de00de9b6844511c1ae4904c9ccb72e13989e4ed8b2e0b3ca3",
+    "protection/test_runtime.py": "41d9ab2f3b640f06517a466b95d8dfe155278b14260d242f6973d4b6b78edd21",
+    "protection/probe/Probe.java": "c49fa2266f481d3110053b280ba059b6537cd3e4467cedb2018b28e8ce7494ed",
+    "protection/probe/GjService.java": "9fef91d09d21bf7ef46fa57d2e30324caa6d103f6c4521a9c9ac4382a858e779"
+  },
+  "finish_verdict": {
+    "disposition": "ship",
+    "scope": "two scored fixes:overlay8dp action gap and semantic initial status color",
+    "review": ".impeccable/finish-review-r13.md"
+  }
+}

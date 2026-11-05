@@ -55,6 +55,7 @@ public final class CarUi {
         context.getSharedPreferences("car_ui_v1",0).edit().putString("theme",theme).putBoolean("dark",dark).apply();
         for(Activity a:new ArrayList<Activity>(activities.keySet())){window(a);CarHome h=homes.get(a);if(h!=null)h.refreshTheme();else{theme(a.findViewById(android.R.id.content));LegacyUi.retheme(a.findViewById(android.R.id.content));}}
         for(int i=dialogs.size()-1;i>=0;i--){Dialog d=dialogs.get(i).get();if(d==null||!d.isShowing())dialogs.remove(i);else{theme(d.getWindow().getDecorView());LegacyUi.retheme(d.getWindow().getDecorView());FrostedDialogs.apply(d);}}
+        AdbPairUi.themeChanged();
     }
     public static int dp(Context context, float value) { return Math.round(value*context.getResources().getDisplayMetrics().density); }
     public static float designWidth(Context context) {
@@ -113,11 +114,11 @@ public final class CarUi {
             @Override public void onActivityResumed(final Activity activity) {
                 WallpaperView.activityState(activity,true);
                 activity.getWindow().getDecorView().post(new Runnable(){@Override public void run(){
-                    if(!homes.containsKey(activity)){View content=activity.findViewById(android.R.id.content);theme(content);LegacyUi.retheme(content);}
+                    if(!homes.containsKey(activity)){View content=activity.findViewById(android.R.id.content);theme(content);LegacyUi.retheme(content);}AdbPairUi.resumed(activity);
                 }});
             }
             @Override public void onActivitySaveInstanceState(Activity activity,Bundle state){CarHome home=homes.get(activity);if(home!=null)state.putInt("carui.page",home.currentPage());}
-            @Override public void onActivityDestroyed(Activity activity){homes.remove(activity);activities.remove(activity);}
+            @Override public void onActivityDestroyed(Activity activity){AdbPairUi.destroyed(activity);homes.remove(activity);activities.remove(activity);}
             @Override public void onActivityStarted(Activity activity){}
             @Override public void onActivityPaused(Activity activity){WallpaperView.activityState(activity,false);}
             @Override public void onActivityStopped(Activity activity){}
@@ -158,7 +159,7 @@ public final class CarUi {
             int numericWidth=0;if((input.getInputType()&android.text.InputType.TYPE_MASK_CLASS)==android.text.InputType.TYPE_CLASS_NUMBER){numericWidth=Math.max(dp(context,104),(int)Math.ceil(input.getPaint().measureText("00000"))+dp(context,36));input.setMinimumWidth(numericWidth);}
             ViewGroup.LayoutParams bounds=input.getLayoutParams();
             if(bounds!=null){if(bounds.height>0&&bounds.height<dp(context,54))bounds.height=ViewGroup.LayoutParams.WRAP_CONTENT;if(bounds.width>0&&bounds.width<numericWidth)bounds.width=numericWidth;input.setLayoutParams(bounds);}
-            input.setBackground(buttonBackground(context,skin.surface,skin.soft,skin.ink,18));
+            input.setBackground(buttonBackground(context,skin.surface,skin.soft,skin.ink,18,id.equals("v_edit_su")||id.equals("v_edit_adb_shell_password")||id.equals("et_pair")));
         }else if(view instanceof TextView) {
             TextView text=(TextView)view;
             float oldSize=text.getTextSize()/context.getResources().getDisplayMetrics().scaledDensity;

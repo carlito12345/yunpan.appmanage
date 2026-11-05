@@ -13,6 +13,12 @@ import android.view.View;
 public final class Probe {
     private static final String TOKEN="@@TOKEN@@";
     public static native int nativeValue();
+    public static void server(String[] args){
+        if(args.length!=1||!TOKEN.equals(args[0])||Extra.value()!=256||Thread.currentThread().getContextClassLoader()!=Probe.class.getClassLoader())throw new AssertionError("Server payload identity differs");
+        System.loadLibrary("loader_probe");
+        if(nativeValue()!=256)throw new AssertionError("Server JNI differs");
+        Log.i("AES_RUNTIME_PROBE",TOKEN+" PASS app-process-server");
+    }
     static void check(Context context,String stage){
         try{
             ClassLoader loader=context.getClassLoader();

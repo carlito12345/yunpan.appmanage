@@ -24,7 +24,8 @@ from package_apk import signature, u16, u32
 
 ROOT=Path(__file__).resolve().parent
 INFO=b'carlito/dex/aes-gcm/v1\ncom.yunpan.appmanage'
-FACTORY='com.carlito.secure.Factory'
+FACTORY='com.carlito.secure.Root'
+SERVER_ENTRY=b'com.gj.server.GjService'
 MINIMUM_SDK=28
 PROTECTION_WORK=WORKSPACE/'.work/protection'
 ANDROID_JAR=SDK/'platforms/android-36/android.jar'
@@ -43,6 +44,14 @@ def derive(seed,cert,application_id='com.yunpan.appmanage'):
 def patch_manifest(original):
     info=manifest_info(original)
     return protect_manifest(original,FACTORY,max(MINIMUM_SDK,int(info['sdk'].get('minSdkVersion',1))))
+
+def patch_server(name,data):
+    # libgj starts app_process directly, outside Android's component-factory callbacks.
+    # Only its class-name literal changes; executable instructions and offsets are retained.
+    if not re.fullmatch(r'lib/[^/]+/libgj\.so',name):return data
+    old=SERVER_ENTRY+b'\0';new=FACTORY.encode()+b'\0'
+    if len(old)!=len(new) or data.count(old)!=1:raise ValueError('Unsupported libgj server entry: '+name)
+    return data.replace(old,new)
 
 def tamper_checks(key,nonce,plain,aad,ciphertext):
     assert AESGCM(key).decrypt(nonce,ciphertext,aad)==plain
@@ -81,12 +90,12 @@ def protect(source,keyfile,certificate,output):
         template=(ROOT/'protection/Factory.java.in').read_text(encoding='utf-8')
         for name,value in {'PACKAGE':application_id,'DEX_COUNT':str(len(dex)),'ORIGINAL_FACTORY':original_factory,'CERT':cert,'META_SHA':sha(metadata),'SHARE_A':base64.b64encode(share).decode(),'SHARE_B':base64.b64encode(bytes(a^b for a,b in zip(seed,share))).decode()}.items():template=template.replace('@@'+name+'@@',value)
         assert '@@' not in template
-        java=work/'Factory.java';java.write_text(template,encoding='utf-8')
+        java=work/'Root.java';java.write_text(template,encoding='utf-8')
         classes=work/'classes';classes.mkdir(exist_ok=True)
         run([JDK/'javac.exe','-encoding','UTF-8','--release','8','-cp',ANDROID_JAR,'-d',classes,java],'protection-javac.log')
         jar=work/'bootstrap.jar'
         with zipfile.ZipFile(jar,'w') as j:
-            j.write(classes/'com/carlito/secure/Factory.class','com/carlito/secure/Factory.class')
+            j.write(classes/'com/carlito/secure/Root.class','com/carlito/secure/Root.class')
         dexdir=work/'dex';dexdir.mkdir(exist_ok=True)
         run([JDK/'java.exe','-cp',BUILDTOOLS/'lib/d8.jar','com.android.tools.r8.D8','--min-api',str(minimum),'--lib',ANDROID_JAR,'--output',dexdir,jar],'protection-d8.log')
         bootstrap=(dexdir/'classes.dex').read_bytes();assert struct.unpack_from('<I',bootstrap,96)[0]==1
@@ -94,7 +103,7 @@ def protect(source,keyfile,certificate,output):
         with zipfile.ZipFile(unsigned,'w',zipfile.ZIP_DEFLATED) as out:
             for entry in z.infolist():
                 if signature(entry.filename) or entry.filename in dex:continue
-                out.writestr(entry,manifest if entry.filename=='AndroidManifest.xml' else z.read(entry))
+                out.writestr(entry,manifest if entry.filename=='AndroidManifest.xml' else patch_server(entry.filename,z.read(entry)))
             out.writestr('classes.dex',bootstrap)
             for name,data in payload.items():out.writestr(name,data)
     run([BUILDTOOLS/'zipalign.exe','-P','16','-f','4',unsigned,aligned],'protection-align.log')
@@ -109,14 +118,17 @@ def protect(source,keyfile,certificate,output):
     with zipfile.ZipFile(source) as before,zipfile.ZipFile(output) as after:
         assert after.testzip() is None
         assert [n for n in after.namelist() if re.fullmatch(r'classes[0-9]*\.dex',n)]==['classes.dex']
-        preserved=0
+        preserved=0;server_entries=[]
         for name in before.namelist():
             if signature(name) or name in dex or name=='AndroidManifest.xml':continue
-            assert before.read(name)==after.read(name),name;preserved+=1
+            data=before.read(name);expected=patch_server(name,data)
+            assert expected==after.read(name),name
+            if expected!=data:server_entries.append({'entry':name,'before_sha256':sha(data),'after_sha256':sha(expected),'changed_bytes':sum(a!=b for a,b in zip(data,expected))})
+            else:preserved+=1
         assert after.read('AndroidManifest.xml')==manifest and after.read('classes.dex')==bootstrap
         for item in items:
             encrypted=after.read(item['entry']);assert AESGCM(key).decrypt(encrypted[:12],encrypted[12:],item['aad'].encode())==before.read(item['name'])
-    report={'apk':output.name,'bytes':output.stat().st_size,'sha256':sha(output.read_bytes()),'compatible_apk':source.name,'compatible_sha256':sha(source.read_bytes()),'algorithm':'AES-256-GCM','key_bits':256,'tag_bits':128,'unique_nonce_bytes':12,'encrypted_top_level_dex':len(dex),'clear_bootstrap_classes':1,'minimum_sdk':minimum,'application_id':application_id,'loader':'AppComponentFactory / InMemoryDexClassLoader; original Application unchanged','loader_paths':{'28':'instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained','29+':'public instantiateClassLoader + InMemoryDexClassLoader native search path'},'plaintext_dex_written_to_disk':False,'android9_non_sdk_fields':['BaseDexClassLoader.pathList','DexPathList.dexElements'],'certificate_sha256':cert,'v1_v2_v3_verified':True,'zip_alignment_verified':True,'preserved_non_dex_entries':preserved,'all_dex_roundtrip_verified':True,'tamper_checks':{'changed_tag':'rejected','changed_aad':'rejected','wrong_key':'rejected'},'source_template_sha256':sha((ROOT/'protection/Factory.java.in').read_bytes()),'generated_key_material_in_repository':False,'vm_tested':False,'limitations':['Client-side key material and decrypted code can be recovered by a determined analyst.','Embedded plugin APKs, resources and native libraries are preserved, not encrypted.','Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing.']}
+    report={'apk':output.name,'bytes':output.stat().st_size,'sha256':sha(output.read_bytes()),'compatible_apk':source.name,'compatible_sha256':sha(source.read_bytes()),'algorithm':'AES-256-GCM','key_bits':256,'tag_bits':128,'unique_nonce_bytes':12,'encrypted_top_level_dex':len(dex),'clear_bootstrap_classes':1,'minimum_sdk':minimum,'application_id':application_id,'loader':'AppComponentFactory / InMemoryDexClassLoader; original Application unchanged','bootstrap_class':FACTORY,'app_process_entry_patches':server_entries,'app_process_loader':'authenticated in-memory bootstrap -> original com.gj.server.GjService.main','loader_paths':{'28':'instantiateApplication; authenticated in-memory DEX appended to original BaseDexClassLoader; native paths retained','29+':'public instantiateClassLoader + InMemoryDexClassLoader native search path'},'plaintext_dex_written_to_disk':False,'android9_non_sdk_fields':['BaseDexClassLoader.pathList','DexPathList.dexElements'],'certificate_sha256':cert,'v1_v2_v3_verified':True,'zip_alignment_verified':True,'preserved_non_dex_entries':preserved,'all_dex_roundtrip_verified':True,'tamper_checks':{'changed_tag':'rejected','changed_aad':'rejected','wrong_key':'rejected'},'source_template_sha256':sha((ROOT/'protection/Factory.java.in').read_bytes()),'generated_key_material_in_repository':False,'vm_tested':False,'limitations':['Client-side key material and decrypted code can be recovered by a determined analyst.','Embedded plugin APKs and resources are preserved. libgj.so receives only a same-length server-entry class-name patch; other native libraries are unchanged.','Only tested VM/API versions are acceptance evidence; root/ADB/isolated service business paths require device testing.']}
     output.with_suffix('.verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     (BUILD/'protection-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2),flush=True)

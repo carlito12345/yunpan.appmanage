@@ -21,7 +21,7 @@ import javax.crypto.spec.*;
 import org.json.*;
 
 /** Android 9+ bootstrap. Client-side material is recoverable: this is a static-analysis barrier. */
-public final class Factory extends AppComponentFactory {
+public final class Root extends AppComponentFactory {
     private static final String CERT="@@CERT@@", META_SHA="@@META_SHA@@";
     private static final String SHARE_A="@@SHARE_A@@", SHARE_B="@@SHARE_B@@";
     private static final String PACKAGE="@@PACKAGE@@";
@@ -30,6 +30,20 @@ public final class Factory extends AppComponentFactory {
     private static Application app;
     private static boolean signerChecked;
     private AppComponentFactory original;
+
+    /** app_process has no component-factory callback; authenticate before invoking the original server. */
+    public static void main(String[] args)throws Exception{
+        ClassLoader parent=Root.class.getClassLoader();
+        URL resource=parent.getResource("assets/carlito/protection.json");
+        if(resource==null||!"jar".equals(resource.getProtocol()))throw new SecurityException("Missing APK resource");
+        URL location=((JarURLConnection)resource.openConnection()).getJarFileURL();
+        if(!"file".equals(location.getProtocol()))throw new SecurityException("Unsupported APK location");
+        String library=System.getProperty("yygj.library.path");
+        if(library!=null&&new File(library).isFile())library=new File(library).getParent();
+        ClassLoader loaded=new Root().initialize(parent,new File(location.toURI()),library);
+        try{loaded.loadClass("com.gj.server.GjService").getMethod("main",String[].class).invoke(null,(Object)args);}
+        catch(InvocationTargetException error){Throwable cause=error.getCause();if(cause instanceof Exception)throw(Exception)cause;if(cause instanceof Error)throw(Error)cause;throw error;}
+    }
 
     @Override public synchronized ClassLoader instantiateClassLoader(ClassLoader parent,ApplicationInfo info){
         if(!PACKAGE.equals(info.packageName))throw new SecurityException("Package mismatch");

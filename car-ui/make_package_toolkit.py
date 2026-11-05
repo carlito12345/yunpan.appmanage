@@ -6,11 +6,11 @@ import zipfile
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
-FILES=['PACKAGE_VARIANTS.md','R10修复与验证.md','R11修复与验证.md','R12安卓9加固适配与验证.md','THIRD_PARTY_PACKAGE_TOOLS.txt','OneClickPackage.ps1','一键改包名.cmd',
+FILES=['PACKAGE_VARIANTS.md','R10修复与验证.md','R11修复与验证.md','R12安卓9加固适配与验证.md','R13修复与验证.md','THIRD_PARTY_PACKAGE_TOOLS.txt','OneClickPackage.ps1','一键改包名.cmd',
        'repackage.example.json','repackage-deps.json','apk_identity.py','repackage_apk.py',
        'protect_apk.py','build_ui.py','package_apk.py','test_repackage.py','make_package_toolkit.py',
        'tools/PackageDexRewriter.java','protection/Factory.java.in','protection/test_runtime.py',
-       'protection/probe/Probe.java','protection/probe/Extra.java','protection/probe/native.c',
+       'protection/probe/Probe.java','protection/probe/Extra.java','protection/probe/GjService.java','protection/probe/native.c',
        'protection/probe/AndroidManifest.xml','protection/probe/probe.xml','branding/gj_ico.jpg','platform.x509.pem']
 
 def make_toolkit(base,verification,output):
@@ -33,6 +33,7 @@ def make_toolkit(base,verification,output):
         assert path.is_file(),path
         assert path.suffix.lower() not in forbidden and 'repackage.local.json' not in name
         assert name.count('Factory.java')==0 or name.endswith('Factory.java.in')
+        assert not name.endswith('/Root.java')
     manifest={name:{'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()} for name,path in entries.items()}
     output.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:

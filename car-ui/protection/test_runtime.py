@@ -33,7 +33,7 @@ def build(work,key,cert):
     source=work/'Probe.java';source.write_text((FIXTURE/'Probe.java').read_text(encoding='utf-8').replace('@@TOKEN@@',token),encoding='utf-8')
     classes=work/'classes';classes.mkdir(exist_ok=True)
     android=SDK/'platforms/android-36/android.jar'
-    run([JDK/'javac.exe','-encoding','UTF-8','--release','8','-cp',android,'-d',classes,source,FIXTURE/'Extra.java'])
+    run([JDK/'javac.exe','-encoding','UTF-8','--release','8','-cp',android,'-d',classes,source,FIXTURE/'Extra.java',FIXTURE/'GjService.java'])
     dex=[]
     for secondary in [False,True]:
         jar=work/('secondary.jar' if secondary else 'primary.jar')
@@ -68,6 +68,15 @@ def exercise(work,apk,token,serial):
     installed=False;report={'serial':serial,'api':int(adb('shell','getprop','ro.build.version.sdk')),'application_id':PACKAGE,'aes_apk_sha256':protect_apk.sha(apk.read_bytes()),'stages':[],'cold_starts':0,'removed':False}
     try:
         result=adb('install',str(apk));assert 'Success' in result,result;installed=True
+        apk_path=adb('shell','pm','path',PACKAGE).removeprefix('package:').strip()
+        details=adb('shell','dumpsys','package',PACKAGE)
+        native=re.search(r'primaryCpuAbi=(\S+)',details).group(1)
+        library=apk_path.rsplit('/',1)[0]+'/lib/'+{'arm64-v8a':'arm64','x86_64':'x86_64','x86':'x86'}[native]
+        if not re.fullmatch(r'[/A-Za-z0-9_.=+~-]+',apk_path):raise ValueError('Unexpected installed path')
+        server=adb('shell','CLASSPATH='+apk_path,'app_process','-Dyygj.library.path='+library,'/',protect_apk.FACTORY,token)
+        logs=adb('logcat','-d','-v','brief','-s','AES_RUNTIME_PROBE:I')
+        assert token+' PASS app-process-server' in logs,server
+        report['app_process_server']=True
         for i in range(2):
             adb('shell','am','force-stop',PACKAGE)
             baseline=sum(token in line for line in adb('logcat','-d','-v','brief','-s','AES_RUNTIME_PROBE:I').splitlines())

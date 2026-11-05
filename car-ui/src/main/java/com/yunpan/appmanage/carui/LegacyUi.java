@@ -56,7 +56,7 @@ public final class LegacyUi {
         }catch(Exception e){Log.w(TAG,"Dialog layout adaptation",e);}
     }
     static int dialogLayout(Dialog dialog){try{Object layout=field(dialog,"c");return layout instanceof Integer?(Integer)layout:0;}catch(Exception ignored){return 0;}}
-    public static boolean fullDialog(Dialog dialog){try{String name=ResourceIndex.layout((Integer)field(dialog,"c"));View root=find(dialog.getWindow().getDecorView(),"v_root");return root!=null&&Boolean.TRUE.equals(root.getTag(FULL))||name.equals("dialog_set")||name.equals("dialog_keymap_diy")||name.equals("dialog_telnet_shell")||ResourceIndex.strategy((Integer)field(dialog,"c")).equals("media");}catch(Exception e){return false;}}
+    public static boolean fullDialog(Dialog dialog){try{String name=ResourceIndex.layout((Integer)field(dialog,"c"));View root=find(dialog.getWindow().getDecorView(),"v_root");return root!=null&&Boolean.TRUE.equals(root.getTag(FULL))||name.equals("dialog_set")||name.equals("dialog_adb_pair")||name.equals("dialog_keymap_diy")||name.equals("dialog_telnet_shell")||ResourceIndex.strategy((Integer)field(dialog,"c")).equals("media");}catch(Exception e){return false;}}
     public static boolean menuDialog(Dialog dialog){try{return ResourceIndex.layout((Integer)field(dialog,"c")).equals("dialog_menu");}catch(Exception e){return false;}}
     public static void surface(View root,int layout){
         if(!(root instanceof ViewGroup))return;String name=ResourceIndex.layout(layout);if(name.isEmpty())return;
@@ -75,6 +75,8 @@ public final class LegacyUi {
         else if(name.equals("dialog_clean_mode"))cleanMode((ViewGroup)root);
         else if(name.equals("dialog_share"))transferQr((ViewGroup)root);
         else if(name.equals("dialog_login_qrcode"))loginQr((ViewGroup)root);
+        else if(name.equals("dialog_adb_pair"))AdbPairUi.guide((ViewGroup)root);
+        else if(name.equals("activity_window_input_adb_pair"))AdbPairUi.input((ViewGroup)root);
         else if(name.equals("dialog_key_map_logcat_add")||name.equals("dialog_key_map_acc_add")||name.equals("dialog_key_map_broadcast_add")||name.equals("dialog_add_door_log"))mappingForm((ViewGroup)root,name);
         else if(name.equals("activity_code_editor")){for(String id:new String[]{"v_list_top","v_list_bottom"}){View bar=find(root,id);if(bar!=null){ViewGroup.LayoutParams p=bar.getLayoutParams();p.height=selectorHeight(bar);bar.setLayoutParams(p);}}}
         else if(name.equals("activity_sidebar_set")){View form=find(root,"v_scroll");if(form instanceof ViewGroup)generic((ViewGroup)form,false);View bottom=find(root,"v_lay_bottom");if(bottom instanceof ViewGroup)generic((ViewGroup)bottom,false);}
@@ -84,7 +86,7 @@ public final class LegacyUi {
             if(inner instanceof ViewGroup){boolean bounded=find(inner,"v_lay_bottom")!=null&&find(inner,"v_scroll")!=null||name.equals("dialog_select_file")||name.equals("dialog_copy_to_dir")||name.equals("dialog_move_to_dir")||name.equals("dialog_save_new_file")||name.equals("dialog_key_selector");if(bounded)root.setTag(FULL,Boolean.TRUE);generic((ViewGroup)inner,bounded,true);ViewGroup r=(ViewGroup)root;detach(inner);if(bounded||hasScroll(inner))fill(r,inner,bounded);else{ScrollView scroll=new ScrollView(root.getContext());scroll.setFillViewport(false);scroll.addView(inner,new ScrollView.LayoutParams(-1,-2));fill(r,scroll,false);}}
             else generic((ViewGroup)root,!dialog,true);
         }
-        CarUi.theme(root);retheme(root);
+        CarUi.theme(root);retheme(root);AdbPairUi.retheme(root);
     }
 
     private static void tools(ViewGroup root){
@@ -277,6 +279,7 @@ public final class LegacyUi {
         String[] sectionTitles={"界面与显示","安装与权限","连接与提醒","高级连接设置"};
         for(int i=0;i<sections.length;i++){sections[i].setPadding(d(root,18),0,d(root,18),d(root,20));label(sections[i],sectionTitles[i]);}
         TextView themes=CarUi.text(c,"选择主题与日夜模式",20,CarUi.skin(c).ink,true);themes.setTag(ROLE,"action");themes.setPadding(d(root,16),d(root,16),d(root,16),d(root,16));themes.setFocusable(true);themes.setClickable(true);themes.setOnClickListener(new View.OnClickListener(){@Override public void onClick(View v){ThemePicker.show(dialog.getContext());}});add(display,themes,-2);
+        TextView pairing=CarUi.text(c,"无线调试配对助手",20,CarUi.skin(c).ink,true);pairing.setTag(ROLE,"action");pairing.setPadding(d(root,16),d(root,16),d(root,16),d(root,16));pairing.setFocusable(true);pairing.setClickable(true);pairing.setOnClickListener(new View.OnClickListener(){@Override public void onClick(View v){Context context=dialog.getContext();dialog.dismiss();AdbPairUi.open(context);}});add(connection,pairing,-2);
         FieldGrid fields=new FieldGrid(c);WrapLayout actions=new WrapLayout(c);
         LinearLayout installer=column(c),port=column(c);
         for(View v:controls){String id=CarUi.name(v);detach(v);
@@ -294,6 +297,9 @@ public final class LegacyUi {
             else add(advanced,v,-2);
         }
         fields.addView(installer);fields.addView(port);add(advanced,fields,-2);label(advanced,"应用与权限入口");add(advanced,actions,-2);
+        View su=find(advanced,"v_edit_su"),password=find(advanced,"v_edit_adb_shell_password");
+        if(su instanceof EditText){su.setContentDescription("自定义 SU 命令");((EditText)su).setHint("su");}
+        if(password instanceof EditText){password.setContentDescription("ADB shell 密码");((EditText)password).setHint("仅在设备要求密码时填写");}
         SettingsBody pages=new SettingsBody(c,sections);fill(form,pages,true);detach(form);
         LinearLayout panel=column(root.getContext());LinearLayout heading=new LinearLayout(root.getContext());heading.setGravity(Gravity.CENTER_VERTICAL);heading.setPadding(d(root,22),d(root,18),d(root,16),d(root,14));
         TextView title=CarUi.text(root.getContext(),"设置",28,CarUi.skin(root.getContext()).ink,true);title.setTag(ROLE,"title");heading.addView(title,new LinearLayout.LayoutParams(0,-2,1));
@@ -314,6 +320,7 @@ public final class LegacyUi {
         if(content(group)||group instanceof WrapLayout||group.getTag(ROLE)!=null)return;
         if(group.isClickable()&&!contentPanel)return;
         if(formFooter(group))return;
+        if(textFormRow(group))return;
         if(numericFormRow(group))return;
         List<View> original=children(group);Object ordered=group.getTag(ORDER);if(ordered instanceof String){List<View> sorted=new ArrayList<View>();try{for(String n:((String)ordered).split(","))sorted.add(original.get(Integer.parseInt(n)));if(sorted.size()==original.size())original=sorted;}catch(Exception ignored){/* Dynamic children retain insertion order. */}}
         for(View v:original)if(v instanceof ViewGroup)generic((ViewGroup)v,false);
@@ -338,6 +345,15 @@ public final class LegacyUi {
         WrapLayout row=new WrapLayout(group.getContext());row.setPadding(d(group,12),d(group,10),d(group,12),d(group,10));for(View v:original){if(v instanceof ViewGroup)inline((ViewGroup)v,null,null,24,true);detach(v);if(v instanceof TextView)((TextView)v).setGravity(Gravity.START|Gravity.CENTER_VERTICAL);if(v instanceof EditText)v.setMinimumWidth(d(group,160));row.addView(v,new ViewGroup.LayoutParams(-2,-2));}fill(group,row,false);return true;
     }
     /** Old inline number fields had fixed 50x30dp bounds; wrap their real labels/help instead of squeezing the value. */
+    private static boolean textFormRow(ViewGroup group){
+        if(group.getClass()!=LinearLayout.class||((LinearLayout)group).getOrientation()!=LinearLayout.HORIZONTAL)return false;
+        List<View> parts=children(group);EditText field=null;
+        for(View v:parts){if(v instanceof EditText){if(field!=null||(((EditText)v).getInputType()&android.text.InputType.TYPE_MASK_CLASS)==android.text.InputType.TYPE_CLASS_NUMBER)return false;field=(EditText)v;}else if(!(v instanceof TextView)||v.isClickable())return false;}
+        if(field==null||parts.size()<2)return false;
+        LinearLayout row=(LinearLayout)group;row.setOrientation(LinearLayout.VERTICAL);row.setGravity(Gravity.START);row.setTag(ROLE,"formField");
+        for(View v:parts){LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=d(group,8);v.setLayoutParams(p);if(v==field){v.setMinimumHeight(d(group,54));}else{TextView label=(TextView)v;label.setSingleLine(false);label.setMaxLines(Integer.MAX_VALUE);label.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);label.setLabelFor(field.getId());}}
+        return true;
+    }
     private static boolean numericFormRow(ViewGroup group){
         if(group.getClass()!=LinearLayout.class||((LinearLayout)group).getOrientation()!=LinearLayout.HORIZONTAL)return false;
         List<View> parts=children(group);EditText field=null;
