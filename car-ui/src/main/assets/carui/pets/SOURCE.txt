@@ -6,3 +6,9 @@ Each set shares a single crop and scale so the art stays aligned while playing.
 
 The grok directory contains animated sprites rendered from TyCoding's Grok Ball.
 See grok/SOURCE.txt and grok/LICENSE.txt for the pinned source and MIT notice.
+
+The five starray-*.png files use the original 512 × 512 cells from Starray Voice's
+cn-test/src/main/res/drawable-nodpi/star_avatar_atlas.png by carlito.
+The top row provides 光灵, 绒星 and 水晶舱. The first two cells of the bottom
+row provide 银翼 and 星云. The assets keep their source alpha and use the
+same native Android face and motion layer.

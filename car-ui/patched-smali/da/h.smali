@@ -61,7 +61,7 @@
     .locals 3
 
     .line 1
-    invoke-virtual {p0}, Landroidx/fragment/app/Fragment;->getChildFragmentManager()Landroidx/fragment/app/d1;
+    invoke-virtual {p0}, Landroidx/fragment/app/Fragment;->getChildFragmentManager()Landroidx/fragment/app/c1;
 
     .line 2
     .line 3
@@ -69,11 +69,11 @@
     move-result-object v0
 
     .line 5
-    iget-object v0, v0, Landroidx/fragment/app/d1;->c:Landroidx/fragment/app/l1;
+    iget-object v0, v0, Landroidx/fragment/app/c1;->c:Landroidx/fragment/app/k1;
 
     .line 6
     .line 7
-    invoke-virtual {v0}, Landroidx/fragment/app/l1;->f()Ljava/util/List;
+    invoke-virtual {v0}, Landroidx/fragment/app/k1;->f()Ljava/util/List;
 
     .line 8
     .line 9

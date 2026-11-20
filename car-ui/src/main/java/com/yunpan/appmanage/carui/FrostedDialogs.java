@@ -38,10 +38,10 @@ public final class FrostedDialogs {
             if(width>0&&height>0)try{bitmap=Bitmap.createBitmap(Math.max(1,width/12),Math.max(1,height/12),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);canvas.scale(bitmap.getWidth()/(float)width,bitmap.getHeight()/(float)height);view.draw(canvas);blur(bitmap,4);}catch(RuntimeException|OutOfMemoryError error){if(bitmap!=null)bitmap.recycle();bitmap=null;Log.w("CarUi","Dialog snapshot blur unavailable",error);}}
         window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);window.setDimAmount(skin.dark?.58f:.46f);
         Board board=new Board(dialog,activity==null?null:activity.getWindow().getDecorView(),decor,bitmap,width,height,origin,skin);decor.setTag(BOARD_TAG,board);window.setBackgroundDrawable(board);
-        View content=dialog.findViewById(android.R.id.content);if(content instanceof ViewGroup){content.setBackgroundColor(Color.TRANSPARENT);ViewGroup group=(ViewGroup)content;if(group.getChildCount()>0)group.getChildAt(0).setBackgroundColor(Color.TRANSPARENT);clearViewportBackgrounds(content);}
+        View content=dialog.findViewById(android.R.id.content);
+        if (content instanceof ViewGroup) LegacyUi.inheritWindowBackground((ViewGroup) content);
         if(android.os.Build.VERSION.SDK_INT>=21)window.getDecorView().setElevation(CarUi.dp(dialog.getContext(),20));
     }
-    private static void clearViewportBackgrounds(View v){String name=CarUi.name(v);if(name.equals("v_root")||name.equals("v_root2")||v.getClass().getName().contains("ScrollView"))v.setBackgroundColor(Color.TRANSPARENT);if(v instanceof ViewGroup){ViewGroup group=(ViewGroup)v;for(int i=0;i<group.getChildCount();i++)clearViewportBackgrounds(group.getChildAt(i));}}
     static void blur(Bitmap bitmap,int radius){
         int w=bitmap.getWidth(),h=bitmap.getHeight();int[] pixels=new int[w*h],temp=new int[w*h];bitmap.getPixels(pixels,0,w,0,0,w,h);
         for(int pass=0;pass<2;pass++){

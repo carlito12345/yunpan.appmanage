@@ -62,8 +62,8 @@ def run(command,log):
     with(BUILD/log).open('wb')as output:
         subprocess.run(list(map(str,command)),cwd=WORKSPACE,stdout=output,stderr=subprocess.STDOUT,check=True)
 
-def package(key,certificate,output='应用管家-UI修复测试-R3-20261104.apk'):
-    original=WORKSPACE/'input/公签版.apk'
+def package(key,certificate,output='应用管家-1.9.3-车机界面.apk'):
+    original=WORKSPACE/'input/应用管家_1.9.3.apk'
     compiled=WORKSPACE/'.work/car-ui-compiled.apk'
     helper=BUILD/'dex/classes.dex'
     unsigned=BUILD/'car-ui-unsigned.apk';aligned=BUILD/'car-ui-aligned.apk'
@@ -109,8 +109,10 @@ def package(key,certificate,output='应用管家-UI修复测试-R3-20261104.apk'
     assert snapshot['ui_dex_sha256']==hashlib.sha256(helper.read_bytes()).hexdigest()
     assert all(hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest for name,digest in snapshot['source_files'].items())
     allowed={'classes.dex L'+name.removesuffix('.smali')+';' for name in json.loads((BUILD/'source-patches.json').read_text())}
-    found=set((BUILD/'dex-review/dex-differences.txt').read_text().splitlines())
+    dex_review=BUILD/'dex-review'
+    found=set((dex_review/'dex-differences.txt').read_text().splitlines())
     assert found==allowed,(found,allowed)
+    compared=json.loads((dex_review/'dex-comparison.json').read_text(encoding='utf-8'))
     report={'apk':result.name,'bytes':result.stat().st_size,'sha256':hashlib.sha256(result.read_bytes()).hexdigest(),
             'certificate_sha256':cert_sha,'v1_v2_v3_verified':True,'zip_alignment_verified':True,
             'unchanged_original_payload_entries':preserved,'original_resources_byte_identical':True,
@@ -118,12 +120,12 @@ def package(key,certificate,output='应用管家-UI修复测试-R3-20261104.apk'
             'ui_java_sources_current':True,'ui_classes':snapshot['ui_classes'],'legacy_changed_classes':len(allowed),
             'author':'carlito','source':'应用管家社区官方【应用管家】','source_url':'https://pd.qq.com/s/7eyokceit?b=5',
             'public_source_poster_sha256':hashlib.sha256((ROOT/'src/main/assets/carui/source_channel.jpg').read_bytes()).hexdigest(),
-            'unmodified_legacy_classes_compared':16415-len(allowed),
+            'unmodified_legacy_classes_compared':compared['classes_checked']-len(allowed),
             'orientation_attributes_changed':len(changes),'orientation':'unspecified; follows device configuration',
             'orientation_details':changes,'real_device_tested':False}
     (BUILD/'package-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({k:v for k,v in report.items()if k!='orientation_details'},ensure_ascii=False,indent=2),flush=True)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--key',type=Path,required=True);parser.add_argument('--cert',type=Path,required=True);parser.add_argument('--output',default='应用管家-UI修复测试-R3-20261104.apk')
+    parser=argparse.ArgumentParser();parser.add_argument('--key',type=Path,required=True);parser.add_argument('--cert',type=Path,required=True);parser.add_argument('--output',default='应用管家-1.9.3-车机界面.apk')
     args=parser.parse_args();package(args.key.resolve(),args.cert.resolve(),args.output)

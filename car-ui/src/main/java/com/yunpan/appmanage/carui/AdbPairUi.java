@@ -125,6 +125,12 @@ public final class AdbPairUi {
         void update(){if(window!=null&&window.isAttachedToWindow())try{manager.updateViewLayout(window,params);}catch(Exception e){closeFloat(false);}}
         void releaseFocus(){if(params==null)return;((InputMethodManager)c.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(code.getWindowToken(),0);params.flags|=WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;update();}
         void closeFloat(boolean returnToPage){if(window==null)return;LinearLayout old=window;window=null;params=null;((InputMethodManager)c.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(code.getWindowToken(),0);try{manager.removeViewImmediate(old);}catch(Exception ignored){}detach(input);slot.addView(input,new FrameLayout.LayoutParams(-1,-2));code.setOnTouchListener(null);floatBody=null;collapsed=false;if(floating==this)floating=null;if(returnToPage&&owner!=null&&!owner.isFinishing())try{owner.startActivity(new Intent(owner,owner.getClass()).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_SINGLE_TOP));}catch(Exception ignored){} }
-        void paint(){CarUi.Skin s=CarUi.skin(c);root.setBackgroundColor(s.background);for(TextView t:ownText)t.setTextColor(s.ink);for(TextView t:ownButtons){t.setTextColor(s.ink);t.setBackground(CarUi.buttonBackground(c,s.soft,s.surface,s.ink,22));}CarUi.theme(code);CarUi.theme(yes);CarUi.theme(no);CarUi.theme(status);paintStatus();code.setTextSize(26);code.setGravity(Gravity.CENTER);if(window!=null){GradientDrawable board=new GradientDrawable();board.setColor(s.surface);board.setCornerRadius(dp(c,26));board.setStroke(dp(c,1),s.outline);window.setBackground(board);window.setElevation(dp(c,10));}}
+        void paint(){
+            CarUi.Skin s=CarUi.skin(c);
+            if (LegacyUi.inheritsBackground(root)) {
+                if (root.getBackground() != null) root.setBackground(null);
+            } else root.setBackgroundColor(s.background);
+            for(TextView t:ownText)t.setTextColor(s.ink);for(TextView t:ownButtons){t.setTextColor(s.ink);t.setBackground(CarUi.buttonBackground(c,s.soft,s.surface,s.ink,22));}CarUi.theme(code);CarUi.theme(yes);CarUi.theme(no);CarUi.theme(status);paintStatus();code.setTextSize(26);code.setGravity(Gravity.CENTER);if(window!=null){GradientDrawable board=new GradientDrawable();board.setColor(s.surface);board.setCornerRadius(dp(c,26));board.setStroke(dp(c,1),s.outline);window.setBackground(board);window.setElevation(dp(c,10));}
+        }
     }
 }

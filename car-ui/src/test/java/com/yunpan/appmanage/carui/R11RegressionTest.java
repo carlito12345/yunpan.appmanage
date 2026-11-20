@@ -85,7 +85,7 @@ public class R11RegressionTest {
             CarHome home=new CarHome(f.activity,new Bridge(f.activity,null),null);f.activity.setContentView(home);
             for(int[] size:new int[][]{{width,height}}){
                 for(int pass=0;pass<2;pass++){f.fixture.layout(home,size[0],size[1]);Shadows.shadowOf(android.os.Looper.getMainLooper()).idle();}
-                View heading=(View)text(home,"应用管家").getParent(),hero=(View)text(home,size[0]>size[1]?"常用入口，随你安排":"常用入口\n随你安排").getParent().getParent(),section=(View)text(home,"常用功能").getParent(),card=(View)text(home,"应用管理").getParent().getParent(),add=description(home,"添加新的常用功能或跳转");
+                View heading=(View)text(home,"应用管家").getParent(),hero=(View)text(home,"快捷入口").getParent().getParent(),section=(View)text(home,"常用功能").getParent(),card=(View)text(home,"应用管理").getParent().getParent(),add=description(home,"添加新的常用功能或跳转");
                 assertTrue("Header and hero need a real outer gap",f.top(hero)-f.top(heading)-heading.getHeight()>=CarUi.dp(f.activity,16));
                 assertTrue("Hero and favorites heading need separation",f.top(section)-f.top(hero)-hero.getHeight()>=CarUi.dp(f.activity,18));
                 assertTrue("Favorites heading must not touch cards",f.top(card)-f.top(section)-section.getHeight()>=CarUi.dp(f.activity,14));

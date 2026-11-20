@@ -16,7 +16,7 @@
 
     .line 2
     .line 3
-    invoke-static {p2, v0}, Lue/d;->e(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p2, v0}, Lve/d;->e(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 4
     .line 5
@@ -52,7 +52,7 @@
 
     .line 20
     .line 21
-    invoke-static {p1, p2}, Lue/d;->d(Ljava/lang/Object;Ljava/lang/String;)V
+    invoke-static {p1, p2}, Lve/d;->d(Ljava/lang/Object;Ljava/lang/String;)V
 
     .line 22
     .line 23

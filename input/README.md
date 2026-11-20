@@ -1,6 +1,5 @@
 # 本地构建输入
 
-将你持有的原 APK 放到 `input/公签版.apk`，文件应为18,502,459字节，SHA256：
-`7718182e7c8fe9a1061d478730b68e0f98640f54cef38bed7d0675481e59c296`。
+将应用管家 1.9.3（1932）原 APK 放到 `input/应用管家_1.9.3.apk`。用于 R18 的原包为 18,544,438 字节，SHA-256 为 `af02e0ed024ffd270d53c848bca36d853fa6cf6eed57d31c95070365f08357ea`。
 
-原安装包不随源码提交；它用于保持原资源、第二第三DEX及其他载荷逐字节一致。签名时在仓库外提供 platform.pk8，仓库只保留公钥证书 car-ui/platform.x509.pem。
+按[构建说明](../car-ui/README.md#构建)将此 APK 解码到 `.work/decoded`。签名需要本机的 `platform.pk8`，公钥证书位于 `car-ui/platform.x509.pem`。

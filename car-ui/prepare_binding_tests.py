@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
-SRC=ROOT.parent/'公签版_反编译/java-project/app/src/main/java'
+SRC=ROOT.parent/'.work/jadx193/sources'
 OUT=ROOT/'build/test-legacy'
 def write(name,text):
     p=OUT/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text,encoding='utf-8')
@@ -14,8 +14,8 @@ for relative in ['com/yunpan/appmanage/R.java','com/yunpan/appmanage/bean/StrInt
     original=(SRC/relative).read_text(encoding='utf-8');adapted=original
     if relative=='x9/s5.java':
         # JADX prints a synthetic anonymous-class capture as a nonexistent Java field.
-        assert 's5 s5Var = this.f18329a;' in adapted
-        adapted=adapted.replace('s5 s5Var = this.f18329a;','s5 s5Var = s5.this;')
+        assert 's5 s5Var = this.f18420a;' in adapted
+        adapted=adapted.replace('s5 s5Var = this.f18420a;','s5 s5Var = s5.this;')
     write(relative,adapted)
     proof.append({'source':relative,'original_sha256':hashlib.sha256(original.encode()).hexdigest(),'test_sha256':hashlib.sha256(adapted.encode()).hexdigest(),'correction':'anonymous outer capture' if adapted!=original else None})
 write('c6/g.java','''package c6;
@@ -39,8 +39,8 @@ public class a extends RecyclerView.ViewHolder{
  public int getBindingAdapterPosition(){return getAdapterPosition();}
 }
 ''')
-write('x9/w3.java','''package x9; public final class w3 {public String f18364a,f18365b;public w3(String name){f18364a=name;f18365b="";}}''')
-write('x9/n5.java','''package x9; public final class n5 {public int f18290a;public String f18291b;public n5(int type,String name){f18290a=type;f18291b=name;}}''')
+write('x9/w3.java','''package x9; public final class w3 {public String f18455a,f18456b;public w3(String name){f18455a=name;f18456b="";}}''')
+write('x9/n5.java','''package x9; public final class n5 {public int f18381a;public String f18382b;public n5(int type,String name){f18381a=type;f18382b=name;}}''')
 write('com/yunpan/appmanage/bean/CmdBean.java','''package com.yunpan.appmanage.bean; public final class CmdBean {public String name;public int ico;public CmdBean(String name,int ico){this.name=name;this.ico=ico;}}''')
 write('com/yunpan/appmanage/bean/WpPathBean.java','''package com.yunpan.appmanage.bean; public final class WpPathBean {public String name;public WpPathBean(String name){this.name=name;}}''')
 hive=(SRC/'com/yunpan/appmanage/view/HiveProgressView.java').read_text(encoding='utf-8')
@@ -55,15 +55,15 @@ measure=method('public final void onMeasure(int i10, int i11)')
 hexpath=method('public final Path c(').replace('r7 - i15','(i23 - i19) - i15')
 draw=method('public final void onDraw(Canvas canvas)')
 draw=draw[:draw.index('        canvas.save();')]+'    }' # Only the non-image branch used by these two layouts.
-draw=re.sub(r'z\.a\((\w+), (\d+), (\d+), (\w+)\)',r'((\1 * \2) / \3 + \4)',draw)
+draw=re.sub(r'g\.c\((\w+), (\d+), (\d+), (\w+)\)',r'((\1 * \2) / \3 + \4)',draw)
 write('com/yunpan/appmanage/view/HiveProgressView.java','''package com.yunpan.appmanage.view;
 import android.content.Context;import android.util.AttributeSet;import android.view.View;import android.graphics.*;import android.graphics.drawable.Drawable;
 /** TEST CONTRACT: original measure/path/non-image draw bodies. Static animation sample; no animator lifecycle. */
 public class HiveProgressView extends View {
- public static final int[] f4163p={16711680,16744192,16776960,65280,255,4915330,9699539};
- public final Paint f4164a=new Paint(3);public int f4165b,f4166c,f4167d,f4169f=100,f4171h=0xFF61E4FF;public float f4168e=450f;public boolean f4172i,f4174k;public final Drawable f4175m=null;
- public HiveProgressView(Context c,AttributeSet attrs){super(c,attrs);f4164a.setStyle(Paint.Style.FILL);}
- public void setColor(int color){f4171h=color;invalidate();}
+ public static final int[] f3998p={16711680,16744192,16776960,65280,255,4915330,9699539};
+ public final Paint f3999a=new Paint(3);public int f4000b,f4001c,f4002d,f4004f=100,f4006h=0xFF61E4FF;public float f4003e=450f;public boolean f4007i,f4009k;public final Drawable f4010m=null;
+ public HiveProgressView(Context c,AttributeSet attrs){super(c,attrs);f3999a.setStyle(Paint.Style.FILL);}
+ public void setColor(int color){f4006h=color;invalidate();}
 '''+method('public final int a(')+'\n'+method('public final int b(')+'\n'+hexpath+'\n'+draw+'\n'+measure+'\n}')
 proof.append({'source':'com/yunpan/appmanage/view/HiveProgressView.java','original_sha256':hashlib.sha256(hive.encode()).hexdigest(),'scope':'original measure/path/non-image draw bodies; static sample; helpers inlined; one JADX path local corrected; animator and image branch excluded'})
 (ROOT/'build/original-binding-test-provenance.json').write_text(json.dumps(proof,indent=2,ensure_ascii=False),encoding='utf-8')

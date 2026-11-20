@@ -13,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -122,6 +126,54 @@ public class CarHomeTest {
     @Test public void emptyFavoritesStayUsable()throws Exception{
         Activity activity=Robolectric.buildActivity(PreviewActivity.class).setup().get();Favorites model=new Favorites(activity);while(!model.all().isEmpty())model.remove(model.all().get(0).id);
         CarHome home=new CarHome(activity,new PreviewBridge(activity),null);activity.setContentView(home);capture(home,1440,1920,"portrait-empty.png");assertNotNull(findText(home,"添加跳转"));
+    }
+    @Test @Config(qualifiers="w640dp-h360dp-land-xhdpi")
+    public void shortLandscapeKeepsThemesReachableAndSelectsGdGlass() throws Exception {
+        Activity activity = Robolectric.buildActivity(PreviewActivity.class).setup().get();
+        File assets = File.createTempFile("gd-glass", ".apk");
+        assets.deleteOnExit();
+        try (ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(assets))) {
+            for (String name : new String[]{"gd_glass_gallery.webp", "gd_manrope.ttf", "gd_space_grotesk.ttf", "gd_dm_sans.ttf"}) {
+                zip.putNextEntry(new ZipEntry("assets/carui/glass/" + name));
+                Files.copy(Path.of("src/main/assets/carui/glass", name), zip);
+                zip.closeEntry();
+            }
+        }
+        assertTrue((Integer) android.content.res.AssetManager.class.getMethod("addAssetPath", String.class)
+                .invoke(activity.getAssets(), assets.getAbsolutePath()) > 0);
+        CarHome home = new CarHome(activity, new PreviewBridge(activity), null);
+        activity.setContentView(home);
+        layout(home, 1280, 720);
+        View themeButton = findDescription(home, "切换界面主题");
+        assertNotNull(themeButton);
+        assertTrue(themeButton.getGlobalVisibleRect(new android.graphics.Rect()));
+        View settings = findDescription(home, "设置");
+        assertNotNull(settings);
+        android.graphics.Rect visible = new android.graphics.Rect();
+        assertTrue(settings.getGlobalVisibleRect(visible));
+        assertEquals(settings.getHeight(), visible.height());
+        assertTrue(themeButton.performClick());
+        View themeCenter = ShadowDialog.getLatestDialog().getWindow().getDecorView();
+        assertNotNull(findDescription(themeCenter, "GD 毛玻璃 薄雾"));
+        assertNotNull(findDescription(themeCenter, "GD 毛玻璃 余晖"));
+        assertTrue(findDescription(themeCenter, "GD 毛玻璃 棱镜").performClick());
+        assertEquals("gd-prism", CarUi.skin(activity).theme);
+        home.refreshTheme();
+        capture(home, 1280, 720, "short-landscape-prism.png");
+        assertEquals(GlassMaterial.Theme.PRISM, CarUi.skin(activity).glass);
+        assertNotNull(home.wallpaper());
+        assertNotNull(home.wallpaper().glassPhoto);
+        assertFalse(home.wallpaper().glassPhoto.soft.sameAs(home.wallpaper().glassPhoto.dense));
+        assertTrue(findDescription(home, "切换夜间模式").performClick());
+        assertTrue(CarUi.skin(activity).dark);
+        assertEquals("gd-prism", CarUi.skin(activity).theme);
+        capture(home, 1280, 720, "glass-prism-night.png");
+
+        for (GlassMaterial.Theme theme : new GlassMaterial.Theme[]{GlassMaterial.Theme.MIST, GlassMaterial.Theme.GLOW}) {
+            CarUi.chooseTheme(activity, theme.id, false);
+            home.refreshTheme();
+            capture(home, 1280, 720, theme.id + "-day.png");
+        }
     }
     private android.widget.EditText findInput(View view,String hint){
         if(view instanceof android.widget.EditText&&hint.contentEquals(((android.widget.EditText)view).getHint()))return(android.widget.EditText)view;

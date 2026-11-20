@@ -1,0 +1,2 @@
+gd_glass_gallery.webp comes from GD Desktop 240's gd_glass_gallery drawable.
+The 薄雾, 棱镜 and 余晖 palettes use the GD Desktop 240 glass color roles.

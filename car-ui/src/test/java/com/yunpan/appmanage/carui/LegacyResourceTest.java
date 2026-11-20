@@ -31,6 +31,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
+import org.robolectric.android.controller.ActivityController;
 import org.robolectric.annotation.Config;
 import org.robolectric.annotation.GraphicsMode;
 import org.robolectric.annotation.LooperMode;
@@ -57,6 +59,7 @@ public class LegacyResourceTest {
             if(name.equals("com.owen.tvrecyclerview.widget.TvRecyclerView")||name.equals("com.recycleview.MyRecycleView"))return new androidx.recyclerview.widget.RecyclerView(c,attrs);
             if(name.equals("com.yunpan.appmanage.view.HiveProgressView"))return new com.yunpan.appmanage.view.HiveProgressView(c,attrs);
             if(name.equals("com.yunpan.appmanage.view.MyTextView"))return new TextView(c,attrs);
+            if(name.equals("com.yunpan.appmanage.view.NoScrollViewPager"))return new FrameLayout(c,attrs);
             // Test-only native counterpart; production keeps the original AppCompatSeekBar instance.
             if(name.equals("androidx.appcompat.widget.AppCompatSeekBar"))return new android.widget.SeekBar(c,attrs);
             return null;
@@ -102,6 +105,203 @@ public class LegacyResourceTest {
         CarHome home=new CarHome(a,new Bridge(a,file){@Override public void page(int index){}},file);a.setContentView(home);home.showPage(1);capture(home,1440,1920,"file-in-home-workspace.png");original.performClick();assertEquals(1,clicks[0]);assertSame(original,id(home,"v_btn_new"));
         original.requestFocus();original.clearFocus();View label=id(home,"v_btn_new_text");assertEquals(View.VISIBLE,label.getVisibility());
         int[] xy=new int[2];original.getLocationOnScreen(xy);assertTrue(xy[0]+original.getWidth()<=1440);
+    }
+    @Test public void homePagesShareWallpaperWhenReboundAndLazilyInflated() throws Exception {
+        Activity activity = Robolectric.buildActivity(CarHomeTest.PreviewActivity.class).setup().get();
+        Context resources = apkContext(activity);
+        CarUi.chooseTheme(activity, "mono", true);
+        int wallpaperColor = 0xff38697b;
+        File image = new File(activity.getFilesDir().getParentFile(), "bj.png");
+        Bitmap fixture = Bitmap.createBitmap(32, 32, Bitmap.Config.ARGB_8888);
+        fixture.eraseColor(wallpaperColor);
+        try (FileOutputStream output = new FileOutputStream(image)) {
+            assertTrue(fixture.compress(Bitmap.CompressFormat.PNG, 100, output));
+        }
+        fixture.recycle();
+        Wallpapers.Config config = new Wallpapers.Config();
+        config.mode = "static";
+        config.staticImage = 2;
+        Wallpapers.save(activity, config);
+
+        View shell = inflate(resources, "activity_home1");
+        LegacyUi.surface(shell, rid(resources, "activity_home1"));
+        FrameLayout pager = (FrameLayout) id(shell, "v_Pager");
+        assertTrue("Original viewport handles clicks", pager.isClickable());
+        CarHome home = new CarHome(activity, new Bridge(activity, shell) {
+            @Override public void page(int index) {}
+        }, shell);
+        activity.setContentView(home);
+        layout(home, 900, 1600);
+        WallpaperView backdrop = home.wallpaper();
+        assertNotNull(backdrop);
+        assertTrue("Original custom wallpaper decodes", backdrop.staticAvailable());
+
+        String[] pageLayouts = {"fragment_cmd", "fragment_file", "fragment_file_wl"};
+        for (int i = 0; i < pageLayouts.length; i++) {
+            String name = pageLayouts[i];
+            View page = inflate(resources, name);
+            if (i == 0) {
+                rows(page, "v_list", "item_cmd", 3, "文件下载", "文件管理", "设备信息");
+                LegacyUi.surface(page, rid(resources, name));
+            }
+            pager.removeAllViews();
+            home.showPage(i);
+            pager.addView(page, new FrameLayout.LayoutParams(-1, -1));
+            LegacyUi.surface(page, rid(resources, name));
+            CarUi.theme(shell);
+            layout(home, 900, 1600);
+            assertSame("Switching pages keeps the wallpaper instance", backdrop, home.wallpaper());
+            assertNull(name + " inherits the host background", page.getBackground());
+            if (i == 0) {
+                assertEquals(wallpaperColor, blankPagePixel(home, page));
+                assertNotNull(((RecyclerView) id(page, "v_list")).getChildAt(0).getBackground());
+            }
+            if (i == 1) {
+                assertNotNull(id(page, "v_btn_new").getBackground());
+            }
+            if (i == 2) {
+                int pixel = blankPagePixel(home, page);
+                assertNotEquals("Network panels retain a tint", wallpaperColor, pixel);
+                assertNotEquals("Network panels show the wallpaper", CarUi.skin(activity).surface, pixel);
+                assertNotEquals("No dark page background under network panels", CarUi.skin(activity).background, pixel);
+            }
+        }
+
+        pager.removeAllViews();
+        View tools = inflate(resources, "fragment_cmd");
+        pager.addView(tools, new FrameLayout.LayoutParams(-1, -1));
+        LegacyUi.surface(tools, rid(resources, "fragment_cmd"));
+        home.showPage(0);
+        config.mode = "particles";
+        config.still = true;
+        config.background = 3;
+        Wallpapers.save(activity, config);
+        home.reloadWallpaper();
+        layout(home, 900, 1600);
+        int[] position = new int[2];
+        tools.getLocationInWindow(position);
+        WallpaperView particles = home.wallpaper();
+        assertEquals(pixel(particles, position[0] + 32, position[1] + tools.getHeight() - 100),
+                blankPagePixel(home, tools));
+        home.showPage(-1);
+        home.showPage(0);
+        assertSame("Particle scene survives switching between home and tools", particles, home.wallpaper());
+
+        config.mode = "off";
+        Wallpapers.save(activity, config);
+        home.reloadWallpaper();
+        layout(home, 900, 1600);
+        assertNull(home.wallpaper());
+        assertEquals(CarUi.skin(activity).background, blankPagePixel(home, tools));
+    }
+    private int blankPagePixel(CarHome home, View page) {
+        int[] position = new int[2];
+        page.getLocationInWindow(position);
+        return pixel(home, position[0] + 32, position[1] + page.getHeight() - 100);
+    }
+    private int pixel(View view, int x, int y) {
+        Bitmap sample = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(sample);
+        canvas.translate(-x, -y);
+        view.draw(canvas);
+        int result = sample.getPixel(0, 0);
+        sample.recycle();
+        return result;
+    }
+    @Test public void originalFunctionWindowsShareWallpaperAcrossLifecycleAndThemeChanges() throws Exception {
+        Context app = RuntimeEnvironment.getApplication();
+        CarUi.install(RuntimeEnvironment.getApplication());
+        CarUi.chooseTheme(app, "mono", true);
+        Wallpapers.Config config = new Wallpapers.Config();
+        config.mode = "static";
+        config.staticImage = 1;
+        config.background = 3;
+        Wallpapers.save(app, config);
+
+        for (String name : new String[]{"activity_apps", "activity_download",
+                "activity_automation", "activity_key_map_logcat_set", "activity_installer",
+                "activity_window_input_adb_pair"}) {
+            ActivityController<CarHomeTest.PreviewActivity> controller =
+                    Robolectric.buildActivity(CarHomeTest.PreviewActivity.class).create();
+            Activity activity = controller.get();
+            Context resources = apkContext(activity);
+            View original = name.equals("activity_apps") ? apps(resources) : inflate(resources, name);
+            activity.setContentView(original);
+            LegacyUi.surface(original, rid(resources, name));
+            controller.start().resume().visible();
+            View decor = activity.getWindow().getDecorView();
+            layout(decor, 900, 1600);
+            ViewGroup content = activity.findViewById(android.R.id.content);
+            assertNotNull(name + " mounts the selected wallpaper", Wallpapers.mounted(content));
+            assertSame(content, original.getParent());
+            assertNull(name + " root shares wallpaper", original.getBackground());
+            for (View child : views(original)) {
+                if (child.getClass().getName().contains("ScrollView")) {
+                    assertNull("Scroll viewport inherits the scene", child.getBackground());
+                }
+            }
+
+            if (name.equals("activity_apps")) {
+                int x = content.getWidth() - 24, y = content.getHeight() - 96;
+                assertEquals(Wallpapers.BACKGROUNDS[3], pixel(content, x, y));
+                assertNotNull(id(original, "v_btn_reload").getBackground());
+
+                WallpaperView originalWallpaper = Wallpapers.mounted(content);
+                CarUi.chooseTheme(app, "gd-prism", true);
+                assertSame(originalWallpaper, Wallpapers.mounted(content));
+                assertEquals(Wallpapers.BACKGROUNDS[3], pixel(content, x, y));
+                CarUi.chooseTheme(app, "mono", true);
+
+                config.mode = "particles";
+                config.still = true;
+                Wallpapers.save(app, config);
+                layout(decor, 900, 1600);
+                WallpaperView particles = Wallpapers.mounted(content);
+                assertNotSame(originalWallpaper, particles);
+                assertEquals("particles", particles.config.mode);
+                assertEquals(pixel(particles, x, y), pixel(content, x, y));
+                config.mode = "off";
+                Wallpapers.save(app, config);
+                assertNull(Wallpapers.mounted(content));
+                assertEquals(CarUi.skin(app).background, pixel(decor, x, y));
+                config.mode = "static";
+                Wallpapers.save(app, config);
+            }
+            controller.pause().stop();
+            assertNull("Stopped windows release their backdrop", Wallpapers.mounted(content));
+            controller.destroy();
+        }
+    }
+    @Test public void originalSettingsTabsKeepTheirFrostedBackgroundAfterRetheming() throws Exception {
+        Activity activity = Robolectric.buildActivity(CarHomeTest.PreviewActivity.class).setup().get();
+        Context resources = apkContext(activity);
+        CarUi.chooseTheme(activity, "cyan", true);
+        FrameLayout owner = new FrameLayout(activity);
+        owner.setBackgroundColor(0xff65aabc);
+        activity.setContentView(owner);
+        layout(activity.getWindow().getDecorView(), 900, 1600);
+
+        View root = inflate(resources, "dialog_set");
+        SettingsDialog dialog = new SettingsDialog(resources, rid(resources, "dialog_set"));
+        dialog.setOwnerActivity(activity);
+        dialog.setContentView(root);
+        dialog.show();
+        CarUi.dialog(dialog);
+        ViewGroup content = dialog.findViewById(android.R.id.content);
+        View form = id(root, "v_root2");
+        View originalInput = id(root, "et_adbPort");
+        for (String label : new String[]{"安装", "连接", "高级", "显示", "高级"}) {
+            assertTrue(text(root, label).performClick());
+            CarUi.theme(dialog.getWindow().getDecorView());
+            assertNull(content.getBackground());
+            assertNull(form.getBackground());
+            for (View child : views(form)) {
+                if (child instanceof android.widget.ScrollView) assertNull(child.getBackground());
+            }
+        }
+        assertSame(originalInput, id(root, "et_adbPort"));
+        assertNotNull(originalInput.getBackground());
+        dialog.dismiss();
     }
     @Test public void realLocationLabelsKeepContrastInAllHomeThemes()throws Exception{
         Activity a=Robolectric.buildActivity(CarHomeTest.PreviewActivity.class).setup().get();Context c=apkContext(a);

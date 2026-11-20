@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -25,6 +26,8 @@ import java.util.List;
 /** Recompose the original business widgets. IDs, instances, adapters and listeners survive. */
 public final class LegacyUi {
     private static final int LAYOUT=0x7e434101, REWRITTEN=0x7e434102, ROLE=0x7e434103, SELECTED=0x7e434104, ORDER=0x7e434105, FULL=0x7e434106, QR_DIALOG=0x7e434108, NETWORK_ROW=0x7e434109;
+    private static final int HOME_PAGER = ResourceIndex.id("v_Pager");
+    private static final int BACKDROP_ROOT = 0x7e43410b;
     private static final String TAG="CarUi";
     private static int d(View v,int n){return CarUi.dp(v.getContext(),n);}
     private static LinearLayout column(Context c){LinearLayout l=new LinearLayout(c);l.setOrientation(1);return l;}
@@ -59,11 +62,61 @@ public final class LegacyUi {
     static int dialogLayout(Dialog dialog){try{Object layout=field(dialog,"c");return layout instanceof Integer?(Integer)layout:0;}catch(Exception ignored){return 0;}}
     public static boolean fullDialog(Dialog dialog){try{String name=ResourceIndex.layout((Integer)field(dialog,"c"));View root=find(dialog.getWindow().getDecorView(),"v_root");return root!=null&&Boolean.TRUE.equals(root.getTag(FULL))||name.equals("dialog_set")||name.equals("dialog_adb_pair")||name.equals("dialog_keymap_diy")||name.equals("dialog_telnet_shell")||ResourceIndex.strategy((Integer)field(dialog,"c")).equals("media");}catch(Exception e){return false;}}
     public static boolean menuDialog(Dialog dialog){try{return ResourceIndex.layout((Integer)field(dialog,"c")).equals("dialog_menu");}catch(Exception e){return false;}}
+    // The home shell paints the backdrop, including the theme color when wallpaper is off.
+    // Viewport roots inherit it even when the pager creates a page after a route switch.
+    private static boolean sharesHomeBackground(View view) {
+        if (view.getId() == HOME_PAGER) return true;
+        Object layout = view.getTag(LAYOUT);
+        if (!(layout instanceof Integer)) return false;
+        String name = ResourceIndex.layout((Integer) layout);
+        return name.equals("activity_home1") || name.equals("fragment_cmd")
+                || name.equals("fragment_file") || name.equals("fragment_file_wl");
+    }
+
+    static boolean isFunctionPage(View root) {
+        Object layout = root.getTag(LAYOUT);
+        if (!(layout instanceof Integer)) return false;
+        String name = ResourceIndex.layout((Integer) layout);
+        return name.startsWith("activity_") && !name.equals("activity_home1")
+                && !name.equals("activity_init") && !name.equals("activity_splash");
+    }
+
+    static void inheritWindowBackground(ViewGroup content) {
+        content.setTag(BACKDROP_ROOT, Boolean.TRUE);
+        for (int i = 0; i < content.getChildCount(); i++) {
+            View child = content.getChildAt(i);
+            if (!(child instanceof WallpaperView)) child.setTag(BACKDROP_ROOT, Boolean.TRUE);
+        }
+        clearInheritedBackgrounds(content);
+    }
+
+    private static void clearInheritedBackgrounds(View view) {
+        if (view.getBackground() != null && inheritsBackground(view)) view.setBackground(null);
+        if (view instanceof ViewGroup && !recycler(view)) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) clearInheritedBackgrounds(group.getChildAt(i));
+        }
+    }
+
+    static boolean inheritsBackground(View view) {
+        if (Boolean.TRUE.equals(view.getTag(BACKDROP_ROOT)) || sharesHomeBackground(view)) return true;
+        if (!(view instanceof ViewGroup) || view.getTag(ROLE) != null || CarUi.OWN.equals(view.getTag())) return false;
+        String name = CarUi.name(view);
+        if (!scroll(view) && !name.equals("v_root") && !name.equals("v_root2") && !name.equals("v_top")
+                && !view.getClass().getName().contains("ViewPager")) return false;
+        for (ViewParent parent = view.getParent(); parent instanceof View; parent = parent.getParent()) {
+            View ancestor = (View) parent;
+            if (Boolean.TRUE.equals(ancestor.getTag(BACKDROP_ROOT))) return true;
+            if (ancestor.getTag(ROLE) != null || recycler(ancestor) || CarUi.OWN.equals(ancestor.getTag())) return false;
+        }
+        return false;
+    }
+
     public static void surface(View root,int layout){
         if(!(root instanceof ViewGroup))return;String name=ResourceIndex.layout(layout);if(name.isEmpty())return;
         root.setTag(LAYOUT,layout);if(root.getTag(REWRITTEN)!=null){retheme(root);return;}orders(root,layout);
         root.setTag(REWRITTEN,Boolean.TRUE);String strategy=ResourceIndex.strategy(layout);
-        if(!"overlay".equals(strategy))root.setBackgroundColor(CarUi.skin(root.getContext()).background);
+        if(!"overlay".equals(strategy)&&!inheritsBackground(root))root.setBackgroundColor(CarUi.skin(root.getContext()).background);
         if("apps".equals(strategy))apps((ViewGroup)root);
         else if("files".equals(strategy))files((ViewGroup)root);
         else if("network".equals(strategy))network((ViewGroup)root);
@@ -87,7 +140,7 @@ public final class LegacyUi {
             if(inner instanceof ViewGroup){boolean bounded=find(inner,"v_lay_bottom")!=null&&find(inner,"v_scroll")!=null||name.equals("dialog_select_file")||name.equals("dialog_copy_to_dir")||name.equals("dialog_move_to_dir")||name.equals("dialog_save_new_file")||name.equals("dialog_key_selector");if(bounded)root.setTag(FULL,Boolean.TRUE);generic((ViewGroup)inner,bounded,true);ViewGroup r=(ViewGroup)root;detach(inner);if(bounded||hasScroll(inner))fill(r,inner,bounded);else{ScrollView scroll=new ScrollView(root.getContext());scroll.setFillViewport(false);scroll.addView(inner,new ScrollView.LayoutParams(-1,-2));fill(r,scroll,false);}}
             else generic((ViewGroup)root,!dialog,true);
         }
-        CarUi.theme(root);retheme(root);AdbPairUi.retheme(root);
+        CarUi.theme(root);AdbPairUi.retheme(root);
     }
 
     private static void tools(ViewGroup root){
@@ -415,11 +468,22 @@ public final class LegacyUi {
     private static List<View> allViews(View root){List<View> result=new ArrayList<View>();result.add(root);if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++)result.addAll(allViews(((ViewGroup)root).getChildAt(i)));return result;}
     public static void retheme(View root){
         if(root==null||CarUi.OWN.equals(root.getTag()))return;CarUi.Skin s=CarUi.skin(root.getContext());String id=CarUi.name(root);Object role=root.getTag(ROLE);
-        if(root instanceof ViewGroup&&!recycler(root)&&root.getBackground()!=null){if(root.isClickable()||role!=null)root.setBackground(CarUi.buttonBackground(root.getContext(),s.surface,s.soft,s.ink,18));else root.setBackgroundColor(s.background);}
+        if (root.getBackground() != null && inheritsBackground(root)) {
+            root.setBackground(null);
+        } else if (root instanceof ViewGroup && !recycler(root) && root.getBackground() != null) {
+            if (root.isClickable() || role != null) root.setBackground(CarUi.buttonBackground(root.getContext(), s.surface, s.soft, s.ink, 18));
+            else root.setBackgroundColor(s.background);
+        }
         if(role!=null){boolean selected=Boolean.TRUE.equals(root.getTag(SELECTED));if("app".equals(role)||"row".equals(role)||"check".equals(role)||"action".equals(role)||"location".equals(role)||"menu".equals(role)){root.setBackground(CarUi.buttonBackground(root.getContext(),selected?s.soft:s.surface,s.soft,s.ink,"app".equals(role)?22:14));root.setMinimumHeight(d(root,52));}
             if("primary".equals(role)){root.setBackground(CarUi.buttonBackground(root.getContext(),s.accent,s.pressedAccent,s.onAccent,24));root.setMinimumHeight(d(root,56));if(root instanceof TextView){((TextView)root).setTextColor(s.onAccent);((TextView)root).setGravity(Gravity.CENTER);root.setPadding(d(root,20),d(root,14),d(root,20),d(root,14));}}
             if("divider".equals(role))root.setBackgroundColor(s.outline);
-            if("networkPane".equals(role))root.setBackground(CarUi.rounded(root.getContext(),s.surface,6));
+            if ("networkPane".equals(role)) {
+                int fill = s.surface;
+                if (s.glass == null && !"off".equals(Wallpapers.load(root.getContext()).mode)) {
+                    fill = (fill & 0x00ffffff) | 0xa0000000;
+                }
+                root.setBackground(CarUi.rounded(root.getContext(), fill, 6));
+            }
             if("fileRow".equals(role)){root.setBackground(CarUi.buttonBackground(root.getContext(),s.surface,s.soft,s.ink,2));root.setMinimumHeight(d(root,72));View name=find(root,"v_file_name"),meta=find(root,"v_file_attribute");if(name instanceof TextView){((TextView)name).setTextSize(17);((TextView)name).setTextColor(s.ink);}if(meta instanceof TextView){((TextView)meta).setTextSize(14);((TextView)meta).setTextColor(s.muted);}}
 
             if("menu".equals(role)){View icon=find(root,"v_ico");if(icon instanceof ImageView)((ImageView)icon).setColorFilter(s.ink);}

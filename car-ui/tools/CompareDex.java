@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class CompareDex {
     static String withoutTryLabels(String text) {
         return normalizeDefaults(text).lines().filter(line -> !line.isBlank()
-            && !line.trim().matches(":try_(?:start|end)_\\d+")
+            && !line.trim().matches(":try_(?:start|end)_[0-9a-f]+")
             && !line.stripLeading().startsWith(".catch ")
             && !line.stripLeading().startsWith(".catchall "))
             .collect(java.util.stream.Collectors.joining("\n"));
@@ -97,6 +97,10 @@ public class CompareDex {
             || !normalizeDefaults(".field public static x:F = -0.0f").endsWith(" = -0.0f")
             || !normalizeDefaults(".field public x:Z = false").endsWith(" = false")) {
             throw new AssertionError("Default-field normalization self-check failed");
+        }
+        if (!withoutTryLabels(":try_start_a\n    return-void\n:try_end_a\n:catchall_0")
+                .equals("    return-void\n:catchall_0")) {
+            throw new AssertionError("Hexadecimal try-label normalization self-check failed");
         }
         MultiDexContainer before = DexFileFactory.loadDexContainer(new File(args[0]), null);
         MultiDexContainer after = DexFileFactory.loadDexContainer(new File(args[1]), null);

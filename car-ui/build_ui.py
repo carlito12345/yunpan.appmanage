@@ -8,14 +8,14 @@ import sys
 import zipfile
 from pathlib import Path
 
+from generate_layouts import DECODED, generate
+
 PROJECT = Path(__file__).resolve().parent
 WORKSPACE = PROJECT.parent
 BASE = Path(r'C:/Users/di-yu/Documents/Codex/2026-10-10/gd-gd/toolchain')
 JDK = BASE / 'java/jdk-17.0.20.1+1/bin'
 SDK = BASE / 'android-sdk'
 BUILDTOOLS = SDK / 'build-tools/36.0.0'
-APKTOOL = Path(r'C:/Users/di-yu/Documents/Codex/2026-11-02/homes-linecode-codex-cache-workspace-files/apktool.jar')
-DECODED = WORKSPACE / '公签版_反编译/apktool'
 BUILD = PROJECT / 'build'
 BUILD.mkdir(exist_ok=True)
 
@@ -27,7 +27,6 @@ def run(args, log):
         raise RuntimeError(f'{log} failed: {result.returncode}')
 
 def compile_ui():
-    from generate_layouts import generate
     generate()
     sources = sorted((PROJECT/'src/main/java').rglob('*.java'))
     args = BUILD/'sources.args'
@@ -81,7 +80,7 @@ def patch_sources():
     def base(text):
         text=method(text,'attachBaseContext(Landroid/content/Context;)V',lambda body: '    .locals 0\n\n    invoke-super {p0, p1}, Lq/i;->attachBaseContext(Landroid/content/Context;)V\n    return-void\n')
         def density(body):
-            pattern=r'sget-object (v\d+), Lcom/yunpan/appmanage/util/v;->a:Lcom/yunpan/appmanage/util/w;\s+iget \1, \1, Lcom/yunpan/appmanage/util/w;->r:I\s+int-to-float \1, \1'
+            pattern=r'sget-object (v\d+), Lcom/yunpan/appmanage/util/w;->a:Lcom/yunpan/appmanage/util/x;\s+iget \1, \1, Lcom/yunpan/appmanage/util/x;->r:I\s+int-to-float \1, \1'
             def replace(match): return 'invoke-static {p0}, Lcom/yunpan/appmanage/carui/CarUi;->designWidth(Landroid/content/Context;)F\n\n    move-result '+match[1]
             updated,count=re.subn(pattern,replace,body)
             assert count==1,body[-2500:]
@@ -186,9 +185,19 @@ def patch_sources():
     patch('com/yunpan/appmanage/ui/ActivityFloatButton.smali', lambda text: pet_preview(
         text, 'p0', 'Lcom/yunpan/appmanage/ui/ActivityFloatButton;->M', 'v0', 'v1',
         '    if-ne v0, v1, :cond_1\n', 'return-void', '    const/4 v1, -0x1\n'))
-    patch('ya/e.smali', lambda text: pet_preview(
-        text, 'v0', 'Lya/e;->i', 'v1', 'v7', '    if-ne v1, v7, :cond_8\n',
-        'goto/16 :goto_4', '    const/4 v7, -0x1\n'))
+    def pet_overlay(text):
+        text = pet_preview(text, 'v0', 'Lya/e;->i', 'v1', 'v7', '    if-ne v1, v7, :cond_8\n',
+                           'goto/16 :goto_4', '    const/4 v7, -0x1\n')
+        # Listener mode 1 belongs to the icon; mode 0 handles the existing menu overlay.
+        constructor = (r'(    const/4 v3, 0x1\n(?:\s*\.line \d+\n)*\s*'
+                       r'invoke-direct \{v2, v0, v3\}, Lya/c;-><init>\(Lya/e;I\)V\n)')
+        updated, count = re.subn(constructor, lambda match: match[1] +
+            '    invoke-static {v2}, Lcom/yunpan/appmanage/carui/PetIcons;->withFeedback'
+            '(Landroid/view/View$OnTouchListener;)Landroid/view/View$OnTouchListener;\n'
+            '    move-result-object v2\n', text)
+        assert count == 1, count
+        return updated
+    patch('ya/e.smali', pet_overlay)
     (BUILD/'source-patches.json').write_text(json.dumps(changes,indent=2),encoding='utf-8')
     print('Patched '+str(len(changes))+' UI integration classes; backups retained.',flush=True)
 

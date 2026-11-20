@@ -1,4 +1,8 @@
-# 应用管家 · R13 · 高级设置与无线配对助手
+# 应用管家 1.9.3 · 车机定制版 R18
+
+R18 基于应用管家 1.9.3（1932）。常用、全部功能、文件、网络和独立功能页共用当前壁纸，设置切换标签时保持毛玻璃。版本包含 GD 毛玻璃主题、粒子壁纸和五款星语悬浮形象。
+
+73 项本地测试通过，两种包名的 APK 均通过签名与 ZIP 对齐校验。见[更新日志](car-ui/更新日志.md)和[验证记录](verification/r18/summary.json)。R18 构建使用[用户提供的 1.9.3 原 APK](input/README.md)，仓库内的 1.9.2 反编译目录作为历史记录。
 
 R13 修复高级设置缺失的SU命令和ADB shell密码输入框，增加新手无线配对说明、6位码校验与真实悬浮输入窗；两个包名继续使用新图标。AES另修正直接app_process启动的认证解密入口。当前检查包括66项较早全回归、后续6项定向、两项分别运行的最终单项检查及6项打包工具检查，不合并成最终源码一次全量通过。Android11临时包界面及加载器探针有证据；通知栏显示、真实配对、Android9及完整后台业务仍待确认。见 [R13验证](car-ui/R13修复与验证.md)、[验证元数据](verification/r13/summary.json) 和 [更新日志](car-ui/更新日志.md)。
 
@@ -13,7 +17,7 @@ R9修复局域网互传二维码缩成小点：独立方形白底、竖屏上下
 | 目录 | 内容 |
 |---|---|
 | car-ui/src | 可编译原生Java UI、分轮回归测试和公开来源图片 |
-| car-ui/baseline / patched-smali | 九个接入类的原基线和修改 |
+| car-ui/baseline / patched-smali | 1.9.3 的十二个 UI 接入类及对应修改 |
 | car-ui/protection / protect_apk.py | 可选AES-256-GCM保护模板与打包脚本，API28+（Android9待实测） |
 | 公签版_反编译/apktool | 清单、资源、smali、原生库与内嵌插件 |
 | 公签版_反编译/java-project / java-fallback / embedded | JADX可读Java和失败方法补充 |

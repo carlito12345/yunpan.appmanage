@@ -5,7 +5,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-RES = ROOT.parent / '公签版_反编译/apktool/res'
+DECODED = ROOT.parent / '.work/decoded'
+RES = DECODED / 'res'
 A = '{http://schemas.android.com/apk/res/android}'
 P = '{http://schemas.android.com/apk/res-auto}'
 

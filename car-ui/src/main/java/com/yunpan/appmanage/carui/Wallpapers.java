@@ -8,17 +8,54 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 /** App backgrounds only; leaves the system launcher wallpaper and original preferences alone. */
 public final class Wallpapers {
+    private static final int WINDOW_WALLPAPER = 0x7e43410a;
     static final String[] STYLES={"星河漂移","连线星网","流萤波纹","轻雪漫游","轨道光环","流星雨"};
     static final int[] BACKGROUNDS={0xFF061222,0xFF111216,0xFF241127,0xFF073638,0xFF132D22,0xFF493027};
     static final String[] BACKGROUND_NAMES={"深海蓝","石墨黑","暮光紫","青碧","墨绿","暖棕"};
     static final int[] COLORS={0xFF72E9FF,0xFFB8A1FF,0xFFFFCF85,0xFF97F3BB,0xFFFFA4CB,0xFFF1F6FF};
     static final String[] COLOR_NAMES={"冰蓝","浅紫","暖金","薄荷","樱粉","银白"};
+
+    static boolean hasBackdrop(CarUi.Skin skin, Config config) {
+        return skin.glass != null || !"off".equals(config.mode);
+    }
+
+    static WallpaperView mounted(View content) {
+        Object value = content.getTag(WINDOW_WALLPAPER);
+        if (value instanceof WallpaperView && ((WallpaperView) value).getParent() == content) {
+            return (WallpaperView) value;
+        }
+        return null;
+    }
+
+    static void mount(Activity activity, ViewGroup content, boolean reload) {
+        Config config = load(activity);
+        if (!hasBackdrop(CarUi.skin(activity), config)) {
+            unmount(content);
+            return;
+        }
+        if (reload) unmount(content);
+        WallpaperView view = mounted(content);
+        if (view == null) {
+            view = new WallpaperView(activity, false);
+            view.configure(config);
+            content.addView(view, 0, new FrameLayout.LayoutParams(-1, -1));
+            content.setTag(WINDOW_WALLPAPER, view);
+        } else {
+            view.configure(config);
+        }
+    }
+
+    static void unmount(ViewGroup content) {
+        WallpaperView view = mounted(content);
+        if (view != null) content.removeView(view);
+        content.setTag(WINDOW_WALLPAPER, null);
+    }
     public static final class Config implements java.io.Serializable {
         private static final long serialVersionUID=1L;
         public String mode="off",uri="",imageUri="";public int staticImage,style,background,color,speed=50,density=45,strength=70;public boolean still;
@@ -33,7 +70,6 @@ public final class Wallpapers {
     static android.graphics.drawable.Drawable staticDrawable(Context c,int selection,String uri){if(selection!=3)return staticDrawable(c,selection);try{android.graphics.BitmapFactory.Options o=new android.graphics.BitmapFactory.Options();o.inJustDecodeBounds=true;try(java.io.InputStream in=c.getContentResolver().openInputStream(Uri.parse(uri))){android.graphics.BitmapFactory.decodeStream(in,null,o);}o.inSampleSize=1;while(Math.max(o.outWidth,o.outHeight)/o.inSampleSize>4096||(long)(o.outWidth/o.inSampleSize)*(o.outHeight/o.inSampleSize)>8000000)o.inSampleSize*=2;o.inJustDecodeBounds=false;android.graphics.Bitmap b;try(java.io.InputStream in=c.getContentResolver().openInputStream(Uri.parse(uri))){b=android.graphics.BitmapFactory.decodeStream(in,null,o);}return b==null?null:new android.graphics.drawable.BitmapDrawable(c.getResources(),b);}catch(Exception|OutOfMemoryError e){return null;}}
     static Activity owner(Context c){for(int i=0;i<12;i++){if(c instanceof Activity)return(Activity)c;if(!(c instanceof ContextWrapper))return null;c=((ContextWrapper)c).getBaseContext();}return null;}
     public static void show(Context context){Activity a=owner(context);if(a!=null)WallpaperPicker.show(a);}
-    static void reveal(View v){if(v instanceof ViewGroup&&!v.isClickable()){if(v.getBackground() instanceof ColorDrawable&&((ColorDrawable)v.getBackground()).getColor()==CarUi.skin(v.getContext()).background)v.setBackgroundColor(android.graphics.Color.TRANSPARENT);ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++)reveal(g.getChildAt(i));}}
     static void releaseGrant(Context c,String uri){if(uri==null||uri.isEmpty()||uri.equals(load(c).uri))return;try{c.getContentResolver().releasePersistableUriPermission(Uri.parse(uri),Intent.FLAG_GRANT_READ_URI_PERMISSION);}catch(RuntimeException ignored){}}
     static void chooseVideo(Activity activity){chooseVideo(activity,load(activity),"");}
     static void chooseVideo(Activity activity,Config draft,String unusedGrant){chooseMedia(activity,draft,unusedGrant,false);}

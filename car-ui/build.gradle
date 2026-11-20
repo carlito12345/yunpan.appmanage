@@ -24,6 +24,6 @@ test {
     systemProperty 'carui.preview.dir', file('previews').absolutePath
     systemProperty 'java.awt.headless', 'true'
     systemProperty 'carui.original.apk', file('../.work/original.apk').absolutePath
-    systemProperty 'carui.decoded.res', file('../公签版_反编译/apktool/res').absolutePath
+    systemProperty 'carui.decoded.res', file('../.work/decoded/res').absolutePath
     testLogging { events 'passed', 'failed'; exceptionFormat 'full'; showStandardStreams = true }
 }

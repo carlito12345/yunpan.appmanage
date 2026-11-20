@@ -18,6 +18,12 @@ public final class ThemePicker {
             LinearLayout panel=column();panel.setTag(CarUi.OWN);panel.setPadding(d(22),d(18),d(22),d(18));
             LinearLayout heading=row();heading.addView(text("主题中心",26,true),new LinearLayout.LayoutParams(0,-2,1));heading.addView(button("壁纸中心",new View.OnClickListener(){@Override public void onClick(View v){dismiss();Wallpapers.show(context);}}));panel.addView(heading);
             ScrollView scroll=new ScrollView(c);scroll.setFillViewport(false);controls=column();controls.setPadding(0,d(8),0,d(8));scroll.addView(controls,new ScrollView.LayoutParams(-1,-2));panel.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+            section("GD 毛玻璃");
+            WrapLayout glassChoices = new WrapLayout(context);
+            for (GlassMaterial.Theme theme : GlassMaterial.Theme.values()) {
+                glassChoices.addView(themeCard(theme.id, theme.title, theme.detail, true));
+            }
+            controls.addView(glassChoices, new LinearLayout.LayoutParams(-1, -2));
             section("全局透明度");value=text("",17,false);controls.addView(value);opacity=new SeekBar(c);opacity.setMax(100);opacity.setProgress(draft.transparency);opacity.setContentDescription("全局透明度");tint(opacity);controls.addView(opacity,new LinearLayout.LayoutParams(-1,d(52)));
             TextView help=text("只调整界面面板，文字、图标与壁纸保持原样",15,false);help.setTextColor(skin.muted);controls.addView(help);
             section("边框包边");choices(Appearance.STYLES,draft.style,2,new Choice(){public void choose(int i){draft.style=i;rebuildBorderChoices();}});
@@ -26,8 +32,11 @@ public final class ThemePicker {
             colorChoices=(LinearLayout)controls.getChildAt(controls.getChildCount()-1);
             section("面板预览");FrameLayout preview=new FrameLayout(c);preview.setBackground(new Checker(c,skin.dark));sample=new FrameLayout(c);FrameLayout.LayoutParams samplePosition=new FrameLayout.LayoutParams(-1,-1);samplePosition.setMargins(d(18),d(16),d(18),d(16));preview.addView(sample,samplePosition);TextView sampleText=text("常用功能\n文字与图标保持清晰",19,true);sampleText.setGravity(Gravity.CENTER);sample.addView(sampleText,new FrameLayout.LayoutParams(-1,-1));controls.addView(preview,new LinearLayout.LayoutParams(-1,d(124)));updatePreview();
             opacity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){@Override public void onProgressChanged(SeekBar s,int n,boolean user){if(user){draft.transparency=n;updatePreview();}}@Override public void onStartTrackingTouch(SeekBar s){}@Override public void onStopTrackingTouch(SeekBar s){}});
-            section("界面主题");TextView instant=text("切换主题或日夜模式时，当前透明度与边框会一并应用",15,false);instant.setTextColor(skin.muted);instant.setPadding(0,0,0,d(12));controls.addView(instant);String[] ids={"warm","cyan","mono"},names={"暖橙 · 奶油","冰蓝 · 荧光科技","黑白 · 墨镜阴影"};String[] details={"柔和暖色 / 圆润表面","青蓝线条 / 深色面板 / 冷光强调","中性色阶 / 黑白对比 / 柔和投影"};
-            for(int i=0;i<ids.length;i++){final String id=ids[i];final boolean dark=id.equals(skin.theme)?skin.dark:id.equals("cyan");CarUi.Skin s=new CarUi.Skin(id,dark);LinearLayout card=column();card.setPadding(d(16),d(12),d(16),d(12));card.setMinimumHeight(d(80));GradientDrawable background=new GradientDrawable();background.setColor(s.background);background.setCornerRadius(d(16));background.setStroke(d(id.equals(skin.theme)?3:1),id.equals(skin.theme)?skin.accent:s.outline);GradientDrawable focused=new GradientDrawable();focused.setColor(s.soft);focused.setCornerRadius(d(16));focused.setStroke(d(3),s.accent);android.graphics.drawable.StateListDrawable states=new android.graphics.drawable.StateListDrawable();states.addState(new int[]{android.R.attr.state_focused},focused);states.addState(new int[]{android.R.attr.state_pressed},focused);states.addState(new int[]{},background);card.setBackground(states);card.addView(CarUi.text(c,names[i]+(id.equals(skin.theme)?" · 当前":""),21,s.ink,true));TextView detail=CarUi.text(c,details[i],15,s.muted,false);detail.setPadding(0,d(6),0,0);card.addView(detail);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=d(10);controls.addView(card,p);card.setFocusable(true);card.setClickable(true);card.setContentDescription(names[i]);card.setOnClickListener(new View.OnClickListener(){@Override public void onClick(View v){commit(id,dark);}});}
+            section("界面主题");
+            themeCard("warm", "暖橙 · 奶油", "柔和暖色 · 圆润表面", false);
+            themeCard("cyan", "冰蓝 · 荧光科技", "青蓝线条 · 冷光强调", false);
+            themeCard("mono", "黑白 · 墨镜阴影", "黑白对比 · 柔和投影", false);
+            TextView instant=text("切换主题或日夜模式时，当前透明度与边框会一并应用",15,false);instant.setTextColor(skin.muted);instant.setPadding(0,d(4),0,d(12));controls.addView(instant);
             controls.addView(button(skin.dark?"切换为日间模式":"切换为夜间模式",new View.OnClickListener(){@Override public void onClick(View v){commit(skin.theme,!skin.dark);}}),new LinearLayout.LayoutParams(-1,-2));
             controls.addView(button("恢复默认透明度与边框",new View.OnClickListener(){@Override public void onClick(View v){draft.transparency=0;draft.style=0;draft.color=0;opacity.setProgress(0);rebuildBorderChoices();rebuildColorChoices();}}),new LinearLayout.LayoutParams(-1,-2));
             section("关于与来源");controls.addView(text("定制作者："+SourceInfo.AUTHOR,18,true));TextView source=text("源 APK："+SourceInfo.SOURCE,16,false);source.setPadding(0,d(6),0,d(10));controls.addView(source);controls.addView(button("官方社区与来源二维码",new View.OnClickListener(){public void onClick(View v){SourceInfo.show(context);}}),new LinearLayout.LayoutParams(-1,-2));
@@ -36,6 +45,48 @@ public final class ThemePicker {
         LinearLayout borderChoices,colorChoices;
         int d(int n){return CarUi.dp(context,n);}LinearLayout column(){LinearLayout l=new LinearLayout(context);l.setOrientation(1);return l;}LinearLayout row(){LinearLayout l=new LinearLayout(context);l.setGravity(Gravity.CENTER_VERTICAL);return l;}
         TextView text(String s,int size,boolean bold){return CarUi.text(context,s,size,skin.ink,bold);}
+        LinearLayout themeCard(String id, String name, String detail, boolean glass) {
+            boolean selected = id.equals(skin.theme);
+            boolean dark = glass || selected ? skin.dark : id.equals("cyan");
+            CarUi.Skin palette = new CarUi.Skin(id, dark);
+            LinearLayout card = column();
+            card.setPadding(d(16), d(12), d(16), d(12));
+            card.setMinimumHeight(d(80));
+            int radius = d(glass ? Math.round(16 * palette.glass.radius) : 16);
+            GradientDrawable normal = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
+                    new int[]{glass ? palette.soft : palette.background, palette.background});
+            normal.setCornerRadius(radius);
+            normal.setStroke(d(selected ? 2 : 1), selected ? palette.accent : palette.outline);
+            GradientDrawable focused = new GradientDrawable();
+            focused.setColor(palette.soft);
+            focused.setCornerRadius(radius);
+            focused.setStroke(d(2), palette.accent);
+            android.graphics.drawable.StateListDrawable states = new android.graphics.drawable.StateListDrawable();
+            states.addState(new int[]{android.R.attr.state_focused}, focused);
+            states.addState(new int[]{android.R.attr.state_pressed}, focused);
+            states.addState(new int[]{}, normal);
+            card.setBackground(states);
+            TextView title = CarUi.text(context, name + (selected ? " · 当前" : ""), 20, palette.ink, true);
+            TextView summary = CarUi.text(context, detail, 14, palette.muted, false);
+            summary.setPadding(0, d(6), 0, 0);
+            if (glass) {
+                card.setMinimumWidth(d(120));
+                title.setMaxWidth(d(150));
+                summary.setMaxWidth(d(150));
+            }
+            card.addView(title);
+            card.addView(summary);
+            card.setFocusable(true);
+            card.setSelected(selected);
+            card.setContentDescription(glass ? "GD 毛玻璃 " + name : name);
+            card.setOnClickListener(view -> commit(id, dark));
+            if (!glass) {
+                LinearLayout.LayoutParams position = new LinearLayout.LayoutParams(-1, -2);
+                position.bottomMargin = d(8);
+                controls.addView(card, position);
+            }
+            return card;
+        }
         TextView button(String s,View.OnClickListener action){TextView t=text(s,17,true);t.setGravity(Gravity.CENTER);t.setPadding(d(12),d(12),d(12),d(12));t.setMinimumHeight(d(52));t.setFocusable(true);t.setClickable(true);t.setBackground(CarUi.buttonBackground(context,skin.soft,skin.surface,skin.ink,18));t.setOnClickListener(action);return t;}
         void section(String title){TextView t=text(title,21,true);t.setPadding(0,d(20),0,d(10));controls.addView(t);}
         void tint(SeekBar bar){if(android.os.Build.VERSION.SDK_INT>=21){bar.setProgressTintList(android.content.res.ColorStateList.valueOf(skin.accent));bar.setThumbTintList(android.content.res.ColorStateList.valueOf(skin.accent));bar.setProgressBackgroundTintList(android.content.res.ColorStateList.valueOf(skin.outline));}}

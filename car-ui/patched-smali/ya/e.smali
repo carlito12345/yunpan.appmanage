@@ -4,13 +4,13 @@
 
 
 # static fields
-.field public static J:Lya/e;
+.field public static I:Lya/e;
 
 
 # instance fields
 .field public A:Z
 
-.field public B:Z
+.field public final B:Lya/d;
 
 .field public final C:Lya/d;
 
@@ -18,13 +18,11 @@
 
 .field public final E:Lya/d;
 
-.field public final F:Lya/d;
+.field public F:I
 
-.field public G:I
+.field public final G:Lya/d;
 
-.field public final H:Lya/d;
-
-.field public I:Z
+.field public H:Z
 
 .field public a:Lcom/yunpan/appmanage/service/AccService;
 
@@ -72,9 +70,9 @@
 
 .field public w:I
 
-.field public x:I
+.field public x:Z
 
-.field public y:I
+.field public y:Z
 
 .field public z:Z
 
@@ -127,106 +125,110 @@
 
     .line 21
     .line 22
-    iput-boolean v0, p0, Lya/e;->z:Z
+    iput-boolean v0, p0, Lya/e;->x:Z
 
     .line 23
     .line 24
-    iput-boolean v0, p0, Lya/e;->A:Z
+    iput-boolean v0, p0, Lya/e;->y:Z
 
     .line 25
     .line 26
-    iput-boolean v0, p0, Lya/e;->B:Z
+    iput-boolean v0, p0, Lya/e;->z:Z
 
     .line 27
     .line 28
-    new-instance v1, Lya/d;
+    iput-boolean v0, p0, Lya/e;->A:Z
 
     .line 29
     .line 30
-    const/4 v2, 0x0
+    new-instance v1, Lya/d;
 
     .line 31
+    .line 32
+    const/4 v2, 0x0
+
+    .line 33
     invoke-direct {v1, p0, v2}, Lya/d;-><init>(Lya/e;I)V
 
-    .line 32
-    .line 33
     .line 34
-    iput-object v1, p0, Lya/e;->C:Lya/d;
-
     .line 35
     .line 36
-    new-instance v1, Lya/d;
+    iput-object v1, p0, Lya/e;->B:Lya/d;
 
     .line 37
     .line 38
-    const/4 v2, 0x1
+    new-instance v1, Lya/d;
 
     .line 39
+    .line 40
+    const/4 v2, 0x1
+
+    .line 41
     invoke-direct {v1, p0, v2}, Lya/d;-><init>(Lya/e;I)V
 
-    .line 40
-    .line 41
     .line 42
-    iput-object v1, p0, Lya/e;->D:Lya/d;
-
     .line 43
     .line 44
-    new-instance v1, Lya/d;
+    iput-object v1, p0, Lya/e;->C:Lya/d;
 
     .line 45
     .line 46
-    const/4 v2, 0x2
+    new-instance v1, Lya/d;
 
     .line 47
+    .line 48
+    const/4 v2, 0x2
+
+    .line 49
     invoke-direct {v1, p0, v2}, Lya/d;-><init>(Lya/e;I)V
 
-    .line 48
-    .line 49
     .line 50
-    iput-object v1, p0, Lya/e;->E:Lya/d;
-
     .line 51
     .line 52
-    new-instance v1, Lya/d;
+    iput-object v1, p0, Lya/e;->D:Lya/d;
 
     .line 53
     .line 54
-    const/4 v2, 0x3
+    new-instance v1, Lya/d;
 
     .line 55
+    .line 56
+    const/4 v2, 0x3
+
+    .line 57
     invoke-direct {v1, p0, v2}, Lya/d;-><init>(Lya/e;I)V
 
-    .line 56
-    .line 57
     .line 58
-    iput-object v1, p0, Lya/e;->F:Lya/d;
-
     .line 59
     .line 60
-    iput v0, p0, Lya/e;->G:I
+    iput-object v1, p0, Lya/e;->E:Lya/d;
 
     .line 61
     .line 62
-    new-instance v1, Lya/d;
+    iput v0, p0, Lya/e;->F:I
 
     .line 63
     .line 64
-    const/4 v2, 0x4
+    new-instance v1, Lya/d;
 
     .line 65
+    .line 66
+    const/4 v2, 0x4
+
+    .line 67
     invoke-direct {v1, p0, v2}, Lya/d;-><init>(Lya/e;I)V
 
-    .line 66
-    .line 67
     .line 68
-    iput-object v1, p0, Lya/e;->H:Lya/d;
-
     .line 69
     .line 70
-    iput-boolean v0, p0, Lya/e;->I:Z
+    iput-object v1, p0, Lya/e;->G:Lya/d;
 
     .line 71
     .line 72
+    iput-boolean v0, p0, Lya/e;->H:Z
+
+    .line 73
+    .line 74
     return-void
 .end method
 
@@ -242,7 +244,7 @@
 
     .line 4
     :try_start_0
-    sget-object v1, Lya/e;->J:Lya/e;
+    sget-object v1, Lya/e;->I:Lya/e;
 
     .line 5
     .line 6
@@ -259,7 +261,7 @@
     .line 11
     .line 12
     .line 13
-    sput-object v1, Lya/e;->J:Lya/e;
+    sput-object v1, Lya/e;->I:Lya/e;
 
     .line 14
     .line 15
@@ -275,7 +277,7 @@
     .line 18
     :cond_0
     :goto_0
-    sget-object v1, Lya/e;->J:Lya/e;
+    sget-object v1, Lya/e;->I:Lya/e;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -300,7 +302,7 @@
 
 # virtual methods
 .method public final a()V
-    .locals 21
+    .locals 22
 
     .line 1
     move-object/from16 v0, p0
@@ -336,7 +338,7 @@
 
     .line 17
     .line 18
-    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 19
     .line 20
@@ -478,505 +480,446 @@
 
     .line 83
     :goto_1
-    iput-boolean v1, v0, Lya/e;->z:Z
+    iput-boolean v1, v0, Lya/e;->x:Z
 
     .line 84
     .line 85
-    const v4, 0xea60
+    iput-boolean v3, v0, Lya/e;->y:Z
 
     .line 86
     .line 87
-    .line 88
-    if-nez v1, :cond_3
+    const v4, 0xea60
 
+    .line 88
     .line 89
     .line 90
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-nez v1, :cond_3
 
     .line 91
     .line 92
-    const-string v5, "antiBurnScreen"
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 93
     .line 94
-    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    const-string v5, "antiBurnScreen"
 
     .line 95
     .line 96
+    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
     .line 97
+    .line 98
+    .line 99
     move-result-object v1
 
-    .line 98
+    .line 100
     invoke-virtual {v1}, Lz7/p;->b()Z
 
-    .line 99
-    .line 100
     .line 101
+    .line 102
+    .line 103
     move-result v1
 
-    .line 102
-    if-eqz v1, :cond_3
-
-    .line 103
     .line 104
-    iget-object v1, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    if-eqz v1, :cond_3
 
     .line 105
     .line 106
-    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v1, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
     .line 107
     .line 108
-    iget-object v5, v0, Lya/e;->H:Lya/d;
+    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 109
     .line 110
-    int-to-long v6, v4
+    iget-object v5, v0, Lya/e;->G:Lya/d;
 
     .line 111
+    .line 112
+    int-to-long v6, v4
+
+    .line 113
     invoke-virtual {v1, v5, v6, v7}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 112
-    .line 113
     .line 114
+    .line 115
+    .line 116
     :cond_3
     iget-object v1, v0, Lya/e;->d:Lz7/s;
 
-    .line 115
-    .line 116
-    iget-object v1, v1, Lz7/s;->a:Lb8/n;
-
     .line 117
     .line 118
-    const-string v5, "lock"
+    iget-object v1, v1, Lz7/s;->a:Lb8/n;
 
     .line 119
     .line 120
-    invoke-virtual {v1, v5}, Lb8/n;->containsKey(Ljava/lang/Object;)Z
+    const-string v5, "lock"
 
     .line 121
     .line 122
+    invoke-virtual {v1, v5}, Lb8/n;->containsKey(Ljava/lang/Object;)Z
+
     .line 123
+    .line 124
+    .line 125
     move-result v1
 
-    .line 124
-    if-eqz v1, :cond_4
-
-    .line 125
     .line 126
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-eqz v1, :cond_4
 
     .line 127
     .line 128
-    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 129
     .line 130
+    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
     .line 131
+    .line 132
+    .line 133
     move-result-object v1
 
-    .line 132
+    .line 134
     invoke-virtual {v1}, Lz7/p;->b()Z
 
-    .line 133
-    .line 134
     .line 135
+    .line 136
+    .line 137
     move-result v1
 
-    .line 136
-    iput-boolean v1, v0, Lya/e;->B:Z
-
-    .line 137
     .line 138
-    :cond_4
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    iput-boolean v1, v0, Lya/e;->A:Z
 
     .line 139
     .line 140
-    const-string v5, "3"
+    :cond_4
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 141
     .line 142
-    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+    const-string v5, "3"
 
     .line 143
     .line 144
+    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+
     .line 145
+    .line 146
+    .line 147
     move-result-object v1
 
-    .line 146
-    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
-
-    .line 147
     .line 148
-    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
 
     .line 149
     .line 150
+    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+
     .line 151
+    .line 152
+    .line 153
     move-result v1
 
-    .line 152
-    if-eqz v1, :cond_6
-
-    .line 153
     .line 154
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-eqz v1, :cond_6
 
     .line 155
     .line 156
-    const-string v5, "4"
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 157
     .line 158
-    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+    const-string v5, "4"
 
     .line 159
     .line 160
+    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+
     .line 161
+    .line 162
+    .line 163
     move-result-object v1
 
-    .line 162
-    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
-
-    .line 163
     .line 164
-    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
 
     .line 165
     .line 166
+    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+
     .line 167
+    .line 168
+    .line 169
     move-result v1
 
-    .line 168
-    if-eqz v1, :cond_6
-
-    .line 169
     .line 170
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-eqz v1, :cond_6
 
     .line 171
     .line 172
-    const-string v5, "5"
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 173
     .line 174
-    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+    const-string v5, "5"
 
     .line 175
     .line 176
+    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+
     .line 177
+    .line 178
+    .line 179
     move-result-object v1
 
-    .line 178
-    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
-
-    .line 179
     .line 180
-    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
 
     .line 181
     .line 182
+    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+
     .line 183
+    .line 184
+    .line 185
     move-result v1
 
-    .line 184
-    if-eqz v1, :cond_6
-
-    .line 185
     .line 186
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-eqz v1, :cond_6
 
     .line 187
     .line 188
-    const-string v5, "6"
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 189
     .line 190
-    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+    const-string v5, "6"
 
     .line 191
     .line 192
+    invoke-virtual {v1, v5}, Lz7/s;->p(Ljava/lang/String;)Lz7/o;
+
     .line 193
+    .line 194
+    .line 195
     move-result-object v1
 
-    .line 194
-    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
-
-    .line 195
     .line 196
-    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+    iget-object v1, v1, Lz7/o;->a:Ljava/util/ArrayList;
 
     .line 197
     .line 198
+    invoke-virtual {v1}, Ljava/util/ArrayList;->isEmpty()Z
+
     .line 199
+    .line 200
+    .line 201
     move-result v1
 
-    .line 200
+    .line 202
     if-nez v1, :cond_5
 
-    .line 201
-    .line 202
+    .line 203
+    .line 204
     goto :goto_2
 
-    .line 203
+    .line 205
     :cond_5
     const/4 v1, 0x0
 
-    .line 204
+    .line 206
     goto :goto_3
 
-    .line 205
+    .line 207
     :cond_6
     :goto_2
     const/4 v1, 0x1
 
-    .line 206
-    :goto_3
-    iput-boolean v1, v0, Lya/e;->A:Z
-
-    .line 207
     .line 208
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    :goto_3
+    iput-boolean v1, v0, Lya/e;->z:Z
 
     .line 209
     .line 210
-    const-string v5, "trans"
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 211
     .line 212
-    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    const-string v5, "trans"
 
     .line 213
     .line 214
+    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
     .line 215
+    .line 216
+    .line 217
     move-result-object v1
 
-    .line 216
+    .line 218
     invoke-virtual {v1}, Lz7/p;->e()I
 
-    .line 217
-    .line 218
     .line 219
+    .line 220
+    .line 221
     move-result v1
 
-    .line 220
-    iput v1, v0, Lya/e;->u:I
-
-    .line 221
     .line 222
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    iput v1, v0, Lya/e;->u:I
 
     .line 223
     .line 224
-    iget-object v1, v1, Lz7/s;->a:Lb8/n;
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 225
     .line 226
-    const-string v5, "allow_move_outer_edge"
+    iget-object v1, v1, Lz7/s;->a:Lb8/n;
 
     .line 227
     .line 228
-    invoke-virtual {v1, v5}, Lb8/n;->containsKey(Ljava/lang/Object;)Z
+    const-string v5, "allow_move_outer_edge"
 
     .line 229
     .line 230
+    invoke-virtual {v1, v5}, Lb8/n;->containsKey(Ljava/lang/Object;)Z
+
     .line 231
+    .line 232
+    .line 233
     move-result v1
 
-    .line 232
-    if-eqz v1, :cond_7
-
-    .line 233
     .line 234
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    if-eqz v1, :cond_7
 
     .line 235
     .line 236
-    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 237
     .line 238
+    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
     .line 239
+    .line 240
+    .line 241
     move-result-object v1
 
-    .line 240
+    .line 242
     invoke-virtual {v1}, Lz7/p;->b()Z
 
-    .line 241
-    .line 242
     .line 243
+    .line 244
+    .line 245
     move-result v1
 
-    .line 244
-    iput-boolean v1, v0, Lya/e;->I:Z
-
-    .line 245
     .line 246
-    :cond_7
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
+    iput-boolean v1, v0, Lya/e;->H:Z
 
     .line 247
     .line 248
-    const-string v5, "size"
+    :cond_7
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
     .line 249
     .line 250
-    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    const-string v5, "size"
 
     .line 251
     .line 252
+    invoke-virtual {v1, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
     .line 253
+    .line 254
+    .line 255
     move-result-object v1
 
-    .line 254
+    .line 256
     invoke-virtual {v1}, Lz7/p;->e()I
 
-    .line 255
-    .line 256
     .line 257
+    .line 258
+    .line 259
     move-result v1
 
-    .line 258
+    .line 260
     iput v1, v0, Lya/e;->v:I
 
-    .line 259
-    .line 260
-    int-to-float v1, v1
-
     .line 261
-    const v6, 0x3f4ccccd    # 0.8f
-
     .line 262
+    const/4 v6, 0x2
+
     .line 263
+    div-int/2addr v1, v6
+
     .line 264
-    mul-float v1, v1, v6
+    iput v1, v0, Lya/e;->w:I
 
     .line 265
     .line 266
-    invoke-static {v1}, Ljava/lang/Math;->round(F)I
+    new-instance v1, Landroid/widget/ImageView;
 
     .line 267
     .line 268
-    .line 269
-    move-result v1
+    iget-object v7, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
+    .line 269
     .line 270
-    iput v1, v0, Lya/e;->w:I
+    invoke-direct {v1, v7}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
 
     .line 271
     .line 272
-    iget v1, v0, Lya/e;->v:I
-
     .line 273
-    .line 274
-    int-to-float v1, v1
+    iput-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
+    .line 274
     .line 275
-    const v6, 0x3e4ccccd    # 0.2f
+    sget-object v7, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
 
     .line 276
     .line 277
-    .line 278
-    mul-float v1, v1, v6
+    invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
 
+    .line 278
     .line 279
     .line 280
-    const/high16 v6, 0x40000000    # 2.0f
+    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
     .line 281
     .line 282
-    div-float/2addr v1, v6
+    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setAdjustViewBounds(Z)V
 
     .line 283
-    invoke-static {v1}, Ljava/lang/Math;->round(F)I
-
     .line 284
     .line 285
-    .line 286
-    move-result v1
+    iget-object v1, v0, Lya/e;->d:Lz7/s;
 
+    .line 286
     .line 287
-    iput v1, v0, Lya/e;->x:I
+    const-string v7, "ico"
 
     .line 288
     .line 289
-    iget v1, v0, Lya/e;->v:I
+    invoke-virtual {v1, v7}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
 
     .line 290
     .line 291
-    const/4 v6, 0x2
-
     .line 292
-    div-int/2addr v1, v6
+    move-result-object v1
 
     .line 293
-    iput v1, v0, Lya/e;->y:I
+    invoke-virtual {v1}, Lz7/p;->e()I
 
     .line 294
     .line 295
-    new-instance v1, Landroid/widget/ImageView;
-
     .line 296
-    .line 297
-    iget-object v7, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
-
-    .line 298
-    .line 299
-    invoke-direct {v1, v7}, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-
-    .line 300
-    .line 301
-    .line 302
-    iput-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
-
-    .line 303
-    .line 304
-    sget-object v7, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
-
-    .line 305
-    .line 306
-    invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-
-    .line 307
-    .line 308
-    .line 309
-    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
-
-    .line 310
-    .line 311
-    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setAdjustViewBounds(Z)V
-
-    .line 312
-    .line 313
-    .line 314
-    iget-object v1, v0, Lya/e;->d:Lz7/s;
-
-    .line 315
-    .line 316
-    const-string v7, "ico"
-
-    .line 317
-    .line 318
-    invoke-virtual {v1, v7}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
-
-    .line 319
-    .line 320
-    .line 321
-    move-result-object v1
-
-    .line 322
-    invoke-virtual {v1}, Lz7/p;->e()I
-
-    .line 323
-    .line 324
-    .line 325
     move-result v1
 
-    .line 326
+    .line 297
     const/4 v7, -0x1
 
-    .line 327
+    .line 298
     iget-object v7, v0, Lya/e;->i:Landroid/widget/ImageView;
     invoke-static {v7, v1}, Lcom/yunpan/appmanage/carui/PetIcons;->apply(Landroid/widget/ImageView;I)Z
     move-result v7
@@ -986,802 +929,741 @@
     const/4 v7, -0x1
     if-ne v1, v7, :cond_8
 
-    .line 328
-    .line 329
+    .line 299
+    .line 300
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
+
+    .line 301
+    .line 302
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    .line 303
+    .line 304
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 305
+    .line 306
+    .line 307
+    iget-object v8, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+
+    .line 308
+    .line 309
+    invoke-virtual {v8}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
+
+    .line 310
+    .line 311
+    .line 312
+    move-result-object v8
+
+    .line 313
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    .line 314
+    .line 315
+    .line 316
+    const-string v8, "/FloatButtonIco"
+
+    .line 317
+    .line 318
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 319
+    .line 320
+    .line 321
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 322
+    .line 323
+    .line 324
+    move-result-object v7
+
+    .line 325
+    invoke-static {v7}, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+
+    .line 326
+    .line 327
+    .line 328
+    move-result-object v7
+
+    .line 329
+    invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
 
     .line 330
     .line 331
-    new-instance v7, Ljava/lang/StringBuilder;
-
     .line 332
+    goto :goto_4
+
     .line 333
-    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+    :cond_8
+    const v7, 0x7f080128
 
     .line 334
     .line 335
     .line 336
-    iget-object v8, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    if-ne v1, v2, :cond_9
 
     .line 337
     .line 338
-    invoke-virtual {v8}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
+    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
     .line 339
     .line 340
-    .line 341
-    move-result-object v8
-
-    .line 342
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    .line 343
-    .line 344
-    .line 345
-    const-string v8, "/FloatButtonIco"
-
-    .line 346
-    .line 347
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 348
-    .line 349
-    .line 350
-    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    .line 351
-    .line 352
-    .line 353
-    move-result-object v7
-
-    .line 354
-    invoke-static {v7}, Landroid/graphics/BitmapFactory;->decodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
-
-    .line 355
-    .line 356
-    .line 357
-    move-result-object v7
-
-    .line 358
-    invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
-
-    .line 359
-    .line 360
-    .line 361
-    goto :goto_4
-
-    .line 362
-    :cond_8
-    const v7, 0x7f080128
-
-    .line 363
-    .line 364
-    .line 365
-    if-ne v1, v2, :cond_9
-
-    .line 366
-    .line 367
-    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
-
-    .line 368
-    .line 369
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 370
-    .line 371
-    .line 372
+    .line 341
+    .line 342
+    .line 343
     goto :goto_4
 
-    .line 373
+    .line 344
     :cond_9
     if-ne v1, v6, :cond_a
 
-    .line 374
-    .line 375
+    .line 345
+    .line 346
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 376
-    .line 377
+    .line 347
+    .line 348
     const v7, 0x7f080129
 
-    .line 378
-    .line 379
-    .line 380
+    .line 349
+    .line 350
+    .line 351
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 381
-    .line 382
-    .line 383
+    .line 352
+    .line 353
+    .line 354
     goto :goto_4
 
-    .line 384
+    .line 355
     :cond_a
     const/4 v8, 0x3
 
-    .line 385
+    .line 356
     if-ne v1, v8, :cond_b
 
-    .line 386
-    .line 387
+    .line 357
+    .line 358
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 388
-    .line 389
+    .line 359
+    .line 360
     const v7, 0x7f08012a
 
-    .line 390
-    .line 391
-    .line 392
+    .line 361
+    .line 362
+    .line 363
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 393
-    .line 394
-    .line 395
+    .line 364
+    .line 365
+    .line 366
     goto :goto_4
 
-    .line 396
+    .line 367
     :cond_b
     const/4 v8, 0x4
 
-    .line 397
+    .line 368
     if-ne v1, v8, :cond_c
 
-    .line 398
-    .line 399
+    .line 369
+    .line 370
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 400
-    .line 401
+    .line 371
+    .line 372
     const v7, 0x7f08012b
 
-    .line 402
-    .line 403
-    .line 404
+    .line 373
+    .line 374
+    .line 375
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 405
-    .line 406
-    .line 407
+    .line 376
+    .line 377
+    .line 378
     goto :goto_4
 
-    .line 408
+    .line 379
     :cond_c
     const/4 v8, 0x5
 
-    .line 409
+    .line 380
     if-ne v1, v8, :cond_d
 
-    .line 410
-    .line 411
+    .line 381
+    .line 382
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 412
-    .line 413
-    const v7, 0x7f0802bd
+    .line 383
+    .line 384
+    const v7, 0x7f0802c0
 
-    .line 414
-    .line 415
-    .line 416
+    .line 385
+    .line 386
+    .line 387
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 417
-    .line 418
-    .line 419
+    .line 388
+    .line 389
+    .line 390
     goto :goto_4
 
-    .line 420
+    .line 391
     :cond_d
     :try_start_0
     iget-object v8, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 421
-    .line 422
+    .line 392
+    .line 393
     invoke-virtual {v8, v1}, Landroid/widget/ImageView;->setImageResource(I)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 423
-    .line 424
-    .line 425
+    .line 394
+    .line 395
+    .line 396
     goto :goto_4
 
-    .line 426
+    .line 397
     :catch_0
     iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 427
-    .line 428
+    .line 398
+    .line 399
     invoke-virtual {v1, v7}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 429
-    .line 430
-    .line 431
+    .line 400
+    .line 401
+    .line 402
     :goto_4
     sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
 
-    .line 432
-    .line 433
+    .line 403
+    .line 404
     const/16 v7, 0x15
 
-    .line 434
-    .line 435
+    .line 405
+    .line 406
     if-lt v1, v7, :cond_e
 
-    .line 436
-    .line 437
-    iget-object v3, v0, Lya/e;->i:Landroid/widget/ImageView;
+    .line 407
+    .line 408
+    iget-object v7, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 438
-    .line 439
-    const/4 v7, 0x0
+    .line 409
+    .line 410
+    const/4 v8, 0x0
 
-    .line 440
-    invoke-virtual {v3, v7}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
+    .line 411
+    invoke-virtual {v7, v8}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 441
-    .line 442
-    .line 443
+    .line 412
+    .line 413
+    .line 414
     goto :goto_5
 
-    .line 444
+    .line 415
     :cond_e
     iget-object v7, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 445
-    .line 446
+    .line 416
+    .line 417
     invoke-virtual {v7, v3}, Landroid/view/View;->setBackgroundColor(I)V
 
+    .line 418
+    .line 419
+    .line 420
+    :goto_5
+    iget-object v7, v0, Lya/e;->i:Landroid/widget/ImageView;
+
+    .line 421
+    .line 422
+    iget v8, v0, Lya/e;->u:I
+
+    .line 423
+    .line 424
+    invoke-virtual {v7, v8}, Landroid/widget/ImageView;->setImageAlpha(I)V
+
+    .line 425
+    .line 426
+    .line 427
+    new-instance v7, Landroid/view/WindowManager$LayoutParams;
+
+    .line 428
+    .line 429
+    iget-object v8, v0, Lya/e;->d:Lz7/s;
+
+    .line 430
+    .line 431
+    invoke-virtual {v8, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
+    .line 432
+    .line 433
+    .line 434
+    move-result-object v8
+
+    .line 435
+    invoke-virtual {v8}, Lz7/p;->e()I
+
+    .line 436
+    .line 437
+    .line 438
+    move-result v10
+
+    .line 439
+    iget-object v8, v0, Lya/e;->d:Lz7/s;
+
+    .line 440
+    .line 441
+    invoke-virtual {v8, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+
+    .line 442
+    .line 443
+    .line 444
+    move-result-object v5
+
+    .line 445
+    invoke-virtual {v5}, Lz7/p;->e()I
+
+    .line 446
     .line 447
     .line 448
+    move-result v11
+
     .line 449
-    :goto_5
-    iget-object v3, v0, Lya/e;->i:Landroid/widget/ImageView;
+    const/16 v5, 0x7d2
 
     .line 450
     .line 451
-    iget v7, v0, Lya/e;->u:I
+    const/16 v8, 0x7f0
 
     .line 452
     .line 453
-    invoke-virtual {v3, v7}, Landroid/widget/ImageView;->setImageAlpha(I)V
+    const/16 v15, 0x16
 
     .line 454
     .line 455
+    if-lt v1, v15, :cond_f
+
     .line 456
-    new-instance v3, Landroid/view/WindowManager$LayoutParams;
-
     .line 457
-    .line 458
-    iget-object v7, v0, Lya/e;->d:Lz7/s;
+    const/16 v12, 0x7f0
 
+    .line 458
     .line 459
+    goto :goto_6
+
     .line 460
-    invoke-virtual {v7, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    :cond_f
+    const/16 v12, 0x7d2
 
     .line 461
     .line 462
-    .line 463
-    move-result-object v7
+    :goto_6
+    const/16 v13, 0x328
 
+    .line 463
     .line 464
-    invoke-virtual {v7}, Lz7/p;->e()I
+    const/4 v14, -0x3
 
     .line 465
+    move-object v9, v7
+
     .line 466
+    invoke-direct/range {v9 .. v14}, Landroid/view/WindowManager$LayoutParams;-><init>(IIIII)V
+
     .line 467
-    move-result v9
-
     .line 468
-    iget-object v7, v0, Lya/e;->d:Lz7/s;
-
     .line 469
-    .line 470
-    invoke-virtual {v7, v5}, Lz7/s;->o(Ljava/lang/String;)Lz7/p;
+    iput-object v7, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
 
+    .line 470
     .line 471
+    const/16 v9, 0x1c
+
     .line 472
     .line 473
-    move-result-object v5
+    if-lt v1, v9, :cond_10
 
     .line 474
-    invoke-virtual {v5}, Lz7/p;->e()I
-
     .line 475
+    invoke-static {v7}, Landroidx/emoji2/text/b;->v(Landroid/view/WindowManager$LayoutParams;)V
+
     .line 476
     .line 477
-    move-result v10
-
     .line 478
-    const/16 v5, 0x7d2
+    :cond_10
+    iget-object v7, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
 
     .line 479
     .line 480
-    const/16 v7, 0x7f0
+    const v9, 0x800033
 
     .line 481
     .line 482
-    const/16 v14, 0x16
-
     .line 483
+    iput v9, v7, Landroid/view/WindowManager$LayoutParams;->gravity:I
+
     .line 484
-    if-lt v1, v14, :cond_f
-
     .line 485
+    iget-object v10, v0, Lya/e;->b:Landroid/content/SharedPreferences;
+
     .line 486
-    const/16 v11, 0x7f0
-
     .line 487
-    .line 488
-    goto :goto_6
+    iget-object v11, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
+    .line 488
     .line 489
-    :cond_f
-    const/16 v11, 0x7d2
+    iget-object v11, v11, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
 
     .line 490
     .line 491
-    :goto_6
-    const/16 v12, 0x328
+    iget-object v11, v11, Ly3/a;->e:Ljava/lang/Object;
 
     .line 492
     .line 493
-    const/4 v13, -0x3
+    check-cast v11, Landroid/graphics/Point;
 
     .line 494
-    move-object v8, v3
-
     .line 495
-    invoke-direct/range {v8 .. v13}, Landroid/view/WindowManager$LayoutParams;-><init>(IIIII)V
+    iget v11, v11, Landroid/graphics/Point;->x:I
 
     .line 496
     .line 497
+    div-int/2addr v11, v6
+
     .line 498
-    iput-object v3, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
+    iget v12, v0, Lya/e;->w:I
 
     .line 499
     .line 500
-    const/16 v8, 0x1c
+    sub-int/2addr v11, v12
 
     .line 501
+    const-string v12, "floatButton_x"
+
     .line 502
-    if-lt v1, v8, :cond_10
-
     .line 503
-    .line 504
-    invoke-static {v3}, Landroidx/emoji2/text/b;->x(Landroid/view/WindowManager$LayoutParams;)V
+    invoke-interface {v10, v12, v11}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
 
+    .line 504
     .line 505
     .line 506
+    move-result v10
+
     .line 507
-    :cond_10
-    iget-object v3, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
+    iget-object v11, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
     .line 508
     .line 509
-    const v9, 0x800033
+    iget-object v11, v11, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
 
     .line 510
     .line 511
+    iget-object v12, v11, Ly3/a;->d:Ljava/lang/Object;
+
     .line 512
-    iput v9, v3, Landroid/view/WindowManager$LayoutParams;->gravity:I
-
     .line 513
+    check-cast v12, Lcom/yunpan/appmanage/bean/FloatWindowInsets;
+
     .line 514
-    iget-object v9, v0, Lya/e;->b:Landroid/content/SharedPreferences;
-
     .line 515
-    .line 516
-    iget-object v10, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    iget v12, v12, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->left:I
 
+    .line 516
     .line 517
+    sub-int/2addr v10, v12
+
     .line 518
-    iget-object v10, v10, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
+    iput v10, v7, Landroid/view/WindowManager$LayoutParams;->x:I
 
     .line 519
     .line 520
-    iget-object v10, v10, Ly3/a;->e:Ljava/lang/Object;
+    iget-object v7, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
 
     .line 521
     .line 522
-    check-cast v10, Landroid/graphics/Point;
+    iget-object v10, v0, Lya/e;->b:Landroid/content/SharedPreferences;
 
     .line 523
     .line 524
-    iget v10, v10, Landroid/graphics/Point;->x:I
+    iget-object v11, v11, Ly3/a;->e:Ljava/lang/Object;
 
     .line 525
     .line 526
-    div-int/2addr v10, v6
+    check-cast v11, Landroid/graphics/Point;
 
     .line 527
-    iget v11, v0, Lya/e;->y:I
-
     .line 528
-    .line 529
-    sub-int/2addr v10, v11
+    iget v11, v11, Landroid/graphics/Point;->y:I
 
+    .line 529
     .line 530
-    const-string v11, "floatButton_x"
+    div-int/2addr v11, v6
 
     .line 531
+    iget v6, v0, Lya/e;->w:I
+
     .line 532
-    invoke-interface {v9, v11, v10}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
-
     .line 533
-    .line 534
-    .line 535
-    move-result v9
+    sub-int/2addr v11, v6
 
+    .line 534
+    const-string v6, "floatButton_y"
+
+    .line 535
     .line 536
-    iget-object v10, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    invoke-interface {v10, v6, v11}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
 
     .line 537
     .line 538
-    iget-object v10, v10, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
-
     .line 539
+    move-result v6
+
     .line 540
-    iget-object v11, v10, Ly3/a;->d:Ljava/lang/Object;
+    iget-object v10, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
     .line 541
     .line 542
-    check-cast v11, Lcom/yunpan/appmanage/bean/FloatWindowInsets;
+    iget-object v10, v10, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
 
     .line 543
     .line 544
-    iget v11, v11, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->left:I
+    iget-object v10, v10, Ly3/a;->d:Ljava/lang/Object;
 
     .line 545
     .line 546
-    sub-int/2addr v9, v11
+    check-cast v10, Lcom/yunpan/appmanage/bean/FloatWindowInsets;
 
     .line 547
-    iput v9, v3, Landroid/view/WindowManager$LayoutParams;->x:I
-
     .line 548
-    .line 549
-    iget-object v3, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
+    iget v10, v10, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->top:I
 
+    .line 549
     .line 550
+    sub-int/2addr v6, v10
+
     .line 551
-    iget-object v9, v0, Lya/e;->b:Landroid/content/SharedPreferences;
+    iput v6, v7, Landroid/view/WindowManager$LayoutParams;->y:I
 
     .line 552
     .line 553
-    iget-object v10, v10, Ly3/a;->e:Ljava/lang/Object;
+    new-instance v6, Landroid/view/View;
 
     .line 554
     .line 555
-    check-cast v10, Landroid/graphics/Point;
+    iget-object v7, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
     .line 556
     .line 557
-    iget v10, v10, Landroid/graphics/Point;->y:I
+    invoke-direct {v6, v7}, Landroid/view/View;-><init>(Landroid/content/Context;)V
 
     .line 558
     .line 559
-    div-int/2addr v10, v6
-
     .line 560
-    iget v6, v0, Lya/e;->y:I
+    iput-object v6, v0, Lya/e;->h:Landroid/view/View;
 
     .line 561
     .line 562
-    sub-int/2addr v10, v6
+    invoke-virtual {v6, v2}, Landroid/view/View;->setWillNotDraw(Z)V
 
     .line 563
-    const-string v6, "floatButton_y"
-
     .line 564
     .line 565
-    invoke-interface {v9, v6, v10}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    new-instance v2, Landroid/view/WindowManager$LayoutParams;
 
     .line 566
     .line 567
-    .line 568
-    move-result v6
+    if-lt v1, v15, :cond_11
 
+    .line 568
     .line 569
-    iget-object v9, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    const/16 v19, 0x7f0
 
     .line 570
     .line 571
-    iget-object v9, v9, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
+    goto :goto_7
 
     .line 572
+    :cond_11
+    const/16 v19, 0x7d2
+
     .line 573
-    iget-object v9, v9, Ly3/a;->d:Ljava/lang/Object;
-
     .line 574
+    :goto_7
+    const/16 v17, 0x1
+
     .line 575
-    check-cast v9, Lcom/yunpan/appmanage/bean/FloatWindowInsets;
-
     .line 576
+    const/16 v18, 0x1
+
     .line 577
-    iget v9, v9, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->top:I
-
     .line 578
+    const v20, 0x40138
+
     .line 579
-    sub-int/2addr v6, v9
-
     .line 580
-    iput v6, v3, Landroid/view/WindowManager$LayoutParams;->y:I
-
     .line 581
+    const/16 v21, -0x3
+
     .line 582
-    new-instance v3, Landroid/view/View;
-
     .line 583
+    move-object/from16 v16, v2
+
     .line 584
-    iget-object v6, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
-
     .line 585
-    .line 586
-    invoke-direct {v3, v6}, Landroid/view/View;-><init>(Landroid/content/Context;)V
+    invoke-direct/range {v16 .. v21}, Landroid/view/WindowManager$LayoutParams;-><init>(IIIII)V
 
+    .line 586
     .line 587
     .line 588
+    iput-object v2, v0, Lya/e;->k:Landroid/view/WindowManager$LayoutParams;
+
     .line 589
-    iput-object v3, v0, Lya/e;->h:Landroid/view/View;
-
     .line 590
-    .line 591
-    invoke-virtual {v3, v2}, Landroid/view/View;->setWillNotDraw(Z)V
+    iput v9, v2, Landroid/view/WindowManager$LayoutParams;->gravity:I
 
+    .line 591
     .line 592
+    iput v3, v2, Landroid/view/WindowManager$LayoutParams;->x:I
+
     .line 593
     .line 594
-    new-instance v2, Landroid/view/WindowManager$LayoutParams;
+    iput v3, v2, Landroid/view/WindowManager$LayoutParams;->y:I
 
     .line 595
     .line 596
-    iget-object v3, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    iget-object v1, v0, Lya/e;->h:Landroid/view/View;
 
     .line 597
     .line 598
-    iget-object v3, v3, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
+    new-instance v2, Lya/c;
 
     .line 599
     .line 600
-    iget-object v3, v3, Ly3/a;->e:Ljava/lang/Object;
+    const/4 v3, 0x0
 
     .line 601
-    .line 602
-    check-cast v3, Landroid/graphics/Point;
+    invoke-direct {v2, v0, v3}, Lya/c;-><init>(Lya/e;I)V
 
+    .line 602
     .line 603
     .line 604
-    iget v6, v3, Landroid/graphics/Point;->x:I
+    invoke-virtual {v1, v2}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 
     .line 605
     .line 606
-    iget v3, v3, Landroid/graphics/Point;->y:I
-
     .line 607
+    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
+
     .line 608
-    if-lt v1, v14, :cond_11
-
     .line 609
-    .line 610
-    const/16 v18, 0x7f0
+    new-instance v2, Lya/c;
 
+    .line 610
     .line 611
+    const/4 v3, 0x1
+
     .line 612
-    goto :goto_7
+    invoke-direct {v2, v0, v3}, Lya/c;-><init>(Lya/e;I)V
+    invoke-static {v2}, Lcom/yunpan/appmanage/carui/PetIcons;->withFeedback(Landroid/view/View$OnTouchListener;)Landroid/view/View$OnTouchListener;
+    move-result-object v2
 
     .line 613
-    :cond_11
-    const/16 v18, 0x7d2
-
     .line 614
     .line 615
-    :goto_7
-    const v19, 0x40338
+    invoke-virtual {v1, v2}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 
     .line 616
     .line 617
     .line 618
-    const/16 v20, -0x3
-
-    .line 619
-    .line 620
-    move-object v15, v2
-
-    .line 621
-    move/from16 v16, v6
-
-    .line 622
-    .line 623
-    move/from16 v17, v3
-
-    .line 624
-    .line 625
-    invoke-direct/range {v15 .. v20}, Landroid/view/WindowManager$LayoutParams;-><init>(IIIII)V
-
-    .line 626
-    .line 627
-    .line 628
-    iput-object v2, v0, Lya/e;->k:Landroid/view/WindowManager$LayoutParams;
-
-    .line 629
-    .line 630
-    if-lt v1, v8, :cond_12
-
-    .line 631
-    .line 632
-    invoke-static {v2}, Landroidx/emoji2/text/b;->x(Landroid/view/WindowManager$LayoutParams;)V
-
-    .line 633
-    .line 634
-    .line 635
-    :cond_12
-    iget-object v1, v0, Lya/e;->k:Landroid/view/WindowManager$LayoutParams;
-
-    .line 636
-    .line 637
-    iget-object v2, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
-
-    .line 638
-    .line 639
-    iget-object v2, v2, Lcom/yunpan/appmanage/service/AccService;->i:Ly3/a;
-
-    .line 640
-    .line 641
-    iget-object v2, v2, Ly3/a;->d:Ljava/lang/Object;
-
-    .line 642
-    .line 643
-    check-cast v2, Lcom/yunpan/appmanage/bean/FloatWindowInsets;
-
-    .line 644
-    .line 645
-    iget v3, v2, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->left:I
-
-    .line 646
-    .line 647
-    neg-int v3, v3
-
-    .line 648
-    iput v3, v1, Landroid/view/WindowManager$LayoutParams;->x:I
-
-    .line 649
-    .line 650
-    iget v2, v2, Lcom/yunpan/appmanage/bean/FloatWindowInsets;->top:I
-
-    .line 651
-    .line 652
-    neg-int v2, v2
-
-    .line 653
-    iput v2, v1, Landroid/view/WindowManager$LayoutParams;->y:I
-
-    .line 654
-    .line 655
-    iget-object v1, v0, Lya/e;->h:Landroid/view/View;
-
-    .line 656
-    .line 657
-    new-instance v2, Lya/c;
-
-    .line 658
-    .line 659
-    const/4 v3, 0x0
-
-    .line 660
-    invoke-direct {v2, v0, v3}, Lya/c;-><init>(Lya/e;I)V
-
-    .line 661
-    .line 662
-    .line 663
-    invoke-virtual {v1, v2}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
-
-    .line 664
-    .line 665
-    .line 666
-    iget-object v1, v0, Lya/e;->i:Landroid/widget/ImageView;
-
-    .line 667
-    .line 668
-    new-instance v2, Lya/c;
-
-    .line 669
-    .line 670
-    const/4 v3, 0x1
-
-    .line 671
-    invoke-direct {v2, v0, v3}, Lya/c;-><init>(Lya/e;I)V
-
-    .line 672
-    .line 673
-    .line 674
-    invoke-virtual {v1, v2}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
-
-    .line 675
-    .line 676
-    .line 677
     :try_start_1
     iget-object v1, v0, Lya/e;->g:Landroid/view/WindowManager;
 
-    .line 678
-    .line 679
+    .line 619
+    .line 620
     iget-object v2, v0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 680
-    .line 681
+    .line 621
+    .line 622
     iget-object v3, v0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
 
-    .line 682
-    .line 683
+    .line 623
+    .line 624
     invoke-interface {v1, v2, v3}, Landroid/view/ViewManager;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 684
-    .line 685
-    .line 686
-    iget-boolean v1, v0, Lya/e;->z:Z
+    .line 625
+    .line 626
+    .line 627
+    iget-boolean v1, v0, Lya/e;->x:Z
 
-    .line 687
-    .line 688
-    if-eqz v1, :cond_13
+    .line 628
+    .line 629
+    if-eqz v1, :cond_12
 
-    .line 689
-    .line 690
+    .line 630
+    .line 631
     iget-object v1, v0, Lya/e;->g:Landroid/view/WindowManager;
 
-    .line 691
-    .line 692
+    .line 632
+    .line 633
     iget-object v2, v0, Lya/e;->h:Landroid/view/View;
 
-    .line 693
-    .line 694
+    .line 634
+    .line 635
     iget-object v3, v0, Lya/e;->k:Landroid/view/WindowManager$LayoutParams;
 
-    .line 695
-    .line 696
+    .line 636
+    .line 637
     invoke-interface {v1, v2, v3}, Landroid/view/ViewManager;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 697
-    .line 698
-    .line 699
+    .line 638
+    .line 639
+    .line 640
     iget-object v1, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
-    .line 700
-    .line 701
-    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    .line 641
+    .line 642
+    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 702
-    .line 703
-    iget-object v2, v0, Lya/e;->C:Lya/d;
+    .line 643
+    .line 644
+    iget-object v2, v0, Lya/e;->B:Lya/d;
 
-    .line 704
-    .line 705
+    .line 645
+    .line 646
     :try_start_2
     invoke-virtual {v1, v2}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 706
-    .line 707
-    .line 708
+    .line 647
+    .line 648
+    .line 649
     iget-object v1, v0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
 
-    .line 709
-    .line 710
-    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    .line 650
+    .line 651
+    iget-object v1, v1, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
-    .line 711
-    .line 712
+    .line 652
+    .line 653
     int-to-long v3, v4
 
-    .line 713
+    .line 654
     invoke-virtual {v1, v2, v3, v4}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 714
-    .line 715
-    .line 716
+    .line 655
+    .line 656
+    .line 657
     :catch_1
-    :cond_13
+    :cond_12
     return-void
 .end method
 
@@ -1789,7 +1671,7 @@
     .locals 4
 
     .line 1
-    iget-boolean v0, p0, Lya/e;->z:Z
+    iget-boolean v0, p0, Lya/e;->x:Z
 
     .line 2
     .line 3
@@ -1806,13 +1688,13 @@
 
     .line 7
     .line 8
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 9
     .line 10
-    iget-object v1, p0, Lya/e;->C:Lya/d;
+    iget-object v1, p0, Lya/e;->B:Lya/d;
 
     .line 11
     .line 12
@@ -1822,80 +1704,181 @@
     .line 13
     .line 14
     .line 15
-    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
+    iget-boolean v0, p0, Lya/e;->y:Z
 
     .line 16
     .line 17
-    invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
+    if-eqz v0, :cond_2
 
     .line 18
     .line 19
+    const/4 v0, 0x0
+
     .line 20
-    move-result v0
+    iput-boolean v0, p0, Lya/e;->y:Z
 
     .line 21
-    const/16 v2, 0x8
-
     .line 22
+    iget-object v2, p0, Lya/e;->i:Landroid/widget/ImageView;
+
     .line 23
-    if-ne v0, v2, :cond_1
-
     .line 24
-    .line 25
-    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
+    invoke-virtual {v2}, Landroid/view/View;->getVisibility()I
 
+    .line 25
     .line 26
     .line 27
-    const/4 v2, 0x0
+    move-result v2
 
     .line 28
-    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setVisibility(I)V
+    if-eqz v2, :cond_1
 
     .line 29
     .line 30
+    iget-object v2, p0, Lya/e;->i:Landroid/widget/ImageView;
+
     .line 31
+    .line 32
+    invoke-virtual {v2, v0}, Landroid/widget/ImageView;->setVisibility(I)V
+
+    .line 33
+    .line 34
+    .line 35
     :cond_1
     iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
 
-    .line 32
-    .line 33
-    iget v2, p0, Lya/e;->u:I
-
-    .line 34
-    .line 35
-    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setImageAlpha(I)V
-
     .line 36
     .line 37
-    .line 38
-    iget-object v0, p0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+    invoke-virtual {v0}, Landroid/widget/ImageView;->getImageAlpha()I
 
+    .line 38
     .line 39
     .line 40
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    move-result v0
 
     .line 41
-    .line 42
-    const v2, 0xea60
+    iget v2, p0, Lya/e;->u:I
 
+    .line 42
     .line 43
+    if-eq v0, v2, :cond_2
+
     .line 44
     .line 45
-    int-to-long v2, v2
+    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
 
     .line 46
+    .line 47
+    invoke-virtual {v0, v2}, Landroid/widget/ImageView;->setImageAlpha(I)V
+
+    .line 48
+    .line 49
+    .line 50
+    :cond_2
+    iget-object v0, p0, Lya/e;->a:Lcom/yunpan/appmanage/service/AccService;
+
+    .line 51
+    .line 52
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
+
+    .line 53
+    .line 54
+    const v2, 0xea60
+
+    .line 55
+    .line 56
+    .line 57
+    int-to-long v2, v2
+
+    .line 58
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 47
-    .line 48
-    .line 49
+    .line 59
+    .line 60
+    .line 61
     :catch_0
     return-void
 .end method
 
-.method public final d()V
+.method public final d(Z)V
+    .locals 1
+
+    .line 1
+    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
+
+    .line 2
+    .line 3
+    if-nez v0, :cond_0
+
+    .line 4
+    .line 5
+    return-void
+
+    .line 6
+    :cond_0
+    if-eqz p1, :cond_1
+
+    .line 7
+    .line 8
+    const p1, 0x3f4ccccd    # 0.8f
+
+    .line 9
+    .line 10
+    .line 11
+    goto :goto_0
+
+    .line 12
+    :cond_1
+    const/high16 p1, 0x3f800000    # 1.0f
+
+    .line 13
+    .line 14
+    :goto_0
+    :try_start_0
+    invoke-virtual {v0}, Landroid/view/View;->getScaleX()F
+
+    .line 15
+    .line 16
+    .line 17
+    move-result v0
+
+    .line 18
+    cmpl-float v0, v0, p1
+
+    .line 19
+    .line 20
+    if-eqz v0, :cond_2
+
+    .line 21
+    .line 22
+    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
+
+    .line 23
+    .line 24
+    invoke-virtual {v0, p1}, Landroid/view/View;->setScaleX(F)V
+
+    .line 25
+    .line 26
+    .line 27
+    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
+
+    .line 28
+    .line 29
+    invoke-virtual {v0, p1}, Landroid/view/View;->setScaleY(F)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 30
+    .line 31
+    .line 32
+    :catch_0
+    :cond_2
+    return-void
+.end method
+
+.method public final e()V
     .locals 2
 
     .line 1
@@ -1911,7 +1894,7 @@
 
     .line 6
     :cond_0
-    invoke-static {v0}, Lq4/a;->n(Landroid/content/Context;)Lz7/s;
+    invoke-static {v0}, Ld/b;->w(Landroid/content/Context;)Lz7/s;
 
     .line 7
     .line 8
@@ -1931,7 +1914,7 @@
 
     .line 15
     :cond_1
-    invoke-virtual {p0}, Lya/e;->e()V
+    invoke-virtual {p0}, Lya/e;->f()V
 
     .line 16
     .line 17
@@ -1976,7 +1959,7 @@
     return-void
 .end method
 
-.method public final e()V
+.method public final f()V
     .locals 3
 
     .line 1
@@ -1993,11 +1976,11 @@
 
     .line 6
     .line 7
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 8
     .line 9
-    iget-object v1, p0, Lya/e;->H:Lya/d;
+    iget-object v1, p0, Lya/e;->G:Lya/d;
 
     .line 10
     .line 11
@@ -2010,11 +1993,11 @@
 
     .line 15
     .line 16
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 17
     .line 18
-    iget-object v1, p0, Lya/e;->C:Lya/d;
+    iget-object v1, p0, Lya/e;->B:Lya/d;
 
     .line 19
     .line 20
@@ -2027,11 +2010,11 @@
 
     .line 24
     .line 25
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 26
     .line 27
-    iget-object v1, p0, Lya/e;->D:Lya/d;
+    iget-object v1, p0, Lya/e;->C:Lya/d;
 
     .line 28
     .line 29
@@ -2044,11 +2027,11 @@
 
     .line 33
     .line 34
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 35
     .line 36
-    iget-object v1, p0, Lya/e;->E:Lya/d;
+    iget-object v1, p0, Lya/e;->D:Lya/d;
 
     .line 37
     .line 38
@@ -2061,11 +2044,11 @@
 
     .line 42
     .line 43
-    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/e;
+    iget-object v0, v0, Lcom/yunpan/appmanage/service/AccService;->G:Lta/f;
 
     .line 44
     .line 45
-    iget-object v1, p0, Lya/e;->F:Lya/d;
+    iget-object v1, p0, Lya/e;->E:Lya/d;
 
     .line 46
     .line 47
@@ -2133,120 +2116,5 @@
     .line 73
     :catch_2
     :cond_2
-    return-void
-.end method
-
-.method public final f(I)V
-    .locals 3
-
-    .line 1
-    iget-object v0, p0, Lya/e;->i:Landroid/widget/ImageView;
-
-    .line 2
-    .line 3
-    if-eqz v0, :cond_2
-
-    .line 4
-    .line 5
-    if-gtz p1, :cond_0
-
-    .line 6
-    .line 7
-    goto :goto_1
-
-    .line 8
-    :cond_0
-    :try_start_0
-    iget-object v1, p0, Lya/e;->j:Landroid/view/WindowManager$LayoutParams;
-
-    .line 9
-    .line 10
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->width:I
-
-    .line 11
-    .line 12
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->height:I
-
-    .line 13
-    .line 14
-    iget v2, p0, Lya/e;->v:I
-
-    .line 15
-    .line 16
-    if-ne p1, v2, :cond_1
-
-    .line 17
-    .line 18
-    iget p1, v1, Landroid/view/WindowManager$LayoutParams;->x:I
-
-    .line 19
-    .line 20
-    iget v2, p0, Lya/e;->x:I
-
-    .line 21
-    .line 22
-    sub-int/2addr p1, v2
-
-    .line 23
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->x:I
-
-    .line 24
-    .line 25
-    iget p1, v1, Landroid/view/WindowManager$LayoutParams;->y:I
-
-    .line 26
-    .line 27
-    sub-int/2addr p1, v2
-
-    .line 28
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->y:I
-
-    .line 29
-    .line 30
-    goto :goto_0
-
-    .line 31
-    :cond_1
-    iget p1, v1, Landroid/view/WindowManager$LayoutParams;->x:I
-
-    .line 32
-    .line 33
-    iget v2, p0, Lya/e;->x:I
-
-    .line 34
-    .line 35
-    add-int/2addr p1, v2
-
-    .line 36
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->x:I
-
-    .line 37
-    .line 38
-    iget p1, v1, Landroid/view/WindowManager$LayoutParams;->y:I
-
-    .line 39
-    .line 40
-    add-int/2addr p1, v2
-
-    .line 41
-    iput p1, v1, Landroid/view/WindowManager$LayoutParams;->y:I
-
-    .line 42
-    .line 43
-    :goto_0
-    iget-object p1, p0, Lya/e;->g:Landroid/view/WindowManager;
-
-    .line 44
-    .line 45
-    invoke-interface {p1, v0, v1}, Landroid/view/ViewManager;->updateViewLayout(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 46
-    .line 47
-    .line 48
-    :catch_0
-    :cond_2
-    :goto_1
     return-void
 .end method

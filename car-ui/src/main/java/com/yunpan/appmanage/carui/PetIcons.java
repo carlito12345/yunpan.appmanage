@@ -1,7 +1,6 @@
 package com.yunpan.appmanage.carui;
 
 import android.app.Activity;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,11 +12,10 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,13 +29,19 @@ import java.util.Random;
 /** The icon ID travels through the original floating-button settings and save path. */
 public final class PetIcons {
     private static final int PICKER_TAG = 0x7e434140;
+    private static final Icon GROK = new Icon(-1099, "Grok Bot\n随机表情", "grok/02", 150);
     private static final Icon[] PETS = {
         new Icon(-1001, "小熊", "bear", 800),
         new Icon(-1002, "小棕熊", "brown-bear", 800),
         new Icon(-1003, "小狗", "dog", 800),
-        new Icon(-1004, "黑白小熊猫", "panda", 800)
+        new Icon(-1004, "黑白小熊猫", "panda", 800),
+        GROK,
+        new Icon(-1005, "星语 · 光灵", "starray-light", StarIcon.Style.LIGHT),
+        new Icon(-1006, "星语 · 绒星", "starray-plush", StarIcon.Style.PLUSH),
+        new Icon(-1007, "星语 · 水晶舱", "starray-crystal", StarIcon.Style.CRYSTAL),
+        new Icon(-1008, "星语 · 银翼", "starray-wing", StarIcon.Style.WING),
+        new Icon(-1009, "星语 · 星云", "starray-nebula", StarIcon.Style.NEBULA)
     };
-    private static final Icon GROK = new Icon(-1099, "Grok Bot\n随机表情", "grok/02", 150);
     private static final int[] GROK_CODES = {
         0, 1, 2, 3, 4, 5, 6, 7,
         10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -53,12 +57,22 @@ public final class PetIcons {
         final int frameTime;
         final int frameCount;
         final int columns;
+        final StarIcon.Style style;
 
         Icon(int id, String label, String asset, int frameTime) {
+            this(id, label, asset, frameTime, null);
+        }
+
+        Icon(int id, String label, String asset, StarIcon.Style style) {
+            this(id, label, asset, 0, style);
+        }
+
+        private Icon(int id, String label, String asset, int frameTime, StarIcon.Style style) {
             this.id = id;
             this.label = label;
             this.path = "carui/pets/" + asset + ".png";
             this.frameTime = frameTime;
+            this.style = style;
             boolean grok = asset.startsWith("grok/");
             frameCount = grok ? 12 : 5;
             columns = grok ? 4 : 3;
@@ -73,7 +87,6 @@ public final class PetIcons {
 
     private static Icon findIcon(int id) {
         for (Icon icon : PETS) if (icon.id == id) return icon;
-        if (id == GROK.id) return GROK;
         // R14 persisted a specific expression. Those saved IDs now start random playback.
         for (int code : GROK_CODES) if (id == -1100 - code) return GROK;
         return null;
@@ -99,11 +112,12 @@ public final class PetIcons {
             return false;
         }
         Drawable current = view.getDrawable();
-        if (!(current instanceof Frames) || ((Frames) current).icon != icon) {
+        if (iconOf(current) != icon) {
             int expression = icon == GROK ? RANDOM.nextInt(GROK_CODES.length) : -1;
             try {
-                Bitmap strip = loadStrip(view.getContext(), icon, expression);
-                view.setImageDrawable(new Frames(view.getContext(), icon, strip, expression));
+                if (icon.style != null) view.setImageDrawable(loadStar(view.getContext(), icon, 1));
+                else view.setImageDrawable(new Frames(view.getContext(), icon,
+                        loadStrip(view.getContext(), icon, expression), expression));
             } catch (IOException error) {
                 Log.w("CarUi", "Could not load pet icon " + icon.path, error);
                 updateSelection(view, null);
@@ -112,6 +126,45 @@ public final class PetIcons {
         }
         updateSelection(view, icon);
         return true;
+    }
+
+    private static Icon iconOf(Drawable drawable) {
+        if (drawable instanceof StarIcon) return findIcon(((StarIcon) drawable).iconId);
+        return drawable instanceof Frames ? ((Frames) drawable).icon : null;
+    }
+
+    private static StarIcon loadStar(Context context, Icon icon, int sample) throws IOException {
+        try (InputStream stream = context.getAssets().open(icon.path)) {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = sample;
+            Bitmap bitmap = BitmapFactory.decodeStream(stream, null, options);
+            if (bitmap == null || bitmap.getWidth() != bitmap.getHeight()) {
+                throw new IOException("Invalid Starray Voice avatar: " + icon.path);
+            }
+            return new StarIcon(bitmap, icon.id, icon.style);
+        }
+    }
+
+    /** Observe the real overlay touches while leaving drag and action dispatch to its listener. */
+    public static View.OnTouchListener withFeedback(View.OnTouchListener original) {
+        return (view, event) -> {
+            if (view instanceof ImageView) {
+                Drawable drawable = ((ImageView) view).getDrawable();
+                if (drawable instanceof StarIcon) {
+                    float horizontal = 2f * event.getX() / Math.max(1, view.getWidth()) - 1f;
+                    ((StarIcon) drawable).touch(event.getActionMasked(), horizontal);
+                }
+            }
+            return original.onTouch(view, event);
+        };
+    }
+
+    static boolean canPlay(Drawable drawable, int alpha) {
+        Drawable.Callback callback = drawable.getCallback();
+        if (!(callback instanceof ImageView) || !drawable.isVisible() || alpha == 0) return false;
+        ImageView image = (ImageView) callback;
+        return image.getWindowToken() != null && image.getWindowVisibility() == View.VISIBLE
+                && image.isShown() && CarMotion.enabled(image.getContext());
     }
 
     private static Bitmap loadStrip(Context context, Icon icon, int expression) throws IOException {
@@ -132,6 +185,17 @@ public final class PetIcons {
     }
 
     private static Drawable thumbnail(Context context, Icon icon) {
+        if (icon.style != null) {
+            try {
+                Drawable drawable = loadStar(context, icon, 4);
+                int size = CarUi.dp(context, 54);
+                drawable.setBounds(0, 0, size, size);
+                return drawable;
+            } catch (IOException error) {
+                Log.w("CarUi", "Could not load Starray Voice thumbnail " + icon.path, error);
+                return null;
+            }
+        }
         try (InputStream stream = context.getAssets().open(icon.path)) {
             BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(stream, false);
             try {
@@ -169,19 +233,16 @@ public final class PetIcons {
         hint.setPadding(0, CarUi.dp(activity, 4), 0, CarUi.dp(activity, 12));
         section.addView(hint);
         WrapLayout choices = new WrapLayout(activity);
-        TextView[] buttons = new TextView[PETS.length + 1];
+        TextView[] buttons = new TextView[PETS.length];
         for (int i = 0; i < PETS.length; i++) {
             Icon pet = PETS[i];
             buttons[i] = tile(activity, pet.label, pet, v -> selection.selectPet(pet.id));
             choices.addView(buttons[i]);
         }
-        buttons[PETS.length] = tile(activity, GROK.label, GROK, v -> selection.selectPet(GROK.id));
-        choices.addView(buttons[PETS.length]);
         section.addView(choices, new LinearLayout.LayoutParams(-1, -2));
         parent.addView(section, parent.indexOfChild(icon) + 1, new LinearLayout.LayoutParams(-1, -2));
         preview.setTag(PICKER_TAG, buttons);
-        Drawable current = preview.getDrawable();
-        updateSelection(preview, current instanceof Frames ? ((Frames) current).icon : null);
+        updateSelection(preview, iconOf(preview.getDrawable()));
     }
 
     private static TextView tile(Context context, String label, Icon icon, View.OnClickListener listener) {
@@ -203,9 +264,8 @@ public final class PetIcons {
         if (!(tag instanceof TextView[])) return;
         TextView[] choices = (TextView[]) tag;
         for (int i = 0; i < PETS.length; i++) {
-            paintChoice(choices[i], selected != null && PETS[i].id == selected.id);
+            paintChoice(choices[i], PETS[i] == selected);
         }
-        paintChoice(choices[PETS.length], selected == GROK);
     }
 
     private static void paintChoice(TextView choice, boolean selected) {
@@ -253,15 +313,7 @@ public final class PetIcons {
         }
 
         private boolean canPlay() {
-            Callback callback = getCallback();
-            if (!(callback instanceof ImageView) || !isVisible() || paint.getAlpha() == 0) return false;
-            ImageView view = (ImageView) callback;
-            if (view.getWindowToken() == null || view.getWindowVisibility() != View.VISIBLE || !view.isShown()) {
-                return false;
-            }
-            if (Build.VERSION.SDK_INT >= 26) return ValueAnimator.areAnimatorsEnabled();
-            return Settings.Global.getFloat(context.getContentResolver(),
-                    Settings.Global.ANIMATOR_DURATION_SCALE, 1) > 0;
+            return PetIcons.canPlay(this, paint.getAlpha());
         }
 
         @Override public void draw(Canvas canvas) {

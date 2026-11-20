@@ -4,6 +4,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -107,6 +111,55 @@ public class PetIconsTest {
         fixture.capture(root, 1440, 1920, "r15-grok-random.png");
         assertFalse(PetIcons.apply(preview, 1));
         assertFalse(grok.isSelected());
+
+        String[] names = {"光灵", "绒星", "水晶舱", "银翼", "星云"};
+        List<Bitmap> restingFrames = new ArrayList<>();
+        TextView previous = null;
+        int[] eventCount = {0};
+        View.OnTouchListener listener = PetIcons.withFeedback((view, event) -> {
+            eventCount[0]++;
+            return event.getActionMasked() == MotionEvent.ACTION_UP;
+        });
+        long now = SystemClock.uptimeMillis();
+        MotionEvent down = MotionEvent.obtain(now, now, MotionEvent.ACTION_DOWN, 18, 24, 0);
+        MotionEvent up = MotionEvent.obtain(now, now, MotionEvent.ACTION_UP, 18, 24, 0);
+        try {
+            for (int i = 0; i < names.length; i++) {
+                int savedId = -1005 - i;
+                TextView option = text(root, "星语 · " + names[i]);
+                assertNotNull(names[i], option);
+                assertNotNull(option.getCompoundDrawables()[1]);
+                assertTrue(option.performClick());
+                assertEquals(savedId, selection[0]);
+                assertTrue(option.isSelected());
+                if (previous != null) assertFalse(previous.isSelected());
+                previous = option;
+
+                Drawable star = preview.getDrawable();
+                assertTrue(star instanceof StarIcon);
+                assertEquals(savedId, ((StarIcon) star).iconId);
+                Bitmap resting = render(star);
+                for (Bitmap other : restingFrames) {
+                    assertFalse("Every preset has its own rendered artwork", other.sameAs(resting));
+                }
+                restingFrames.add(resting);
+
+                assertFalse(listener.onTouch(preview, down));
+                assertTrue(listener.onTouch(preview, up));
+                Bitmap reaction = render(star);
+                assertFalse("Release updates the expression and stars for " + names[i], resting.sameAs(reaction));
+                reaction.recycle();
+                assertTrue(PetIcons.apply(preview, savedId));
+                assertSame("Reapplying a saved ID keeps its running drawable", star, preview.getDrawable());
+            }
+        } finally {
+            down.recycle();
+            up.recycle();
+            for (Bitmap frame : restingFrames) frame.recycle();
+        }
+        assertEquals(names.length * 2, eventCount[0]);
+        assertTrue(PetIcons.apply(preview, -1005));
+        fixture.capture(root, 1440, 1920, "starray-r17-picker.png");
     }
 
     private static Bitmap render(Drawable icon) {

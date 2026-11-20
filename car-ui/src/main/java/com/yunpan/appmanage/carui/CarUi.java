@@ -40,11 +40,13 @@ public final class CarUi {
         public final int background, surface, soft, ink, muted, outline, accent, pressedAccent, onAccent, rail, railInk;
         public final boolean dark;
         public final String theme;
+        final GlassMaterial.Theme glass;
         public Skin(boolean dark) { this("warm",dark); }
         public Skin(String theme,boolean dark) {
-            this.dark=dark;this.theme=theme;
+            this.dark=dark;this.theme=theme;this.glass=GlassMaterial.theme(theme);
             String[] colors;
-            if("cyan".equals(theme)) colors=dark?new String[]{"#07121D","#102230","#1A3444","#E8FAFF","#A3C6D5","#366579","#61E4FF","#A5F2FF","#06212B","#051019","#C8EFFF"}:new String[]{"#EBF6FA","#FAFEFF","#D8ECF3","#102C3C","#446473","#99BDC9","#006A83","#00566D","#FFFFFF","#0A2030","#D9F8FF"};
+            if(glass!=null) colors=glass.colors(dark);
+            else if("cyan".equals(theme)) colors=dark?new String[]{"#07121D","#102230","#1A3444","#E8FAFF","#A3C6D5","#366579","#61E4FF","#A5F2FF","#06212B","#051019","#C8EFFF"}:new String[]{"#EBF6FA","#FAFEFF","#D8ECF3","#102C3C","#446473","#99BDC9","#006A83","#00566D","#FFFFFF","#0A2030","#D9F8FF"};
             else if("mono".equals(theme)) colors=dark?new String[]{"#101112","#222426","#34373A","#F6F7F8","#B9BEC4","#646B72","#F2F3F5","#CED2D7","#141618","#08090A","#E4E7EB"}:new String[]{"#EDEFF1","#FFFFFF","#DDE1E5","#17191D","#525B65","#B1BAC4","#24282D","#454C55","#FFFFFF","#15171A","#EDF0F4"};
             else colors=dark?new String[]{"#171816","#252622","#32332D","#F5F1E8","#B6B6A9","#4E5046","#F0A060","#F5AE78","#271B12","#1D201B","#D8DCCE"}:new String[]{"#F4F1EA","#FFFEFA","#EAE5DA","#20221D","#66695F","#D6D3C7","#E99657","#F1B37A","#271B12","#1D201B","#D8DCCE"};
             background=Color.parseColor(colors[0]);surface=Color.parseColor(colors[1]);soft=Color.parseColor(colors[2]);ink=Color.parseColor(colors[3]);muted=Color.parseColor(colors[4]);outline=Color.parseColor(colors[5]);accent=Color.parseColor(colors[6]);pressedAccent=Color.parseColor(colors[7]);onAccent=Color.parseColor(colors[8]);rail=Color.parseColor(colors[9]);railInk=Color.parseColor(colors[10]);
@@ -53,8 +55,12 @@ public final class CarUi {
     public static Skin skin(Context context) { android.content.SharedPreferences p=context.getSharedPreferences("car_ui_v1",0);String theme=p.getString("theme","warm");boolean dark=p.getBoolean("dark",false);if(cachedSkin==null||!cachedSkin.theme.equals(theme)||cachedSkin.dark!=dark)cachedSkin=new Skin(theme,dark);return cachedSkin; }
     public static void chooseTheme(Context context,String theme,boolean dark) {
         context.getSharedPreferences("car_ui_v1",0).edit().putString("theme",theme).putBoolean("dark",dark).apply();
-        for(Activity a:new ArrayList<Activity>(activities.keySet())){window(a);CarHome h=homes.get(a);if(h!=null)h.refreshTheme();else{theme(a.findViewById(android.R.id.content));LegacyUi.retheme(a.findViewById(android.R.id.content));}}
-        for(int i=dialogs.size()-1;i>=0;i--){Dialog d=dialogs.get(i).get();if(d==null||!d.isShowing())dialogs.remove(i);else{theme(d.getWindow().getDecorView());LegacyUi.retheme(d.getWindow().getDecorView());FrostedDialogs.apply(d);}}
+        for (Activity activity : new ArrayList<>(activities.keySet())) {
+            CarHome home = homes.get(activity);
+            if (home != null) home.refreshTheme();
+            else if (isForeground(activity)) refreshActivity(activity, false);
+        }
+        refreshDialogs();
         AdbPairUi.themeChanged();
     }
     public static int dp(Context context, float value) { return Math.round(value*context.getResources().getDisplayMetrics().density); }
@@ -71,12 +77,16 @@ public final class CarUi {
         DisplayMetrics metrics = new DisplayMetrics();
         try { ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(metrics); }
         catch(Exception ignored) { return Math.min(count,3); }
-        return Math.min(count,metrics.widthPixels>metrics.heightPixels?5:3);
+        int limit = metrics.widthPixels > metrics.heightPixels ? 5 : 3;
+        float fontScale = Math.max(1f, context.getResources().getConfiguration().fontScale);
+        int fits = (int) (metrics.widthPixels / (metrics.density * 152 * fontScale));
+        return Math.max(1, Math.min(count, Math.min(fits, limit)));
     }
     public static GradientDrawable rounded(Context context,int color,float radius) {
         Skin s=skin(context);
-        GradientDrawable drawable=Appearance.background(context,color,radius,Appearance.load(context));
-        if(Appearance.load(context).style==0&&"cyan".equals(s.theme)&&(color==s.surface||color==s.rail))drawable.setStroke(dp(context,1),s.outline);
+        Appearance.Config style=Appearance.load(context);
+        GradientDrawable drawable=Appearance.background(context,color,radius,style);
+        if(style.style==0&&"cyan".equals(s.theme)&&(color==s.surface||color==s.rail))drawable.setStroke(dp(context,1),s.outline);
         return drawable;
     }
     public static StateListDrawable buttonBackground(Context context,int normal,int pressed,int stroke,float radius) {
@@ -99,29 +109,57 @@ public final class CarUi {
     public static void message(Context context,String message) { Toast.makeText(context,message,Toast.LENGTH_LONG).show(); }
     public static void window(Activity activity){
         Skin skin=skin(activity);Window window=activity.getWindow();window.setBackgroundDrawable(new ColorDrawable(skin.background));
-        if(Build.VERSION.SDK_INT>=21){window.setStatusBarColor(skin.background);window.setNavigationBarColor(skin.rail);}
+        if(Build.VERSION.SDK_INT>=21){window.setStatusBarColor(skin.background);window.setNavigationBarColor(skin.glass!=null&&!skin.dark?skin.ink:skin.rail);}
         if(Build.VERSION.SDK_INT>=23){int flags=window.getDecorView().getSystemUiVisibility();window.getDecorView().setSystemUiVisibility(skin.dark?flags&~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR:flags|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);}
     }
     public static boolean back(Activity activity){CarHome home=homes.get(activity);return home!=null&&home.back();}
-    public static void refreshWallpaper(){for(CarHome home:new ArrayList<CarHome>(homes.values()))home.reloadWallpaper();}
+    public static void refreshWallpaper() {
+        for (Activity activity : new ArrayList<>(activities.keySet())) {
+            CarHome home = homes.get(activity);
+            if (home != null) home.reloadWallpaper();
+            else if (isForeground(activity)) refreshActivity(activity, true);
+        }
+        refreshDialogs();
+    }
+    private static void refreshDialogs() {
+        for (int i = dialogs.size() - 1; i >= 0; i--) {
+            Dialog dialog = dialogs.get(i).get();
+            if (dialog == null || !dialog.isShowing()) dialogs.remove(i);
+            else {
+                theme(dialog.getWindow().getDecorView());
+                FrostedDialogs.apply(dialog);
+            }
+        }
+    }
+    static boolean isForeground(Activity activity) {
+        return !Boolean.FALSE.equals(activities.get(activity));
+    }
     public static void install(Application application) {
         if(installed) return;installed=true;
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override public void onActivityCreated(final Activity activity,final Bundle state) {
-                activities.put(activity,Boolean.TRUE);
+                activities.put(activity,Boolean.FALSE);
                 activity.getWindow().getDecorView().post(new Runnable(){@Override public void run(){attach(activity,state);}});
             }
             @Override public void onActivityResumed(final Activity activity) {
+                activities.put(activity,Boolean.TRUE);
                 WallpaperView.activityState(activity,true);
                 activity.getWindow().getDecorView().post(new Runnable(){@Override public void run(){
-                    if(!homes.containsKey(activity)){View content=activity.findViewById(android.R.id.content);theme(content);LegacyUi.retheme(content);}AdbPairUi.resumed(activity);
+                    if(!homes.containsKey(activity))refreshActivity(activity,false);
+                    AdbPairUi.resumed(activity);
                 }});
             }
             @Override public void onActivitySaveInstanceState(Activity activity,Bundle state){CarHome home=homes.get(activity);if(home!=null)state.putInt("carui.page",home.currentPage());}
             @Override public void onActivityDestroyed(Activity activity){AdbPairUi.destroyed(activity);homes.remove(activity);activities.remove(activity);}
             @Override public void onActivityStarted(Activity activity){}
-            @Override public void onActivityPaused(Activity activity){WallpaperView.activityState(activity,false);}
-            @Override public void onActivityStopped(Activity activity){}
+            @Override public void onActivityPaused(Activity activity){
+                activities.put(activity,Boolean.FALSE);
+                WallpaperView.activityState(activity,false);
+            }
+            @Override public void onActivityStopped(Activity activity){
+                View content=activity.findViewById(android.R.id.content);
+                if (content instanceof ViewGroup) Wallpapers.unmount((ViewGroup) content);
+            }
         });
     }
     private static void attach(Activity activity,Bundle state) {
@@ -135,7 +173,22 @@ public final class CarUi {
             CarHome home=new CarHome(activity,new Bridge(activity,legacy),legacy);
             homes.put(activity,home);content.addView(home,new ViewGroup.LayoutParams(-1,-1));
             if(state!=null)home.showPage(state.getInt("carui.page",-1));
-        }else {theme(content);LegacyUi.retheme(content);}
+        }else refreshActivity(activity, false);
+    }
+    private static void refreshActivity(Activity activity, boolean reloadWallpaper) {
+        if (activity.isFinishing() || activity.isDestroyed()) return;
+        View view = activity.findViewById(android.R.id.content);
+        if (!(view instanceof ViewGroup)) return;
+        ViewGroup content = (ViewGroup) view;
+        for (int i = 0; i < content.getChildCount(); i++) {
+            if (LegacyUi.isFunctionPage(content.getChildAt(i))) {
+                window(activity);
+                LegacyUi.inheritWindowBackground(content);
+                if (isForeground(activity)) Wallpapers.mount(activity, content, reloadWallpaper);
+                break;
+            }
+        }
+        theme(content);
     }
     static String name(View view) {
         if(view.getId()==View.NO_ID)return "";
@@ -152,7 +205,8 @@ public final class CarUi {
     private static void themeTree(View view) {
         if(view==null||OWN.equals(view.getTag()))return;
         Context context=view.getContext();Skin skin=skin(context);String id=name(view);
-        if(id.equals("v_root")||id.equals("v_top")||id.equals("v_root2")||view.getId()==android.R.id.content) view.setBackgroundColor(skin.background);
+        if ((id.equals("v_root") || id.equals("v_top") || id.equals("v_root2") || view.getId() == android.R.id.content)
+                && !LegacyUi.inheritsBackground(view)) view.setBackgroundColor(skin.background);
         if(view instanceof EditText) {
             EditText input=(EditText)view;input.setTextColor(skin.ink);input.setHintTextColor(skin.muted);input.setTextSize(19);
             input.setMinimumHeight(dp(context,54));input.setPadding(dp(context,18),dp(context,10),dp(context,18),dp(context,10));
@@ -193,7 +247,7 @@ public final class CarUi {
         Window window=dialog.getWindow();Context context=dialog.getContext();Skin skin=skin(context);
         window.setBackgroundDrawable(rounded(context,skin.surface,30));
         LegacyUi.dialog(dialog);
-        View root=window.getDecorView();theme(root);LegacyUi.retheme(root);
+        View root=window.getDecorView();theme(root);
         int[] bounds=windowBounds(context);boolean full=LegacyUi.fullDialog(dialog);
         int width=Math.max(dp(context,240),Math.min(bounds[0]-dp(context,40),dp(context,full?820:LegacyUi.menuDialog(dialog)?380:620)));
         ViewGroup content=(ViewGroup)dialog.findViewById(android.R.id.content);

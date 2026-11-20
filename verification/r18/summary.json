@@ -1,0 +1,32 @@
+{
+  "release": "R18",
+  "version_name": "1.9.3",
+  "version_code": 1932,
+  "original_apk": {
+    "bytes": 18544438,
+    "sha256": "af02e0ed024ffd270d53c848bca36d853fa6cf6eed57d31c95070365f08357ea"
+  },
+  "local_ui_tests": {
+    "tests": 73,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "signed_and_aligned": true,
+  "certificate_sha256": "c8a2e9bccf597c2fb6dc66bee293fc13f2fc47ec77bc6b2b0d52c11f51192ab8",
+  "ui_integration_classes": 12,
+  "unchanged_legacy_classes_compared": 16395,
+  "real_device_tested": false,
+  "workspace_apks": {
+    "com.yunpan.appmanage": {
+      "name": "AppManager-1.9.3-R18-com.yunpan.appmanage.apk",
+      "bytes": 27254749,
+      "sha256": "1c9260a91bc86a9274d64d8ffe4f8c495bf042210b18f42202665d6e5349b382"
+    },
+    "com.maxinf.car": {
+      "name": "AppManager-1.9.3-R18-com.maxinf.car.apk",
+      "bytes": 27246557,
+      "sha256": "b6641f9c45c5ac1c8fd3cca017ba8c5c02ee226ed18a3cd32c1e264d199ecf3e"
+    }
+  }
+}

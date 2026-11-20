@@ -1,4 +1,6 @@
-# 应用管家 · R13 高级设置与无线配对助手
+# 应用管家 1.9.3 · R18 车机界面
+
+R18 将首页、主导航和独立功能页接入同一套壁纸。设置弹窗的滚动区随窗口毛玻璃绘制。版本还包含 GD 毛玻璃主题、粒子壁纸和五款星语悬浮形象。见[更新日志](更新日志.md)和[验证记录](../verification/r18/summary.json)。
 
 R13 恢复设置中被挤掉的 SU 命令与 ADB shell 密码输入框，并在“设置 → 连接”增加无线调试配对助手。助手保留原配对处理，增加 6 位码校验、主动粘贴、权限说明及可拖动/收起/关闭的悬浮输入窗。三主题、横竖屏与大字体均纳入检查；当前证据见 [R13修复与验证](R13修复与验证.md)。Android11+ 系统提供配对码；R12 的 Android9 APK 加固兼容路径是另一项能力，设备测试仍暂缓。
 
@@ -8,7 +10,7 @@ R12 增加 Android 9/API28 AES 加固加载路径，两个包名及一键工具�
 
 R10 修复开机任务设置的数字裁切，增加首页分区外间距，仅将已添加功能卡片设为无包边，“添加跳转”保留原包边。两种包名均使用用户提供的新图标。见 [R10修复与验证](R10修复与验证.md) 和 [包名工具](PACKAGE_VARIANTS.md)。下方 R9 测试及 VM 记录保留为历史证据；R10 当前 VM 不可达，不据旧截图接受本轮运行。
 
-原生Java UI扩展接入原com.yunpan.appmanage 1.9.2/1922公签APK。可独立编译的是UI扩展；原JADX Java全工程历史仍有2593项错误，不等同于作者原始仓库。业务沿用原smali、适配器、监听器和权限处理。
+原生 Java UI 扩展接入应用管家 1.9.3（1932）公签 APK。业务沿用原 smali、适配器、监听器和权限处理。仓库里的 1.9.2 JADX 导出和反编译目录供历史查阅。
 
 定制作者：**carlito**。源APK：**应用管家社区官方【应用管家】**，社区链接：https://pd.qq.com/s/7eyokceit?b=5 ，腾讯频道号 `updata3927`。主页常用功能末尾与主题中心下部均可打开“关于与来源”，完整查看用户提供的公开二维码原图；定制署名与原APK来源分开标注。
 
@@ -30,13 +32,32 @@ R10 修复开机任务设置的数字裁切，增加首页分区外间距，仅�
 
 ## 构建
 
+准备[原 APK](../input/README.md)、Apktool 2.11.1 和 JDK 17。在本机核对 `build_ui.py`、`package_apk.py` 和 `build.gradle` 中的 Android SDK 与 Java 路径。以下命令从仓库根目录运行。
+
 ```powershell
+$apktool = 'C:/tools/apktool-2.11.1.jar'
+$signingKey = 'C:/signing/platform.pk8'
+New-Item -ItemType Directory -Path '.work' -Force | Out-Null
+Copy-Item -LiteralPath 'input/应用管家_1.9.3.apk' -Destination '.work/original.apk'
+java -jar $apktool d .work/original.apk -o .work/decoded
 python car-ui/build_ui.py --patch
-java -jar <apktool.jar> b .work/decoded -p .work/framework -o .work/car-ui-compiled.apk
-java -Xmx2g -cp '.work;<apktool.jar>' CompareDex .work/original.apk .work/car-ui-compiled.apk car-ui/build/dex-review
-python car-ui/package_apk.py --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-局域网二维码修复-兼容版-R9-20261104.apk
-python car-ui/protect_apk.py --input car-ui/应用管家-局域网二维码修复-兼容版-R9-20261104.apk --key <platform.pk8> --cert car-ui/platform.x509.pem --output 应用管家-局域网二维码修复-AES加固版-R9-20261104.apk
+javac -encoding UTF-8 -cp $apktool -d .work car-ui/tools/AssembleUiSmali.java car-ui/tools/CompareDex.java
+java -Xmx2g -cp ".work;$apktool" AssembleUiSmali .work/decoded/smali .work/classes.dex
+@'
+from pathlib import Path
+from zipfile import ZipFile
+
+work = Path(".work")
+with ZipFile(work / "original.apk") as original, ZipFile(work / "car-ui-compiled.apk", "w") as output:
+    output.write(work / "classes.dex", "classes.dex")
+    for name in ("classes2.dex", "classes3.dex"):
+        output.writestr(name, original.read(name))
+'@ | python -
+java -Xmx2g -cp ".work;$apktool" CompareDex .work/original.apk .work/car-ui-compiled.apk car-ui/build/dex-review
+python car-ui/package_apk.py --key $signingKey --cert car-ui/platform.x509.pem --output AppManager-1.9.3-R18-base.apk
 ```
+
+双包名的打包参数见[包名工具说明](PACKAGE_VARIANTS.md)。运行本地回归时，将原 APK 的 JADX 输出放到 `.work/jadx193`，依次运行 `prepare_test_resources.py`、`prepare_binding_tests.py` 和 `gradle -p car-ui test`。
 
 构建依赖工作区原 APK、反编译资源和当前 Windows 工具链；迁移需调整脚本路径。源码和基线 smali、公钥证书随包；私钥不归档。保护打包需 Python `cryptography`（本次50.0.2）。兼容版新增 `classes4.dex`，原资源与第二第三 DEX 字节一致；加固版主DEX仅剩一个明文bootstrap，四个业务/UI DEX在assets中加密保存。每次保护构建生成新随机材料，产物SHA不同是预期行为。
 
