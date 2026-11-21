@@ -6,14 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.SystemClock;
-import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -79,7 +77,7 @@ public final class WallpaperView extends FrameLayout implements TextureView.Surf
     @Override protected void onDetachedFromWindow() {
         attached = false;
         if (!preview) getViewTreeObserver().removeOnScrollChangedListener(alignGlass);
-        particles.removeCallbacks(particles.tick);
+        particles.stop();
         release();
         super.onDetachedFromWindow();
     }
@@ -115,131 +113,50 @@ public final class WallpaperView extends FrameLayout implements TextureView.Surf
     @Override public void onSurfaceTextureSizeChanged(SurfaceTexture s,int w,int h){crop();}
     @Override public boolean onSurfaceTextureDestroyed(SurfaceTexture s){release();return true;}
     @Override public void onSurfaceTextureUpdated(SurfaceTexture s){}
-    void pulse(float x, float y) {
-        if (config.style != 1 || !particles.canMove()) return;
-        particles.touchX = x;
-        particles.touchY = y;
-        particles.pulseAt = particles.elapsed;
-        particles.invalidate();
-    }
-
-    @Override public boolean onTouchEvent(MotionEvent event) {
-        if (!preview || !config.mode.equals("particles") || config.style != 1) return super.onTouchEvent(event);
-        if (event.getActionMasked() == MotionEvent.ACTION_DOWN) pulse(event.getX(), event.getY());
-        return true;
-    }
-
     private final class Particles extends View {
-        private static final int FRAME_MS = 33;
-        final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        final float[] xs = new float[110], ys = new float[110];
-        final Constellation stars = new Constellation();
-        long elapsed, lastFrame, pulseAt = -1;
-        float touchX, touchY;
+        final ParticleScene scene = new ParticleScene();
+        private long lastFrame;
+        private boolean scheduled;
+
         final Runnable tick = new Runnable() {
             @Override public void run() {
                 if (!canMove()) {
-                    invalidate();
+                    scheduled = false;
                     return;
                 }
                 long now = SystemClock.uptimeMillis();
-                elapsed += Math.min(FRAME_MS * 2, now - lastFrame);
+                scene.advance(config, Math.min(66, now - lastFrame) / 1000f);
                 lastFrame = now;
                 invalidate();
-                postDelayed(this, FRAME_MS);
+                postOnAnimationDelayed(this, 16);
             }
         };
 
-        Particles(Context context) {
-            super(context);
-            java.util.Random random = new java.util.Random(947);
-            for (int i = 0; i < xs.length; i++) {
-                xs[i] = random.nextFloat();
-                ys[i] = random.nextFloat();
-            }
-        }
+        Particles(Context context) { super(context); }
 
         boolean canMove() {
             return running() && config.mode.equals("particles") && !config.still && CarMotion.enabled(getContext());
         }
 
         void sync() {
-            removeCallbacks(tick);
-            pulseAt = -1;
+            scene.configure(config);
             if (canMove()) {
-                lastFrame = SystemClock.uptimeMillis();
-                postDelayed(tick, FRAME_MS);
-            }
+                if (!scheduled) {
+                    scheduled = true;
+                    lastFrame = SystemClock.uptimeMillis();
+                    postOnAnimation(tick);
+                }
+            } else stop();
             invalidate();
         }
 
+        void stop() {
+            removeCallbacks(tick);
+            scheduled = false;
+        }
+
         @Override protected void onDraw(Canvas canvas) {
-            boolean animated = canMove();
-            float time = animated ? elapsed / 1000f : 0f;
-            if (config.style == 1) {
-                float wave = animated && pulseAt >= 0 ? (elapsed - pulseAt) / 650f : 1f;
-                stars.draw(canvas, getWidth(), getHeight(), config, time, xs, ys, paint, touchX, touchY, wave);
-            } else drawPattern(canvas, getWidth(), getHeight(), config, time, xs, ys, paint);
+            scene.draw(canvas, getWidth(), getHeight(), config);
         }
-    }
-
-    // Constellation mesh adapted from Lucian UX/UI Prompt #341 (MIT, Seokwoooo).
-    // https://lucianlabs.dev/en/uxui-prompt/#341
-    private static final class Constellation {
-        private static final int LIMIT = 64;
-        final float[] px = new float[LIMIT], py = new float[LIMIT];
-
-        void draw(Canvas canvas, int w, int h, Wallpapers.Config c, float seconds, float[] xs, float[] ys,
-                  Paint paint, float touchX, float touchY, float wave) {
-            canvas.drawColor(Wallpapers.BACKGROUNDS[c.background]);
-            if (w <= 0 || h <= 0) return;
-            int count = 24 + c.density * (LIMIT - 24) / 100;
-            float time = seconds * (.18f + c.speed * .013f);
-            float edge = Math.min(w, h);
-            float reach = edge * .18f, reachSquared = reach * reach;
-            for (int i = 0; i < count; i++) {
-                float x = xs[i] + time * (.004f + (i % 5) * .0014f);
-                float y = ys[i] + time * (.002f + (i % 7) * .0009f);
-                px[i] = (x % 1f) * w;
-                py[i] = (y % 1f) * h;
-            }
-            paint.setColor(Wallpapers.COLORS[c.color]);
-            paint.setStrokeWidth(Math.max(1, edge / 720f));
-            for (int i = 0; i < count; i++) {
-                for (int j = i + 1, linked = 0; j < count && linked < 3; j++) {
-                    float dx = px[i] - px[j], dy = py[i] - py[j];
-                    float distance = dx * dx + dy * dy;
-                    if (distance >= reachSquared) continue;
-                    paint.setAlpha((int) (68f * (1f - distance / reachSquared)));
-                    canvas.drawLine(px[i], py[i], px[j], py[j], paint);
-                    linked++;
-                }
-                int pulse = 0;
-                if (wave < 1f) {
-                    float dx = px[i] - touchX, dy = py[i] - touchY;
-                    float ring = Math.abs((float) Math.sqrt(dx * dx + dy * dy) - wave * edge * .43f);
-                    pulse = (int) (92f * (1f - wave) * Math.max(0f, 1f - ring / (reach * .48f)));
-                }
-                float shimmer = (float) Math.sin(time * 1.8f + i);
-                paint.setAlpha(Math.min(255, 114 + (int) (40 * shimmer) + pulse));
-                float radius = (1.15f + (i % 5) * .4f) * Math.max(1f, edge / 760f);
-                canvas.drawCircle(px[i], py[i], radius, paint);
-            }
-            paint.setAlpha(255);
-        }
-    }
-    static void drawPattern(Canvas canvas,int w,int h,Wallpapers.Config c,float seconds,float[] xs,float[] ys,Paint paint){
-        if (c.style == 1) {
-            new Constellation().draw(canvas, w, h, c, seconds, xs, ys, paint, 0f, 0f, 1f);
-            return;
-        }
-        canvas.drawColor(Wallpapers.BACKGROUNDS[c.background]);int count=24+c.density*80/100;float time=seconds*(.2f+c.speed*.016f);int color=Wallpapers.COLORS[c.color];paint.setStrokeWidth(Math.max(1,w/900f));paint.setStyle(Paint.Style.FILL);
-        for(int i=0;i<count;i++){float x=(xs[i]+time*(c.style==3?.002f:.009f))%1f,y=(ys[i]+time*(c.style==3?.022f:.005f))%1f;
-            if(c.style==2){x=xs[i];y=.5f+(float)Math.sin(x*8+time*.4f+i*.23f)*(.12f+ys[i]*.3f);}
-            if(c.style==4){float angle=xs[i]*6.283f+time*(.10f+ys[i]*.06f),radius=.12f+ys[i]*.35f;x=.5f+(float)Math.cos(angle)*radius;y=.5f+(float)Math.sin(angle)*radius*w/Math.max(1,h);}
-            if(c.style==5){x=(xs[i]+time*.045f)%1f;y=(ys[i]+time*.065f)%1f;}
-            paint.setColor(color);paint.setAlpha(90+(i*37)%166);float radius=(1.2f+(i%4)*.8f)*Math.max(1,w/720f);canvas.drawCircle(x*w,y*h,radius,paint);if(c.style==3){canvas.drawLine(x*w-radius*2,y*h,x*w+radius*2,y*h,paint);canvas.drawLine(x*w,y*h-radius*2,x*w,y*h+radius*2,paint);}
-            if(c.style==5){paint.setAlpha(65);canvas.drawLine(x*w,y*h,x*w-radius*18,y*h-radius*25,paint);}
-        }paint.setAlpha(255);
     }
 }

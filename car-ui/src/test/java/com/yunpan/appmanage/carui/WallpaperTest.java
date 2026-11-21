@@ -5,11 +5,12 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import org.robolectric.annotation.Config;
 import org.robolectric.annotation.GraphicsMode;
 import org.robolectric.annotation.LooperMode;
 import org.robolectric.shadows.ShadowDialog;
+import org.robolectric.util.ReflectionHelpers;
 import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
@@ -30,7 +32,75 @@ public class WallpaperTest {
     @Before public void setup()throws Exception{f.setup();f.activity.getSharedPreferences("car_wallpaper_v1",0).edit().clear().commit();}
     View text(View root,String name){if(root instanceof TextView&&((TextView)root).getText().toString().startsWith(name))return root;if(root instanceof ViewGroup){ViewGroup g=(ViewGroup)root;for(int i=0;i<g.getChildCount();i++){View found=text(g.getChildAt(i),name);if(found!=null)return found;}}return null;}
     @Test public void settingsPersistAndMalformedIndexesAreBounded(){Wallpapers.Config c=Wallpapers.load(f.activity);assertEquals("off",c.mode);c.mode="particles";c.style=5;c.color=4;c.background=3;c.speed=91;c.still=true;Wallpapers.save(f.activity,c);Wallpapers.Config saved=Wallpapers.load(f.activity);assertEquals(5,saved.style);assertEquals(4,saved.color);assertEquals(3,saved.background);assertEquals(91,saved.speed);assertTrue(saved.still);f.activity.getSharedPreferences("car_wallpaper_v1",0).edit().putInt("style",999).putInt("color",-4).putString("mode","unknown").commit();saved=Wallpapers.load(f.activity);assertEquals("off",saved.mode);assertEquals(5,saved.style);assertEquals(0,saved.color);}
-    Bitmap frame(Wallpapers.Config c,float time){Bitmap b=Bitmap.createBitmap(480,640,Bitmap.Config.ARGB_8888);float[] x=new float[110],y=new float[110];java.util.Random r=new java.util.Random(947);for(int i=0;i<110;i++){x[i]=r.nextFloat();y[i]=r.nextFloat();}WallpaperView.drawPattern(new Canvas(b),480,640,c,time,x,y,new Paint(3));return b;}
+    Bitmap frame(Wallpapers.Config config, float time) {
+        ParticleScene scene = new ParticleScene();
+        scene.configure(config);
+        for (float remaining = time; remaining > 0f; remaining -= .04f) {
+            scene.advance(config, Math.min(.04f, remaining));
+        }
+        return frame(scene, config);
+    }
+    private Bitmap frame(ParticleScene scene, Wallpapers.Config config) {
+        Bitmap bitmap = Bitmap.createBitmap(480, 640, Bitmap.Config.ARGB_8888);
+        scene.draw(new Canvas(bitmap), 480, 640, config);
+        return bitmap;
+    }
+    private Bitmap frame(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(480, 640, Bitmap.Config.ARGB_8888);
+        view.draw(new Canvas(bitmap));
+        return bitmap;
+    }
+    @Test public void particlePreviewRunsAndPausesOnTheCurrentFrame() {
+        Wallpapers.Config config = new Wallpapers.Config();
+        config.mode = "particles";
+        config.style = 5;
+        WallpaperView preview = new WallpaperView(f.activity, true);
+        preview.configure(config);
+        f.activity.setContentView(preview);
+        f.fixture.layout(preview, 480, 640);
+        Bitmap initial = frame(preview);
+        Shadows.shadowOf(Looper.getMainLooper()).idleFor(480, TimeUnit.MILLISECONDS);
+        Bitmap moving = frame(preview);
+        assertFalse(initial.sameAs(moving));
+        config.still = true;
+        preview.configure(config);
+        Shadows.shadowOf(Looper.getMainLooper()).idleFor(480, TimeUnit.MILLISECONDS);
+        Bitmap paused = frame(preview);
+        assertTrue("Pausing retains the current scene", moving.sameAs(paused));
+        config.still = false;
+        preview.configure(config);
+        Shadows.shadowOf(Looper.getMainLooper()).idleFor(480, TimeUnit.MILLISECONDS);
+        Bitmap resumed = frame(preview);
+        assertFalse(paused.sameAs(resumed));
+        initial.recycle();
+        moving.recycle();
+        paused.recycle();
+        resumed.recycle();
+    }
+    @Test public void particlesCarryVelocityAndBreatheAtIndependentRates() {
+        Wallpapers.Config config = new Wallpapers.Config();
+        config.mode = "particles";
+        config.style = 5;
+        config.speed = 0;
+        ParticleScene scene = new ParticleScene();
+        scene.configure(config);
+        Object[] particles = ReflectionHelpers.getField(scene, "particles");
+        Object first = particles[0], second = particles[1];
+        float previousVelocity = ReflectionHelpers.getField(first, "vy");
+        float previousBreath = ReflectionHelpers.getField(first, "breath");
+        float anotherBreath = ReflectionHelpers.getField(second, "breath");
+
+        config.speed = 100;
+        scene.advance(config, .033f);
+        float initialVelocity = ReflectionHelpers.getField(first, "vy");
+        float instantTarget = 1.94f * ReflectionHelpers.<Float>getField(first, "driftY");
+        assertTrue(initialVelocity > previousVelocity);
+        assertTrue("Velocity must ease towards the new speed", initialVelocity < instantTarget);
+        float firstPhaseStep = ReflectionHelpers.<Float>getField(first, "breath") - previousBreath;
+        float secondPhaseStep = ReflectionHelpers.<Float>getField(second, "breath") - anotherBreath;
+        assertTrue(firstPhaseStep > 0f && secondPhaseStep > 0f);
+        assertNotEquals(firstPhaseStep, secondPhaseStep, .00001f);
+    }
     @Test public void allSixPatternsAnimateAndBothPalettesAffectPixels(){java.util.HashSet<Integer> signatures=new java.util.HashSet<>();Wallpapers.Config c=new Wallpapers.Config();for(int style=0;style<6;style++){c.style=style;Bitmap first=frame(c,0),later=frame(c,8);assertFalse("style "+style+" must change with time",first.sameAs(later));int[] pixels=new int[480*640];first.getPixels(pixels,0,480,0,0,480,640);signatures.add(java.util.Arrays.hashCode(pixels));first.recycle();later.recycle();}assertEquals(6,signatures.size());Bitmap blue=frame(c,0);c.background=2;c.color=4;Bitmap purple=frame(c,0);assertFalse(blue.sameAs(purple));blue.recycle();purple.recycle();}
     @Test public void previewCancelDoesNotSaveAndApplyPersistsSelection()throws Exception{WallpaperPicker.show(f.activity);Dialog d=ShadowDialog.getLatestDialog();View decor=d.getWindow().getDecorView();text(decor,"粒子").performClick();assertEquals("off",Wallpapers.load(f.activity).mode);text(decor,"流星雨").performClick();text(decor,"取消").performClick();assertEquals("off",Wallpapers.load(f.activity).mode);WallpaperPicker.show(f.activity);d=ShadowDialog.getLatestDialog();decor=d.getWindow().getDecorView();text(decor,"粒子").performClick();text(decor,"轨道光环").performClick();text(decor,"樱粉").performClick();text(decor,"暮光紫").performClick();for(int[] size:new int[][]{{1440,1920},{1920,1440}}){f.fixture.layout(f.activity.getWindow().getDecorView(),size[0],size[1]);android.view.WindowManager.LayoutParams p=d.getWindow().getAttributes();f.fixture.layout(decor,p.width,p.height);assertTrue(decor.getHeight()<=size[1]);assertTrue(text(decor,"应用壁纸").getHeight()>=96);}text(decor,"应用壁纸").performClick();Wallpapers.Config saved=Wallpapers.load(f.activity);assertEquals("particles",saved.mode);assertEquals(4,saved.style);assertEquals(4,saved.color);assertEquals(2,saved.background);}
     @Test public void systemVideoRequestAndCancellationPreserveCurrentWallpaper(){Wallpapers.Config c=new Wallpapers.Config();c.mode="particles";Wallpapers.save(f.activity,c);Wallpapers.chooseVideo(f.activity);org.robolectric.shadows.ShadowActivity.IntentForResult request=Shadows.shadowOf(f.activity).getNextStartedActivityForResult();assertNotNull(request);assertEquals(Intent.ACTION_OPEN_DOCUMENT,request.intent.getAction());assertEquals("video/*",request.intent.getType());assertTrue(request.intent.getBooleanExtra(Intent.EXTRA_LOCAL_ONLY,false));assertTrue((request.intent.getFlags()&Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)!=0);Wallpapers.VideoResult fragment=(Wallpapers.VideoResult)f.activity.getFragmentManager().findFragmentByTag("carui.video.result");fragment.onActivityResult(7362,Activity.RESULT_CANCELED,null);assertEquals("particles",Wallpapers.load(f.activity).mode);ShadowDialog.getLatestDialog().dismiss();fragment.onActivityResult(7362,Activity.RESULT_OK,new Intent().setData(Uri.parse("https://example.com/video.mp4")));assertEquals("particles",Wallpapers.load(f.activity).mode);ShadowDialog.getLatestDialog().dismiss();}

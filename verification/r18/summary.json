@@ -7,7 +7,7 @@
     "sha256": "af02e0ed024ffd270d53c848bca36d853fa6cf6eed57d31c95070365f08357ea"
   },
   "local_ui_tests": {
-    "tests": 73,
+    "tests": 83,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -20,13 +20,13 @@
   "workspace_apks": {
     "com.yunpan.appmanage": {
       "name": "AppManager-1.9.3-R18-com.yunpan.appmanage.apk",
-      "bytes": 27254749,
-      "sha256": "1c9260a91bc86a9274d64d8ffe4f8c495bf042210b18f42202665d6e5349b382"
+      "bytes": 27262941,
+      "sha256": "f3cad9413c75ab0af6b13cb33f5d2a16851330293c54f0d4bfded077f4dfe9f1"
     },
     "com.maxinf.car": {
       "name": "AppManager-1.9.3-R18-com.maxinf.car.apk",
-      "bytes": 27246557,
-      "sha256": "b6641f9c45c5ac1c8fd3cca017ba8c5c02ee226ed18a3cd32c1e264d199ecf3e"
+      "bytes": 27250653,
+      "sha256": "e75cf6520a7177f4a11dab4960ce71909a700d1b0fdf1b8124847baada452dc6"
     }
   }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -124,6 +125,7 @@ public final class LegacyUi {
         else if(name.equals("activity_automation"))automation((ViewGroup)root);
         else if(name.equals("activity_float_button")||name.equals("activity_sidebar")||name.equals("dialog_keymap_diy"))mapping((ViewGroup)root,name);
         else if(name.equals("activity_download"))downloads((ViewGroup)root);
+        else if(name.equals("activity_shell"))shellPreview((ViewGroup)root);
         else if(name.equals("activity_key_map_logcat")||name.equals("activity_key_map_acc")||name.equals("activity_key_map_event")||name.equals("activity_auto_click_usb_set"))mappingList((ViewGroup)root,name);
         else if(name.startsWith("dialog_file_menu_"))fileMenu((ViewGroup)root);
         else if(name.equals("dialog_clean_mode"))cleanMode((ViewGroup)root);
@@ -173,11 +175,84 @@ public final class LegacyUi {
     private static int selectorHeight(View v){return Math.round(d(v,68)*Math.max(1,v.getResources().getConfiguration().fontScale));}
     private static void downloads(ViewGroup root){
         View path=find(root,"v_list_path"),files=find(root,"v_list_file"),more=find(root,"v_lay_load_more"),loading=find(root,"v_loading"),url=find(root,"v_url"),commands=find(root,"v_list_gn"),tasks=find(root,"v_list_down"),qr=find(root,"v_lay_qrcode"),history=find(root,"v_lay_history"),help=find(root,"v_help");
+        View historyList=find(root,"v_list_history");
         List<View> original=children(root);LinearLayout col=column(root.getContext());col.setPadding(d(root,18),d(root,16),d(root,18),d(root,12));label(col,"文件下载");Split split=new Split(root.getContext());
         LinearLayout browser=column(root.getContext());label(browser,"文件浏览");add(browser,path,selectorHeight(root));FrameLayout fileBody=new FrameLayout(root.getContext());if(files!=null){detach(files);fileBody.addView(files,new FrameLayout.LayoutParams(-1,-1));}overlay(fileBody,loading);weighted(browser,fileBody);add(browser,more,-2);split.addView(browser);
-        LinearLayout incoming=column(root.getContext());label(incoming,"链接与任务");add(incoming,url,-2);addToolbar(incoming,commands,150,4);FrameLayout taskBody=new FrameLayout(root.getContext());for(View v:new View[]{tasks,qr,history,help})if(v!=null){detach(v);taskBody.addView(v,new FrameLayout.LayoutParams(-1,-1));}emptyState(taskBody,tasks,null,"暂无下载任务",qr,history);weighted(incoming,taskBody);split.addView(incoming);weighted(col,split);
+        LinearLayout incoming=column(root.getContext());label(incoming,"链接与任务");add(incoming,url,-2);
+        if (commands != null) {
+            prepareGrid(commands);
+            add(incoming,new GridHost(commands,150,4,false,6),-2);
+        }
+        for (String id : new String[]{"v_history_ts", "v_qrcode_ip", "v_help"}) {
+            View text = find(root, id);
+            if (text != null) text.setTag(ROLE, "previewText");
+        }
+        if (qr instanceof ViewGroup) downloadQr((ViewGroup) qr);
+        FrameLayout taskBody = new FrameLayout(root.getContext());
+        FrameLayout taskList = new FrameLayout(root.getContext());
+        taskBody.addView(taskList, new FrameLayout.LayoutParams(-1, -1));
+        if (tasks != null) {
+            detach(tasks);
+            taskList.addView(tasks, new FrameLayout.LayoutParams(-1, -1));
+        }
+        emptyState(taskList,tasks,null,"暂无下载任务",null,null);
+        View[] previews = {qr, history, help};
+        for (View preview : previews) {
+            if (preview == null) continue;
+            preview.setTag(BACKDROP_ROOT, Boolean.TRUE);
+            detach(preview);
+            taskBody.addView(preview, new FrameLayout.LayoutParams(-1, -1));
+        }
+        taskBody.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            int visibility = View.VISIBLE;
+            for (View preview : previews) {
+                if (preview != null && preview.getVisibility() == View.VISIBLE) {
+                    visibility = View.INVISIBLE;
+                    break;
+                }
+            }
+            if (taskList.getVisibility() != visibility) taskList.setVisibility(visibility);
+        });
+        weighted(incoming,taskBody);split.addView(incoming);weighted(col,split);
         emptyState(fileBody,files,path,"暂无文件，请先打开链接",loading,more);
-        for(View v:original)if(v.getParent()==root){detach(v);v.setVisibility(View.GONE);col.addView(v,new LinearLayout.LayoutParams(0,0));}fill(root,col,true);
+        for(View v:original)if(v.getParent()==root){detach(v);v.setVisibility(View.GONE);col.addView(v,new LinearLayout.LayoutParams(0,0));}
+        if (commands instanceof ViewGroup && history != null && historyList != null) {
+            PreviewNavigation workspace = new PreviewNavigation((ViewGroup) commands,history,historyList,qr,help);
+            workspace.addView(col,new FrameLayout.LayoutParams(-1,-1));
+            fill(root,workspace,true);
+        } else fill(root,col,true);
+    }
+
+    private static void downloadQr(ViewGroup pane) {
+        View code = find(pane, "v_image_qrCode"), address = find(pane, "v_qrcode_ip");
+        if (!(code instanceof ImageView) || !(address instanceof TextView)) return;
+        QrSquare square = new QrSquare(pane.getContext(), .14f);
+        square.setTag(CarUi.OWN);
+        square.setBackgroundColor(Color.WHITE);
+        detach(code);
+        code.setPadding(0, 0, 0, 0);
+        square.addView(code, new FrameLayout.LayoutParams(-1, -1));
+        FrameLayout artwork = new FrameLayout(pane.getContext());
+        FrameLayout.LayoutParams placement = new FrameLayout.LayoutParams(-2, -2, Gravity.CENTER);
+        int gap = d(pane, 12);
+        placement.setMargins(gap, gap, gap, gap);
+        artwork.addView(square, placement);
+        LinearLayout column = column(pane.getContext());
+        weighted(column, artwork);
+        ((TextView) address).setGravity(Gravity.CENTER);
+        add(column, address, -2);
+        fill(pane, column, true);
+    }
+
+    private static void shellPreview(ViewGroup root) {
+        generic(root,true,true);
+        View commands = find(root,"v_list_btn"), qr = find(root,"v_qrCode");
+        if (!(commands instanceof ViewGroup) || qr == null || root.getChildCount() != 1) return;
+        View content = root.getChildAt(0);
+        detach(content);
+        PreviewNavigation workspace = new PreviewNavigation((ViewGroup)commands,null,null,qr,null);
+        workspace.addView(content,new FrameLayout.LayoutParams(-1,-1));
+        fill(root,workspace,true);
     }
     private static void mappingList(ViewGroup root,String name){
         List<View> original=children(root);boolean usb=name.equals("activity_auto_click_usb_set");View list=find(root,usb?"v_list_app":"v_list"),commands=find(root,"v_list_gn"),loading=find(root,"v_loading");String title=usb?"USB 授权自动点击":name.equals("activity_key_map_logcat")?"日志映射":name.equals("activity_key_map_acc")?"原生按键映射":"事件映射";
@@ -278,7 +353,36 @@ public final class LegacyUi {
             View error=find(root,"v_read_ts_lay"+n),loading=find(root,n==1?"v_loadDir_lay":"v_readProgress2");emptyState(body,list,path,n==1?"添加或选择云盘\n登录后浏览文件":"选择本地存储以浏览文件",error,loading);overlay(body,error);overlay(body,loading);if(n==1)overlay(body,find(root,"v_loadMore_lay"));weighted(pane,body);
             View bottom=new View(root.getContext());bottom.setTag(ROLE,"divider");pane.addView(bottom,new LinearLayout.LayoutParams(-1,Math.max(1,d(root,1))));add(pane,find(root,"v_dir_gn"+n),d(root,56));
         }
-        weighted(col,panes);FrameLayout frame=new FrameLayout(root.getContext());frame.addView(col,new FrameLayout.LayoutParams(-1,-1));if(taskPanel!=null){detach(taskPanel);generic((ViewGroup)taskPanel,true);frame.addView(taskPanel,new FrameLayout.LayoutParams(-1,-1));}fill(root,frame,true);
+        weighted(col,panes);FrameLayout frame=new NetworkTaskFrame(root.getContext(),taskPanel);frame.addView(col,new FrameLayout.LayoutParams(-1,-1));if(taskPanel!=null){detach(taskPanel);generic((ViewGroup)taskPanel,true);frame.addView(taskPanel,new FrameLayout.LayoutParams(-1,-1));}fill(root,frame,true);
+    }
+
+    static boolean closeNetworkTasks(View root) {
+        if (root == null) return false;
+        View panel = find(root,"v_task_lay");
+        if (panel == null || !panel.isShown()) return false;
+        panel.setVisibility(View.GONE);
+        View opener = find(root,"v_btn_task");
+        RemoteFocus.restore(opener, opener);
+        return true;
+    }
+
+    private static final class NetworkTaskFrame extends FrameLayout {
+        private final View panel;
+        private boolean visible;
+
+        NetworkTaskFrame(Context context, View panel) { super(context); this.panel = panel; }
+
+        @Override public void addFocusables(ArrayList<View> views, int direction, int mode) {
+            if (panel != null && panel.isShown()) panel.addFocusables(views, direction, mode);
+            else super.addFocusables(views, direction, mode);
+        }
+
+        @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
+            super.onLayout(changed,l,t,r,b);
+            boolean shown = panel != null && panel.isShown();
+            if (shown && !visible) RemoteFocus.afterLayout(panel, () -> RemoteFocus.restore(panel, null));
+            visible = shown;
+        }
     }
     private static void singleColumn(View list){try{Object manager=list.getClass().getMethod("getLayoutManager").invoke(list);if(manager!=null&&((Integer)manager.getClass().getMethod("getSpanCount").invoke(manager))!=1)manager.getClass().getMethod("setSpanCount",int.class).invoke(manager,1);}catch(NoSuchMethodException ignored){}catch(Exception e){Log.w(TAG,"Network list columns",e);}}
     private static void networkRow(View item){
@@ -321,8 +425,21 @@ public final class LegacyUi {
         @Override protected void onMeasure(int w,int h){int width=MeasureSpec.getSize(w),height=MeasureSpec.getSize(h);int[] owner=CarUi.windowBounds(getContext());boolean wide=owner[0]>owner[1]&&width>=CarUi.dp(getContext(),600);setOrientation(wide?HORIZONTAL:VERTICAL);square.setVisibility(image.getVisibility());int size=image.getVisibility()==GONE?0:Math.min(CarUi.dp(getContext(),360),Math.min(wide?Math.round(width*.46f):width,wide?height:Math.round(height*.55f)));LinearLayout.LayoutParams q=new LinearLayout.LayoutParams(size,size);q.gravity=wide?Gravity.TOP:Gravity.CENTER_HORIZONTAL;if(wide)q.rightMargin=CarUi.dp(getContext(),20);else q.bottomMargin=CarUi.dp(getContext(),12);square.setLayoutParams(q);instructions.setLayoutParams(wide?new LinearLayout.LayoutParams(0,-1,1):new LinearLayout.LayoutParams(-1,0,1));super.onMeasure(w,h);}
     }
     private static final class QrSquare extends FrameLayout{
-        QrSquare(Context c){super(c);}
-        @Override protected void onMeasure(int w,int h){int[] owner=CarUi.windowBounds(getContext());int size=Math.min(MeasureSpec.getSize(w),Math.min(CarUi.dp(getContext(),380),Math.max(CarUi.dp(getContext(),120),owner[1]-CarUi.dp(getContext(),220))));if(MeasureSpec.getMode(h)!=MeasureSpec.UNSPECIFIED)size=Math.min(size,MeasureSpec.getSize(h));super.onMeasure(MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY));}
+        private final float insetFraction;
+        QrSquare(Context c) { this(c, 0f); }
+        QrSquare(Context c, float insetFraction) { super(c); this.insetFraction = insetFraction; }
+        @Override protected void onMeasure(int w, int h) {
+            int[] owner = CarUi.windowBounds(getContext());
+            int size = Math.min(MeasureSpec.getSize(w), Math.min(CarUi.dp(getContext(), 380),
+                    Math.max(CarUi.dp(getContext(), 120), owner[1] - CarUi.dp(getContext(), 220))));
+            if (MeasureSpec.getMode(h) != MeasureSpec.UNSPECIFIED) size = Math.min(size, MeasureSpec.getSize(h));
+            if (insetFraction > 0f) {
+                int inset = Math.round(size * insetFraction);
+                if (getPaddingLeft() != inset) setPadding(inset, inset, inset, inset);
+            }
+            int spec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
+            super.onMeasure(spec, spec);
+        }
     }
     private static void settings(ViewGroup root,final Dialog dialog){
         if(root.getTag(REWRITTEN)!=null)return;root.setTag(REWRITTEN,Boolean.TRUE);
@@ -361,7 +478,7 @@ public final class LegacyUi {
     }
     private static void choiceGroup(ViewGroup group){List<View> parts=children(group);LinearLayout col=column(group.getContext());WrapLayout options=new WrapLayout(group.getContext());for(View p:parts){detach(p);if(p instanceof ViewGroup){p.setMinimumHeight(d(group,52));p.setPadding(d(group,8),d(group,8),d(group,8),d(group,8));options.addView(p,new ViewGroup.LayoutParams(-2,-2));}else add(col,p,-2);}add(col,options,-2);fill(group,col,false);}
     private static void overlay(FrameLayout parent,View view){if(view==null)return;ViewGroup.LayoutParams original=view.getLayoutParams();int width=original!=null&&original.width>0?original.width:-2,height=original!=null&&original.height>0?original.height:-2;if(view.getClass().getName().endsWith("HiveProgressView")){width=width>0?width:d(view,100);height=height>0?height:width;}detach(view);FrameLayout.LayoutParams lp=new FrameLayout.LayoutParams(width,height,Gravity.CENTER);parent.addView(view,lp);}
-    private static int itemCount(View list){if(list==null)return -1;try{Object adapter=list.getClass().getMethod("getAdapter").invoke(list);if(adapter==null)return 0;try{return (Integer)adapter.getClass().getMethod("getItemCount").invoke(adapter);}catch(NoSuchMethodException e){return (Integer)adapter.getClass().getMethod("b").invoke(adapter);}}catch(Exception e){return -1;}}
+    static int itemCount(View list){if(list==null)return -1;try{Object adapter=list.getClass().getMethod("getAdapter").invoke(list);if(adapter==null)return 0;try{return (Integer)adapter.getClass().getMethod("getItemCount").invoke(adapter);}catch(NoSuchMethodException e){return (Integer)adapter.getClass().getMethod("b").invoke(adapter);}}catch(Exception e){return -1;}}
     private static void emptyState(final FrameLayout body,final View list,final View path,final String prompt,final View error,final View loading){
         final TextView empty=CarUi.text(body.getContext(),prompt,19,CarUi.skin(body.getContext()).muted,false);empty.setTag(ROLE,"empty");empty.setGravity(Gravity.CENTER);empty.setPadding(d(body,24),d(body,24),d(body,24),d(body,24));empty.setVisibility(View.GONE);body.addView(empty,new FrameLayout.LayoutParams(-1,-1));
         body.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener(){@Override public void onGlobalLayout(){int count=itemCount(list);boolean blocked=(error!=null&&error.getVisibility()==View.VISIBLE)||(loading!=null&&loading.getVisibility()==View.VISIBLE);boolean show=count==0&&!blocked;int visibility=show?View.VISIBLE:View.GONE;if(empty.getVisibility()!=visibility)empty.setVisibility(visibility);String message=itemCount(path)>0?"当前目录暂无文件":prompt;if(!message.contentEquals(empty.getText()))empty.setText(message);}});
@@ -497,9 +614,32 @@ public final class LegacyUi {
             if(Build.VERSION.SDK_INT>=21&&"app".equals(role))root.setElevation("mono".equals(s.theme)?d(root,4):0);
         }
         if(root instanceof TextView){TextView t=(TextView)root;if(id.startsWith("v_read_ts_text")){t.setSingleLine(false);t.setMaxLines(4);t.setTextColor(s.muted);}}
+        if (root instanceof TextView && "previewText".equals(role)) {
+            TextView text = (TextView) root;
+            Wallpapers.Config wallpaper = Wallpapers.load(root.getContext());
+            boolean darkPreset = darkWallpaperPreset(wallpaper);
+            boolean backdrop = Wallpapers.hasBackdrop(s, wallpaper);
+            int color = id.equals("v_history_ts") ? s.muted : s.ink;
+            text.setTextColor(darkPreset && !s.dark ? Color.WHITE : color);
+            text.setShadowLayer(backdrop ? d(root, 2) : 0, 0, d(root, 1), darkPreset || s.dark ? 0xe0000000 : 0xc0ffffff);
+        }
+        Object layout = root.getTag(LAYOUT);
+        if (layout instanceof Integer && "item_history".equals(ResourceIndex.layout((Integer) layout))
+                && !s.dark && darkWallpaperPreset(Wallpapers.load(root.getContext()))) {
+            View name = find(root, "v_name");
+            if (name instanceof TextView) {
+                CarUi.Skin night = new CarUi.Skin(s.theme, true);
+                root.setBackground(CarUi.buttonBackground(root.getContext(), night.surface, night.soft, night.ink, 14));
+                ((TextView) name).setTextColor(night.ink);
+            }
+        }
         if(root instanceof ImageView&&id.startsWith("v_read_ts_ico")){((ImageView)root).setImageDrawable(new Icons("lock",s.muted));((ImageView)root).setColorFilter(s.muted);root.setPadding(d(root,18),d(root,18),d(root,18),d(root,18));}
         if(root.getClass().getName().endsWith("HiveProgressView"))try{root.getClass().getMethod("setColor",int.class).invoke(root,s.accent);}catch(Exception e){Log.w(TAG,"Loader color",e);}
         if(root instanceof ViewGroup){ViewGroup g=(ViewGroup)root;for(int i=0;i<g.getChildCount();i++)retheme(g.getChildAt(i));}
+    }
+
+    private static boolean darkWallpaperPreset(Wallpapers.Config wallpaper) {
+        return "particles".equals(wallpaper.mode) || ("static".equals(wallpaper.mode) && wallpaper.staticImage == 1);
     }
     private static void responsiveGrid(final View list,final int target,final int maximum){
         if(maximum>0)try{Object lm=list.getClass().getMethod("getLayoutManager").invoke(list);if(lm!=null)lm.getClass().getMethod("setSpanCount",int.class).invoke(lm,maximum);}catch(Exception e){Log.w(TAG,"Initial form columns",e);}
@@ -527,10 +667,20 @@ public final class LegacyUi {
         @Override protected void onMeasure(int w,int h){boolean wide=MeasureSpec.getSize(w)>=CarUi.dp(getContext(),720)&&MeasureSpec.getSize(w)>MeasureSpec.getSize(h)*1.12f;int orientation=wide?HORIZONTAL:VERTICAL;if(getOrientation()!=orientation)setOrientation(orientation);nav.setOrientation(wide?VERTICAL:HORIZONTAL);LinearLayout.LayoutParams n=new LinearLayout.LayoutParams(wide?CarUi.dp(getContext(),104):-1,wide?-1:-2);nav.setLayoutParams(n);pages.setLayoutParams(wide?new LinearLayout.LayoutParams(0,-1,1):new LinearLayout.LayoutParams(-1,0,1));for(TextView tab:tabs){LinearLayout.LayoutParams t=wide?new LinearLayout.LayoutParams(-1,-2):new LinearLayout.LayoutParams(0,-2,1);t.bottomMargin=CarUi.dp(getContext(),8);t.rightMargin=CarUi.dp(getContext(),8);tab.setLayoutParams(t);}super.onMeasure(w,h);}
     }
     private static final class GridHost extends FrameLayout{
-        final View list;final int target,max;Object manager;int previous;
+        final View list;final int target,max,landscapeColumns;Object manager;int previous;
         GridHost(View list,int target,int max){this(list,target,max,false);}
-        GridHost(View list,int target,int max,boolean fill){super(list.getContext());this.list=list;this.target=target;this.max=max;detach(list);addView(list,new FrameLayout.LayoutParams(-1,fill?-1:-2));}
-        @Override protected void onMeasure(int w,int h){int targetPx=Math.round(CarUi.dp(getContext(),target)*Math.max(1,getResources().getConfiguration().fontScale));int count=Math.min(max,Math.max(1,MeasureSpec.getSize(w)/targetPx));try{Object lm=list.getClass().getMethod("getLayoutManager").invoke(list);if(lm!=null&&(lm!=manager||count!=previous)){lm.getClass().getMethod("setSpanCount",int.class).invoke(lm,count);manager=lm;previous=count;}}catch(Exception e){Log.w(TAG,"Settings grid",e);}super.onMeasure(w,h);}
+        GridHost(View list,int target,int max,boolean fill){this(list,target,max,fill,0);}
+        GridHost(View list,int target,int max,boolean fill,int landscapeColumns){super(list.getContext());this.list=list;this.target=target;this.max=max;this.landscapeColumns=landscapeColumns;detach(list);addView(list,new FrameLayout.LayoutParams(-1,fill?-1:-2));}
+        @Override protected void onMeasure(int w,int h){
+            android.content.res.Configuration config=getResources().getConfiguration();
+            float fontScale=Math.max(1,config.fontScale);
+            int width=MeasureSpec.getSize(w);
+            int targetPx=Math.round(CarUi.dp(getContext(),target)*fontScale);
+            int count=Math.min(max,Math.max(1,width/targetPx));
+            if (landscapeColumns > 0 && config.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                    && width >= CarUi.dp(getContext(),72*landscapeColumns*fontScale)) count=landscapeColumns;
+            try{Object lm=list.getClass().getMethod("getLayoutManager").invoke(list);if(lm!=null&&(lm!=manager||count!=previous)){lm.getClass().getMethod("setSpanCount",int.class).invoke(lm,count);manager=lm;previous=count;}}catch(Exception e){Log.w(TAG,"Settings grid",e);}super.onMeasure(w,h);
+        }
     }
     /** Pair related advanced fields when each can retain at least 290dp of label/input space. */
     private static final class FieldGrid extends ViewGroup{

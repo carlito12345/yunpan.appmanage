@@ -18,7 +18,6 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.view.DragEvent;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -63,7 +62,12 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
     public void refreshTheme(){build();}
     public void reloadWallpaper(){wallpaper=null;build();}
     WallpaperView wallpaper() { return wallpaper; }
-    public boolean back(){if(editing){editing=false;build();return true;}if(page>=0){if(bridge.hasNestedBack(page))return false;showPage(-1);return true;}return false;}
+    public boolean back(){
+        if(editing){editing=false;build();return true;}
+        if(page == 2 && LegacyUi.closeNetworkTasks(legacy)) return true;
+        if(page>=0){if(bridge.hasNestedBack(page))return false;showPage(-1);return true;}
+        return false;
+    }
     private void hideOriginalHeader(){
         if(legacy==null)return;
         String[] names={"v_menu","v_version","v_adb_text"};
@@ -83,12 +87,6 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         post(this::build);
     }
 
-    @Override public boolean dispatchTouchEvent(MotionEvent event) {
-        if (wallpaper != null && wallpaper.getParent() == this && event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-            wallpaper.pulse(event.getX() - wallpaper.getLeft(), event.getY() - wallpaper.getTop());
-        }
-        return super.dispatchTouchEvent(event);
-    }
     private LinearLayout vertical(){LinearLayout view=new LinearLayout(activity);view.setOrientation(LinearLayout.VERTICAL);return view;}
     private LinearLayout horizontal(){LinearLayout view=new LinearLayout(activity);view.setOrientation(LinearLayout.HORIZONTAL);view.setGravity(Gravity.CENTER_VERTICAL);return view;}
     private LinearLayout.LayoutParams lp(int w,int h){return new LinearLayout.LayoutParams(w,h);}
@@ -104,6 +102,9 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
     }
     private void build(){
         if(building||getWidth()==0)return;building=true;
+        View previousFocus = findFocus();
+        View previousRoute = RemoteFocus.item(routeTrack, previousFocus);
+        int routeIndex = previousRoute == null ? -1 : routeTrack.indexOfChild(previousRoute);
         skin=CarUi.skin(activity);setBackgroundColor(skin.background);CarUi.window(activity);
         int commonScroll = common == null ? 0 : common.getScrollY();
         int routeScroll = routeTrack != null && routeTrack.getParent() instanceof ScrollView
@@ -160,6 +161,13 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         if(favorites.all().isEmpty()){TextView empty=label("把常用入口放在这里\n应用、内置功能或任意可打开的页面",20,skin.muted,false);empty.setGravity(Gravity.CENTER);empty.setPadding(d(12),d(30),d(12),d(30));content.addView(empty,lp(-1,-2));}
         TextView provenance=label("定制作者："+SourceInfo.AUTHOR+" · 官方来源",15,skin.ink,false);provenance.setPadding(d(16),d(14),d(16),d(14));provenance.setMinimumHeight(d(48));provenance.setBackground(CarUi.buttonBackground(activity,skin.surface,skin.soft,skin.ink,18));provenance.setFocusable(true);provenance.setClickable(true);provenance.setContentDescription("关于与来源，定制作者 carlito");provenance.setOnClickListener(new OnClickListener(){public void onClick(View v){SourceInfo.show(activity);}});content.addView(provenance,lp(-1,-2));
         buildRail(routeScroll);applyPage();building=false;
+        if (previousFocus != null) {
+            View scope = routeIndex >= 0 ? rail : visiblePage();
+            View target = routeIndex >= 0 ? routeTrack.getChildAt(routeIndex) : previousFocus;
+            if (!RemoteFocus.restore(scope, target)) {
+                RemoteFocus.afterLayout(scope, () -> RemoteFocus.restore(scope, target));
+            }
+        }
         if (commonScroll != 0) {
             ScrollView scroll = common;
             scroll.post(() -> scroll.scrollTo(0, commonScroll));
@@ -421,13 +429,42 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         }
     }
     @Override public void page(int index){showPage(index);}
+    private View visiblePage() { return page < 0 ? common : legacyFrame; }
+
+    @Override public View focusSearch(View focused, int direction) {
+        View candidate = super.focusSearch(focused, direction);
+        View panel = visiblePage();
+        if (routeTrack == null || panel == null) return candidate;
+        int intoPage = getLayoutDirection() == LAYOUT_DIRECTION_RTL ? FOCUS_LEFT : FOCUS_RIGHT;
+        int intoRail = intoPage == FOCUS_LEFT ? FOCUS_RIGHT : FOCUS_LEFT;
+        if (direction == intoPage && RemoteFocus.contains(rail, focused)) {
+            if (RemoteFocus.contains(panel, candidate)) return candidate;
+            View first = RemoteFocus.first(panel);
+            if (first != null) return first;
+        }
+        if (direction == intoRail && RemoteFocus.contains(panel, focused)
+                && (candidate == null || RemoteFocus.contains(rail, candidate))) {
+            return routeTrack.getChildAt(page + 1);
+        }
+        return candidate;
+    }
+
     public void showPage(int index) {
         int previous = page;
+        View previousFocus = findFocus();
         page = Math.max(-1, Math.min(2, index));
         if (page >= 0) bridge.page(page);
         if (common == null) return;
         applyPage();
         updateRail(previous != page);
+        View panel = visiblePage();
+        View preferred = previous == page ? previousFocus : null;
+        if (!RemoteFocus.restore(panel, preferred)) {
+            int destination = page;
+            RemoteFocus.afterLayout(panel, () -> {
+                if (page == destination && panel == visiblePage()) RemoteFocus.restore(panel, preferred);
+            });
+        }
         if (previous != page) {
             CarMotion.reset(page < 0 ? legacyFrame : common);
             CarMotion.enter(page < 0 ? common : legacyFrame, Integer.signum(page - previous));
@@ -440,7 +477,6 @@ public final class CarHome extends FrameLayout implements Bridge.PageHost {
         pageTitle.setText(title());
         if (page >= 0 && legacy != null) {
             CarUi.theme(legacy);
-            legacy.requestFocus(View.FOCUS_DOWN);
         }
     }
     public void showAdd(){new ShortcutPicker(activity,bridge,skin,new ShortcutPicker.Listener(){@Override public boolean add(Favorites.Item item){
